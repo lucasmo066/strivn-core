@@ -1,0 +1,56 @@
+:root {
+  /* Hairline brand palette */
+  --paper: #f8f7f4;
+  --ink: #0a0a0a;
+  --ink-70: rgba(10, 10, 10, 0.7);
+  --ink-40: rgba(10, 10, 10, 0.4);
+  --line: rgba(0, 0, 0, 0.1);
+  --line-strong: rgba(0, 0, 0, 0.18);
+  --orange: #ff5c00;
+  --orange-focus: rgba(255, 92, 0, 0.35);
+  --void: #0a0a0a;
+  --void-2: #111111;
+  --line-dark: rgba(255, 255, 255, 0.1);
+  --line-dark-strong: rgba(255, 255, 255, 0.18);
+  --status-ok: #3d7a5a;
+  --status-warn: #9a7b2e;
+  --status-danger: #b42318;
+
+  /* shadcn semantic mapping */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--orange);
+  --primary-foreground: #ffffff;
+  --secondary: var(--paper);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper);
+  --muted-foreground: var(--ink-70);
+  --accent: var(--paper);
+  --accent-foreground: var(--ink);
+  --destructive: var(--status-danger);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--orange);
+}
+
+.dark,
+.void {
+  --background: var(--void);
+  --foreground: #fafafa;
+  --card: var(--void-2);
+  --card-foreground: #fafafa;
+  --popover: var(--void-2);
+  --popover-foreground: #fafafa;
+  --secondary: var(--void-2);
+  --secondary-foreground: #fafafa;
+  --muted: var(--void-2);
+  --muted-foreground: rgba(250, 250, 250, 0.65);
+  --accent: var(--void-2);
+  --accent-foreground: #fafafa;
+  --border: var(--line-dark);
+  --input: var(--line-dark);
+}

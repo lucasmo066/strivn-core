@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Geist Pixel";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/DepartureMono-Regular.woff2") format("woff2");
+}
+
+:root {
+  --font-display: var(--font-sans);
+  --font-ui: var(--font-mono);
+  --font-pixel: "Geist Pixel", var(--font-mono), ui-monospace, monospace;
+}

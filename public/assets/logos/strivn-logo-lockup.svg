@@ -1,0 +1,22 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="400" fill="#ffffff"/>
+  <g transform="translate(180 135)">
+    <polygon points="50,0 100,25 50,50 0,25" fill="#000000"/>
+    <polygon points="0,25 50,50 50,100 0,72" fill="#000000"/>
+    <polygon points="50,50 100,25 100,72 50,100" fill="#000000"/>
+    <g stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M50 0 L100 25 L50 50 L0 25 Z"/>
+      <path d="M0 25 L50 50 L50 100 L0 72 Z"/>
+      <path d="M50 50 L100 25 L100 72 L50 100 Z"/>
+      <path d="M25 13 L75 38"/>
+      <path d="M38 6 L88 31"/>
+      <path d="M58 77 L83 52 L83 68 L93 68 L93 35 L60 35 L60 45 L76 45 L51 70"/>
+    </g>
+    <text x="138" y="83"
+      fill="#000000"
+      font-family="'Geist Pixel', 'Geist Mono', 'JetBrains Mono', monospace"
+      font-size="88"
+      font-weight="700"
+      letter-spacing="-2">strivn</text>
+  </g>
+</svg>

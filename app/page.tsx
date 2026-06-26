@@ -1,8 +1,15 @@
+import { ContactSection } from "@/components/sections/contact-section";
+import { DesignSystemSection } from "@/components/sections/design-system-section";
+import { HeroSection } from "@/components/sections/hero-section";
+import { WorkSection } from "@/components/sections/work-section";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold">Strivn</h1>
-      <p className="text-muted-foreground mt-2">Agency site loading.</p>
+    <main>
+      <HeroSection />
+      <WorkSection />
+      <DesignSystemSection />
+      <ContactSection />
     </main>
   );
 }

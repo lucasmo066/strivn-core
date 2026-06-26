@@ -1,0 +1,9 @@
+:root {
+  --dur: 200ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@utility transition-hairline {
+  transition-duration: var(--dur);
+  transition-timing-function: var(--ease-out);
+}

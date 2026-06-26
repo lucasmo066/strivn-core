@@ -1,0 +1,70 @@
+:root {
+  --text-display: clamp(2.5rem, 5vw, 4rem);
+  --text-h1: clamp(2rem, 4vw, 3rem);
+  --text-h2: clamp(1.5rem, 3vw, 2rem);
+  --text-h3: 1.25rem;
+  --text-body: 0.9375rem;
+  --text-sm: 0.8125rem;
+  --text-micro: 0.6875rem;
+  --tracking-micro: 0.12em;
+  --leading-display: 1.05;
+  --leading-tight: 1.2;
+  --leading-body: 1.6;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-ui);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    line-height: var(--leading-display);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--leading-tight);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--leading-tight);
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility font-ui {
+  font-family: var(--font-ui);
+}
+
+@utility font-pixel {
+  font-family: var(--font-pixel);
+}
+
+@utility text-micro {
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+}
+
+@utility text-accent-orange {
+  color: var(--orange);
+}
