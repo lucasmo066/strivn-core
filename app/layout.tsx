@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
+import { GeistPixelSquare } from "geist/font/pixel";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -8,12 +10,6 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -32,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-ui antialiased`}
+        className={`${geistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable} min-h-screen bg-background font-ui antialiased`}
       >
         <SiteHeader />
         {children}

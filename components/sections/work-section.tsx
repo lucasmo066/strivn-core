@@ -22,7 +22,7 @@ const PLACEHOLDER_WORK = [
   {
     title: "Your business",
     category: "Next build",
-    metric: "From $4,800",
+    metric: "From $2,000",
   },
 ] as const;
 

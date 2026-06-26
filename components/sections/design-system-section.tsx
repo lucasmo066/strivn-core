@@ -13,7 +13,7 @@ import {
   HairlineCardHeader,
   HairlineCardTitle,
 } from "@/components/surfaces/hairline-card";
-import { RETAINER_TIERS, VALUE_WORDS } from "@/lib/constants";
+import { VALUE_WORDS } from "@/lib/constants";
 
 export function DesignSystemSection() {
   return (
@@ -34,7 +34,6 @@ export function DesignSystemSection() {
           <TabsList variant="line">
             <TabsTrigger value="components">Components</TabsTrigger>
             <TabsTrigger value="tokens">Tokens</TabsTrigger>
-            <TabsTrigger value="pricing">Pricing</TabsTrigger>
           </TabsList>
 
           <TabsContent value="components" className="mt-6">
@@ -115,32 +114,6 @@ export function DesignSystemSection() {
                 </Badge>
               ))}
             </div>
-          </TabsContent>
-
-          <TabsContent value="pricing" className="mt-6" id="pricing">
-            <div className="grid gap-4 md:grid-cols-3">
-              {RETAINER_TIERS.map((tier) => (
-                <HairlineCard key={tier.name} brackets>
-                  <HairlineCardHeader>
-                    <MonoLabel>{tier.name}</MonoLabel>
-                    <HairlineCardTitle className="tabular-nums">
-                      {tier.price}
-                    </HairlineCardTitle>
-                    <HairlineCardDescription>
-                      Ongoing maintenance & support
-                    </HairlineCardDescription>
-                  </HairlineCardHeader>
-                  <HairlineCardContent>
-                    <StrivnButton variant="outline" className="w-full">
-                      Learn more
-                    </StrivnButton>
-                  </HairlineCardContent>
-                </HairlineCard>
-              ))}
-            </div>
-            <p className="mt-4 font-ui text-sm text-muted-foreground tabular-nums">
-              Projects from $4,800 · Overages $85/hr
-            </p>
           </TabsContent>
         </Tabs>
       </Container>
