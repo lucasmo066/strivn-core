@@ -15,9 +15,8 @@ export function HeroSection() {
             <MonoLabel>{BRAND.location}</MonoLabel>
           </div>
 
-          <h1 className="font-display max-w-3xl text-[var(--text-display)] leading-[var(--leading-display)] font-semibold tracking-tight">
-            Built to be found. Built to be{" "}
-            <span className="text-orange">chosen</span>.
+          <h1 className="font-display max-w-3xl text-[var(--text-display)] leading-[var(--leading-display)] font-semibold tracking-tight bg-[linear-gradient(to_right,#ffb347,var(--orange),#ff3d00,var(--orange))] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
+            Built to be found. Built to be chosen.
           </h1>
 
           <p className="max-w-xl font-ui text-muted-foreground">
