@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
-import { BRAND, TAGLINES } from "@/lib/constants";
+import { BRAND, HERO_PROOF, TAGLINES } from "@/lib/constants";
 
 export function HeroSection() {
   return (
@@ -16,9 +16,14 @@ export function HeroSection() {
             {TAGLINES.primary}
           </h1>
 
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground md:mx-0 md:text-lg">
-            {TAGLINES.heroSub}
-          </p>
+          <div className="mx-auto max-w-2xl space-y-3 md:mx-0">
+            <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+              {TAGLINES.heroSub}
+            </p>
+            <p className="text-base leading-relaxed text-muted-foreground/80 md:text-lg">
+              {TAGLINES.heroDetail}
+            </p>
+          </div>
 
           <div className="flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
             <StrivnButton variant="primary" arrow className="w-full sm:w-auto">
@@ -31,6 +36,19 @@ export function HeroSection() {
             >
               <Link href="#work">View work</Link>
             </StrivnButton>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 border-t border-border pt-8 md:justify-start">
+            {HERO_PROOF.map((stat) => (
+              <div key={stat.label} className="text-center md:text-left">
+                <p className="font-display text-2xl font-bold tabular-nums tracking-tight">
+                  {stat.value}
+                </p>
+                <p className="mt-0.5 font-ui text-sm text-muted-foreground">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </Container>

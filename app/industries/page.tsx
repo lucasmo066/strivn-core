@@ -10,7 +10,7 @@ import { getIndustriesByTier } from "@/lib/industries";
 export const metadata: Metadata = {
   title: "Industries — Strivn",
   description:
-    "Custom websites for Denver and Boulder businesses in med spas, dental, law, real estate, home remodeling, financial services, and more.",
+    "Custom websites for Front Range businesses in med spas, dental, law, real estate, home remodeling, financial services, and more.",
 };
 
 export default function IndustriesPage() {
@@ -26,7 +26,7 @@ export default function IndustriesPage() {
               Industries we build for
             </h1>
             <p className="font-ui text-muted-foreground">
-              We specialize in {BRAND.location} businesses where a fast,
+              We specialize in {BRAND.region} businesses where a fast,
               credible website directly drives leads, bookings, and trust.
             </p>
             <StrivnButton variant="primary" arrow className="w-full sm:w-auto" asChild>

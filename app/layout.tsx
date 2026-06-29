@@ -11,7 +11,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Strivn — Web Design & Development for Small Business",
   description:
-    "Strivn builds fast, custom websites for small businesses in Denver and Boulder. Design, development, SEO, and ongoing support — launch in weeks, not months.",
+    "Strivn builds fast, custom websites for small businesses on the Front Range. Design, development, SEO, and ongoing support — launch in weeks, not months.",
 };
 
 export default function RootLayout({

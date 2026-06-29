@@ -107,7 +107,7 @@ export const INDUSTRIES: readonly Industry[] = [
     ],
     outcomes: [
       "Portfolio-forward layouts that showcase craftsmanship and finished work",
-      "Service-area structure for local SEO across Denver and Boulder",
+      "Service-area structure for local SEO across the Front Range",
       "Quote and consultation flows that capture qualified leads",
     ],
     relatedSlugs: ["architecture"],

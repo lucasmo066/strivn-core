@@ -1,7 +1,9 @@
 export const TAGLINES = {
   primary: "Custom websites that bring in business.",
   heroSub:
-    "We design and build fast, conversion-focused sites for small businesses in Denver and Boulder — no templates, no bloated agency process. Launch in weeks, not months.",
+    "We design and build fast, conversion-focused sites for small businesses on the Front Range.",
+  heroDetail:
+    "No templates, no bloated agency process — launch in weeks, not months.",
   cta: "Ready to grow your business online?",
   heroCta: "Start your project",
   navCta: "Book a call",
@@ -9,10 +11,9 @@ export const TAGLINES = {
   closing: "Let's build something that works.",
 } as const;
 
-export const TRUST_STATS = [
+export const HERO_PROOF = [
   { value: "2–4 wks", label: "Typical launch timeline" },
   { value: "99", label: "Lighthouse performance target" },
-  { value: "$2k+", label: "Starting build investment" },
 ] as const;
 
 export const SERVICES = [
@@ -39,7 +40,7 @@ export const SERVICES = [
   {
     title: "Local SEO foundation",
     description:
-      "Get found by customers already searching in Denver, Boulder, and surrounding areas.",
+      "Get found by customers already searching across the Front Range.",
     points: [
       "On-page SEO structure",
       "Google Business Profile alignment",
@@ -79,7 +80,7 @@ export const WORK_ITEMS = [
   {
     title: "Your business",
     category: "Next project",
-    location: "Denver & Boulder",
+    location: "Front Range",
     description:
       "Restaurants, trades, clinics, shops — if you need customers online, we should talk.",
     metric: "Builds from $2,000",
@@ -334,6 +335,7 @@ export const PRICING_COPY = {
 
 export const BRAND = {
   name: "Strivn",
-  location: "Denver & Boulder, CO",
+  location: "Front Range, CO",
+  region: "Front Range",
   accent: "#FF5C00",
 } as const;

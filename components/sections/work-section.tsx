@@ -24,7 +24,7 @@ export function WorkSection() {
               Real businesses, real results
             </h2>
             <p className="font-ui text-muted-foreground">
-              A sample of what we&apos;re building for Denver and Boulder
+              A sample of what we&apos;re building across the Front Range
               clients — fast sites with clear messaging and room to grow.
             </p>
           </div>
