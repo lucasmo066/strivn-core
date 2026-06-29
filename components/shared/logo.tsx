@@ -8,7 +8,7 @@ export function Logo({ className, variant = "lockup" }: LogoProps) {
     return (
       <span
         className={cn(
-          "font-display text-lg font-semibold tracking-tight text-foreground",
+          "font-display text-lg font-bold tracking-tight text-foreground",
           className
         )}
       >

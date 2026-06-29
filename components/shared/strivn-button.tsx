@@ -14,6 +14,7 @@ export function StrivnButton({
   variant = "primary",
   size = "default",
   arrow = false,
+  asChild = false,
   children,
   ...props
 }: StrivnButtonProps) {
@@ -24,6 +25,7 @@ export function StrivnButton({
     <Button
       variant={variantMap[variant]}
       size={size}
+      asChild={asChild}
       className={cn(
         "font-ui rounded-md transition-hairline",
         variant === "primary" &&
@@ -36,8 +38,16 @@ export function StrivnButton({
       )}
       {...props}
     >
-      {children}
-      {arrow ? <BrandArrow variant={arrowVariant} className="ml-1.5" /> : null}
+      {asChild ? (
+        children
+      ) : (
+        <>
+          {children}
+          {arrow ? (
+            <BrandArrow variant={arrowVariant} className="ml-1.5" />
+          ) : null}
+        </>
+      )}
     </Button>
   );
 }

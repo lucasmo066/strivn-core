@@ -19,5 +19,5 @@
 }
 
 @utility animate-gradient {
-  animation: gradient-shift 6s ease infinite;
+  animation: gradient-shift 10s ease infinite;
 }

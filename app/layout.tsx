@@ -17,7 +17,7 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Strivn — Web Design & Development for Small Business",
   description:
-    "Strivn builds fast, custom websites for small businesses in Denver and Boulder, CO. Design, development, and ongoing support.",
+    "Strivn builds fast, custom websites for small businesses in Denver and Boulder. Design, development, SEO, and ongoing support — launch in weeks, not months.",
 };
 
 export default function RootLayout({
