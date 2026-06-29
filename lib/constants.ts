@@ -15,13 +15,6 @@ export const TRUST_STATS = [
   { value: "$2k+", label: "Starting build investment" },
 ] as const;
 
-export const CLIENT_VERTICALS = [
-  "Restaurants",
-  "Home services",
-  "Professional services",
-  "Retail & e-commerce",
-] as const;
-
 export const SERVICES = [
   {
     title: "Custom design",
