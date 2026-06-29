@@ -34,7 +34,7 @@ export function BuildPackages() {
             )}
           >
             {"badge" in pkg && pkg.badge ? (
-              <span className="absolute top-0 right-3 rounded-b-md bg-orange px-2 py-0.5 font-pixel text-[9px] font-bold tracking-wider text-white uppercase">
+              <span className="absolute top-0 right-3 rounded-b-md bg-orange px-2 py-0.5 font-pixel text-[9px] font-medium tracking-wider text-white uppercase">
                 {pkg.badge}
               </span>
             ) : null}

@@ -40,7 +40,7 @@ export function OverageAndQuickRef() {
         <div className="flex flex-wrap gap-6 rounded-lg border border-border bg-card p-5 sm:gap-8">
           {PRICING_QUICK_REF.map((item) => (
             <div key={item.label}>
-              <p className="font-pixel text-[9px] font-semibold tracking-wider text-muted-foreground uppercase">
+              <p className="font-pixel text-[9px] font-medium tracking-wider text-muted-foreground uppercase">
                 {item.label}
               </p>
               <p className="mt-1 font-display text-base font-bold tabular-nums">

@@ -25,16 +25,16 @@ export function EditSizesTable() {
         <table className="w-full min-w-[640px] border-collapse font-ui text-sm">
           <thead>
             <tr className="void">
-              <th className="px-4 py-3 text-left font-pixel text-[10px] font-semibold tracking-wider text-white uppercase">
+              <th className="px-4 py-3 text-left font-pixel text-[10px] font-medium tracking-wider text-white uppercase">
                 Size
               </th>
-              <th className="px-4 py-3 text-left font-pixel text-[10px] font-semibold tracking-wider text-white uppercase">
+              <th className="px-4 py-3 text-left font-pixel text-[10px] font-medium tracking-wider text-white uppercase">
                 Definition
               </th>
-              <th className="px-4 py-3 text-left font-pixel text-[10px] font-semibold tracking-wider text-white uppercase">
+              <th className="px-4 py-3 text-left font-pixel text-[10px] font-medium tracking-wider text-white uppercase">
                 Time
               </th>
-              <th className="px-4 py-3 text-left font-pixel text-[10px] font-semibold tracking-wider text-white uppercase">
+              <th className="px-4 py-3 text-left font-pixel text-[10px] font-medium tracking-wider text-white uppercase">
                 Billing
               </th>
             </tr>
@@ -51,7 +51,7 @@ export function EditSizesTable() {
                 <td className="px-4 py-3 align-top">
                   <span
                     className={cn(
-                      "inline-block rounded px-2 py-0.5 font-pixel text-[10px] font-bold tracking-wider uppercase",
+                      "inline-block rounded px-2 py-0.5 font-pixel text-[10px] font-medium tracking-wider uppercase",
                       TAG_STYLES[size.tag]
                     )}
                   >
