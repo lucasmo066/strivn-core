@@ -20,7 +20,7 @@ export function WorkSection() {
             Recent work
           </h2>
           <Link
-            href="#contact"
+            href="/#contact"
             className="text-sm font-medium text-orange transition-hairline hover:text-orange/80"
           >
             Start your project

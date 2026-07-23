@@ -75,7 +75,7 @@ export function SiteHeader() {
           </nav>
 
           <StrivnButton variant="primary" size="sm" arrow asChild>
-            <Link href="#contact">{TAGLINES.navCta}</Link>
+            <Link href="/#contact">{TAGLINES.navCta}</Link>
           </StrivnButton>
         </Container>
       </header>

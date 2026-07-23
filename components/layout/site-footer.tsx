@@ -28,7 +28,7 @@ export function SiteFooter() {
               {BRAND.name} / {BRAND.location}
             </p>
             <StrivnButton variant="primary" size="sm" arrow asChild>
-              <Link href="#contact">{TAGLINES.heroCta}</Link>
+              <Link href="/#contact">{TAGLINES.heroCta}</Link>
             </StrivnButton>
           </div>
 

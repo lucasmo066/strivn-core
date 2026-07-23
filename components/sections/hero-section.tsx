@@ -36,14 +36,14 @@ export function HeroSection() {
                 className="w-full sm:w-auto"
                 asChild
               >
-                <Link href="#contact">{TAGLINES.heroCta}</Link>
+                <Link href="/#contact">{TAGLINES.heroCta}</Link>
               </StrivnButton>
               <StrivnButton
                 variant="outline"
                 className="w-full border-ink/12 bg-card sm:w-auto"
                 asChild
               >
-                <Link href="#pricing">See pricing</Link>
+                <Link href="/#pricing">See pricing</Link>
               </StrivnButton>
             </div>
           </div>

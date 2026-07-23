@@ -64,7 +64,7 @@ export function BuildPackages() {
                   arrow={featured}
                   asChild
                 >
-                  <Link href="#contact">Get started</Link>
+                  <Link href="/#contact">Get started</Link>
                 </StrivnButton>
               </SoftCardContent>
             </SoftCard>
