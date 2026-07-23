@@ -2,90 +2,77 @@ import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
-import { StrivnButton } from "@/components/shared/strivn-button";
 import {
-  HairlineCard,
-  HairlineCardContent,
-  HairlineCardDescription,
-  HairlineCardHeader,
-  HairlineCardTitle,
-} from "@/components/surfaces/hairline-card";
+  SoftCard,
+  SoftCardContent,
+  SoftCardHeader,
+  SoftCardTitle,
+} from "@/components/surfaces/soft-card";
 import { WORK_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function WorkSection() {
   return (
-    <section id="work" className="void scanlines section-y">
-      <Container className="space-y-10">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-xl space-y-3">
-            <MonoLabel>Selected work</MonoLabel>
-            <h2 className="font-display text-[var(--text-h2)]">
-              Real businesses, real results
-            </h2>
-            <p className="font-ui text-muted-foreground">
-              A sample of what we&apos;re building across the Front Range
-              clients — fast sites with clear messaging and room to grow.
-            </p>
-          </div>
-          <StrivnButton variant="outline" className="shrink-0 border-[var(--line-dark)] bg-transparent text-foreground hover:border-[var(--line-dark-strong)]">
-            View all work
-          </StrivnButton>
+    <section id="work" className="section-y border-t border-border bg-muted/40">
+      <Container className="space-y-8">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <h2 className="font-display text-[var(--text-h2)]">
+            Recent work
+          </h2>
+          <Link
+            href="#contact"
+            className="text-sm font-medium text-orange transition-hairline hover:text-orange/80"
+          >
+            Start your project
+          </Link>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-3">
-          {WORK_ITEMS.map((project) => (
-            <HairlineCard
-              key={project.title}
-              brackets
-              accentBrackets={"featured" in project && project.featured}
-              className={cn(
-                "group border-[var(--line-dark)] bg-void-2 hover:border-[var(--line-dark-strong)]",
-                "featured" in project &&
-                  project.featured &&
-                  "lg:col-span-1"
-              )}
-            >
-              <HairlineCardHeader>
-                <div
-                  className={cn(
-                    "mb-4 flex items-end overflow-hidden rounded-md border border-[var(--line-dark)] bg-[linear-gradient(135deg,#141414_0%,#1f1208_55%,#2a1508_100%)] p-5",
-                    "featured" in project && project.featured
-                      ? "aspect-[16/10]"
-                      : "aspect-[4/3]"
-                  )}
-                >
-                  <div>
-                    <MonoLabel>
-                      {project.category} · {project.location}
-                    </MonoLabel>
-                    <p className="mt-2 font-display text-2xl font-semibold tracking-tight">
-                      {project.title}
-                    </p>
-                  </div>
-                </div>
-                <HairlineCardTitle className="font-display text-lg">
-                  {project.title}
-                </HairlineCardTitle>
-                <HairlineCardDescription>
-                  {project.description}
-                </HairlineCardDescription>
-              </HairlineCardHeader>
-              <HairlineCardContent className="flex items-center justify-between gap-4">
-                <p className="font-ui text-sm tabular-nums text-muted-foreground">
-                  {project.metric}
-                </p>
-                {"featured" in project && project.featured ? (
-                  <Link
-                    href="#contact"
-                    className="font-ui text-sm text-orange transition-hairline hover:text-orange/80"
+          {WORK_ITEMS.map((project) => {
+            const featured = "featured" in project && project.featured;
+
+            return (
+              <SoftCard
+                key={project.title}
+                accent={featured}
+                className="flex flex-col"
+              >
+                <SoftCardHeader className="space-y-4">
+                  <div
+                    className={cn(
+                      "flex aspect-4/3 items-end rounded-2xl p-5",
+                      featured ? "bg-void" : "bg-ink/[0.06]"
+                    )}
                   >
-                    Case study soon →
-                  </Link>
-                ) : null}
-              </HairlineCardContent>
-            </HairlineCard>
-          ))}
+                    <div>
+                      <MonoLabel
+                        className={cn(featured && "text-white/50")}
+                      >
+                        {project.category}
+                      </MonoLabel>
+                      <p
+                        className={cn(
+                          "mt-2 font-display text-2xl font-semibold tracking-tight",
+                          featured ? "text-white" : "text-foreground"
+                        )}
+                      >
+                        {project.title}
+                      </p>
+                    </div>
+                  </div>
+                  <SoftCardTitle className="sr-only">{project.title}</SoftCardTitle>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
+                </SoftCardHeader>
+                <SoftCardContent className="mt-auto pt-0">
+                  <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">
+                    {project.metric}
+                  </p>
+                </SoftCardContent>
+              </SoftCard>
+            );
+          })}
         </div>
       </Container>
     </section>

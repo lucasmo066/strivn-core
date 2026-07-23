@@ -1,40 +1,45 @@
 import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
-import { MonoLabel } from "@/components/shared/mono-label";
+import { HERO_PROOF } from "@/lib/constants";
 import { getHomepageIndustries } from "@/lib/industries";
 
 export function SocialProofSection() {
   const homepageIndustries = getHomepageIndustries();
 
   return (
-    <section className="border-b border-border bg-muted/30 py-10">
-      <Container>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div className="space-y-2 text-center sm:text-left">
-            <MonoLabel>Who we build for</MonoLabel>
-            <p className="max-w-sm font-ui text-sm text-muted-foreground">
-              Front Range businesses where your website is the sales pitch.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center gap-3 sm:items-end">
-            <div className="flex flex-wrap justify-center gap-2 sm:justify-end">
-              {homepageIndustries.map((industry) => (
-                <Link
-                  key={industry.slug}
-                  href={`/industries#${industry.slug}`}
-                  className="rounded-full border border-border bg-card px-3 py-1 font-ui text-sm text-muted-foreground transition-hairline hover:border-foreground/30 hover:text-foreground"
-                >
-                  {industry.shortName ?? industry.name}
-                </Link>
-              ))}
+    <section className="border-y border-border py-8 md:py-10">
+      <Container className="space-y-8">
+        <div className="grid grid-cols-3 gap-4 md:gap-8">
+          {HERO_PROOF.map((stat) => (
+            <div key={stat.label} className="text-center md:text-left">
+              <p className="font-display text-2xl font-bold tracking-tight tabular-nums md:text-3xl">
+                {stat.value}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
             </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-3 border-t border-border pt-6 md:flex-row md:items-center md:justify-between">
+          <p className="text-sm text-muted-foreground">
+            Built for local businesses across the Front Range
+          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+            {homepageIndustries.map((industry) => (
+              <Link
+                key={industry.slug}
+                href={`/industries#${industry.slug}`}
+                className="text-muted-foreground transition-hairline hover:text-foreground"
+              >
+                {industry.shortName ?? industry.name}
+              </Link>
+            ))}
             <Link
               href="/industries"
-              className="font-ui text-sm text-muted-foreground transition-hairline hover:text-foreground"
+              className="font-medium text-orange transition-hairline hover:text-orange/80"
             >
-              View all industries →
+              All industries
             </Link>
           </div>
         </div>

@@ -1,9 +1,16 @@
 :root {
-  --dur: 200ms;
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --dur: 220ms;
+  --dur-slow: 480ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @utility transition-hairline {
+  transition-duration: var(--dur);
+  transition-timing-function: var(--ease-out);
+}
+
+@utility transition-lift {
+  transition-property: transform, box-shadow;
   transition-duration: var(--dur);
   transition-timing-function: var(--ease-out);
 }
@@ -20,4 +27,14 @@
 
 @utility animate-gradient {
   animation: gradient-shift 10s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient {
+    animation: none;
+  }
+
+  .transition-lift {
+    transition: none;
+  }
 }

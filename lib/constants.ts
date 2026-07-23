@@ -1,61 +1,37 @@
 export const TAGLINES = {
   primary: "Custom websites that bring in business.",
   heroSub:
-    "We design and build fast, conversion-focused sites for small businesses on the Front Range.",
-  heroDetail:
-    "No templates, no bloated agency process — launch in weeks, not months.",
-  cta: "Ready to grow your business online?",
-  heroCta: "Start your project",
+    "Fast, custom sites for Front Range businesses. Built to get you found and booked.",
+  heroDetail: "Launch in weeks, not months.",
+  cta: "Tell us about your project.",
+  heroCta: "Book a call",
   navCta: "Book a call",
   speed: "Found fast. Sold faster.",
-  closing: "Let's build something that works.",
+  closing: "Ready when you are.",
 } as const;
 
 export const HERO_PROOF = [
-  { value: "2–4 wks", label: "Typical launch timeline" },
-  { value: "99", label: "Lighthouse performance target" },
+  { value: "2-4 wks", label: "Typical launch" },
+  { value: "From $2k", label: "Website builds" },
+  { value: "1 day", label: "Reply time" },
 ] as const;
 
 export const SERVICES = [
   {
-    title: "Custom design",
-    description:
-      "Brand-aligned layouts built for your market — not a template with your logo dropped in.",
-    points: [
-      "Mobile-first page structure",
-      "Clear calls to action",
-      "On-brand typography and color",
-    ],
+    title: "Design",
+    description: "A site that looks like your business, not a template.",
   },
   {
-    title: "Development & launch",
-    description:
-      "Fast, accessible sites on modern infrastructure — engineered to load quickly and rank cleanly.",
-    points: [
-      "Next.js performance stack",
-      "Forms, booking, and integrations",
-      "Analytics and Search Console setup",
-    ],
+    title: "Build & launch",
+    description: "Fast, mobile-ready, and live in weeks.",
   },
   {
-    title: "Local SEO foundation",
-    description:
-      "Get found by customers already searching across the Front Range.",
-    points: [
-      "On-page SEO structure",
-      "Google Business Profile alignment",
-      "Keyword-informed page copy",
-    ],
+    title: "Get found",
+    description: "Local SEO so customers can find you on Google.",
   },
   {
-    title: "Ongoing care",
-    description:
-      "After launch, we handle hosting, updates, and the small changes that keep your site current.",
-    points: [
-      "Monthly maintenance plans",
-      "Defined edit sizes — no surprise scope",
-      "Priority support on Growth+ plans",
-    ],
+    title: "Stay sharp",
+    description: "Hosting, updates, and edits after launch.",
   },
 ] as const;
 
@@ -64,25 +40,15 @@ export const WORK_ITEMS = [
     title: "Sahara Grill",
     category: "Restaurant",
     location: "Denver, CO",
-    description:
-      "Menu-forward site with strong local presence and a foundation for online ordering.",
-    metric: "Live · Lighthouse 98",
+    description: "Menu-forward site built for local search and online ordering.",
+    metric: "Live / Lighthouse 98",
     featured: true,
-  },
-  {
-    title: "Summit First",
-    category: "Financial services",
-    location: "Boulder, CO",
-    description:
-      "Trust-focused layout with clear service pages and lead capture for a growing advisory firm.",
-    metric: "In progress · LCP 0.9s",
   },
   {
     title: "Your business",
     category: "Next project",
     location: "Front Range",
-    description:
-      "Restaurants, trades, clinics, shops — if you need customers online, we should talk.",
+    description: "Ready for a site that gets customers to call.",
     metric: "Builds from $2,000",
   },
 ] as const;
@@ -291,8 +257,8 @@ export const EDIT_SIZES = [
     tag: "medium" as const,
     definition:
       "New section on existing page, new form, new third-party integration (booking, chat, etc.)",
-    time: "30 min – 2 hrs",
-    billing: "$75–$150 per edit",
+    time: "30 min - 2 hrs",
+    billing: "$75-$150 per edit",
     billingNote: "billed at $85/hr, estimated first",
   },
   {
@@ -308,11 +274,11 @@ export const EDIT_SIZES = [
 export const OVERAGE_RATE = "$85/hr";
 
 export const OVERAGE_COPY =
-  "Standard overage rate. Client receives a written estimate before any billable work begins. Approval is required — overages are never charged without it. Medium edits typically run $75–$150. Large edits are quoted as a fixed project fee.";
+  "Client receives a written estimate before any billable work begins. Approval is required. Overages are never charged without it. Medium edits typically run $75-$150. Large edits are quoted as a fixed project fee.";
 
 export const PRICING_QUICK_REF = [
-  { label: "Build range", value: "$2,000", suffix: "– $6,000" },
-  { label: "Retainer range", value: "$200", suffix: "– $600/mo" },
+  { label: "Build range", value: "$2,000", suffix: "- $6,000" },
+  { label: "Retainer range", value: "$200", suffix: "- $600/mo" },
   { label: "Yearly discount", value: "10%", suffix: "off monthly" },
   { label: "Overage rate", value: "$85", suffix: "/hr" },
   { label: "Deposit", value: "50%", suffix: "at signing" },

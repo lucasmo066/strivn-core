@@ -1,4 +1,3 @@
-import { MonoLabel } from "@/components/shared/mono-label";
 import { cn } from "@/lib/utils";
 import type { RetainerSection } from "@/lib/constants";
 
@@ -22,13 +21,13 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border border-border bg-card transition-hairline hover:border-orange/40",
-        featured && "border-orange"
+        "overflow-hidden rounded-2xl bg-card shadow-soft transition-lift hover:-translate-y-0.5 hover:shadow-soft-hover",
+        featured && "ring-1 ring-orange/50"
       )}
     >
       <div
         className={cn(
-          "border-b border-border px-5 py-4",
+          "border-b border-border px-5 py-5",
           featured && "void border-[var(--line-dark)]"
         )}
       >
@@ -68,12 +67,12 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
         </p>
       </div>
 
-      <div className="space-y-4 px-5 py-4">
+      <div className="space-y-4 px-5 py-5">
         {plan.sections.map((section) => (
           <div key={section.label}>
-            <MonoLabel className="mb-2 block text-[9px] text-orange">
+            <p className="mb-2 font-ui text-[10px] font-semibold tracking-wide text-orange uppercase">
               {section.label}
-            </MonoLabel>
+            </p>
             <ul className="space-y-1">
               {section.items.map((item) => (
                 <li
@@ -91,7 +90,7 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
                       item.included ? "text-orange" : "text-border"
                     )}
                   >
-                    {item.included ? "✓" : "—"}
+                    {item.included ? "+" : "-"}
                   </span>
                   {item.text}
                 </li>

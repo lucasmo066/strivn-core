@@ -1,5 +1,4 @@
-import { MonoLabel } from "@/components/shared/mono-label";
-import { EDIT_SIZES, PRICING_COPY } from "@/lib/constants";
+import { EDIT_SIZES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const TAG_STYLES = {
@@ -10,33 +9,23 @@ const TAG_STYLES = {
 
 export function EditSizesTable() {
   return (
-    <div className="space-y-6">
-      <div>
-        <MonoLabel>03 — Scope</MonoLabel>
-        <h3 className="mt-2 font-display text-xl font-semibold tracking-tight">
-          Edit size classifications
-        </h3>
-        <p className="mt-2 max-w-2xl font-ui text-sm text-muted-foreground">
-          {PRICING_COPY.editSub}
-        </p>
-      </div>
+    <div className="space-y-4">
+      <h3 className="font-display text-xl font-semibold tracking-tight">
+        What counts as an edit
+      </h3>
 
-      <div className="overflow-x-auto rounded-lg border border-border">
-        <table className="w-full min-w-[640px] border-collapse font-ui text-sm">
+      <div className="overflow-x-auto rounded-2xl bg-card shadow-soft">
+        <table className="w-full min-w-[640px] border-collapse text-sm">
           <thead>
             <tr className="void">
-              <th className="px-4 py-3 text-left font-pixel text-[10px] font-medium tracking-wider text-white uppercase">
-                Size
-              </th>
-              <th className="px-4 py-3 text-left font-pixel text-[10px] font-medium tracking-wider text-white uppercase">
-                Definition
-              </th>
-              <th className="px-4 py-3 text-left font-pixel text-[10px] font-medium tracking-wider text-white uppercase">
-                Time
-              </th>
-              <th className="px-4 py-3 text-left font-pixel text-[10px] font-medium tracking-wider text-white uppercase">
-                Billing
-              </th>
+              {["Size", "Definition", "Time", "Billing"].map((label) => (
+                <th
+                  key={label}
+                  className="px-4 py-3 text-left font-mono text-[10px] font-semibold tracking-wider text-white uppercase"
+                >
+                  {label}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
@@ -45,13 +34,13 @@ export function EditSizesTable() {
                 key={size.name}
                 className={cn(
                   "border-t border-border",
-                  index % 2 === 1 && "bg-muted/30"
+                  index % 2 === 1 && "bg-muted/40"
                 )}
               >
                 <td className="px-4 py-3 align-top">
                   <span
                     className={cn(
-                      "inline-block rounded px-2 py-0.5 font-pixel text-[10px] font-medium tracking-wider uppercase",
+                      "inline-block rounded-lg px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider uppercase",
                       TAG_STYLES[size.tag]
                     )}
                   >
@@ -66,14 +55,6 @@ export function EditSizesTable() {
                 </td>
                 <td className="px-4 py-3 align-top text-muted-foreground">
                   {size.billing}
-                  {"billingNote" in size && size.billingNote ? (
-                    <>
-                      <br />
-                      <span className="text-xs text-muted-foreground/70">
-                        {size.billingNote}
-                      </span>
-                    </>
-                  ) : null}
                 </td>
               </tr>
             ))}

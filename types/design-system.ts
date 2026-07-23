@@ -9,6 +9,8 @@ export interface ContainerProps {
 export interface LogoProps {
   className?: string;
   variant?: "lockup" | "wordmark";
+  tone?: "black" | "white";
+  priority?: boolean;
 }
 
 export interface BrandArrowProps {
@@ -47,7 +49,12 @@ export interface CornerBracketsProps {
   size?: number;
 }
 
-export interface HairlineCardProps extends ComponentProps<"div"> {
+export interface SoftCardProps extends ComponentProps<"div"> {
+  accent?: boolean;
+  lift?: boolean;
+}
+
+export interface HairlineCardProps extends SoftCardProps {
   brackets?: boolean;
   accentBrackets?: boolean;
 }

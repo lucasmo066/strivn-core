@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { BrandArrow } from "@/components/shared/brand-arrow";
+import { BrandIcon } from "@/components/shared/brand-icon";
 import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { Container } from "@/components/shared/container";
@@ -40,45 +40,42 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b border-border bg-paper/92 backdrop-blur-md transition-[transform,box-shadow] duration-300 ease-out",
-          atTop
-            ? "shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)]"
-            : "shadow-[0_12px_40px_-16px_rgba(0,0,0,0.18)]",
+          "fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-paper/85 backdrop-blur-xl transition-[transform,box-shadow] duration-300 ease-out",
+          atTop ? "shadow-soft" : "shadow-soft-hover",
           visible ? "translate-y-0" : "-translate-y-full"
         )}
       >
         <Container className="flex h-14 items-center justify-between gap-4 md:gap-6">
           <Link href="/" className="shrink-0" aria-label="Strivn home">
-            <BrandArrow
-              variant="orange"
-              filled
-              className="size-7 md:hidden"
-            />
+            <BrandIcon size="sm" className="md:hidden" />
             <Logo
-              variant="wordmark"
-              className="hidden text-xl font-bold md:inline"
+              variant="lockup"
+              tone="black"
+              priority
+              className="hidden h-7 w-auto md:block"
             />
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-ui text-sm font-semibold text-muted-foreground transition-hairline hover:text-foreground"
-              >
-                {link.label}
-              </Link>
+          <nav className="hidden items-center gap-1 text-sm font-medium text-muted-foreground md:flex">
+            {NAV_LINKS.map((link, index) => (
+              <span key={link.href} className="flex items-center">
+                {index > 0 ? (
+                  <span aria-hidden className="mx-1 text-border">
+                    /
+                  </span>
+                ) : null}
+                <Link
+                  href={link.href}
+                  className="rounded-xl px-2.5 py-1.5 transition-hairline hover:bg-card hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              </span>
             ))}
           </nav>
 
-          <StrivnButton
-            variant="primary"
-            size="sm"
-            arrow
-            className="font-bold md:font-semibold"
-          >
-            {TAGLINES.navCta}
+          <StrivnButton variant="primary" size="sm" arrow asChild>
+            <Link href="#contact">{TAGLINES.navCta}</Link>
           </StrivnButton>
         </Container>
       </header>

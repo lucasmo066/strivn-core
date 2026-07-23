@@ -5,7 +5,7 @@ export function MonoLabel({ children, className }: MonoLabelProps) {
   return (
     <span
       className={cn(
-        "font-ui text-micro text-muted-foreground",
+        "font-mono text-micro text-muted-foreground",
         className
       )}
     >

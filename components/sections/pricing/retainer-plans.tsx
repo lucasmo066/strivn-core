@@ -1,6 +1,5 @@
-import { MonoLabel } from "@/components/shared/mono-label";
 import { Switch } from "@/components/ui/switch";
-import { PRICING_COPY, RETAINER_PLANS } from "@/lib/constants";
+import { RETAINER_PLANS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 import { RetainerCard } from "./retainer-card";
@@ -16,20 +15,13 @@ export function RetainerPlans({
 }: RetainerPlansProps) {
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <MonoLabel>02 — Retainer</MonoLabel>
-          <h3 className="mt-2 font-display text-xl font-semibold tracking-tight">
-            Monthly retainer plans
-          </h3>
-          <p className="mt-2 max-w-2xl font-ui text-sm text-muted-foreground">
-            {PRICING_COPY.retainerSub}
-          </p>
-        </div>
-        <div className="flex items-center gap-3 font-ui">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <h3 className="font-display text-xl font-semibold tracking-tight">
+          Monthly care plans
+        </h3>
+        <div className="flex items-center gap-3 text-sm">
           <span
             className={cn(
-              "text-sm",
               !yearlyBilling ? "text-foreground" : "text-muted-foreground"
             )}
           >
@@ -42,21 +34,20 @@ export function RetainerPlans({
           />
           <span
             className={cn(
-              "text-sm",
               yearlyBilling ? "text-foreground" : "text-muted-foreground"
             )}
           >
             Yearly
           </span>
           {yearlyBilling ? (
-            <span className="font-pixel text-[10px] text-orange uppercase">
-              [ 10% off ]
+            <span className="rounded-lg bg-orange/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-orange uppercase">
+              10% off
             </span>
           ) : null}
         </div>
       </div>
 
-      <div className="grid gap-3 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3">
         {RETAINER_PLANS.map((plan) => (
           <RetainerCard
             key={plan.name}

@@ -1,0 +1,18 @@
+Strivn logo asset pack
+
+Primary slogan:
+Built to be found. Built to be chosen.
+
+CTA / energy line:
+Get found. Get chosen. Get booked.
+
+Speed line:
+Found fast. Sold faster.
+
+Usage notes:
+- Use full logo lockup for nav/header and main brand moments.
+- Use cube mark for favicon, loading states, cards, small badges.
+- Use arrow icon as secondary CTA/motion detail.
+- Keep arrow angle uniform across cube face and standalone icon: up-right, roughly 2 o’clock / ~58 degrees.
+- Keep border radius and border stroke visually matched to the standalone arrow stroke.
+- Do not introduce wordmark variations or financial mark yet.

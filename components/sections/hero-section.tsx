@@ -1,54 +1,57 @@
 import Link from "next/link";
 
+import { BrandIcon } from "@/components/shared/brand-icon";
+import { BrandIconMotion } from "@/components/shared/brand-icon-motion";
 import { Container } from "@/components/shared/container";
-import { MonoLabel } from "@/components/shared/mono-label";
+import { HeadlinePeriod } from "@/components/shared/headline-period";
+import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
-import { BRAND, HERO_PROOF, TAGLINES } from "@/lib/constants";
+import { TAGLINES } from "@/lib/constants";
 
 export function HeroSection() {
   return (
-    <section className="section-y border-b border-border">
+    <section className="relative overflow-hidden pt-12 pb-16 md:pt-16 md:pb-24">
       <Container>
-        <div className="mx-auto max-w-3xl space-y-8 text-center md:space-y-10 md:text-left">
-          <MonoLabel className="inline-block">{BRAND.location}</MonoLabel>
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_auto] lg:gap-20">
+          <div className="max-w-2xl space-y-6 text-center md:text-left">
+            <Logo
+              variant="wordmark"
+              tone="black"
+              priority
+              className="mx-auto h-12 w-auto md:mx-0 md:h-16 lg:h-20"
+            />
 
-          <h1 className="font-display text-[clamp(2.25rem,8vw,4rem)] leading-[1.05] font-bold tracking-tight bg-[linear-gradient(to_right,#ffb347,var(--orange),#ff3d00,var(--orange))] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
-            {TAGLINES.primary}
-          </h1>
+            <HeadlinePeriod className="text-[clamp(1.75rem,4.2vw,2.75rem)] font-semibold leading-[1.1]">
+              {TAGLINES.primary}
+            </HeadlinePeriod>
 
-          <div className="mx-auto max-w-2xl space-y-3 md:mx-0">
-            <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+            <p className="mx-auto max-w-lg text-base leading-relaxed text-muted-foreground md:mx-0 md:text-lg">
               {TAGLINES.heroSub}
             </p>
-            <p className="text-base leading-relaxed text-muted-foreground/80 md:text-lg">
-              {TAGLINES.heroDetail}
-            </p>
+
+            <div className="flex flex-col justify-center gap-3 pt-1 sm:flex-row md:justify-start">
+              <StrivnButton
+                variant="primary"
+                arrow
+                className="w-full sm:w-auto"
+                asChild
+              >
+                <Link href="#contact">{TAGLINES.heroCta}</Link>
+              </StrivnButton>
+              <StrivnButton
+                variant="outline"
+                className="w-full border-ink/12 bg-card sm:w-auto"
+                asChild
+              >
+                <Link href="#pricing">See pricing</Link>
+              </StrivnButton>
+            </div>
           </div>
 
-          <div className="flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
-            <StrivnButton variant="primary" arrow className="w-full sm:w-auto">
-              {TAGLINES.heroCta}
-            </StrivnButton>
-            <StrivnButton
-              variant="outline"
-              className="w-full sm:w-auto"
-              asChild
-            >
-              <Link href="#work">View work</Link>
-            </StrivnButton>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 border-t border-border pt-8 md:justify-start">
-            {HERO_PROOF.map((stat) => (
-              <div key={stat.label} className="text-center md:text-left">
-                <p className="font-display text-2xl font-bold tabular-nums tracking-tight">
-                  {stat.value}
-                </p>
-                <p className="mt-0.5 font-ui text-sm text-muted-foreground">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+          <div className="flex justify-center lg:justify-end">
+            <BrandIconMotion>
+              <BrandIcon size="xl" tone="black" priority />
+            </BrandIconMotion>
           </div>
         </div>
       </Container>
