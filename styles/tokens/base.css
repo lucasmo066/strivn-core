@@ -11,6 +11,17 @@
     @apply bg-background text-foreground;
   }
 
+  /* Home boot: hold chrome until hero video can play */
+  body.hero-booting {
+    overflow: hidden;
+  }
+
+  body.hero-booting header,
+  body.hero-booting footer {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   ::selection {
     background: rgba(255, 92, 0, 0.18);
     color: var(--ink);

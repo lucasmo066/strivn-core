@@ -19,12 +19,12 @@ export const HERO_PROOF = [
   { value: "1 day", label: "Reply time" },
 ] as const;
 
-/** Hero plate media — still for now; swap in video when ready. */
+/** Hero plate media — poster for instant paint; video loads behind the boot gate. */
 export const HERO_MEDIA = {
-  still: "/images/hero-sill.png",
-  stillWidth: 2752,
-  stillHeight: 1536,
-  // video: "/assets/hero/alpine-lakeside.mp4",
+  still: "/assets/hero/alpine-lakeside.jpg",
+  stillWidth: 1920,
+  stillHeight: 1080,
+  video: "/assets/hero/alpine-lakeside.mp4",
 } as const;
 
 /** HUD popup bank over the hero plate. Orange = cause (1×); green = effect (3×). */
