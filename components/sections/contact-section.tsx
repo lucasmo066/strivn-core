@@ -1,29 +1,32 @@
-import { Container } from "@/components/shared/container";
 import { ContactForm } from "@/components/sections/contact-form";
-import { SoftCard, SoftCardContent } from "@/components/surfaces/soft-card";
+import { Container } from "@/components/shared/container";
+import { HeadlinePeriod } from "@/components/shared/headline-period";
 import { BRAND, TAGLINES } from "@/lib/constants";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="section-y border-t border-border bg-muted/40">
+    <section id="contact" className="section-y border-t border-border">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16">
-          <div className="space-y-4">
-            <h2 className="font-display text-[var(--text-h2)]">{TAGLINES.cta}</h2>
-            <p className="max-w-md text-muted-foreground">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-20">
+          <div className="space-y-5">
+            <HeadlinePeriod
+              as="h2"
+              className="text-[var(--text-h2)] leading-[var(--leading-tight)]"
+            >
+              {TAGLINES.cta}
+            </HeadlinePeriod>
+            <p className="max-w-md text-base leading-relaxed text-muted-foreground">
               Share a few details and we&apos;ll reply within one business day
               with next steps.
             </p>
-            <p className="text-sm text-muted-foreground">
-              {BRAND.name} / {BRAND.location}
+            <p className="font-pixel text-micro text-muted-foreground">
+              {BRAND.name}
+              <span className="text-orange"> / </span>
+              {BRAND.location}
             </p>
           </div>
 
-          <SoftCard accent lift={false} className="relative gap-0 py-0">
-            <SoftCardContent className="space-y-5 px-6 py-6 md:px-8 md:py-8">
-              <ContactForm />
-            </SoftCardContent>
-          </SoftCard>
+          <ContactForm />
         </div>
       </Container>
     </section>

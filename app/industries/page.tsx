@@ -10,7 +10,7 @@ import { getIndustriesByTier } from "@/lib/industries";
 export const metadata: Metadata = {
   title: "Industries — Strivn",
   description:
-    "Custom websites for Front Range businesses in med spas, dental, law, real estate, home remodeling, financial services, and more.",
+    "Custom websites for businesses in med spas, dental, law, real estate, home remodeling, financial services, and more. Based in Colorado's Front Range.",
 };
 
 export default function IndustriesPage() {
@@ -21,13 +21,13 @@ export default function IndustriesPage() {
       <section className="section-y border-b border-border">
         <Container className="space-y-10">
           <div className="mx-auto max-w-2xl space-y-4 text-center md:mx-0 md:text-left">
-            <MonoLabel>{BRAND.location}</MonoLabel>
+            <MonoLabel>{BRAND.basedIn}</MonoLabel>
             <h1 className="font-display text-[var(--text-h2)]">
               Industries we build for
             </h1>
             <p className="font-ui text-muted-foreground">
-              We specialize in {BRAND.region} businesses where a fast,
-              credible website directly drives leads, bookings, and trust.
+              We specialize in businesses where a fast, credible website
+              directly drives leads, bookings, and trust.
             </p>
             <StrivnButton variant="primary" arrow className="w-full sm:w-auto" asChild>
               <Link href="/#contact">Start your project</Link>
@@ -41,7 +41,7 @@ export default function IndustriesPage() {
                 id={industry.slug}
                 className="scroll-mt-20 py-6 first:pt-6 last:pb-6"
               >
-                <h2 className="font-display text-lg font-semibold tracking-tight">
+                <h2 className="font-display text-lg tracking-wide">
                   {industry.name}
                 </h2>
                 <p className="mt-2 max-w-2xl font-ui text-sm text-muted-foreground">

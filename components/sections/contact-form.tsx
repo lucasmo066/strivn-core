@@ -9,10 +9,14 @@ import type { ContactFieldErrors, ContactResponse } from "@/lib/contact";
 import { TAGLINES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
-const fieldLabelClass = "text-sm font-medium text-foreground";
+const fieldLabelClass =
+  "font-pixel text-micro text-muted-foreground";
+
+const fieldClass =
+  "h-12 rounded-none border-0 border-b border-ink/15 bg-transparent px-0 shadow-none focus-visible:border-orange focus-visible:ring-0";
 
 const textareaClass = cn(
-  "min-h-28 w-full resize-y rounded-xl border border-input bg-paper/60 px-3 py-2.5 text-base outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-60 md:text-sm"
+  "min-h-28 w-full resize-y border-0 border-b border-ink/15 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-orange disabled:cursor-not-allowed disabled:opacity-60 md:text-sm"
 );
 
 type FormStatus = "idle" | "loading" | "success" | "error";
@@ -64,8 +68,10 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="space-y-3 py-6 text-center">
-        <p className="font-display text-xl text-foreground">Thanks — we got it.</p>
+      <div className="space-y-3 border-t border-ink/10 pt-8">
+        <p className="font-display text-xl tracking-wide text-foreground">
+          Thanks — we got it<span className="text-orange">.</span>
+        </p>
         <p className="text-sm text-muted-foreground">
           We&apos;ll reply within one business day with next steps.
         </p>
@@ -74,7 +80,11 @@ export function ContactForm() {
   }
 
   return (
-    <form className="space-y-4" onSubmit={onSubmit} noValidate>
+    <form
+      className="relative space-y-6 border-t border-ink/10 pt-8"
+      onSubmit={onSubmit}
+      noValidate
+    >
       <div
         className="absolute left-[-9999px] h-0 w-0 overflow-hidden"
         aria-hidden="true"
@@ -91,8 +101,8 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-1.5">
+      <div className="grid gap-6 sm:grid-cols-2">
+        <div className="space-y-2">
           <label htmlFor="contact-name" className={fieldLabelClass}>
             Name
           </label>
@@ -105,13 +115,13 @@ export function ContactForm() {
             onChange={(e) => setName(e.target.value)}
             disabled={loading}
             aria-invalid={Boolean(fieldErrors.name)}
-            className="h-11 rounded-xl bg-paper/60"
+            className={fieldClass}
           />
           {fieldErrors.name ? (
             <p className="text-xs text-destructive">{fieldErrors.name}</p>
           ) : null}
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <label htmlFor="contact-email" className={fieldLabelClass}>
             Email
           </label>
@@ -125,7 +135,7 @@ export function ContactForm() {
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
             aria-invalid={Boolean(fieldErrors.email)}
-            className="h-11 rounded-xl bg-paper/60"
+            className={fieldClass}
           />
           {fieldErrors.email ? (
             <p className="text-xs text-destructive">{fieldErrors.email}</p>
@@ -133,7 +143,7 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <label htmlFor="contact-business" className={fieldLabelClass}>
           Business
         </label>
@@ -146,14 +156,14 @@ export function ContactForm() {
           onChange={(e) => setBusiness(e.target.value)}
           disabled={loading}
           aria-invalid={Boolean(fieldErrors.business)}
-          className="h-11 rounded-xl bg-paper/60"
+          className={fieldClass}
         />
         {fieldErrors.business ? (
           <p className="text-xs text-destructive">{fieldErrors.business}</p>
         ) : null}
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <label htmlFor="contact-details" className={fieldLabelClass}>
           What do you need?
         </label>
@@ -173,32 +183,34 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <StrivnButton
-        type="submit"
-        variant="primary"
-        arrow={!loading}
-        disabled={loading}
-        className="w-full"
-      >
-        {loading ? "Sending…" : TAGLINES.heroCta}
-      </StrivnButton>
-
-      {error ? (
-        <p className="text-center text-sm text-destructive" role="alert">
-          {error}
-        </p>
-      ) : null}
-
-      <p className="text-center text-xs text-muted-foreground">
-        Prefer a calendar link?{" "}
-        <Link
-          href="#contact"
-          className="font-medium text-foreground underline-offset-4 hover:underline"
+      <div className="space-y-3 pt-2">
+        <StrivnButton
+          type="submit"
+          variant="primary"
+          arrow={!loading}
+          disabled={loading}
+          className="w-full sm:w-auto"
         >
-          Ask in your message
-        </Link>
-        .
-      </p>
+          {loading ? "Sending…" : TAGLINES.heroCta}
+        </StrivnButton>
+
+        {error ? (
+          <p className="text-sm text-destructive" role="alert">
+            {error}
+          </p>
+        ) : null}
+
+        <p className="text-xs text-muted-foreground">
+          Prefer a calendar link?{" "}
+          <Link
+            href="#contact"
+            className="font-medium text-foreground underline-offset-4 hover:underline"
+          >
+            Ask in your message
+          </Link>
+          .
+        </p>
+      </div>
     </form>
   );
 }

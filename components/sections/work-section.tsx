@@ -30,12 +30,15 @@ export function WorkSection() {
         <div className="grid gap-4 lg:grid-cols-3">
           {WORK_ITEMS.map((project) => {
             const featured = "featured" in project && project.featured;
+            const href = "href" in project ? project.href : undefined;
 
-            return (
+            const card = (
               <SoftCard
-                key={project.title}
                 accent={featured}
-                className="flex flex-col"
+                className={cn(
+                  "flex h-full flex-col",
+                  href && "transition-hairline hover:ring-1 hover:ring-orange/30"
+                )}
               >
                 <SoftCardHeader className="space-y-4">
                   <div
@@ -72,6 +75,20 @@ export function WorkSection() {
                 </SoftCardContent>
               </SoftCard>
             );
+
+            if (href) {
+              return (
+                <Link
+                  key={project.title}
+                  href={href}
+                  className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/50 focus-visible:ring-offset-2"
+                >
+                  {card}
+                </Link>
+              );
+            }
+
+            return <div key={project.title}>{card}</div>;
           })}
         </div>
       </Container>

@@ -33,7 +33,7 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
       >
         <p
           className={cn(
-            "font-display text-sm font-bold",
+            "font-display text-sm",
             featured ? "text-white" : "text-foreground"
           )}
         >
@@ -42,7 +42,7 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
         <div className="mt-2 flex items-baseline gap-1.5">
           <span
             className={cn(
-              "font-display text-3xl font-bold tracking-tight tabular-nums",
+              "font-display text-3xl tracking-wide tabular-nums",
               featured ? "text-orange" : "text-foreground"
             )}
           >

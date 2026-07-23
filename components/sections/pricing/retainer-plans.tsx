@@ -2,6 +2,7 @@ import { Switch } from "@/components/ui/switch";
 import { RETAINER_PLANS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
+import { EditSizesInfo } from "./edit-sizes-info";
 import { RetainerCard } from "./retainer-card";
 
 type RetainerPlansProps = {
@@ -16,10 +17,13 @@ export function RetainerPlans({
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <h3 className="font-display text-xl font-semibold tracking-tight">
-          Monthly care plans
-        </h3>
-        <div className="flex items-center gap-3 text-sm">
+        <div className="space-y-2">
+          <h3 className="font-display text-xl tracking-wide">
+            Monthly care plans
+          </h3>
+          <EditSizesInfo />
+        </div>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
           <span
             className={cn(
               !yearlyBilling ? "text-foreground" : "text-muted-foreground"

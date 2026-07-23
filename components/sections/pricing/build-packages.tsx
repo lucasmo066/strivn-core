@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 export function BuildPackages() {
   return (
     <div className="space-y-6">
-      <h3 className="font-display text-xl font-semibold tracking-tight">
+      <h3 className="font-display text-xl tracking-wide">
         Website builds
       </h3>
 
@@ -40,7 +40,7 @@ export function BuildPackages() {
                   <p className="text-xs text-muted-foreground">{pkg.pages}</p>
                 </div>
                 <div>
-                  <p className="font-display text-3xl font-bold tracking-tight tabular-nums">
+                  <p className="font-display text-3xl tracking-wide tabular-nums">
                     {pkg.price}
                   </p>
                   <p className="text-[11px] text-muted-foreground">

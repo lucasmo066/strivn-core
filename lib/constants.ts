@@ -1,7 +1,7 @@
 export const TAGLINES = {
   primary: "Custom websites that bring in business.",
   heroSub:
-    "Fast, custom sites for Front Range businesses. Built to get you found and booked.",
+    "Fast, custom sites for small businesses. Built to get you found and booked.",
   heroDetail: "Launch in weeks, not months.",
   cta: "Tell us about your project.",
   heroCta: "Book a call",
@@ -10,28 +10,70 @@ export const TAGLINES = {
   closing: "Ready when you are.",
 } as const;
 
+/** Canonical build floor — keep stat bar, work teaser, and pricing intro in sync. */
+export const PRICING_FLOOR = "From $2,000";
+
 export const HERO_PROOF = [
   { value: "2-4 wks", label: "Typical launch" },
-  { value: "From $2k", label: "Website builds" },
+  { value: PRICING_FLOOR, label: "Website builds" },
   { value: "1 day", label: "Reply time" },
 ] as const;
+
+/** Hero plate media — still for now; swap in video when ready. */
+export const HERO_MEDIA = {
+  still: "/images/hero-sill.png",
+  stillWidth: 2752,
+  stillHeight: 1536,
+  // video: "/assets/hero/alpine-lakeside.mp4",
+} as const;
+
+/** HUD popup bank over the hero plate. Orange = cause (1×); green = effect (3×). */
+export const HERO_HUD = {
+  causes: [
+    "SITE LAUNCHED",
+    "SIGNED WITH STRIVN",
+    "NOW LIVE",
+    "BUILT BY STRIVN",
+  ],
+  effects: [
+    "NEW LEAD",
+    "CALL BOOKED",
+    "+$2,000",
+    "QUOTE REQUESTED",
+    "FORM SUBMITTED",
+    "+$3,500",
+    "RANKED #1 LOCAL",
+    "5 NEW CALLS",
+    "BOOKED SOLID",
+  ],
+} as const;
+
+export const SERVICES_HEADLINE =
+  "Built for Front Range practices that need to get booked.";
+
+export const SERVICES_AI_LINE =
+  "We also wire AI that recovers after-hours inquiries — so missed calls turn into booked appointments, not lost leads.";
 
 export const SERVICES = [
   {
     title: "Design",
-    description: "A site that looks like your business, not a template.",
+    description:
+      "Trust-first design for med spas, dental, law, real estate, and remodeling — the look that gets the consult booked.",
   },
   {
     title: "Build & launch",
-    description: "Fast, mobile-ready, and live in weeks.",
+    description:
+      "Fast, mobile-first sites live in weeks — where your patients and clients actually search.",
   },
   {
     title: "Get found",
-    description: "Local SEO so customers can find you on Google.",
+    description:
+      "Local SEO for service-area and practice-area search across the Front Range.",
   },
   {
     title: "Stay sharp",
-    description: "Hosting, updates, and edits after launch.",
+    description:
+      "Hosting, updates, and edits on retainer so the site keeps pace with your business.",
   },
 ] as const;
 
@@ -43,13 +85,14 @@ export const WORK_ITEMS = [
     description: "Menu-forward site built for local search and online ordering.",
     metric: "Live / Lighthouse 98",
     featured: true,
+    href: "/work/sahara-grill",
   },
   {
     title: "Your business",
     category: "Next project",
-    location: "Front Range",
+    location: "Your market",
     description: "Ready for a site that gets customers to call.",
-    metric: "Builds from $2,000",
+    metric: PRICING_FLOOR,
   },
 ] as const;
 
@@ -67,6 +110,11 @@ export const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Contact", href: "/#contact" },
+] as const;
+
+export const LEGAL_LINKS = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
 ] as const;
 
 export const BUILD_PACKAGES = [
@@ -287,6 +335,7 @@ export const PRICING_QUICK_REF = [
 ] as const;
 
 export const PRICING_COPY = {
+  intro: `Website builds ${PRICING_FLOOR.replace("From ", "from ")}. Clear tiers, fixed scope.`,
   buildSub:
     "One-time project fee. 50% deposit at signing, 50% at launch. Scope is fixed per tier; extra pages billed separately.",
   retainerSub:
@@ -302,6 +351,23 @@ export const PRICING_COPY = {
 export const BRAND = {
   name: "Strivn",
   location: "Front Range, CO",
-  region: "Front Range",
+  basedIn: "Based in Colorado's Front Range",
+  email: "hello@strivn.com",
+  phone: "(720) 555-0142",
+  phoneHref: "tel:+17205550142",
   accent: "#FF5C00",
+} as const;
+
+export const SAHARA_CASE_STUDY = {
+  title: "Sahara Grill",
+  category: "Restaurant",
+  location: "Denver, CO",
+  metric: "Live / Lighthouse 98",
+  summary:
+    "Menu-forward site built for local search and online ordering.",
+  body: [
+    "Sahara Grill needed a site that worked as hard as the kitchen — clear menus, fast mobile load, and a path from search to order without friction. The previous presence buried the food behind generic stock layouts and made it hard for Denver diners to see hours, specialties, or place an order on their phone. On mobile especially, the experience felt like a brochure instead of a storefront.",
+    "We rebuilt around the menu: dish photography, dietary callouts, and ordering CTAs above the fold on every key page. Structure was tuned for local search — neighborhood and cuisine cues, Google Business alignment, and page speed that holds a Lighthouse score in the high 90s. Copy and hierarchy answer the questions diners actually ask first: what’s good, what’s open, and how do I order.",
+    "The result is a live restaurant site that gets found, shows the food first, and moves hungry visitors into online ordering — not a brochure that stops at “looks nice.” Performance stays high enough that a slow connection on the Front Range doesn’t cost the sale. That same foundation is what we bring to Front Range service businesses that need credibility and conversions, not templates.",
+  ],
 } as const;

@@ -11,7 +11,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Strivn - Web Design & Development for Small Business",
   description:
-    "Strivn builds fast, custom websites for small businesses on the Front Range. Design, development, SEO, and ongoing support. Launch in weeks, not months.",
+    "Strivn builds fast, custom websites for small businesses. Based in Colorado's Front Range. Design, development, SEO, and ongoing support. Launch in weeks, not months.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable}`}
     >
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body
+        className={`${GeistSans.className} min-h-screen overflow-x-clip bg-background antialiased`}
+      >
         <SiteHeader />
         {children}
         <SiteFooter />
