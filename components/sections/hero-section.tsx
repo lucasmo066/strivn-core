@@ -8,14 +8,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { HeroHudOverlay } from "@/components/sections/hero-hud-plate";
 import { Container } from "@/components/shared/container";
-import { HeadlinePeriod } from "@/components/shared/headline-period";
 import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { HERO_MEDIA, TAGLINES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-
-const copyShadow =
-  "[text-shadow:0_1px_2px_rgba(242,241,239,0.95),0_6px_28px_rgba(242,241,239,0.7)]";
 
 const BOOT_TIMEOUT_MS = 8000;
 
@@ -77,52 +73,49 @@ export function HeroSection({ onReady }: HeroSectionProps) {
 
   return (
     <>
-      {/* Boot cover — holds the site until the plate is ready */}
-      <div
-        aria-hidden={revealed}
-        className={cn(
-          "fixed inset-0 z-100 bg-paper transition-opacity duration-500 ease-out",
-          revealed ? "pointer-events-none opacity-0" : "opacity-100"
-        )}
-      >
-        <Image
-          src={HERO_MEDIA.still}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </div>
-
-      <section className="relative flex min-h-svh flex-col justify-start overflow-hidden pt-24 md:pt-28 lg:pt-32">
-        {/* Still under video — paints immediately, covers gaps */}
-        <Image
-          src={HERO_MEDIA.still}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 z-0 object-cover"
-        />
-
-        {!reduceMotion ? (
-          <video
-            ref={videoRef}
-            className={cn(
-              "absolute inset-0 z-0 size-full object-cover transition-opacity duration-700 ease-out",
-              ready ? "opacity-100" : "opacity-0"
-            )}
-            src={HERO_MEDIA.video}
-            poster={HERO_MEDIA.still}
-            muted
-            loop
-            playsInline
-            autoPlay
-            preload="auto"
-            aria-hidden
+      {/* Boot cover — unmount once ready so it can't linger behind the page */}
+      {!revealed ? (
+        <div className="fixed inset-0 z-100 bg-paper">
+          <Image
+            src={HERO_MEDIA.still}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
-        ) : null}
+        </div>
+      ) : null}
+
+      <section className="relative isolate flex min-h-svh flex-col justify-start overflow-hidden bg-paper pt-24 md:pt-28 lg:pt-32">
+        {/* Media plate — clipped to this section only */}
+        <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden>
+          <Image
+            src={HERO_MEDIA.still}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+
+          {!reduceMotion ? (
+            <video
+              ref={videoRef}
+              className={cn(
+                "absolute inset-0 size-full object-cover transition-opacity duration-700 ease-out",
+                ready ? "opacity-100" : "opacity-0"
+              )}
+              src={HERO_MEDIA.video}
+              poster={HERO_MEDIA.still}
+              muted
+              loop
+              playsInline
+              autoPlay
+              preload="auto"
+            />
+          ) : null}
+        </div>
 
         <div
           aria-hidden
@@ -137,7 +130,7 @@ export function HeroSection({ onReady }: HeroSectionProps) {
             revealed ? "opacity-100" : "opacity-0"
           )}
         >
-          <div className={`max-w-xl space-y-6 text-left ${copyShadow}`}>
+          <div className="max-w-xl space-y-6 text-left">
             <Logo
               variant="wordmark"
               tone="black"
@@ -145,29 +138,28 @@ export function HeroSection({ onReady }: HeroSectionProps) {
               className="h-12 w-auto drop-shadow-[0_4px_18px_rgba(242,241,239,0.85)] md:h-16 lg:h-20"
             />
 
-            <HeadlinePeriod
-              gradient
-              className="text-[clamp(2.25rem,8vw,4rem)] leading-[1.05] tracking-tight drop-shadow-[0_2px_14px_rgba(242,241,239,0.9)]"
-            >
-              {TAGLINES.primary}
-            </HeadlinePeriod>
+            <h1 className="font-sans text-[clamp(2rem,7.5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight [text-shadow:none]">
+              <span className="animate-gradient bg-[linear-gradient(to_right,#ffb347,var(--orange),#ff3d00,var(--orange))] bg-size-[200%_auto] bg-clip-text text-transparent">
+                {TAGLINES.primary}
+              </span>
+            </h1>
 
-            <p className="max-w-md text-base leading-relaxed text-ink/80 md:text-lg">
+            <p className="max-w-md text-base leading-relaxed text-ink/80 [text-shadow:0_1px_2px_rgba(242,241,239,0.9)] md:text-lg">
               {TAGLINES.heroSub}
             </p>
 
-            <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center">
+            <div className="flex flex-col items-center gap-5 pt-2 sm:flex-row sm:items-center sm:justify-start sm:gap-4">
               <StrivnButton
                 variant="primary"
                 arrow
-                className="w-full shadow-soft sm:w-auto"
+                className="min-w-[12.5rem] px-8 shadow-soft"
                 asChild
               >
                 <Link href="/#contact">{TAGLINES.heroCta}</Link>
               </StrivnButton>
               <StrivnButton
                 variant="outline"
-                className="w-full border-ink/15 bg-paper/75 shadow-soft backdrop-blur-sm sm:w-auto"
+                className="animate-shimmer min-w-[12.5rem] border-ink/15 bg-paper/70 px-8 shadow-soft-hover backdrop-blur-md"
                 asChild
               >
                 <Link href="/#pricing">See pricing</Link>

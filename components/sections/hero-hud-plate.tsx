@@ -52,24 +52,24 @@ function buildCycle(cycle: number): Popup[] {
   return popups;
 }
 
+const STATIC_REDUCED_MOTION: Popup[] = [
+  {
+    id: "static-cause",
+    label: HERO_HUD.causes[0],
+    tone: "cause",
+    slot: 0,
+  },
+];
+
 /** Middle layer: pixel HUD floaters over the plate, under hero copy. */
 export function HeroHudOverlay() {
   const reduceMotion = useReducedMotion();
-  const [visible, setVisible] = useState<Popup[]>([]);
+  const [animated, setAnimated] = useState<Popup[]>([]);
   const [cycle, setCycle] = useState(0);
+  const visible = reduceMotion ? STATIC_REDUCED_MOTION : animated;
 
   useEffect(() => {
-    if (reduceMotion) {
-      setVisible([
-        {
-          id: "static-cause",
-          label: HERO_HUD.causes[0],
-          tone: "cause",
-          slot: 0,
-        },
-      ]);
-      return;
-    }
+    if (reduceMotion) return;
 
     const timers: ReturnType<typeof setTimeout>[] = [];
     const popups = buildCycle(cycle);
@@ -81,13 +81,13 @@ export function HeroHudOverlay() {
 
     schedule(() => {
       if (cancelled) return;
-      setVisible([popups[0]]);
+      setAnimated([popups[0]]);
     }, CAUSE_DELAY_MS);
 
     for (let i = 1; i < popups.length; i++) {
       schedule(() => {
         if (cancelled) return;
-        setVisible((prev) => [...prev, popups[i]]);
+        setAnimated((prev) => [...prev, popups[i]]);
       }, CAUSE_DELAY_MS + i * EFFECT_STAGGER_MS);
     }
 
@@ -96,7 +96,7 @@ export function HeroHudOverlay() {
 
     schedule(() => {
       if (cancelled) return;
-      setVisible([]);
+      setAnimated([]);
     }, clearAt);
 
     schedule(() => {

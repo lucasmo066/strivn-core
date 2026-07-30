@@ -1,13 +1,13 @@
 export const TAGLINES = {
-  primary: "Custom websites that bring in business.",
+  primary: "Custom websites that bring in business",
   heroSub:
     "Fast, custom sites for small businesses. Built to get you found and booked.",
   heroDetail: "Launch in weeks, not months.",
-  cta: "Tell us about your project.",
+  cta: "Tell us about your project",
   heroCta: "Book a call",
   navCta: "Book a call",
   speed: "Found fast. Sold faster.",
-  closing: "Ready when you are.",
+  closing: "Ready when you are",
 } as const;
 
 /** Canonical build floor — keep stat bar, work teaser, and pricing intro in sync. */

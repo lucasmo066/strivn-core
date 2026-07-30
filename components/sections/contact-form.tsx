@@ -70,7 +70,7 @@ export function ContactForm() {
     return (
       <div className="space-y-3 border-t border-ink/10 pt-8">
         <p className="font-display text-xl tracking-wide text-foreground">
-          Thanks — we got it<span className="text-orange">.</span>
+          Thanks — we got it
         </p>
         <p className="text-sm text-muted-foreground">
           We&apos;ll reply within one business day with next steps.

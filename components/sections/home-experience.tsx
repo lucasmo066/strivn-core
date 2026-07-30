@@ -27,7 +27,9 @@ export function HomeExperience({ children }: HomeExperienceProps) {
   return (
     <>
       <HeroSection onReady={onReady} />
-      {ready ? children : null}
+      {ready ? (
+        <div className="relative z-10 bg-background">{children}</div>
+      ) : null}
     </>
   );
 }

@@ -1,6 +1,5 @@
 import { ContactForm } from "@/components/sections/contact-form";
 import { Container } from "@/components/shared/container";
-import { HeadlinePeriod } from "@/components/shared/headline-period";
 import { BRAND, TAGLINES } from "@/lib/constants";
 
 export function ContactSection() {
@@ -9,12 +8,9 @@ export function ContactSection() {
       <Container>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-20">
           <div className="space-y-5">
-            <HeadlinePeriod
-              as="h2"
-              className="text-[var(--text-h2)] leading-[var(--leading-tight)]"
-            >
+            <h2 className="font-display text-[var(--text-h2)] leading-[var(--leading-tight)] tracking-wide text-foreground">
               {TAGLINES.cta}
-            </HeadlinePeriod>
+            </h2>
             <p className="max-w-md text-base leading-relaxed text-muted-foreground">
               Share a few details and we&apos;ll reply within one business day
               with next steps.
