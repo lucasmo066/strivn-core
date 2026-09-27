@@ -10,9 +10,12 @@ export function SocialProofSection() {
   return (
     <section className="border-y border-border py-8 md:py-10">
       <Container className="space-y-8">
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8">
+        <div className="grid gap-5 sm:grid-cols-3 sm:gap-4 md:gap-8">
           {HERO_PROOF.map((stat) => (
-            <div key={stat.label} className="min-w-0 text-center md:text-left">
+            <div
+              key={stat.label}
+              className="min-w-0 border-b border-border pb-5 text-left last:border-b-0 last:pb-0 sm:border-b-0 sm:pb-0"
+            >
               <p className="font-display text-[clamp(1rem,4.4vw,1.875rem)] tracking-wide tabular-nums whitespace-nowrap">
                 {stat.value}
               </p>

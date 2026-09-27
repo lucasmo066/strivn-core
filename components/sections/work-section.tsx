@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
+import { MediaSlot } from "@/components/shared/media-slot";
 import { MonoLabel } from "@/components/shared/mono-label";
 import {
   SoftCard,
@@ -41,29 +42,19 @@ export function WorkSection() {
                 )}
               >
                 <SoftCardHeader className="space-y-4">
-                  <div
-                    className={cn(
-                      "flex aspect-4/3 items-end rounded-[var(--radius-md)] p-5",
-                      featured ? "bg-void" : "bg-ink/[0.06]"
-                    )}
-                  >
-                    <div>
-                      <MonoLabel
-                        className={cn(featured && "text-white/50")}
-                      >
-                        {project.category}
-                      </MonoLabel>
-                      <p
-                        className={cn(
-                          "mt-2 font-display text-2xl tracking-tight",
-                          featured ? "text-white" : "text-foreground"
-                        )}
-                      >
-                        {project.title}
-                      </p>
-                    </div>
-                  </div>
-                  <SoftCardTitle className="sr-only">{project.title}</SoftCardTitle>
+                  <MediaSlot
+                    alt={`${project.title} case-study media`}
+                    label={
+                      featured
+                        ? "Sahara Grill case-study media"
+                        : "Next project media"
+                    }
+                    className={cn(featured && "bg-orange/8")}
+                  />
+                  <MonoLabel>{project.category}</MonoLabel>
+                  <SoftCardTitle className="font-display text-2xl tracking-wide">
+                    {project.title}
+                  </SoftCardTitle>
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {project.description}
                   </p>

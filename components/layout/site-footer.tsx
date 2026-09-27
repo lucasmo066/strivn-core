@@ -12,9 +12,9 @@ export function SiteFooter() {
   return (
     <footer className="void">
       <div className="h-1 bg-orange" aria-hidden />
-      <Container className="section-y">
-        <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-          <div className="space-y-5">
+      <Container className="py-14 md:py-18">
+        <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-md space-y-5">
             <div className="flex items-center gap-4">
               <BrandIcon size="md" tone="white" />
               <Logo
@@ -23,10 +23,10 @@ export function SiteFooter() {
                 className="h-8 w-auto"
               />
             </div>
-            <p className="max-w-md font-display text-2xl tracking-tight text-white">
+            <p className="font-display text-[clamp(1.5rem,2.5vw,2rem)] leading-tight tracking-wide text-white">
               {TAGLINES.closing}
             </p>
-            <div className="space-y-1 text-sm text-white/50">
+            <div className="space-y-1.5 text-sm leading-relaxed text-white/60">
               <p>
                 {BRAND.name} / {BRAND.location}
               </p>
@@ -53,7 +53,7 @@ export function SiteFooter() {
             </StrivnButton>
           </div>
 
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <nav className="flex max-w-sm flex-wrap gap-x-6 gap-y-3 text-sm">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -66,7 +66,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {BRAND.name}. All rights reserved.
           </p>

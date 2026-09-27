@@ -63,7 +63,7 @@ export function SiteHeader() {
                 ) : null}
                 <Link
                   href={link.href}
-                  className="rounded-xl px-2.5 py-1.5 transition-hairline hover:bg-card hover:text-foreground"
+                  className="rounded-xl px-2.5 py-1.5 transition-hairline hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
                 >
                   {link.label}
                 </Link>
@@ -84,7 +84,7 @@ export function SiteHeader() {
 
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger
-                className="inline-flex size-9 items-center justify-center rounded-xl text-foreground transition-hairline hover:bg-card md:hidden"
+                className="inline-flex size-10 items-center justify-center rounded-xl text-foreground transition-hairline hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40 md:hidden"
                 aria-label="Open menu"
               >
                 <Menu className="size-5" />

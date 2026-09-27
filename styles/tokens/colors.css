@@ -23,10 +23,10 @@
   --foreground: var(--ink);
   --card: transparent;
   --card-foreground: var(--ink);
-  --popover: #ffffff;
+  --popover: #fbfbf9;
   --popover-foreground: var(--ink);
   --primary: var(--orange);
-  --primary-foreground: #ffffff;
+  --primary-foreground: #fffaf5;
   --secondary: var(--paper);
   --secondary-foreground: var(--ink);
   --muted: #f3f1ed;
@@ -42,15 +42,15 @@
 .dark,
 .void {
   --background: var(--void);
-  --foreground: #fafafa;
+  --foreground: #f7f7f4;
   --card: var(--void-2);
-  --card-foreground: #fafafa;
+  --card-foreground: #f7f7f4;
   --popover: var(--void-2);
-  --popover-foreground: #fafafa;
+  --popover-foreground: #f7f7f4;
   --secondary: var(--void-2);
-  --secondary-foreground: #fafafa;
+  --secondary-foreground: #f7f7f4;
   --muted: #1a1a1a;
-  --muted-foreground: rgba(250, 250, 250, 0.65);
+  --muted-foreground: rgba(247, 247, 244, 0.65);
   --accent: var(--void-2);
   --accent-foreground: #fafafa;
   --border: var(--line-dark);

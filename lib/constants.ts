@@ -10,7 +10,7 @@ export const TAGLINES = {
   closing: "Ready when you are",
 } as const;
 
-/** Canonical build floor — keep stat bar, work teaser, and pricing intro in sync. */
+/** Canonical build floor. Keep stat bar, work teaser, and pricing intro in sync. */
 export const PRICING_FLOOR = "From $2,000";
 
 export const HERO_PROOF = [
@@ -19,7 +19,7 @@ export const HERO_PROOF = [
   { value: "1 day", label: "Reply time" },
 ] as const;
 
-/** Hero plate media — poster for instant paint; video loads behind the boot gate. */
+/** Hero plate media. Poster for instant paint; video remains available for later use. */
 export const HERO_MEDIA = {
   still: "/assets/hero/alpine-lakeside.jpg",
   stillWidth: 1920,
@@ -52,18 +52,18 @@ export const SERVICES_HEADLINE =
   "Built for Front Range practices that need to get booked.";
 
 export const SERVICES_AI_LINE =
-  "We also wire AI that recovers after-hours inquiries — so missed calls turn into booked appointments, not lost leads.";
+  "We also wire AI that recovers after-hours inquiries, so missed calls turn into booked appointments, not lost leads.";
 
 export const SERVICES = [
   {
     title: "Design",
     description:
-      "Trust-first design for med spas, dental, law, real estate, and remodeling — the look that gets the consult booked.",
+      "Trust-first design for med spas, dental, law, real estate, and remodeling, with the look that gets the consult booked.",
   },
   {
     title: "Build & launch",
     description:
-      "Fast, mobile-first sites live in weeks — where your patients and clients actually search.",
+      "Fast, mobile-first sites live in weeks, where your patients and clients actually search.",
   },
   {
     title: "Get found",
@@ -366,8 +366,8 @@ export const SAHARA_CASE_STUDY = {
   summary:
     "Menu-forward site built for local search and online ordering.",
   body: [
-    "Sahara Grill needed a site that worked as hard as the kitchen — clear menus, fast mobile load, and a path from search to order without friction. The previous presence buried the food behind generic stock layouts and made it hard for Denver diners to see hours, specialties, or place an order on their phone. On mobile especially, the experience felt like a brochure instead of a storefront.",
-    "We rebuilt around the menu: dish photography, dietary callouts, and ordering CTAs above the fold on every key page. Structure was tuned for local search — neighborhood and cuisine cues, Google Business alignment, and page speed that holds a Lighthouse score in the high 90s. Copy and hierarchy answer the questions diners actually ask first: what’s good, what’s open, and how do I order.",
-    "The result is a live restaurant site that gets found, shows the food first, and moves hungry visitors into online ordering — not a brochure that stops at “looks nice.” Performance stays high enough that a slow connection on the Front Range doesn’t cost the sale. That same foundation is what we bring to Front Range service businesses that need credibility and conversions, not templates.",
+    "Sahara Grill needed a site that worked as hard as the kitchen: clear menus, fast mobile load, and a path from search to order without friction. The previous presence buried the food behind generic stock layouts and made it hard for Denver diners to see hours, specialties, or place an order on their phone. On mobile especially, the experience felt like a brochure instead of a storefront.",
+    "We rebuilt around the menu: dish photography, dietary callouts, and ordering CTAs above the fold on every key page. Structure was tuned for local search with neighborhood and cuisine cues, Google Business alignment, and page speed that holds a Lighthouse score in the high 90s. Copy and hierarchy answer the questions diners actually ask first: what’s good, what’s open, and how do I order.",
+    "The result is a live restaurant site that gets found, shows the food first, and moves hungry visitors into online ordering instead of stopping at “looks nice.” Performance stays high enough that a slow connection on the Front Range doesn’t cost the sale. That same foundation is what we bring to Front Range service businesses that need credibility and conversions, not templates.",
   ],
 } as const;

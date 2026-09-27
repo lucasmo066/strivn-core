@@ -53,6 +53,9 @@ Internal codename: "Hairline"
 - [ ] Portfolio (Sahara Grill case study, Summit First preview)
 - [ ] Contact (form + Calendly embed)
 
+## Shared planning
+- [ROADMAP.md](./ROADMAP.md) is the active launch and growth sequence for this repository.
+
 ## Coding Conventions
 - Every component typed with explicit Props interface
 - cn() utility for all className merging

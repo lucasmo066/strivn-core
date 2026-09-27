@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
 import { StrivnButton } from "@/components/shared/strivn-button";
@@ -9,17 +10,35 @@ import type { ContactFieldErrors, ContactResponse } from "@/lib/contact";
 import { TAGLINES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
+const fields = ["name", "email", "business", "details"] as const;
+
+type ContactField = (typeof fields)[number];
+
 const fieldLabelClass =
-  "font-pixel text-micro text-muted-foreground";
+  "text-xs font-semibold tracking-[0.08em] text-foreground uppercase";
 
 const fieldClass =
-  "h-12 rounded-none border-0 border-b border-ink/15 bg-transparent px-0 shadow-none focus-visible:border-orange focus-visible:ring-0";
+  "h-12 rounded-xl border-input bg-background px-3.5 text-[16px] shadow-none placeholder:text-muted-foreground/80 focus-visible:border-orange focus-visible:ring-4 focus-visible:ring-orange/15 md:text-sm";
 
 const textareaClass = cn(
-  "min-h-28 w-full resize-y border-0 border-b border-ink/15 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-orange disabled:cursor-not-allowed disabled:opacity-60 md:text-sm"
+  "min-h-32 w-full resize-y rounded-xl border border-input bg-background px-3.5 py-3 text-[16px] leading-relaxed outline-none transition-colors placeholder:text-muted-foreground/80 focus-visible:border-orange focus-visible:ring-4 focus-visible:ring-orange/15 disabled:cursor-not-allowed disabled:opacity-60 md:text-sm"
 );
 
 type FormStatus = "idle" | "loading" | "success" | "error";
+
+function validationMessage(field: ContactField, value: string) {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return field === "details" ? "Tell us what you need" : `${field[0].toUpperCase()}${field.slice(1)} is required`;
+  }
+
+  if (field === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+    return "Enter a valid email";
+  }
+
+  return undefined;
+}
 
 export function ContactForm() {
   const [name, setName] = useState("");
@@ -30,13 +49,75 @@ export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
+  const [touched, setTouched] = useState<Partial<Record<ContactField, boolean>>>({});
 
   const loading = status === "loading";
 
+  const values = { name, email, business, details };
+
+  function setFieldError(field: ContactField, value: string) {
+    setFieldErrors((current) => {
+      const next = { ...current };
+      const message = validationMessage(field, value);
+
+      if (message) {
+        next[field] = message;
+      } else {
+        delete next[field];
+      }
+
+      return next;
+    });
+  }
+
+  function onFieldBlur(field: ContactField) {
+    setTouched((current) => ({ ...current, [field]: true }));
+    setFieldError(field, values[field]);
+  }
+
+  function onFieldChange(
+    field: ContactField,
+    value: string,
+    setValue: (nextValue: string) => void
+  ) {
+    setValue(value);
+
+    if (touched[field] || fieldErrors[field]) {
+      setFieldError(field, value);
+    }
+
+    if (status === "error") {
+      setStatus("idle");
+      setError(null);
+    }
+  }
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("loading");
     setError(null);
+    setTouched({ name: true, email: true, business: true, details: true });
+
+    const clientErrors = fields.reduce<ContactFieldErrors>((errors, field) => {
+      const message = validationMessage(field, values[field]);
+      if (message) errors[field] = message;
+      return errors;
+    }, {});
+
+    if (Object.keys(clientErrors).length > 0) {
+      setFieldErrors(clientErrors);
+      setStatus("error");
+      setError("Please correct the highlighted fields and try again.");
+
+      const firstInvalidField = fields.find((field) => clientErrors[field]);
+      if (firstInvalidField) {
+        requestAnimationFrame(() => {
+          document.getElementById(`contact-${firstInvalidField}`)?.focus();
+        });
+      }
+      return;
+    }
+
+    setStatus("loading");
     setFieldErrors({});
 
     try {
@@ -68,11 +149,17 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="space-y-3 border-t border-ink/10 pt-8">
-        <p className="font-display text-xl tracking-wide text-foreground">
-          Thanks — we got it
+      <div
+        className="rounded-2xl border border-orange/30 bg-orange/5 p-6 sm:p-8"
+        role="status"
+        aria-live="polite"
+        tabIndex={-1}
+      >
+        <CheckCircle2 className="size-6 text-orange" aria-hidden />
+        <p className="mt-4 font-display text-xl tracking-wide text-foreground">
+          Thanks, we got it.
         </p>
-        <p className="text-sm text-muted-foreground">
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           We&apos;ll reply within one business day with next steps.
         </p>
       </div>
@@ -81,9 +168,10 @@ export function ContactForm() {
 
   return (
     <form
-      className="relative space-y-6 border-t border-ink/10 pt-8"
+      className="relative space-y-6 rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-7"
       onSubmit={onSubmit}
       noValidate
+      aria-describedby={error ? "contact-form-error" : undefined}
     >
       <div
         className="absolute left-[-9999px] h-0 w-0 overflow-hidden"
@@ -112,13 +200,17 @@ export function ContactForm() {
             placeholder="Alex Rivera"
             autoComplete="name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => onFieldChange("name", e.target.value, setName)}
+            onBlur={() => onFieldBlur("name")}
             disabled={loading}
             aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
             className={fieldClass}
           />
           {fieldErrors.name ? (
-            <p className="text-xs text-destructive">{fieldErrors.name}</p>
+            <p id="contact-name-error" className="text-xs font-medium text-destructive">
+              {fieldErrors.name}
+            </p>
           ) : null}
         </div>
         <div className="space-y-2">
@@ -132,13 +224,17 @@ export function ContactForm() {
             placeholder="alex@yourbusiness.com"
             autoComplete="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => onFieldChange("email", e.target.value, setEmail)}
+            onBlur={() => onFieldBlur("email")}
             disabled={loading}
             aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
             className={fieldClass}
           />
           {fieldErrors.email ? (
-            <p className="text-xs text-destructive">{fieldErrors.email}</p>
+            <p id="contact-email-error" className="text-xs font-medium text-destructive">
+              {fieldErrors.email}
+            </p>
           ) : null}
         </div>
       </div>
@@ -153,13 +249,17 @@ export function ContactForm() {
           placeholder="Your business name"
           autoComplete="organization"
           value={business}
-          onChange={(e) => setBusiness(e.target.value)}
+          onChange={(e) => onFieldChange("business", e.target.value, setBusiness)}
+          onBlur={() => onFieldBlur("business")}
           disabled={loading}
           aria-invalid={Boolean(fieldErrors.business)}
+          aria-describedby={fieldErrors.business ? "contact-business-error" : undefined}
           className={fieldClass}
         />
         {fieldErrors.business ? (
-          <p className="text-xs text-destructive">{fieldErrors.business}</p>
+          <p id="contact-business-error" className="text-xs font-medium text-destructive">
+            {fieldErrors.business}
+          </p>
         ) : null}
       </div>
 
@@ -174,12 +274,16 @@ export function ContactForm() {
           placeholder="New website, redesign, or ongoing support"
           rows={3}
           value={details}
-          onChange={(e) => setDetails(e.target.value)}
+          onChange={(e) => onFieldChange("details", e.target.value, setDetails)}
+          onBlur={() => onFieldBlur("details")}
           disabled={loading}
           aria-invalid={Boolean(fieldErrors.details)}
+          aria-describedby={fieldErrors.details ? "contact-details-error" : undefined}
         />
         {fieldErrors.details ? (
-          <p className="text-xs text-destructive">{fieldErrors.details}</p>
+          <p id="contact-details-error" className="text-xs font-medium text-destructive">
+            {fieldErrors.details}
+          </p>
         ) : null}
       </div>
 
@@ -195,7 +299,7 @@ export function ContactForm() {
         </StrivnButton>
 
         {error ? (
-          <p className="text-sm text-destructive" role="alert">
+          <p id="contact-form-error" className="text-sm font-medium text-destructive" role="alert">
             {error}
           </p>
         ) : null}
