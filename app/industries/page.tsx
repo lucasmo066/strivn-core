@@ -22,7 +22,7 @@ export default function IndustriesPage() {
         <Container className="space-y-10">
           <div className="mx-auto max-w-2xl space-y-4 text-center md:mx-0 md:text-left">
             <MonoLabel>{BRAND.basedIn}</MonoLabel>
-            <h1 className="font-display text-[var(--text-h2)]">
+            <h1 className="font-display text-[clamp(1.65rem,6.5vw,2.5rem)] leading-[1.15]">
               Industries we build for
             </h1>
             <p className="font-ui text-muted-foreground">

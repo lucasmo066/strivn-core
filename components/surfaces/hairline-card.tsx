@@ -14,6 +14,7 @@ export function HairlineCard({
   accentBrackets,
   ...props
 }: HairlineCardProps) {
+  void _brackets;
   return <SoftCard accent={accentBrackets} {...props} />;
 }
 

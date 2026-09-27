@@ -13,7 +13,7 @@ export function SocialProofSection() {
         <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8">
           {HERO_PROOF.map((stat) => (
             <div key={stat.label} className="min-w-0 text-center md:text-left">
-              <p className="font-display text-xl tracking-wide tabular-nums sm:text-2xl md:text-3xl">
+              <p className="font-display text-[clamp(1rem,4.4vw,1.875rem)] tracking-wide tabular-nums whitespace-nowrap">
                 {stat.value}
               </p>
               <p className="mt-1 text-xs text-muted-foreground sm:text-sm">

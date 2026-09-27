@@ -27,7 +27,7 @@ export function WorkSection() {
           </Link>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-2">
           {WORK_ITEMS.map((project) => {
             const featured = "featured" in project && project.featured;
             const href = "href" in project ? project.href : undefined;
@@ -43,7 +43,7 @@ export function WorkSection() {
                 <SoftCardHeader className="space-y-4">
                   <div
                     className={cn(
-                      "flex aspect-4/3 items-end rounded-2xl p-5",
+                      "flex aspect-4/3 items-end rounded-[var(--radius-md)] p-5",
                       featured ? "bg-void" : "bg-ink/[0.06]"
                     )}
                   >
@@ -55,7 +55,7 @@ export function WorkSection() {
                       </MonoLabel>
                       <p
                         className={cn(
-                          "mt-2 font-display text-2xl font-semibold tracking-tight",
+                          "mt-2 font-display text-2xl tracking-tight",
                           featured ? "text-white" : "text-foreground"
                         )}
                       >

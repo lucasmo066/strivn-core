@@ -31,12 +31,12 @@ export default function SaharaGrillCaseStudyPage() {
             </p>
           </div>
 
-          <div className="flex aspect-21/9 max-w-3xl items-end rounded-2xl bg-void p-6 sm:p-8">
+          <div className="flex aspect-21/9 max-w-3xl items-end rounded-[var(--radius-lg)] bg-void p-6 sm:p-8">
             <div>
               <MonoLabel className="text-white/50">
                 {SAHARA_CASE_STUDY.category}
               </MonoLabel>
-              <p className="mt-2 font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              <p className="mt-2 font-display text-2xl tracking-tight text-white sm:text-3xl">
                 {SAHARA_CASE_STUDY.title}
               </p>
             </div>

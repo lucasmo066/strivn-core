@@ -15,23 +15,11 @@
   transition-timing-function: var(--ease-out);
 }
 
-@keyframes gradient-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@utility animate-gradient {
-  animation: gradient-shift 10s ease infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .animate-gradient {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
   }
 
   .transition-lift {

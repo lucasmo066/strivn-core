@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { BrandIcon } from "@/components/shared/brand-icon";
 import { Logo } from "@/components/shared/logo";
@@ -20,25 +20,12 @@ import { NAV_LINKS, TAGLINES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
-  const [visible, setVisible] = useState(true);
   const [atTop, setAtTop] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      setAtTop(y < 4);
-
-      if (y < 64) {
-        setVisible(true);
-      } else if (y > lastScrollY.current + 4) {
-        setVisible(false);
-      } else if (y < lastScrollY.current - 4) {
-        setVisible(true);
-      }
-
-      lastScrollY.current = y;
+      setAtTop(window.scrollY < 4);
     };
 
     onScroll();
@@ -50,19 +37,19 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-paper/85 backdrop-blur-xl transition-[transform,box-shadow] duration-300 ease-out",
-          atTop ? "shadow-soft" : "shadow-soft-hover",
-          visible || menuOpen ? "translate-y-0" : "-translate-y-full"
+          "fixed inset-x-0 top-0 z-50 border-b border-border bg-paper/95 backdrop-blur-md transition-shadow duration-200 ease-out",
+          atTop ? "shadow-none" : "shadow-soft",
+          menuOpen && "shadow-soft"
         )}
       >
-        <Container className="flex h-14 items-center justify-between gap-4 md:gap-6">
+        <Container className="flex h-16 items-center justify-between gap-4 md:gap-6">
           <Link href="/" className="shrink-0" aria-label="Strivn home">
-            <BrandIcon size="sm" className="md:hidden" />
+            <BrandIcon size="sm" className="h-9 md:hidden" />
             <Logo
               variant="lockup"
               tone="black"
               priority
-              className="hidden h-7 w-auto md:block"
+              className="hidden h-8 w-auto md:block"
             />
           </Link>
 
@@ -135,7 +122,7 @@ export function SiteHeader() {
           </div>
         </Container>
       </header>
-      <div className="h-14 shrink-0" aria-hidden="true" />
+      <div className="h-16 shrink-0" aria-hidden="true" />
     </>
   );
 }

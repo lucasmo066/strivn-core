@@ -23,7 +23,7 @@ export function SiteFooter() {
                 className="h-8 w-auto"
               />
             </div>
-            <p className="max-w-md font-display text-2xl font-semibold tracking-tight text-white">
+            <p className="max-w-md font-display text-2xl tracking-tight text-white">
               {TAGLINES.closing}
             </p>
             <div className="space-y-1 text-sm text-white/50">

@@ -25,7 +25,7 @@ export function BuildPackages() {
             <SoftCard
               key={pkg.name}
               accent={featured}
-              className={cn("relative", featured && "ring-1 ring-orange/40")}
+              className={cn("relative", featured && "border-orange/60")}
             >
               {"badge" in pkg && pkg.badge ? (
                 <span className="absolute top-0 right-4 rounded-b-lg bg-orange px-2.5 py-1 font-mono text-[10px] font-semibold tracking-wide text-white uppercase">

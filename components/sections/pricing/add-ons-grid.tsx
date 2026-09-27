@@ -23,7 +23,7 @@ export function AddOnsGrid() {
         {ADD_ONS.map((addon) => (
           <div
             key={addon.name}
-            className="flex items-start justify-between gap-3 rounded-2xl bg-card px-4 py-4 shadow-soft transition-lift hover:-translate-y-0.5 hover:shadow-soft-hover sm:items-center sm:gap-4 sm:px-5"
+            className="flex items-start justify-between gap-3 rounded-[var(--radius-md)] border border-border px-4 py-4 transition-lift hover:border-[var(--line-strong)] hover:bg-white/35 hover:shadow-soft-hover sm:items-center sm:gap-4 sm:px-5"
           >
             <span className="min-w-0 text-sm leading-snug text-muted-foreground">
               {pixelizeNumbers(addon.name)}

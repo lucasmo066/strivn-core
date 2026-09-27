@@ -1,11 +1,11 @@
 :root {
-  /* Apple + game HUD palette */
-  --paper: #f2f1ef;
+  /* Hairline palette: quiet paper, ink, and one working accent. */
+  --paper: #faf9f7;
   --ink: #0a0a0a;
   --ink-70: rgba(10, 10, 10, 0.7);
   --ink-40: rgba(10, 10, 10, 0.4);
-  --line: rgba(0, 0, 0, 0.08);
-  --line-strong: rgba(0, 0, 0, 0.14);
+  --line: rgba(10, 10, 10, 0.11);
+  --line-strong: rgba(10, 10, 10, 0.2);
   --orange: #ff5c00;
   --orange-focus: rgba(255, 92, 0, 0.35);
   --void: #0a0a0a;
@@ -15,15 +15,13 @@
   --status-ok: #3d7a5a;
   --status-warn: #9a7b2e;
   --status-danger: #b42318;
-  --shadow-soft: 0 4px 24px -8px rgba(0, 0, 0, 0.08),
-    0 12px 40px -16px rgba(0, 0, 0, 0.1);
-  --shadow-soft-hover: 0 8px 32px -8px rgba(0, 0, 0, 0.12),
-    0 20px 48px -20px rgba(0, 0, 0, 0.14);
+  --shadow-soft: 0 1px 2px rgba(10, 10, 10, 0.04);
+  --shadow-soft-hover: 0 8px 20px -16px rgba(10, 10, 10, 0.24);
 
   /* shadcn semantic mapping */
   --background: var(--paper);
   --foreground: var(--ink);
-  --card: #ffffff;
+  --card: transparent;
   --card-foreground: var(--ink);
   --popover: #ffffff;
   --popover-foreground: var(--ink);
@@ -31,7 +29,7 @@
   --primary-foreground: #ffffff;
   --secondary: var(--paper);
   --secondary-foreground: var(--ink);
-  --muted: #ebe9e6;
+  --muted: #f3f1ed;
   --muted-foreground: var(--ink-70);
   --accent: var(--paper);
   --accent-foreground: var(--ink);

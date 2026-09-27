@@ -1,5 +1,5 @@
 :root {
-  --text-display: clamp(2.5rem, 5vw, 4rem);
+  --text-display: clamp(2.25rem, 5.6vw, 4.25rem);
   --text-h1: clamp(2rem, 4vw, 3rem);
   --text-h2: clamp(1.5rem, 3vw, 2rem);
   --text-h3: 1.25rem;

@@ -1,6 +1,4 @@
-"use client";
-
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { HeroSection } from "@/components/sections/hero-section";
 
@@ -8,28 +6,12 @@ type HomeExperienceProps = {
   children: ReactNode;
 };
 
-/** Holds below-the-fold content until the hero plate is ready to show. */
+/** Keeps the video enhancement independent from the rest of the page. */
 export function HomeExperience({ children }: HomeExperienceProps) {
-  const [ready, setReady] = useState(false);
-
-  const onReady = useCallback(() => setReady(true), []);
-
-  useEffect(() => {
-    document.body.classList.add("hero-booting");
-    if (ready) {
-      document.body.classList.remove("hero-booting");
-    }
-    return () => {
-      document.body.classList.remove("hero-booting");
-    };
-  }, [ready]);
-
   return (
     <>
-      <HeroSection onReady={onReady} />
-      {ready ? (
-        <div className="relative z-10 bg-background">{children}</div>
-      ) : null}
+      <HeroSection />
+      <div className="relative z-10 bg-background">{children}</div>
     </>
   );
 }

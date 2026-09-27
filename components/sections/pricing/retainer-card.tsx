@@ -21,8 +21,8 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-2xl bg-card shadow-soft transition-lift hover:-translate-y-0.5 hover:shadow-soft-hover",
-        featured && "ring-1 ring-orange/50"
+        "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-transparent transition-lift hover:border-[var(--line-strong)] hover:bg-white/35 hover:shadow-soft-hover",
+        featured && "border-orange/60"
       )}
     >
       <div
