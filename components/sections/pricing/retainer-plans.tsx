@@ -1,75 +1,49 @@
-import { Switch } from "@/components/ui/switch";
+"use client";
+
+import { useState } from "react";
 import { RETAINER_PLANS } from "@/lib/constants";
-import { cn } from "@/lib/utils";
 
 import { EditSizesInfo } from "./edit-sizes-info";
 import { RetainerCard } from "./retainer-card";
+import { PlanSelector } from "./plan-selector";
+import styles from "./pricing.module.css";
 
-type RetainerPlansProps = {
-  yearlyBilling: boolean;
-  onYearlyBillingChange: (value: boolean) => void;
-};
+export function RetainerPlans() {
+  const [yearlyBilling, setYearlyBilling] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(RETAINER_PLANS[0].name);
 
-export function RetainerPlans({
-  yearlyBilling,
-  onYearlyBillingChange,
-}: RetainerPlansProps) {
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="space-y-2">
-          <h3 className="font-display text-xl tracking-wide">
-            Monthly care plans
-          </h3>
-          <EditSizesInfo />
-        </div>
-        <div
-          className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm"
-          role="group"
-          aria-label="Billing frequency"
-        >
-          <span
-            className={cn(
-              !yearlyBilling ? "text-foreground" : "text-muted-foreground"
-            )}
-          >
-            Monthly
-          </span>
-          <Switch
-            checked={yearlyBilling}
-            onCheckedChange={onYearlyBillingChange}
-            aria-label={
-              yearlyBilling
-                ? "Yearly billing selected. Switch to monthly billing"
-                : "Monthly billing selected. Switch to yearly billing and save 15%"
-            }
-            aria-describedby="yearly-billing-savings"
-          />
-          <span
-            className={cn(
-              yearlyBilling ? "text-foreground" : "text-muted-foreground"
-            )}
-          >
-            Yearly
-          </span>
-          <span
-            id="yearly-billing-savings"
-            className="rounded-lg bg-orange/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-orange uppercase"
-          >
-            Save 15%
-          </span>
+    <section className={styles.careSection} aria-labelledby="care-plans-heading">
+      <div className={styles.sectionHeader}>
+        <h3 id="care-plans-heading" className="font-display text-xl">Monthly care plans</h3>
+        <p className={styles.sectionDescription}>Hosting, maintenance, and growth support after launch.</p>
+        <div className={styles.billingRow}>
+          <div className={styles.billingToggle} role="group" aria-label="Billing frequency">
+            <button type="button" aria-pressed={!yearlyBilling} onClick={() => setYearlyBilling(false)}>Monthly</button>
+            <button type="button" aria-pressed={yearlyBilling} onClick={() => setYearlyBilling(true)}>Yearly</button>
+          </div>
+          <span className={styles.savings}>Save 15% yearly</span>
         </div>
       </div>
-
-      <div className="grid gap-4 lg:grid-cols-3">
+      <PlanSelector
+        kind="care"
+        label="Choose a care plan"
+        names={RETAINER_PLANS.map((plan) => plan.name)}
+        selected={selectedPlan}
+        onChange={setSelectedPlan}
+      />
+      <div className={styles.careGrid}>
         {RETAINER_PLANS.map((plan) => (
-          <RetainerCard
-            key={plan.name}
-            plan={plan}
-            yearlyBilling={yearlyBilling}
-          />
+          <RetainerCard key={plan.name} plan={plan} yearlyBilling={yearlyBilling} selected={selectedPlan === plan.name} />
         ))}
       </div>
-    </div>
+      <div className={styles.note}>
+        <p>Billed on the 1st. Medium and large edits are billed separately.</p>
+        <EditSizesInfo />
+      </div>
+      <p className="sr-only" role="status">
+        {yearlyBilling ? "Yearly billing selected. Prices show annual totals with a 15% saving." : "Monthly billing selected. Prices show monthly totals."}
+      </p>
+    </section>
   );
 }

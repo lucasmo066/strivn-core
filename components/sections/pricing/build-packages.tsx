@@ -1,80 +1,66 @@
-import Link from "next/link";
+"use client";
 
-import { StrivnButton } from "@/components/shared/strivn-button";
-import {
-  SoftCard,
-  SoftCardContent,
-  SoftCardHeader,
-  SoftCardTitle,
-} from "@/components/surfaces/soft-card";
+import Link from "next/link";
+import { Check, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+
 import { BUILD_PACKAGES, EXTRA_PAGE_PRICE } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { PlanSelector } from "./plan-selector";
+import styles from "./pricing.module.css";
 
 export function BuildPackages() {
-  return (
-    <div className="space-y-6">
-      <h3 className="font-display text-xl tracking-wide">
-        Website builds
-      </h3>
+  const [selectedPlan, setSelectedPlan] = useState<string>(BUILD_PACKAGES[0].name);
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+  return (
+    <section aria-labelledby="build-plans-heading">
+      <div className={styles.sectionHeader}>
+        <h3 id="build-plans-heading" className="font-display text-xl">Website builds</h3>
+        <p className={styles.sectionDescription}>One-time project fees. A clear scope for every stage.</p>
+      </div>
+      <PlanSelector
+        kind="build"
+        label="Choose a website build"
+        names={BUILD_PACKAGES.map((pkg) => pkg.name)}
+        selected={selectedPlan}
+        onChange={setSelectedPlan}
+      />
+      <div className={styles.buildGrid}>
         {BUILD_PACKAGES.map((pkg) => {
           const featured = "featured" in pkg && pkg.featured;
-
+          const id = "build-plan-" + pkg.name.toLowerCase();
           return (
-            <SoftCard
+            <article
+              id={id}
               key={pkg.name}
-              accent={featured}
-              className={cn("relative", featured && "border-orange/60")}
+              className={styles.planCard}
+              data-selected={selectedPlan === pkg.name}
+              data-featured={featured}
+              aria-labelledby={id + "-title"}
             >
-              {"badge" in pkg && pkg.badge ? (
-                <span className="absolute top-0 right-4 rounded-b-lg bg-orange px-2.5 py-1 font-mono text-[10px] font-semibold tracking-wide text-white uppercase">
-                  {pkg.badge}
-                </span>
-              ) : null}
-              <SoftCardHeader className="space-y-3">
-                <div>
-                  <SoftCardTitle className="font-display text-base">
-                    {pkg.name}
-                  </SoftCardTitle>
-                  <p className="text-xs text-muted-foreground">{pkg.pages}</p>
+              <div className={styles.planHeader}>
+                <div className={styles.nameRow}>
+                  <h4 id={id + "-title"} className="text-base font-semibold">{pkg.name}</h4>
+                  {"badge" in pkg && <span className={styles.badge}>{pkg.badge}</span>}
                 </div>
-                <div>
-                  <p className="font-display text-3xl tracking-wide tabular-nums">
-                    {pkg.price}
-                  </p>
-                  <p className="text-[11px] text-muted-foreground">
-                    {pkg.priceNote}
-                  </p>
-                </div>
-                <hr className="border-border" />
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  {pkg.includes.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="text-orange">-</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </SoftCardHeader>
-              <SoftCardContent>
-                <StrivnButton
-                  variant={featured ? "primary" : "outline"}
-                  className="w-full"
-                  arrow={featured}
-                  asChild
-                >
-                  <Link href="/#contact">Get started</Link>
-                </StrivnButton>
-              </SoftCardContent>
-            </SoftCard>
+                <p className={styles.scope}>{pkg.pages}</p>
+                <p className={styles.price}>{pkg.price}</p>
+                <p className={styles.priceNote}>{pkg.priceNote}</p>
+              </div>
+              <ul className={styles.features}>
+                {pkg.includes.map((item) => (
+                  <li key={item}><Check aria-hidden className="size-4 shrink-0 text-orange" /><span>{item}</span></li>
+                ))}
+              </ul>
+              <Link href="/#contact" className={styles.planCta} aria-label={"Get started with " + pkg.name}>
+                Get started <ArrowUpRight aria-hidden className="size-4" />
+              </Link>
+            </article>
           );
         })}
       </div>
-
-      <p className="text-xs text-muted-foreground">
-        Extra pages: {EXTRA_PAGE_PRICE} each. 50% deposit, 50% at launch.
-      </p>
-    </div>
+      <div className={styles.note}>
+        <p>Extra pages: {EXTRA_PAGE_PRICE} each. 50% deposit, 50% at launch.</p>
+      </div>
+    </section>
   );
 }

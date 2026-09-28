@@ -1,0 +1,177 @@
+.shell {
+  --pricing-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--background);
+}
+
+.intro {
+  padding: 2.5rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.sectionHeader { padding: 2rem 1.25rem; text-align: center; }
+.sectionDescription {
+  max-width: 38rem;
+  margin: 0.625rem auto 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.careSection, .addonsSection { border-top: 1px solid var(--border); }
+
+.buildGrid, .careGrid {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 1px;
+  border-block: 1px solid var(--border);
+  background: var(--border);
+}
+.planCard {
+  display: none;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 1.25rem;
+  background: var(--background);
+}
+.planCard[data-selected="true"] { display: flex; }
+.planCard[data-featured="true"] { background: var(--muted); }
+.planHeader { min-width: 0; }
+.nameRow { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-height: 1.5rem; }
+.badge { color: var(--pricing-accent); font-size: 0.625rem; font-weight: 600; white-space: nowrap; }
+.scope { margin-top: 0.375rem; color: var(--muted-foreground); font-size: 0.75rem; }
+.price {
+  margin-top: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.priceNote { min-height: 1.125rem; margin-top: 0.375rem; font-size: 0.75rem; line-height: 1.5; color: var(--muted-foreground); }
+.carePrice { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.25rem; }
+.priceSuffix { color: var(--muted-foreground); font-size: 0.75rem; }
+.careGrid .priceNote { min-height: 2.25rem; }
+
+.features { display: grid; gap: 0.875rem; font-size: 0.875rem; line-height: 1.6; color: var(--muted-foreground); }
+.features li { display: flex; align-items: flex-start; gap: 0.625rem; }
+.features svg { margin-top: 0.125rem; }
+.planCta {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.planCard[data-featured="true"] .planCta { background: var(--foreground); border-color: var(--foreground); color: var(--background); }
+.planCta:hover { border-color: var(--pricing-accent); }
+.planCta:hover svg { transform: translate(2px, -2px); }
+.planCta:focus-visible, .exclusions summary:focus-visible, .termsDisclosure summary:focus-visible,
+.addonToggle:focus-visible { outline: 2px solid var(--foreground); outline-offset: 3px; }
+
+.planSelector {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 1.25rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--border);
+  overflow: hidden;
+}
+.planSelector[data-kind="care"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.planSelector button {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.5rem 0.25rem;
+  background: var(--background);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  font-size: 0.8125rem;
+}
+.planSelector button[aria-pressed="true"] { box-shadow: inset 0 -2px var(--orange); background: var(--muted); color: var(--foreground); font-weight: 600; }
+.planSelector button:focus-visible, .billingToggle button:focus-visible { outline: 2px solid var(--foreground); outline-offset: -4px; }
+.billingRow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.75rem 1rem; margin-top: 1.5rem; }
+.billingToggle { display: inline-flex; border: 1px solid var(--border); padding: 3px; border-radius: var(--radius-md); }
+.billingToggle button { min-height: 44px; border-radius: 7px; padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer; color: var(--muted-foreground); }
+.billingToggle button[aria-pressed="true"] { background: var(--foreground); color: var(--background); }
+.billingToggle button[aria-pressed="true"]:focus-visible { outline-color: var(--background); }
+.savings { font-size: 0.75rem; font-weight: 500; color: var(--pricing-accent); }
+
+.note { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem 1.5rem; padding: 1.25rem; color: var(--muted-foreground); font-size: 0.75rem; line-height: 1.6; }
+.exclusions { margin-top: -0.5rem; color: var(--muted-foreground); }
+.exclusions summary, .termsDisclosure summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 44px;
+  list-style: none;
+  cursor: pointer;
+}
+.exclusions summary { justify-content: flex-start; font-size: 0.75rem; }
+.exclusions summary::-webkit-details-marker, .termsDisclosure summary::-webkit-details-marker { display: none; }
+.exclusions[open] summary svg, .termsDisclosure[open] summary svg, .addonToggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.exclusions .features { padding-top: 0.5rem; }
+
+.terms { padding: 1.5rem 1.25rem; border-top: 1px solid var(--border); }
+.overage { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem 2rem; }
+.overage > p { color: var(--pricing-accent); }
+.termsDisclosure { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.5rem; }
+.termsDisclosure summary { font-size: 0.8125rem; }
+.quickRef { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; padding: 1rem 0 0.5rem; }
+
+.addonGrid { display: grid; gap: 1px; border-top: 1px solid var(--border); background: var(--border); border-radius: 0 0 var(--radius-lg) var(--radius-lg); overflow: hidden; }
+.addonGroup { min-width: 0; padding-inline: 1.25rem; background: var(--background); }
+.addonToggle { display: flex; min-height: 56px; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left; font-size: 0.875rem; font-weight: 500; }
+.addonDesktopTitle { display: none; }
+.addonContent { display: none; }
+.addonContent[data-expanded="true"] { display: block; }
+.addonContent ul { display: grid; gap: 1.25rem; padding: 0.25rem 0 1.5rem; }
+.addonItem { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 1rem; }
+.addonPrice { white-space: nowrap; font-family: var(--font-display); font-size: 0.875rem; color: var(--pricing-accent); font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .planCta svg, .exclusions summary svg, .termsDisclosure summary svg, .addonToggle svg { transition: transform 180ms ease; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .planCta:hover svg { transform: none; }
+}
+@media (min-width: 640px) {
+  .intro { padding: 3.5rem 2rem; }
+  .sectionHeader { padding: 2.5rem 2rem; }
+  .buildGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .buildGrid .planCard { display: flex; }
+  .planSelector[data-kind="build"] { display: none; }
+  .note, .terms { padding-inline: 2rem; }
+  .quickRef { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .careGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .careGrid .planCard { display: flex; }
+  .planSelector[data-kind="care"] { display: none; }
+  .addonGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .addonGroup { padding: 1.75rem; }
+  .addonToggle { display: none; }
+  .addonDesktopTitle { display: block; font-size: 0.875rem; font-weight: 500; }
+  .addonContent { display: block; }
+  .addonContent ul { padding: 1.25rem 0 0; }
+}
+@media (min-width: 1024px) {
+  .planCard { padding: 2rem 1.5rem; }
+  .addonGroup { padding: 2rem; }
+}
+@media (min-width: 1280px) {
+  .buildGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .planCard { padding-inline: 1.25rem; }
+}

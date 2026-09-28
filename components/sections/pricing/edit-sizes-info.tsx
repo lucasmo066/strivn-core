@@ -14,9 +14,9 @@ import { EDIT_SIZES, PRICING_COPY } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const TAG_STYLES = {
-  small: "text-emerald-800",
-  medium: "text-amber-800",
-  large: "text-rose-800",
+  small: "text-emerald-800 dark:text-emerald-300",
+  medium: "text-amber-800 dark:text-amber-300",
+  large: "text-rose-800 dark:text-rose-300",
 } as const;
 
 export function EditSizesInfo() {
@@ -24,7 +24,7 @@ export function EditSizesInfo() {
     <Dialog>
       <DialogTrigger
         className={cn(
-          "inline-flex items-center gap-1.5 text-sm text-muted-foreground",
+          "inline-flex min-h-11 items-center gap-1.5 rounded-md text-sm text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground",
           "transition-hairline hover:text-foreground",
           "underline decoration-border underline-offset-4 hover:decoration-foreground/40"
         )}
@@ -33,8 +33,8 @@ export function EditSizesInfo() {
         What counts as an edit?
       </DialogTrigger>
 
-      <DialogContent className="max-h-[min(85vh,32rem)] gap-0 overflow-y-auto p-0 sm:max-w-md">
-        <DialogHeader className="gap-1.5 border-b border-border px-5 py-4 pr-12">
+      <DialogContent className="max-h-[min(85vh,32rem)] gap-0 overflow-y-auto p-0 sm:max-w-md [&>[data-slot=dialog-close]]:size-11">
+        <DialogHeader className="gap-1.5 border-b border-border px-5 py-4 pr-16">
           <DialogTitle className="font-display text-lg tracking-wide">
             What counts as an edit
           </DialogTitle>
