@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ChromaticImage } from "@/components/ui/chromatic-image";
 import { useState } from "react";
 
 import { MediaSlot } from "@/components/shared/media-slot";
@@ -8,10 +8,7 @@ import type { WorkMedia } from "@/lib/constants";
 
 import styles from "./work-carousel.module.css";
 
-/**
- * Replace this image layer when an approved ChromaticImage implementation is
- * available. Keep the reserved geometry and missing-image fallback intact.
- */
+/** Shared Aceternity treatment with the reserved media geometry and fallback. */
 export function ProjectMedia({
   title,
   media,
@@ -24,13 +21,16 @@ export function ProjectMedia({
   return (
     <div className={styles.media}>
       {media && media.src !== failedSrc ? (
-        <Image
+        <ChromaticImage
           src={media.src}
           alt={media.alt}
-          fill
           sizes="(min-width: 1152px) 480px, (min-width: 1024px) 44vw, (min-width: 640px) 72vw, calc(100vw - 76px)"
-          className={styles.image}
-          style={{ objectPosition: media.objectPosition ?? "50% 50%" }}
+          className="h-full w-full"
+          objectPosition={media.objectPosition ?? "50% 50%"}
+          zoom={0.12}
+          displacement={0.032}
+          chromaticShift={0.008}
+          tilt={0.16}
           onError={() => setFailedSrc(media.src)}
         />
       ) : (

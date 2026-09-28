@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ChromaticImage } from "@/components/ui/chromatic-image";
 import { Mountain } from "lucide-react";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ type FrontRangeMediaProps = {
 };
 
 /**
- * Central services-bento image, not a WebGL/chromatic-rendering implementation.
+ * Central services-bento image with Aceternity's pointer-driven WebGL treatment.
  * Uses the original Aceternity image via SERVICES_MEDIA in lib/constants.ts.
  * A future finished Higgsfield still can replace it through the same config.
  * Ideal source: 4:5 portrait, 1200 x 1500 WebP or AVIF. Desktop shows 4:5;
@@ -33,13 +33,17 @@ export function FrontRangeMedia({
   return (
     <div className={styles.media} style={{ backgroundColor }}>
       {showImage && src ? (
-        <Image
+        <ChromaticImage
           src={src}
           alt={alt}
-          fill
           sizes="(min-width: 1152px) 390px, (min-width: 1024px) 36vw, (min-width: 768px) 88vw, calc(100vw - 56px)"
-          className="object-cover"
-          style={{ objectPosition }}
+          className="h-full w-full"
+          objectPosition={objectPosition}
+          backgroundColor={backgroundColor}
+          zoom={0.14}
+          displacement={0.035}
+          chromaticShift={0.009}
+          tilt={0.14}
           onError={() => setFailedSrc(src)}
         />
       ) : (
