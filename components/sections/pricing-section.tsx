@@ -9,7 +9,7 @@ import styles from "./pricing/pricing.module.css";
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="section-y border-t border-border" aria-labelledby="pricing-heading">
+    <section id="pricing" className={`section-y border-t border-border ${styles.section}`} aria-labelledby="pricing-heading">
       <Container>
         <div className={styles.shell}>
           <header className={styles.intro}>

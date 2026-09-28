@@ -1,3 +1,23 @@
+.section {
+  position: relative;
+  isolation: isolate;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--foreground) 24%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  mask-image: radial-gradient(ellipse at center, #000 35%, transparent 100%);
+}
+
 .shell {
   --pricing-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground));
   border: 1px solid var(--border);
