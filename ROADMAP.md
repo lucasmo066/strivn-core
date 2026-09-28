@@ -5,6 +5,9 @@ This is the practical sequence for making Strivn Core the primary public site an
 ## 1. Finish launch readiness
 
 - Replace the two homepage media slots with approved 4:3 case-study imagery. Start with Sahara Grill, then add one representative future-project visual.
+- Capture Sahara Grill as a full-site or menu-scroll preview before replacing its homepage media slot. Consider a project carousel only when there are enough approved projects to make it useful.
+- Add an Iconic Stripes Shopify card and a main vertical-template site before launch, once each has approved visual proof and scope detail.
+- Consider a Colorado-pinned globe only after selecting a real asset or component that makes local coverage clearer; it should orient visitors, not act as decoration.
 - Connect the contact form to production Resend and Notion credentials, set the public sender domain, and test a real lead end to end.
 - Add the requested calendar destination or replace the form helper copy once the booking tool is chosen.
 - Verify metadata, favicon, social preview image, canonical URLs, privacy page, and terms page on the production domain.

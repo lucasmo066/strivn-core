@@ -15,8 +15,13 @@ type RetainerCardProps = {
 };
 
 export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
-  const price = yearlyBilling ? plan.yearly : plan.monthly;
   const featured = plan.featured ?? false;
+  const annualTotal = plan.yearly * 12;
+  const annualSavings = plan.monthly * 12 - annualTotal;
+  const displayedPrice = yearlyBilling ? annualTotal : plan.monthly;
+  const priceSuffix = yearlyBilling ? "/year" : "/mo";
+  const formatPrice = (price: number) =>
+    price.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
   return (
     <div
@@ -46,7 +51,7 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
               featured ? "text-orange" : "text-foreground"
             )}
           >
-            ${price}
+            ${formatPrice(displayedPrice)}
           </span>
           <span
             className={cn(
@@ -54,7 +59,7 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
               featured ? "text-white/50" : "text-muted-foreground"
             )}
           >
-            /mo
+            {priceSuffix}
           </span>
         </div>
         <p
@@ -63,7 +68,9 @@ export function RetainerCard({ plan, yearlyBilling }: RetainerCardProps) {
             featured ? "text-white/50" : "text-muted-foreground"
           )}
         >
-          ${plan.yearly}/mo billed yearly
+          {yearlyBilling
+            ? `Annual commitment. Save $${formatPrice(annualSavings)} versus monthly.`
+            : "Pay yearly to save 15%."}
         </p>
       </div>
 

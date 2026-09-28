@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
+import { HeroHeading } from "@/components/sections/hero-heading";
 import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { HERO_MEDIA, TAGLINES } from "@/lib/constants";
 
 export function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-paper">
+    <section className="relative isolate overflow-hidden bg-paper dark:bg-void">
       <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden>
         <Image
           src={HERO_MEDIA.still}
@@ -22,7 +23,7 @@ export function HeroSection() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-r from-paper via-paper/90 via-42% to-paper/15"
+        className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-r from-paper via-paper/90 via-42% to-paper/15 dark:from-void dark:via-void/90 dark:to-void/25"
       />
 
       <Container className="relative z-20 flex min-h-[calc(100dvh-4rem)] items-center py-14 sm:py-16 lg:py-20">
@@ -31,14 +32,12 @@ export function HeroSection() {
             variant="wordmark"
             tone="black"
             priority
-            className="h-8 w-auto md:h-10"
+            className="h-9 w-auto dark:invert md:h-11 lg:h-12"
           />
 
-          <h1 className="max-w-[12.75em] font-sans text-[clamp(2.125rem,4.3vw,3.25rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-foreground">
-            {TAGLINES.primary}
-          </h1>
+          <HeroHeading>{TAGLINES.primary}</HeroHeading>
 
-          <p className="max-w-md text-base leading-relaxed text-ink/80 md:text-lg">
+          <p className="max-w-md text-base leading-relaxed text-ink/80 dark:text-white/75 md:text-lg">
             {TAGLINES.heroSub}
           </p>
 
@@ -53,7 +52,7 @@ export function HeroSection() {
             </StrivnButton>
             <StrivnButton
               variant="outline"
-              className="w-full border-ink/20 bg-paper/85 px-7 shadow-soft backdrop-blur-sm sm:w-auto sm:min-w-[10.75rem]"
+              className="w-full border-ink/20 bg-paper/85 px-7 shadow-soft backdrop-blur-sm dark:border-white/20 dark:bg-void/80 dark:text-white sm:w-auto sm:min-w-[10.75rem]"
               asChild
             >
               <Link href="/#pricing">See pricing</Link>

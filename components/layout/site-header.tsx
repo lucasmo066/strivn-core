@@ -8,6 +8,7 @@ import { BrandIcon } from "@/components/shared/brand-icon";
 import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { Container } from "@/components/shared/container";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import {
   Sheet,
   SheetClose,
@@ -37,19 +38,19 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b border-border bg-paper/95 backdrop-blur-md transition-shadow duration-200 ease-out",
+          "fixed inset-x-0 top-0 z-50 border-b border-border bg-paper/95 backdrop-blur-md transition-shadow duration-200 ease-out dark:border-white/10 dark:bg-void/95",
           atTop ? "shadow-none" : "shadow-soft",
           menuOpen && "shadow-soft"
         )}
       >
         <Container className="flex h-16 items-center justify-between gap-4 md:gap-6">
           <Link href="/" className="shrink-0" aria-label="Strivn home">
-            <BrandIcon size="sm" className="h-9 md:hidden" />
+            <BrandIcon size="sm" className="h-9 dark:invert md:hidden" />
             <Logo
               variant="lockup"
               tone="black"
               priority
-              className="hidden h-8 w-auto md:block"
+              className="hidden h-8 w-auto dark:invert md:block"
             />
           </Link>
 
@@ -81,6 +82,8 @@ export function SiteHeader() {
             >
               <Link href="/#contact">{TAGLINES.navCta}</Link>
             </StrivnButton>
+
+            <ThemeToggle />
 
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger

@@ -1,15 +1,6 @@
 import { Container } from "@/components/shared/container";
-import {
-  SoftCard,
-  SoftCardDescription,
-  SoftCardHeader,
-  SoftCardTitle,
-} from "@/components/surfaces/soft-card";
-import {
-  SERVICES,
-  SERVICES_AI_LINE,
-  SERVICES_HEADLINE,
-} from "@/lib/constants";
+import { ServicesShowcase } from "@/components/sections/services-showcase";
+import { SERVICES_HEADLINE } from "@/lib/constants";
 
 export function ServicesSection() {
   return (
@@ -20,24 +11,11 @@ export function ServicesSection() {
             {SERVICES_HEADLINE}
           </h2>
           <p className="text-base leading-relaxed text-muted-foreground">
-            {SERVICES_AI_LINE}
+            Every section has a job: help the right person find you, trust you,
+            and take the next step.
           </p>
         </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {SERVICES.map((service, index) => (
-            <SoftCard key={service.title} accent={index === 0}>
-              <SoftCardHeader>
-                <SoftCardTitle className="font-display text-lg">
-                  {service.title}
-                </SoftCardTitle>
-                <SoftCardDescription className="text-base">
-                  {service.description}
-                </SoftCardDescription>
-              </SoftCardHeader>
-            </SoftCard>
-          ))}
-        </div>
+        <ServicesShowcase />
       </Container>
     </section>
   );

@@ -174,14 +174,54 @@ export const BUILD_PACKAGES = [
 export const EXTRA_PAGE_PRICE = "$200";
 
 export const ADD_ONS = [
-  { name: "SEO setup + keyword research", price: "$300" },
-  { name: "Google Analytics + Search Console", price: "$150" },
-  { name: "Logo / basic brand kit", price: "$400" },
-  { name: "Booking or scheduling integration", price: "$200" },
-  { name: "Menu or catalog build-out", price: "$250" },
-  { name: "Product upload (per 10 items)", price: "$100" },
-  { name: "Extra page beyond package", price: "$200 each" },
-  { name: "Domain transfer (to new registrar)", price: "$175" },
+  {
+    category: "Visibility",
+    name: "SEO setup + keyword research",
+    description: "Keyword map and on-page launch foundations.",
+    price: "$300",
+  },
+  {
+    category: "Visibility",
+    name: "Google Analytics + Search Console",
+    description: "Reporting and search-visibility tracking.",
+    price: "$150",
+  },
+  {
+    category: "Brand & conversion",
+    name: "Logo / basic brand kit",
+    description: "A focused mark, colors, and simple usage direction.",
+    price: "$400",
+  },
+  {
+    category: "Brand & conversion",
+    name: "Booking or scheduling integration",
+    description: "Connect the calendar or scheduling tool you use.",
+    price: "$200",
+  },
+  {
+    category: "Content & commerce",
+    name: "Menu or catalog build-out",
+    description: "Organize customer-facing menu or product details.",
+    price: "$250",
+  },
+  {
+    category: "Content & commerce",
+    name: "Product upload (per 10 items)",
+    description: "Add and format up to 10 store items.",
+    price: "$100",
+  },
+  {
+    category: "Site operations",
+    name: "Extra page beyond package",
+    description: "One additional scoped page beyond your package.",
+    price: "$200 each",
+  },
+  {
+    category: "Site operations",
+    name: "Domain transfer (to new registrar)",
+    description: "Move your domain to a new registrar.",
+    price: "$175",
+  },
 ] as const;
 
 export type RetainerFeature = {
@@ -204,7 +244,7 @@ export const RETAINER_PLANS: ReadonlyArray<{
   {
     name: "Basic",
     monthly: 200,
-    yearly: 180,
+    yearly: 170,
     sections: [
       {
         label: "Hosting & Infrastructure",
@@ -237,7 +277,7 @@ export const RETAINER_PLANS: ReadonlyArray<{
   {
     name: "Growth",
     monthly: 350,
-    yearly: 315,
+    yearly: 297.5,
     featured: true,
     sections: [
       {
@@ -265,7 +305,7 @@ export const RETAINER_PLANS: ReadonlyArray<{
   {
     name: "Premium",
     monthly: 600,
-    yearly: 540,
+    yearly: 510,
     sections: [
       {
         label: "Hosting & Infrastructure",
@@ -327,7 +367,7 @@ export const OVERAGE_COPY =
 export const PRICING_QUICK_REF = [
   { label: "Build range", value: "$2,000", suffix: "- $6,000" },
   { label: "Retainer range", value: "$200", suffix: "- $600/mo" },
-  { label: "Yearly discount", value: "10%", suffix: "off monthly" },
+  { label: "Yearly discount", value: "15%", suffix: "off monthly" },
   { label: "Overage rate", value: "$85", suffix: "/hr" },
   { label: "Deposit", value: "50%", suffix: "at signing" },
   { label: "Balance", value: "50%", suffix: "at launch" },
@@ -339,7 +379,7 @@ export const PRICING_COPY = {
   buildSub:
     "One-time project fee. 50% deposit at signing, 50% at launch. Scope is fixed per tier; extra pages billed separately.",
   retainerSub:
-    "Ongoing hosting, maintenance, and growth support. Billed on the 1st. Yearly rate is 10% off monthly. All Medium and Large edits are billed separately.",
+    "Ongoing hosting, maintenance, and growth support. Billed on the 1st. A yearly commitment saves 15%. All Medium and Large edits are billed separately.",
   editSub:
     "How we classify maintenance or change requests. This determines whether work is included in your retainer or billed separately.",
   addonSub:

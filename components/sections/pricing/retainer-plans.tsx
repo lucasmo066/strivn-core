@@ -23,7 +23,11 @@ export function RetainerPlans({
           </h3>
           <EditSizesInfo />
         </div>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+        <div
+          className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm"
+          role="group"
+          aria-label="Billing frequency"
+        >
           <span
             className={cn(
               !yearlyBilling ? "text-foreground" : "text-muted-foreground"
@@ -34,7 +38,12 @@ export function RetainerPlans({
           <Switch
             checked={yearlyBilling}
             onCheckedChange={onYearlyBillingChange}
-            aria-label="Toggle yearly billing"
+            aria-label={
+              yearlyBilling
+                ? "Yearly billing selected. Switch to monthly billing"
+                : "Monthly billing selected. Switch to yearly billing and save 15%"
+            }
+            aria-describedby="yearly-billing-savings"
           />
           <span
             className={cn(
@@ -43,11 +52,12 @@ export function RetainerPlans({
           >
             Yearly
           </span>
-          {yearlyBilling ? (
-            <span className="rounded-lg bg-orange/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-orange uppercase">
-              10% off
-            </span>
-          ) : null}
+          <span
+            id="yearly-billing-savings"
+            className="rounded-lg bg-orange/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-orange uppercase"
+          >
+            Save 15%
+          </span>
         </div>
       </div>
 
