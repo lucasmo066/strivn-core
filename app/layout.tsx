@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { ViewportBlur } from "@/components/layout/viewport-blur";
 
 import "./globals.css";
 
@@ -31,6 +32,7 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
+        <ViewportBlur />
       </body>
     </html>
   );
