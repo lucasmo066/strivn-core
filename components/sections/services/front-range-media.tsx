@@ -10,11 +10,13 @@ type FrontRangeMediaProps = {
   src: string | null;
   alt: string;
   objectPosition?: string;
+  backgroundColor?: string;
 };
 
 /**
  * Central services-bento image, not a WebGL/chromatic-rendering implementation.
- * Supply the finished Higgsfield still via SERVICES_MEDIA in lib/constants.ts.
+ * Uses the original Aceternity image via SERVICES_MEDIA in lib/constants.ts.
+ * A future finished Higgsfield still can replace it through the same config.
  * Ideal source: 4:5 portrait, 1200 x 1500 WebP or AVIF. Desktop shows 4:5;
  * tablet/mobile crop to 16:9. Keep the focal subject within the central 50%.
  * The reserved geometry is shared by the placeholder, loading, and error states.
@@ -23,12 +25,13 @@ export function FrontRangeMedia({
   src,
   alt,
   objectPosition = "50% 50%",
+  backgroundColor,
 }: FrontRangeMediaProps) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const showImage = Boolean(src && src !== failedSrc);
 
   return (
-    <div className={styles.media}>
+    <div className={styles.media} style={{ backgroundColor }}>
       {showImage && src ? (
         <Image
           src={src}

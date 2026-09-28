@@ -78,9 +78,10 @@ export const SERVICES = [
 ] as const;
 
 /**
- * Services bento, central image. Place the approved Higgsfield still at
+ * Services bento, central image. Uses the original Aceternity demo image.
+ * To replace it later, place the approved Higgsfield still at
  * public/assets/services/front-range-chromatic.webp, then set src to
- * "/assets/services/front-range-chromatic.webp". Leave null until it exists.
+ * "/assets/services/front-range-chromatic.webp" once the file exists.
  * Export 4:5 portrait (ideally 1200 x 1500), without text or baked-in UI.
  * Mobile/tablet use a centered 16:9 crop; keep the subject in the central 50%.
  * Set alt to describe the finished asset and adjust objectPosition if needed.
@@ -89,10 +90,12 @@ export const SERVICES_MEDIA: {
   src: string | null;
   alt: string;
   objectPosition: string;
+  backgroundColor: string;
 } = {
-  src: null,
-  alt: "",
+  src: "https://assets.aceternity.com/screenshots/green-dither-2.webp",
+  alt: "Green dithered abstract gradient",
   objectPosition: "50% 50%",
+  backgroundColor: "#9cae65",
 };
 
 export type WorkMedia = {
