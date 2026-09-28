@@ -26,8 +26,8 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-r from-paper via-paper/90 via-42% to-paper/15 dark:from-void dark:via-void/90 dark:to-void/25"
       />
 
-      <Container className="relative z-20 flex min-h-[calc(100dvh-4rem)] items-center py-14 sm:py-16 lg:py-20">
-        <div className="max-w-[39rem] space-y-6 text-left">
+      <Container className="relative z-20 flex min-h-[calc(90dvh-4rem)] items-center py-10 sm:py-12 lg:min-h-[calc(100dvh-4rem)] lg:py-20">
+        <div className="max-w-[39rem] space-y-5 text-left sm:space-y-6">
           <Logo
             variant="wordmark"
             tone="black"
@@ -37,7 +37,7 @@ export function HeroSection() {
 
           <HeroHeading>{TAGLINES.primary}</HeroHeading>
 
-          <p className="max-w-md text-base leading-relaxed text-ink/80 dark:text-white/75 md:text-lg">
+          <p className="max-w-md text-[1.0625rem] leading-relaxed text-ink/80 dark:text-white/75 md:text-lg">
             {TAGLINES.heroSub}
           </p>
 
