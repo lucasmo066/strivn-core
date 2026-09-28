@@ -4,10 +4,10 @@ This is the practical sequence for making Strivn Core the primary public site an
 
 ## 1. Finish launch readiness
 
-- Replace the two homepage media slots with approved 4:3 case-study imagery. Start with Sahara Grill, then add one representative future-project visual.
+- Replace the user-requested Aceternity demo images in the Recent Work carousel with approved 4:3 portfolio media, ideally 1600 x 1200 WebP/AVIF. Start with Sahara Grill, then add previews for Iconic Stripes and the vertical template when available. Put images under `public/assets/work/` and set each `WORK_ITEMS[].media` to `{ src, alt, objectPosition? }` in `lib/constants.ts`, removing `isDemo: true` only for actual project imagery. Missing images retain a labelled slot at the same aspect ratio.
 - Supply the services bento's central Front Range image from Higgsfield: a 4:5 portrait still, ideally 1200 x 1500 WebP or AVIF, without text or UI. Keep its focal subject in the central 50% for the 16:9 mobile/tablet crop. Place it at `public/assets/services/front-range-chromatic.webp` and set `SERVICES_MEDIA.src`, `alt`, and optional `objectPosition` in `lib/constants.ts`. The slot includes a missing-image fallback; no WebGL effect is installed.
-- Capture Sahara Grill as a full-site or menu-scroll preview before replacing its homepage media slot. Consider a project carousel only when there are enough approved projects to make it useful.
-- Add an Iconic Stripes Shopify card and a main vertical-template site before launch, once each has approved visual proof and scope detail.
+- Capture Sahara Grill as a full-site or menu-scroll preview before replacing its homepage media slot. A static approved capture can feed the current optimized image layer; a future ChromaticImage treatment belongs in `components/sections/work/project-media.tsx`, without changing the carousel.
+- Complete Iconic Stripes and the main vertical-template site before launch. Both now appear as non-linked, explicitly planned carousel entries. Add case-study destinations only when real project pages are ready, then change the relevant status to `Live`.
 - Consider a Colorado-pinned globe only after selecting a real asset or component that makes local coverage clearer; it should orient visitors, not act as decoration.
 - Connect the contact form to production Resend and Notion credentials, set the public sender domain, and test a real lead end to end.
 - Add the requested calendar destination or replace the form helper copy once the booking tool is chosen.

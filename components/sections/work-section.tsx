@@ -1,87 +1,31 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/shared/container";
-import { MediaSlot } from "@/components/shared/media-slot";
-import { MonoLabel } from "@/components/shared/mono-label";
-import {
-  SoftCard,
-  SoftCardContent,
-  SoftCardHeader,
-  SoftCardTitle,
-} from "@/components/surfaces/soft-card";
 import { WORK_ITEMS } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+
+import { WorkCarousel } from "./work/work-carousel";
 
 export function WorkSection() {
   return (
     <section id="work" className="section-y border-t border-border bg-muted/40">
-      <Container className="space-y-8">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <h2 className="font-display text-[var(--text-h2)]">
+      <Container className="space-y-6">
+        <WorkCarousel projects={WORK_ITEMS}>
+          <h2 id="work-heading" className="font-display text-[var(--text-h2)]">
             Recent work
           </h2>
-          <Link
-            href="/#contact"
-            className="text-sm font-medium text-orange transition-hairline hover:text-orange/80"
-          >
-            Start your project
-          </Link>
-        </div>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Live work and planned projects.
+          </p>
+        </WorkCarousel>
 
-        <div className="grid gap-4 lg:grid-cols-2">
-          {WORK_ITEMS.map((project) => {
-            const featured = "featured" in project && project.featured;
-            const href = "href" in project ? project.href : undefined;
-
-            const card = (
-              <SoftCard
-                accent={featured}
-                className={cn(
-                  "flex h-full flex-col",
-                  href && "transition-hairline hover:ring-1 hover:ring-orange/30"
-                )}
-              >
-                <SoftCardHeader className="space-y-4">
-                  <MediaSlot
-                    alt={`${project.title} case-study media`}
-                    label={
-                      featured
-                        ? "Sahara Grill case-study media"
-                        : "Next project media"
-                    }
-                    className={cn(featured && "bg-orange/8")}
-                  />
-                  <MonoLabel>{project.category}</MonoLabel>
-                  <SoftCardTitle className="font-display text-2xl tracking-wide">
-                    {project.title}
-                  </SoftCardTitle>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {project.description}
-                  </p>
-                </SoftCardHeader>
-                <SoftCardContent className="mt-auto pt-0">
-                  <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">
-                    {project.metric}
-                  </p>
-                </SoftCardContent>
-              </SoftCard>
-            );
-
-            if (href) {
-              return (
-                <Link
-                  key={project.title}
-                  href={href}
-                  className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/50 focus-visible:ring-offset-2"
-                >
-                  {card}
-                </Link>
-              );
-            }
-
-            return <div key={project.title}>{card}</div>;
-          })}
-        </div>
+        <Link
+          href="/#contact"
+          className="inline-flex min-h-11 items-center gap-2 rounded-md text-sm font-medium text-foreground underline decoration-orange underline-offset-4 hover:decoration-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+        >
+          Start your project
+          <ArrowUpRight className="size-4 text-orange" aria-hidden />
+        </Link>
       </Container>
     </section>
   );

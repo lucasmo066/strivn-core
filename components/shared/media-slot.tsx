@@ -6,6 +6,7 @@ type MediaSlotProps = {
   alt: string;
   className?: string;
   label: string;
+  description?: string;
 };
 
 /**
@@ -14,7 +15,12 @@ type MediaSlotProps = {
  * This deliberately stays an honest media slot instead of imitating product UI.
  * Keep the 4:3 crop when replacing it so work cards retain their rhythm.
  */
-export function MediaSlot({ alt, className, label }: MediaSlotProps) {
+export function MediaSlot({
+  alt,
+  className,
+  label,
+  description = "Add approved 4:3 media here",
+}: MediaSlotProps) {
   return (
     <figure
       aria-label={`${alt}. Image placeholder.`}
@@ -29,7 +35,7 @@ export function MediaSlot({ alt, className, label }: MediaSlotProps) {
           {label}
         </figcaption>
         <p className="text-xs leading-relaxed text-muted-foreground">
-          Add approved 4:3 media here
+          {description}
         </p>
       </div>
     </figure>

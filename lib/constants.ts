@@ -95,24 +95,74 @@ export const SERVICES_MEDIA: {
   objectPosition: "50% 50%",
 };
 
-export const WORK_ITEMS = [
+export type WorkMedia = {
+  src: string;
+  alt: string;
+  objectPosition?: string;
+  isDemo?: boolean;
+};
+
+export type WorkProject = {
+  id: string;
+  title: string;
+  category: string;
+  location?: string;
+  description: string;
+  media: WorkMedia | null;
+} & (
+  | { status: "Live"; href: string }
+  | { status: "Planned" | "In development"; href?: never }
+);
+
+/**
+ * Portfolio carousel. Only live projects have case-study destinations.
+ * Add approved 4:3 stills (ideally 1600 x 1200 WebP/AVIF) under
+ * public/assets/work/, then replace the relevant demo media with
+ * { src: "/assets/work/project-name.webp", alt: "Description of the image" }.
+ * The media component is the integration point for a future ChromaticImage.
+ * Current demo images come from the user's Aceternity carousel sample and
+ * are visibly labelled. Remove isDemo only when supplying real project media.
+ */
+export const WORK_ITEMS: readonly WorkProject[] = [
   {
+    id: "sahara-grill",
     title: "Sahara Grill",
     category: "Restaurant",
     location: "Denver, CO",
     description: "Menu-forward site built for local search and online ordering.",
-    metric: "Live / Lighthouse 98",
-    featured: true,
+    status: "Live",
+    media: {
+      src: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=926&auto=format&fit=crop",
+      alt: "Ocean waves from the Aceternity carousel demo, not a Sahara Grill screenshot",
+      isDemo: true,
+    },
     href: "/work/sahara-grill",
   },
   {
-    title: "Your business",
-    category: "Next project",
-    location: "Your market",
-    description: "Ready for a site that gets customers to call.",
-    metric: PRICING_FLOOR,
+    id: "iconic-stripes",
+    title: "Iconic Stripes",
+    category: "Shopify",
+    description: "A planned Shopify storefront for Iconic Stripes.",
+    status: "Planned",
+    media: {
+      src: "https://assets.aceternity.com/screenshots/mountains-2.webp",
+      alt: "Mountain landscape from the Aceternity carousel demo, not an Iconic Stripes screenshot",
+      isDemo: true,
+    },
   },
-] as const;
+  {
+    id: "vertical-template",
+    title: "Vertical template",
+    category: "Service business",
+    description: "A planned website template for a priority service industry.",
+    status: "Planned",
+    media: {
+      src: "https://assets.aceternity.com/screenshots/vertical-bg-2.webp",
+      alt: "Classical columns at sunset from the Aceternity carousel demo, not a template screenshot",
+      isDemo: true,
+    },
+  },
+];
 
 export const VALUE_WORDS = [
   "Forward motion",
