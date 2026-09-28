@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/shared/container";
+import dots from "@/components/shared/dotted-section.module.css";
 import { HERO_PROOF } from "@/lib/constants";
 import { getHomepageIndustries } from "@/lib/industries";
 
@@ -9,7 +10,7 @@ export function SocialProofSection() {
   const homepageIndustries = getHomepageIndustries();
 
   return (
-    <section className="border-y border-border bg-background py-12 md:py-16">
+    <section className={`border-y border-border bg-background py-12 md:py-16 ${dots.section}`}>
       <Container className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-14">
         <div className="min-w-0 space-y-6">
           <div className="space-y-3">
@@ -29,7 +30,7 @@ export function SocialProofSection() {
             {HERO_PROOF.map((stat) => (
               <div
                 key={stat.label}
-                className="grid min-h-16 min-w-0 grid-cols-[1fr_auto] items-center gap-3 rounded-[var(--radius-md)] border border-border px-3 py-4 min-[440px]:grid-cols-1 min-[440px]:grid-rows-[2rem_auto] min-[440px]:gap-2 min-[440px]:text-center"
+                className="grid min-h-16 min-w-0 grid-cols-[1fr_auto] items-center gap-3 rounded-[var(--radius-md)] border border-border bg-background px-3 py-4 min-[440px]:grid-cols-1 min-[440px]:grid-rows-[2rem_auto] min-[440px]:gap-2 min-[440px]:text-center"
               >
                 <dt className="text-xs leading-4 text-muted-foreground">
                   {stat.label}
@@ -66,7 +67,7 @@ export function SocialProofSection() {
               <Link
                 key={industry.slug}
                 href={`/industries#${industry.slug}`}
-                className="group flex min-h-14 items-center justify-between gap-3 rounded-[var(--radius-md)] border border-border px-4 py-3 text-sm font-medium text-foreground transition-hairline hover:border-orange/50 hover:bg-orange/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
+                className="group flex min-h-14 items-center justify-between gap-3 rounded-[var(--radius-md)] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground transition-hairline hover:border-orange/50 hover:bg-[color-mix(in_srgb,var(--orange)_5%,var(--background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
               >
                 <span>{industry.shortName ?? industry.name}</span>
                 <ArrowUpRight className="size-4 shrink-0 text-orange transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />

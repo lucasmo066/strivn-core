@@ -1,11 +1,12 @@
 import { ContactForm } from "@/components/sections/contact-form";
 import { Container } from "@/components/shared/container";
+import dots from "@/components/shared/dotted-section.module.css";
 import { MediaSlot } from "@/components/shared/media-slot";
 import { BRAND, TAGLINES } from "@/lib/constants";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="section-y border-t border-border">
+    <section id="contact" className={`section-y border-t border-border ${dots.section}`}>
       <Container>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-20">
           <div className="space-y-5">

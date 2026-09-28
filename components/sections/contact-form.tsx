@@ -168,7 +168,7 @@ export function ContactForm() {
 
   return (
     <form
-      className="relative space-y-6 rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-7"
+      className="relative space-y-6 rounded-2xl border border-border bg-background p-5 shadow-soft sm:p-7 dark:bg-card"
       onSubmit={onSubmit}
       noValidate
       aria-describedby={error ? "contact-form-error" : undefined}

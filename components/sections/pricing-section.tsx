@@ -1,4 +1,5 @@
 import { Container } from "@/components/shared/container";
+import dots from "@/components/shared/dotted-section.module.css";
 import { PRICING_COPY } from "@/lib/constants";
 
 import { AddOnsGrid } from "./pricing/add-ons-grid";
@@ -9,7 +10,7 @@ import styles from "./pricing/pricing.module.css";
 
 export function PricingSection() {
   return (
-    <section id="pricing" className={`section-y border-t border-border ${styles.section}`} aria-labelledby="pricing-heading">
+    <section id="pricing" className={`section-y border-t border-border ${dots.section}`} aria-labelledby="pricing-heading">
       <Container>
         <div className={styles.shell}>
           <header className={styles.intro}>

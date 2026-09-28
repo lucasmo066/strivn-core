@@ -10,39 +10,39 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="site-footer" className="void">
+    <footer id="site-footer" className="bg-muted/40 text-foreground">
       <div className="h-1 bg-orange" aria-hidden />
       <Container className="py-14 md:py-18">
         <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-md space-y-5">
             <div className="flex items-center gap-4">
-              <BrandIcon size="md" tone="white" />
+              <BrandIcon size="md" tone="black" className="dark:invert" />
               <Logo
                 variant="wordmark"
-                tone="white"
-                className="h-8 w-auto"
+                tone="black"
+                className="h-8 w-auto dark:invert"
               />
             </div>
-            <p className="font-display text-[clamp(1.5rem,2.5vw,2rem)] leading-tight tracking-wide text-white">
+            <p className="font-display text-[clamp(1.5rem,2.5vw,2rem)] leading-tight tracking-wide text-foreground">
               {TAGLINES.closing}
             </p>
-            <div className="space-y-1.5 text-sm leading-relaxed text-white/60">
+            <div className="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
               <p>
                 {BRAND.name} / {BRAND.location}
               </p>
               <p>
                 <a
                   href={`mailto:${BRAND.email}`}
-                  className="transition-hairline hover:text-white"
+                  className="transition-hairline hover:text-foreground"
                 >
                   {BRAND.email}
                 </a>
-                <span aria-hidden className="mx-2 text-white/25">
+                <span aria-hidden className="mx-2 text-muted-foreground">
                   ·
                 </span>
                 <a
                   href={BRAND.phoneHref}
-                  className="transition-hairline hover:text-white"
+                  className="transition-hairline hover:text-foreground"
                 >
                   {BRAND.phone}
                 </a>
@@ -58,7 +58,7 @@ export function SiteFooter() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-white/50 transition-hairline hover:text-white"
+                className="text-muted-foreground transition-hairline hover:text-foreground"
               >
                 {link.label}
               </Link>
@@ -66,7 +66,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {BRAND.name}. All rights reserved.
           </p>
@@ -75,7 +75,7 @@ export function SiteFooter() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-hairline hover:text-white"
+                className="transition-hairline hover:text-foreground"
               >
                 {link.label}
               </Link>

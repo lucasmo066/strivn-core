@@ -65,7 +65,7 @@
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: var(--card);
+  background: linear-gradient(var(--card), var(--card)), var(--background);
 }
 
 .capability {
@@ -199,13 +199,13 @@
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: var(--card);
+    background: linear-gradient(var(--card), var(--card)), var(--background);
   }
 
   .capability:first-child {
     grid-column: 1;
     grid-row: 1;
-    background: linear-gradient(140deg, rgb(255 92 0 / 0.06), transparent 80%), var(--card);
+    background: linear-gradient(140deg, rgb(255 92 0 / 0.06), transparent 80%), linear-gradient(var(--card), var(--card)), var(--background);
   }
 
   .capability:nth-child(2) {
