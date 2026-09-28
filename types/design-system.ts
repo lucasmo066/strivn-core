@@ -11,6 +11,8 @@ export interface LogoProps {
   variant?: "lockup" | "wordmark";
   tone?: "black" | "white";
   priority?: boolean;
+  loading?: "eager" | "lazy";
+  fetchPriority?: "high" | "low" | "auto";
 }
 
 export interface BrandArrowProps {

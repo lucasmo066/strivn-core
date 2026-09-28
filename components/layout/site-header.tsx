@@ -2,27 +2,25 @@
 
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 
 import { BrandIcon } from "@/components/shared/brand-icon";
 import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { Container } from "@/components/shared/container";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { NAV_LINKS, TAGLINES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+
+type MobileNavProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
 
 export function SiteHeader() {
   const [atTop, setAtTop] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [MobileNav, setMobileNav] = useState<ComponentType<MobileNavProps> | null>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -33,6 +31,49 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px)");
+    if (!query.matches) return;
+
+    let cancelled = false;
+    const load = () => {
+      void import("./mobile-nav").then((mod) => {
+        if (!cancelled) setMobileNav(() => mod.MobileNav);
+      });
+    };
+
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(load, { timeout: 2500 });
+      return () => {
+        cancelled = true;
+        window.cancelIdleCallback(id);
+      };
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  function loadMenu() {
+    if (MobileNav) return;
+    void import("./mobile-nav").then((mod) => {
+      setMobileNav(() => mod.MobileNav);
+    });
+  }
+
+  function openMenu() {
+    if (MobileNav) {
+      setMenuOpen(true);
+      return;
+    }
+
+    void import("./mobile-nav").then((mod) => {
+      setMobileNav(() => mod.MobileNav);
+      setMenuOpen(true);
+    });
+  }
 
   return (
     <>
@@ -45,11 +86,17 @@ export function SiteHeader() {
       >
         <Container className="flex h-16 items-center justify-between gap-4 md:gap-6">
           <Link href="/" className="shrink-0" aria-label="Strivn home">
-            <BrandIcon size="sm" className="h-9 dark:invert md:hidden" />
+            <BrandIcon
+              size="sm"
+              loading="eager"
+              fetchPriority="low"
+              className="h-9 dark:invert md:hidden"
+            />
             <Logo
               variant="lockup"
               tone="black"
-              priority
+              loading="eager"
+              fetchPriority="low"
               className="hidden h-8 w-auto dark:invert md:block"
             />
           </Link>
@@ -85,43 +132,19 @@ export function SiteHeader() {
 
             <ThemeToggle />
 
-            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-              <SheetTrigger
-                className="inline-flex size-10 items-center justify-center rounded-xl text-foreground transition-hairline hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40 md:hidden"
-                aria-label="Open menu"
-              >
-                <Menu className="size-5" />
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[min(100%,18rem)] p-0">
-                <SheetHeader className="border-b border-border">
-                  <SheetTitle className="font-display tracking-wide">
-                    Menu
-                  </SheetTitle>
-                </SheetHeader>
-                <nav className="flex flex-col gap-1 p-4">
-                  {NAV_LINKS.map((link) => (
-                    <SheetClose key={link.href} asChild>
-                      <Link
-                        href={link.href}
-                        className="rounded-xl px-3 py-3 text-base font-medium text-muted-foreground transition-hairline hover:bg-card hover:text-foreground"
-                      >
-                        {link.label}
-                      </Link>
-                    </SheetClose>
-                  ))}
-                  <SheetClose asChild>
-                    <StrivnButton
-                      variant="primary"
-                      arrow
-                      className="mt-3 w-full"
-                      asChild
-                    >
-                      <Link href="/#contact">{TAGLINES.navCta}</Link>
-                    </StrivnButton>
-                  </SheetClose>
-                </nav>
-              </SheetContent>
-            </Sheet>
+            <button
+              type="button"
+              onPointerDown={loadMenu}
+              onClick={openMenu}
+              aria-expanded={menuOpen}
+              aria-label="Open menu"
+              className="inline-flex size-10 items-center justify-center rounded-xl text-foreground transition-hairline hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40 md:hidden"
+            >
+              <Menu className="size-5" />
+            </button>
+            {MobileNav ? (
+              <MobileNav open={menuOpen} onOpenChange={setMenuOpen} />
+            ) : null}
           </div>
         </Container>
       </header>

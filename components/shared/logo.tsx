@@ -19,7 +19,11 @@ export function Logo({
   variant = "lockup",
   tone = "black",
   priority = false,
+  loading,
+  fetchPriority,
 }: LogoProps) {
+  const loadingProps = priority ? { priority: true } : { loading, fetchPriority };
+
   if (variant === "wordmark") {
     return (
       <Image
@@ -27,7 +31,7 @@ export function Logo({
         alt="strivn"
         width={415}
         height={195}
-        priority={priority}
+        {...loadingProps}
         className={cn("h-7 w-auto", className)}
       />
     );
@@ -39,7 +43,7 @@ export function Logo({
       alt="Strivn"
       width={549}
       height={218}
-      priority={priority}
+      {...loadingProps}
       className={cn("h-8 w-auto", className)}
     />
   );

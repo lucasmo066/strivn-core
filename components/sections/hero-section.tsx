@@ -16,7 +16,10 @@ export function HeroSection() {
           alt=""
           fill
           priority
-          sizes="100vw"
+          quality={60}
+          placeholder="blur"
+          blurDataURL={HERO_MEDIA.blur}
+          sizes="(min-width: 1920px) 1920px, 100vw"
           className="object-cover object-[62%_center]"
         />
       </div>
@@ -31,7 +34,8 @@ export function HeroSection() {
           <Logo
             variant="wordmark"
             tone="black"
-            priority
+            loading="eager"
+            fetchPriority="low"
             className="h-9 w-auto dark:invert md:h-11 lg:h-12"
           />
 

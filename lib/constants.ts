@@ -21,9 +21,10 @@ export const HERO_PROOF = [
 
 /** Hero plate media. Poster for instant paint; video remains available for later use. */
 export const HERO_MEDIA = {
-  still: "/assets/hero/alpine-lakeside.jpg",
+  still: "/assets/hero/alpine-lakeside.webp",
   stillWidth: 1920,
-  stillHeight: 1080,
+  stillHeight: 1071,
+  blur: "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoQAAkAA4BaJYwCdAEJYZbCIAD+7lQrzl3wwdy7sleRnTWT/ig2403eYoeD/SAxJPKLN5RHTd7bCT/PV+URGGfq8AA=",
   video: "/assets/hero/alpine-lakeside.mp4",
 } as const;
 
@@ -92,7 +93,7 @@ export const SERVICES_MEDIA: {
   objectPosition: string;
   backgroundColor: string;
 } = {
-  src: "https://assets.aceternity.com/screenshots/green-dither-2.webp",
+  src: "/assets/services/front-range.webp",
   alt: "Green dithered abstract gradient",
   objectPosition: "50% 50%",
   backgroundColor: "#9cae65",
@@ -135,7 +136,7 @@ export const WORK_ITEMS: readonly WorkProject[] = [
     description: "Menu-forward site built for local search and online ordering.",
     status: "Live",
     media: {
-      src: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=926&auto=format&fit=crop",
+      src: "/assets/work/sahara-grill.webp",
       alt: "Ocean waves from the Aceternity carousel demo, not a Sahara Grill screenshot",
       isDemo: true,
     },
@@ -148,7 +149,7 @@ export const WORK_ITEMS: readonly WorkProject[] = [
     description: "A planned Shopify storefront for Iconic Stripes.",
     status: "Planned",
     media: {
-      src: "https://assets.aceternity.com/screenshots/mountains-2.webp",
+      src: "/assets/work/iconic-stripes.webp",
       alt: "Mountain landscape from the Aceternity carousel demo, not an Iconic Stripes screenshot",
       isDemo: true,
     },
@@ -160,7 +161,7 @@ export const WORK_ITEMS: readonly WorkProject[] = [
     description: "A planned website template for a priority service industry.",
     status: "Planned",
     media: {
-      src: "https://assets.aceternity.com/screenshots/vertical-bg-2.webp",
+      src: "/assets/work/vertical-template.webp",
       alt: "Classical columns at sunset from the Aceternity carousel demo, not a template screenshot",
       isDemo: true,
     },

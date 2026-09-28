@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, ReactNode } from "react";
 
@@ -34,7 +33,6 @@ export function WorkCarousel({
   children: ReactNode;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
   const [bounds, setBounds] = useState({ start: true, end: projects.length < 2 });
   const [announcement, setAnnouncement] = useState("");
 
@@ -77,6 +75,7 @@ export function WorkCarousel({
     }
 
     if (index < 0 || !projects[index]) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     track.scrollTo({ left: positions[index], behavior: reduceMotion ? "instant" : "smooth" });
     setAnnouncement(`${projects[index].title}. Project ${index + 1} of ${projects.length}.`);
   }

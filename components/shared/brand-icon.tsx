@@ -8,6 +8,8 @@ type BrandIconProps = {
   size?: "sm" | "md" | "lg" | "xl";
   tone?: "black" | "white";
   priority?: boolean;
+  loading?: "eager" | "lazy";
+  fetchPriority?: "high" | "low" | "auto";
 };
 
 const sizeClass = {
@@ -23,6 +25,8 @@ export function BrandIcon({
   size = "lg",
   tone = "black",
   priority = false,
+  loading,
+  fetchPriority,
 }: BrandIconProps) {
   const src =
     tone === "white" ? BRAND_ASSETS.cube.white : BRAND_ASSETS.cube.black;
@@ -34,7 +38,7 @@ export function BrandIcon({
       aria-hidden
       width={187}
       height={208}
-      priority={priority}
+      {...(priority ? { priority: true } : { loading, fetchPriority })}
       className={cn(sizeClass[size], className)}
     />
   );
