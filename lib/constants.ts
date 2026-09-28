@@ -15,7 +15,7 @@ export const PRICING_FLOOR = "From $2,000";
 
 export const HERO_PROOF = [
   { value: "2-4 wks", label: "Typical launch" },
-  { value: PRICING_FLOOR, label: "Website builds" },
+  { value: PRICING_FLOOR.replace("From ", ""), label: "Website builds from" },
   { value: "1 day", label: "Reply time" },
 ] as const;
 

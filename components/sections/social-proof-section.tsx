@@ -10,8 +10,8 @@ export function SocialProofSection() {
 
   return (
     <section className="border-y border-border bg-background py-12 md:py-16">
-      <Container className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-14">
-        <div className="space-y-6">
+      <Container className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-14">
+        <div className="min-w-0 space-y-6">
           <div className="space-y-3">
             <p className="font-mono text-[10px] font-semibold tracking-[0.12em] text-orange uppercase">
               Built for local demand
@@ -25,25 +25,24 @@ export function SocialProofSection() {
             </p>
           </div>
 
-          <div className="grid gap-3 min-[440px]:grid-cols-3">
+          <dl className="grid auto-rows-fr gap-3 min-[440px]:grid-cols-3">
             {HERO_PROOF.map((stat) => (
               <div
                 key={stat.label}
-                className="flex min-w-0 flex-col gap-1 rounded-[var(--radius-md)] border border-border px-3 py-3"
+                className="grid min-h-16 min-w-0 grid-cols-[1fr_auto] items-center gap-3 rounded-[var(--radius-md)] border border-border px-3 py-4 min-[440px]:grid-cols-1 min-[440px]:grid-rows-[2rem_auto] min-[440px]:gap-2 min-[440px]:text-center"
               >
-                {/* The desktop column is narrow: let the qualifier wrap while keeping the price intact. */}
-                <p className="font-display text-base tracking-wide tabular-nums text-foreground">
-                  {stat.value}
-                </p>
-                <p className="mt-auto text-xs text-muted-foreground">
+                <dt className="text-xs leading-4 text-muted-foreground">
                   {stat.label}
-                </p>
+                </dt>
+                <dd className="font-display text-base tracking-wide tabular-nums text-foreground">
+                  {stat.value}
+                </dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
 
-        <nav aria-label="Industries we serve" className="space-y-4">
+        <nav aria-label="Industries we serve" className="min-w-0 space-y-4">
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="font-mono text-[10px] font-semibold tracking-[0.12em] text-orange uppercase">
@@ -62,7 +61,7 @@ export function SocialProofSection() {
             </Link>
           </div>
 
-          <div className="grid gap-2 sm:grid-cols-2">
+          <div className="grid auto-rows-fr gap-2 sm:grid-cols-2">
             {homepageIndustries.map((industry) => (
               <Link
                 key={industry.slug}
