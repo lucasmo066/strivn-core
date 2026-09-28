@@ -29,12 +29,13 @@ export function SocialProofSection() {
             {HERO_PROOF.map((stat) => (
               <div
                 key={stat.label}
-                className="min-w-0 rounded-[var(--radius-md)] border border-border px-4 py-3"
+                className="flex min-w-0 flex-col gap-1 rounded-[var(--radius-md)] border border-border px-3 py-3"
               >
-                <p className="font-display text-lg tracking-wide tabular-nums whitespace-nowrap text-foreground">
+                {/* The desktop column is narrow: let the qualifier wrap while keeping the price intact. */}
+                <p className="font-display text-base tracking-wide tabular-nums text-foreground">
                   {stat.value}
                 </p>
-                <p className="mt-1 text-xs text-muted-foreground">
+                <p className="mt-auto text-xs text-muted-foreground">
                   {stat.label}
                 </p>
               </div>
