@@ -208,7 +208,11 @@ export function ChromaticImage({
     gl.uniform1f(uniforms.warp, displacement);
     gl.uniform1f(uniforms.chromatic, chromaticShift);
     const positionValues = objectPosition.split(/\s+/).map((value) => Number.parseFloat(value) / 100);
-    gl.uniform2f(uniforms.objectPosition, positionValues[0] || 0, positionValues[1] ?? 0.5);
+    gl.uniform2f(
+      uniforms.objectPosition,
+      Number.isFinite(positionValues[0]) ? positionValues[0] : 0.5,
+      Number.isFinite(positionValues[1]) ? positionValues[1] : 0.5,
+    );
 
     const texture = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
@@ -232,8 +236,10 @@ export function ChromaticImage({
     let isRendering = false;
     let previousTime = performance.now();
     let visible = false;
+    let contextFailed = false;
 
     const resize = () => {
+      if (contextFailed || gl.isContextLost()) return;
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
       if (!width || !height) return;
@@ -249,7 +255,7 @@ export function ChromaticImage({
     };
 
     const render = (time: number) => {
-      if (disposed || !visible || document.hidden || gl.isContextLost()) {
+      if (disposed || contextFailed || !visible || document.hidden || gl.isContextLost()) {
         isRendering = false;
         return;
       }
@@ -283,7 +289,7 @@ export function ChromaticImage({
     };
 
     const requestRender = () => {
-      if (isRendering || disposed || !visible || document.hidden || gl.isContextLost()) return;
+      if (isRendering || disposed || contextFailed || !visible || document.hidden || gl.isContextLost()) return;
       isRendering = true;
       previousTime = performance.now();
       frame = requestAnimationFrame(render);
@@ -308,17 +314,17 @@ export function ChromaticImage({
     const image = new window.Image();
     image.crossOrigin = "anonymous";
     image.onload = () => {
-      if (disposed) return;
+      if (disposed || contextFailed || gl.isContextLost()) return;
       gl.bindTexture(gl.TEXTURE_2D, texture);
       try {
         gl.texImage2D(
-        gl.TEXTURE_2D,
-        0,
-        gl.RGBA,
-        gl.RGBA,
-        gl.UNSIGNED_BYTE,
-        image,
-      );
+          gl.TEXTURE_2D,
+          0,
+          gl.RGBA,
+          gl.RGBA,
+          gl.UNSIGNED_BYTE,
+          image,
+        );
       } catch {
         canvas.style.opacity = "0";
         return;
@@ -351,6 +357,7 @@ export function ChromaticImage({
     };
     const onContextLost = (event: Event) => {
       event.preventDefault();
+      contextFailed = true;
       suspend();
     };
     const onContextRestored = () => {
@@ -369,6 +376,7 @@ export function ChromaticImage({
     resizeObserver.observe(container);
     container.addEventListener("pointermove", updatePointer, { passive: true });
     container.addEventListener("pointerleave", resetPointer, { passive: true });
+    container.addEventListener("pointercancel", resetPointer, { passive: true });
     resize();
     requestRender();
 
@@ -383,6 +391,7 @@ export function ChromaticImage({
       resizeObserver.disconnect();
       container.removeEventListener("pointermove", updatePointer);
       container.removeEventListener("pointerleave", resetPointer);
+      container.removeEventListener("pointercancel", resetPointer);
       canvas.style.transform = "";
       canvas.style.opacity = "0";
       gl.deleteTexture(texture);
@@ -406,6 +415,7 @@ export function ChromaticImage({
         src={src}
         alt={alt}
         fill
+        draggable={false}
         sizes={sizes}
         className="object-cover"
         style={{ objectPosition }}

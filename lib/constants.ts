@@ -122,7 +122,7 @@ export type WorkProject = {
  * Add approved 4:3 stills (ideally 1600 x 1200 WebP/AVIF) under
  * public/assets/work/, then replace the relevant demo media with
  * { src: "/assets/work/project-name.webp", alt: "Description of the image" }.
- * The media component is the integration point for a future ChromaticImage.
+ * The media component uses the shared pointer-driven ChromaticImage treatment.
  * Current demo images come from the user's Aceternity carousel sample and
  * are visibly labelled. Remove isDemo only when supplying real project media.
  */
