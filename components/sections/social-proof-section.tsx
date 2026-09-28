@@ -17,8 +17,8 @@ export function SocialProofSection() {
             <p className="font-mono text-[10px] font-semibold tracking-[0.12em] text-orange uppercase">
               Built for local demand
             </p>
-            <h2 className="max-w-[15ch] font-display text-[clamp(1.45rem,2.9vw,2.25rem)] leading-tight tracking-wide text-foreground">
-              Clear enough to earn the next call.
+            <h2 className="max-w-none font-display text-[clamp(1.25rem,5.9vw,1.45rem)] leading-tight tracking-wide text-foreground sm:text-[clamp(1.45rem,2.9vw,2.25rem)] lg:max-w-[15ch]">
+              Clear enough to earn<span className="block lg:inline"> the next call.</span>
             </h2>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
               Local businesses need a fast answer, a credible first impression,
