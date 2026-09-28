@@ -5,6 +5,7 @@ This is the practical sequence for making Strivn Core the primary public site an
 ## 1. Finish launch readiness
 
 - Replace the two homepage media slots with approved 4:3 case-study imagery. Start with Sahara Grill, then add one representative future-project visual.
+- Supply the services bento's central Front Range image from Higgsfield: a 4:5 portrait still, ideally 1200 x 1500 WebP or AVIF, without text or UI. Keep its focal subject in the central 50% for the 16:9 mobile/tablet crop. Place it at `public/assets/services/front-range-chromatic.webp` and set `SERVICES_MEDIA.src`, `alt`, and optional `objectPosition` in `lib/constants.ts`. The slot includes a missing-image fallback; no WebGL effect is installed.
 - Capture Sahara Grill as a full-site or menu-scroll preview before replacing its homepage media slot. Consider a project carousel only when there are enough approved projects to make it useful.
 - Add an Iconic Stripes Shopify card and a main vertical-template site before launch, once each has approved visual proof and scope detail.
 - Consider a Colorado-pinned globe only after selecting a real asset or component that makes local coverage clearer; it should orient visitors, not act as decoration.

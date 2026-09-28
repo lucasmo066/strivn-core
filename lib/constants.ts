@@ -49,33 +49,51 @@ export const HERO_HUD = {
 } as const;
 
 export const SERVICES_HEADLINE =
-  "Built for Front Range practices that need to get booked.";
+  "Turn local interest into booked appointments.";
 
 export const SERVICES_AI_LINE =
   "We also wire AI that recovers after-hours inquiries, so missed calls turn into booked appointments, not lost leads.";
 
 export const SERVICES = [
   {
-    title: "Design",
+    title: "Design that earns trust",
     description:
-      "Trust-first design for med spas, dental, law, real estate, and remodeling, with the look that gets the consult booked.",
+      "Show what makes your practice the right choice, with a clear path to booking.",
   },
   {
-    title: "Build & launch",
+    title: "Live in weeks",
     description:
-      "Fast, mobile-first sites live in weeks, where your patients and clients actually search.",
+      "Fast on every screen, with a focused build and a clear route to launch.",
   },
   {
-    title: "Get found",
+    title: "Found in local search",
     description:
-      "Local SEO for service-area and practice-area search across the Front Range.",
+      "Help nearby patients and clients find the services they are already looking for.",
   },
   {
-    title: "Stay sharp",
+    title: "Care after launch",
     description:
-      "Hosting, updates, and edits on retainer so the site keeps pace with your business.",
+      "Hosting, updates, and ongoing edits that keep your site in step with your business.",
   },
 ] as const;
+
+/**
+ * Services bento, central image. Place the approved Higgsfield still at
+ * public/assets/services/front-range-chromatic.webp, then set src to
+ * "/assets/services/front-range-chromatic.webp". Leave null until it exists.
+ * Export 4:5 portrait (ideally 1200 x 1500), without text or baked-in UI.
+ * Mobile/tablet use a centered 16:9 crop; keep the subject in the central 50%.
+ * Set alt to describe the finished asset and adjust objectPosition if needed.
+ */
+export const SERVICES_MEDIA: {
+  src: string | null;
+  alt: string;
+  objectPosition: string;
+} = {
+  src: null,
+  alt: "",
+  objectPosition: "50% 50%",
+};
 
 export const WORK_ITEMS = [
   {
