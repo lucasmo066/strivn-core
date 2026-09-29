@@ -19,7 +19,7 @@ export function SoftCard({
   return (
     <Card
       className={cn(
-        "relative rounded-[var(--radius-lg)] border border-border bg-transparent shadow-none ring-0",
+        "relative rounded-[var(--radius-button)] border border-border bg-transparent shadow-none ring-0",
         lift &&
           "transition-lift hover:border-[var(--line-strong)] hover:bg-white/35 hover:shadow-soft-hover",
         className

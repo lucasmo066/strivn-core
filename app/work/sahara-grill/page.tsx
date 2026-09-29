@@ -31,7 +31,7 @@ export default function SaharaGrillCaseStudyPage() {
             </p>
           </div>
 
-          <div className="flex aspect-21/9 max-w-3xl items-end rounded-[var(--radius-lg)] bg-void p-6 sm:p-8">
+          <div className="flex aspect-21/9 max-w-3xl items-end rounded-[var(--radius-button)] bg-void p-6 sm:p-8">
             <div>
               <MonoLabel className="text-white/50">
                 {SAHARA_CASE_STUDY.category}

@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, ReactNode } from "react";
 
+import { BlurFade } from "@/components/ui/blur-fade";
 import type { WorkProject } from "@/lib/constants";
 
 import { ProjectMedia } from "./project-media";
@@ -174,15 +175,24 @@ export function WorkCarousel({
               aria-roledescription="slide"
               aria-label={`${project.title}, ${index + 1} of ${projects.length}`}
             >
-              {project.href ? (
-                <Link
-                  href={project.href}
-                  className={styles.cardLink}
-                  aria-label={`View ${project.title} case study`}
-                >
-                  {content}
-                </Link>
-              ) : <div className={styles.card}>{content}</div>}
+              <BlurFade
+                className="h-full"
+                direction="right"
+                delay={index === 1 ? 0.14 : 0}
+                duration={0.75}
+                offset={10}
+                inViewAmount={0.34}
+              >
+                {project.href ? (
+                  <Link
+                    href={project.href}
+                    className={styles.cardLink}
+                    aria-label={`View ${project.title} case study`}
+                  >
+                    {content}
+                  </Link>
+                ) : <div className={styles.card}>{content}</div>}
+              </BlurFade>
             </article>
           );
         })}

@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useInView } from "motion/react";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { RETAINER_PLANS } from "@/lib/constants";
 
 import { EditSizesInfo } from "./edit-sizes-info";
@@ -9,12 +11,14 @@ import { PlanSelector } from "./plan-selector";
 import styles from "./pricing.module.css";
 
 export function RetainerPlans() {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const shown = useInView(gridRef, { once: true, amount: 0.3 });
   const [yearlyBilling, setYearlyBilling] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(RETAINER_PLANS[0].name);
 
   return (
     <section className={styles.careSection} aria-labelledby="care-plans-heading">
-      <div className={styles.sectionHeader}>
+      <BlurFade className={styles.sectionHeader} direction="up" inViewAmount={0.6}>
         <h3 id="care-plans-heading" className="font-display text-xl">Monthly care plans</h3>
         <p className={styles.sectionDescription}>Hosting, maintenance, and growth support after launch.</p>
         <div className={styles.billingRow}>
@@ -24,7 +28,7 @@ export function RetainerPlans() {
           </div>
           <span className={styles.savings}>Save 15% yearly</span>
         </div>
-      </div>
+      </BlurFade>
       <PlanSelector
         kind="care"
         label="Choose a care plan"
@@ -32,9 +36,16 @@ export function RetainerPlans() {
         selected={selectedPlan}
         onChange={setSelectedPlan}
       />
-      <div className={styles.careGrid}>
-        {RETAINER_PLANS.map((plan) => (
-          <RetainerCard key={plan.name} plan={plan} yearlyBilling={yearlyBilling} selected={selectedPlan === plan.name} />
+      <div ref={gridRef} className={styles.careGrid}>
+        {RETAINER_PLANS.map((plan, index) => (
+          <RetainerCard
+            key={plan.name}
+            plan={plan}
+            yearlyBilling={yearlyBilling}
+            selected={selectedPlan === plan.name}
+            active={shown}
+            delay={index * 0.1}
+          />
         ))}
       </div>
       <div className={styles.note}>

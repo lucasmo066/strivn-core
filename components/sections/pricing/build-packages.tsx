@@ -2,40 +2,51 @@
 
 import Link from "next/link";
 import { Check, ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useInView } from "motion/react";
 
+import { BlurFade } from "@/components/ui/blur-fade";
 import { BUILD_PACKAGES, EXTRA_PAGE_PRICE } from "@/lib/constants";
 import { PlanSelector } from "./plan-selector";
 import styles from "./pricing.module.css";
 
 export function BuildPackages() {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const shown = useInView(gridRef, { once: true, amount: 0.35 });
   const [selectedPlan, setSelectedPlan] = useState<string>(BUILD_PACKAGES[0].name);
 
   return (
     <section aria-labelledby="build-plans-heading">
-      <div className={styles.sectionHeader}>
+      <BlurFade className={styles.sectionHeader} inViewAmount={0.75}>
         <h3 id="build-plans-heading" className="font-display text-xl">Website builds</h3>
         <p className={styles.sectionDescription}>One-time project fees. A clear scope for every stage.</p>
-      </div>
-      <PlanSelector
-        kind="build"
-        label="Choose a website build"
-        names={BUILD_PACKAGES.map((pkg) => pkg.name)}
-        selected={selectedPlan}
-        onChange={setSelectedPlan}
-      />
-      <div className={styles.buildGrid}>
-        {BUILD_PACKAGES.map((pkg) => {
+      </BlurFade>
+      <BlurFade inViewAmount={0.8}>
+        <PlanSelector
+          kind="build"
+          label="Choose a website build"
+          names={BUILD_PACKAGES.map((pkg) => pkg.name)}
+          selected={selectedPlan}
+          onChange={setSelectedPlan}
+        />
+      </BlurFade>
+      <div ref={gridRef} className={styles.buildGrid}>
+        {BUILD_PACKAGES.map((pkg, index) => {
           const featured = "featured" in pkg && pkg.featured;
           const id = "build-plan-" + pkg.name.toLowerCase();
           return (
-            <article
+            <BlurFade
+              as="article"
               id={id}
               key={pkg.name}
               className={styles.planCard}
               data-selected={selectedPlan === pkg.name}
-              data-featured={featured}
+              data-featured={featured || undefined}
               aria-labelledby={id + "-title"}
+              active={shown}
+              direction="right"
+              delay={index * 0.1}
+              duration={0.72}
             >
               <div className={styles.planHeader}>
                 <div className={styles.nameRow}>
@@ -54,7 +65,7 @@ export function BuildPackages() {
               <Link href="/#contact" className={styles.planCta} aria-label={"Get started with " + pkg.name}>
                 Get started <ArrowUpRight aria-hidden className="size-4" />
               </Link>
-            </article>
+            </BlurFade>
           );
         })}
       </div>

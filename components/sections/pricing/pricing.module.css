@@ -1,7 +1,7 @@
 .shell {
   --pricing-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground));
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-button);
   background: var(--background);
 }
 
@@ -68,7 +68,7 @@
   margin-top: auto;
   padding: 0.625rem 0.875rem;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-button);
   color: var(--foreground);
   font-size: 0.875rem;
   font-weight: 500;
@@ -103,7 +103,7 @@
 .planSelector button:focus-visible, .billingToggle button:focus-visible { outline: 2px solid var(--foreground); outline-offset: -4px; }
 .billingRow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.75rem 1rem; margin-top: 1.5rem; }
 .billingToggle { display: inline-flex; border: 1px solid var(--border); padding: 3px; border-radius: var(--radius-md); }
-.billingToggle button { min-height: 44px; border-radius: 7px; padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer; color: var(--muted-foreground); }
+.billingToggle button { min-height: 44px; border-radius: var(--radius-button); padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer; color: var(--muted-foreground); }
 .billingToggle button[aria-pressed="true"] { background: var(--foreground); color: var(--background); }
 .billingToggle button[aria-pressed="true"]:focus-visible { outline-color: var(--background); }
 .savings { font-size: 0.75rem; font-weight: 500; color: var(--pricing-accent); }
@@ -131,7 +131,7 @@
 .termsDisclosure summary { font-size: 0.8125rem; }
 .quickRef { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; padding: 1rem 0 0.5rem; }
 
-.addonGrid { display: grid; gap: 1px; border-top: 1px solid var(--border); background: var(--border); border-radius: 0 0 var(--radius-lg) var(--radius-lg); overflow: hidden; }
+.addonGrid { display: grid; gap: 1px; border-top: 1px solid var(--border); background: var(--border); border-radius: 0 0 var(--radius-button) var(--radius-button); overflow: hidden; }
 .addonGroup { min-width: 0; padding-inline: 1.25rem; background: var(--background); }
 .addonToggle { display: flex; min-height: 56px; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; text-align: left; font-size: 0.875rem; font-weight: 500; }
 .addonDesktopTitle { display: none; }

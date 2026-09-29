@@ -25,7 +25,7 @@ export function MediaSlot({
     <figure
       aria-label={`${alt}. Image placeholder.`}
       className={cn(
-        "relative grid aspect-4/3 place-items-center overflow-hidden rounded-xl border border-border bg-muted/70 p-5 text-center",
+        "relative grid aspect-4/3 place-items-center overflow-hidden rounded-[var(--radius-button)] border border-border bg-muted/70 p-5 text-center",
         className
       )}
     >

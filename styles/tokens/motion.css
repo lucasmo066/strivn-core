@@ -26,3 +26,12 @@
     transition: none;
   }
 }
+
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  [data-blur-fade] {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+}

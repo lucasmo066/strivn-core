@@ -41,7 +41,7 @@ export function ThemeToggle() {
       aria-pressed={isDark}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       title={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className="inline-flex size-10 items-center justify-center rounded-xl border border-transparent text-foreground transition-hairline hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
+      className="inline-flex size-10 items-center justify-center rounded-[var(--radius-button)] border border-transparent text-foreground transition-hairline hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
     >
       {isDark ? (
         <Sun className="size-4" aria-hidden />

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 const headingClassName =
-  "max-w-[20ch] font-pixel text-[clamp(2.125rem,5.4vw,2.95rem)] leading-[1.1] tracking-[0.015em]";
+  "max-w-[20ch] font-pixel text-[clamp(2.125rem,5.4vw,2.95rem)] leading-[1.1] tracking-[0.015em] xl:text-[3.5rem]";
 
 export function HeroHeading({ children }: { children: ReactNode }) {
   return (

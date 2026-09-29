@@ -150,7 +150,7 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div
-        className="rounded-2xl border border-orange/30 bg-orange/5 p-6 sm:p-8"
+        className="rounded-[var(--radius-button)] border border-orange/30 bg-orange/5 p-6 sm:p-8"
         role="status"
         aria-live="polite"
         tabIndex={-1}
@@ -168,7 +168,7 @@ export function ContactForm() {
 
   return (
     <form
-      className="relative space-y-6 rounded-2xl border border-border bg-background p-5 shadow-soft sm:p-7 dark:bg-card"
+      className="relative space-y-6 rounded-[var(--radius-button)] border border-border bg-background p-5 shadow-soft sm:p-7 dark:bg-card"
       onSubmit={onSubmit}
       noValidate
       aria-describedby={error ? "contact-form-error" : undefined}

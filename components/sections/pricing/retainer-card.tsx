@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Check, ChevronDown, Minus } from "lucide-react";
+import { BlurFade } from "@/components/ui/blur-fade";
 import type { RetainerSection } from "@/lib/constants";
 import styles from "./pricing.module.css";
 
@@ -15,9 +16,11 @@ type RetainerCardProps = {
   plan: RetainerPlan;
   yearlyBilling: boolean;
   selected: boolean;
+  active: boolean;
+  delay: number;
 };
 
-export function RetainerCard({ plan, yearlyBilling, selected }: RetainerCardProps) {
+export function RetainerCard({ plan, yearlyBilling, selected, active, delay }: RetainerCardProps) {
   const annualTotal = plan.yearly * 12;
   const annualSavings = plan.monthly * 12 - annualTotal;
   const formatPrice = (price: number) => price.toLocaleString("en-US", { maximumFractionDigits: 0 });
@@ -27,12 +30,18 @@ export function RetainerCard({ plan, yearlyBilling, selected }: RetainerCardProp
   const id = "care-plan-" + plan.name.toLowerCase();
 
   return (
-    <article
+    <BlurFade
+      as="article"
       id={id}
       className={styles.planCard}
       data-selected={selected}
-      data-featured={plan.featured ?? false}
+      data-featured={plan.featured || undefined}
       aria-labelledby={id + "-title"}
+      active={active}
+      direction="up"
+      delay={delay}
+      duration={0.72}
+      offset={10}
     >
       <div className={styles.planHeader}>
         <div className={styles.nameRow}>
@@ -66,6 +75,6 @@ export function RetainerCard({ plan, yearlyBilling, selected }: RetainerCardProp
       <Link href="/#contact" className={styles.planCta} aria-label={"Get started with " + plan.name + " care"}>
         Get started <ArrowUpRight aria-hidden className="size-4" />
       </Link>
-    </article>
+    </BlurFade>
   );
 }

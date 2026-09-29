@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Gauge, HeartHandshake, PenTool, ScanSearch } from "lucide-react";
 
+import { BlurFade } from "@/components/ui/blur-fade";
 import { SERVICES, SERVICES_MEDIA } from "@/lib/constants";
 
 import { FrontRangeMedia } from "./services/front-range-media";
@@ -17,7 +18,14 @@ const capabilityLinks = [
 export function ServicesBento() {
   return (
     <ServicesReveal className={styles.bento}>
-      <figure className={styles.feature}>
+      <BlurFade
+        as="figure"
+        className={styles.feature}
+        direction="left"
+        delay={0.06}
+        duration={0.75}
+        inViewAmount={0.4}
+      >
         <FrontRangeMedia {...SERVICES_MEDIA} />
         <figcaption className={styles.caption}>
           <h3 className="font-display text-xl leading-tight sm:text-2xl">
@@ -27,14 +35,22 @@ export function ServicesBento() {
             Book a call <ArrowUpRight className="size-4" aria-hidden />
           </Link>
         </figcaption>
-      </figure>
+      </BlurFade>
 
       <ul className={styles.capabilities} aria-label="Website services">
         {SERVICES.map((service, index) => {
           const { icon: Icon, href } = capabilityLinks[index];
 
           return (
-            <li key={service.title} className={styles.capability}>
+            <BlurFade
+              key={service.title}
+              as="li"
+              className={styles.capability}
+              direction="left"
+              delay={0.14 + index * 0.1}
+              duration={0.7}
+              inViewAmount={0.7}
+            >
               <Link href={href} className={styles.capabilityLink}>
                 <Icon className={styles.icon} strokeWidth={1.5} aria-hidden />
                 <div className={styles.copy}>
@@ -47,7 +63,7 @@ export function ServicesBento() {
                 </div>
                 <ArrowUpRight className={styles.arrow} aria-hidden />
               </Link>
-            </li>
+            </BlurFade>
           );
         })}
       </ul>

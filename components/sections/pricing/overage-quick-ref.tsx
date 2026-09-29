@@ -1,10 +1,11 @@
 import { ChevronDown } from "lucide-react";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { OVERAGE_RATE, PRICING_QUICK_REF } from "@/lib/constants";
 import styles from "./pricing.module.css";
 
 export function OverageAndQuickRef() {
   return (
-    <div className={styles.terms}>
+    <BlurFade className={styles.terms} inViewAmount={0.55}>
       <div className={styles.overage}>
         <div>
           <h3 className="text-sm font-medium">Out-of-scope work</h3>
@@ -27,6 +28,6 @@ export function OverageAndQuickRef() {
           ))}
         </dl>
       </details>
-    </div>
+    </BlurFade>
   );
 }

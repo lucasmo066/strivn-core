@@ -2,6 +2,7 @@ import { ContactForm } from "@/components/sections/contact-form";
 import { Container } from "@/components/shared/container";
 import dots from "@/components/shared/dotted-section.module.css";
 import { MediaSlot } from "@/components/shared/media-slot";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { BRAND, TAGLINES } from "@/lib/constants";
 
 export function ContactSection() {
@@ -9,7 +10,7 @@ export function ContactSection() {
     <section id="contact" className={`section-y border-t border-border ${dots.section}`}>
       <Container>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start lg:gap-20">
-          <div className="space-y-5">
+          <BlurFade className="space-y-5" inViewAmount={0.45}>
             <h2 className="font-display text-[var(--text-h2)] leading-[var(--leading-tight)] tracking-wide text-foreground">
               {TAGLINES.cta}
             </h2>
@@ -28,9 +29,11 @@ export function ContactSection() {
               <span className="text-orange"> / </span>
               {BRAND.location}
             </p>
-          </div>
+          </BlurFade>
 
-          <ContactForm />
+          <BlurFade delay={0.12} inViewAmount={0.35}>
+            <ContactForm />
+          </BlurFade>
         </div>
       </Container>
     </section>

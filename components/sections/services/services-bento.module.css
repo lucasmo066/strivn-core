@@ -7,7 +7,7 @@
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-button);
   background: var(--muted);
 }
 
@@ -64,7 +64,7 @@
   display: grid;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-button);
   background: linear-gradient(var(--card), var(--card)), var(--background);
 }
 
@@ -198,7 +198,7 @@
   .capability {
     overflow: hidden;
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-button);
     background: linear-gradient(var(--card), var(--card)), var(--background);
   }
 

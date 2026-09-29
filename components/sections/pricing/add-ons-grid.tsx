@@ -2,6 +2,7 @@
 
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { ADD_ONS, PRICING_COPY } from "@/lib/constants";
 import styles from "./pricing.module.css";
 
@@ -18,16 +19,25 @@ export function AddOnsGrid() {
 
   return (
     <section className={styles.addonsSection} aria-labelledby="addons-heading">
-      <div className={styles.sectionHeader}>
+      <BlurFade className={styles.sectionHeader} direction="left" inViewAmount={0.7}>
         <h3 id="addons-heading" className="font-display text-xl">Add-ons</h3>
         <p className={styles.sectionDescription}>{PRICING_COPY.addonSub}</p>
-      </div>
+      </BlurFade>
       <div className={styles.addonGrid}>
-        {addOnGroups.map(([category, addOns]) => {
+        {addOnGroups.map(([category, addOns], index) => {
           const id = "addons-" + category.toLowerCase().replace(/[^a-z]+/g, "-");
           const isOpen = expanded === category;
           return (
-            <section key={category} className={styles.addonGroup} aria-labelledby={id + "-title"}>
+            <BlurFade
+              as="section"
+              key={category}
+              className={styles.addonGroup}
+              aria-labelledby={id + "-title"}
+              direction="left"
+              delay={index * 0.08}
+              duration={0.68}
+              inViewAmount={0.45}
+            >
               <h4 id={id + "-title"}>
                 <button
                   type="button"
@@ -53,7 +63,7 @@ export function AddOnsGrid() {
                   ))}
                 </ul>
               </div>
-            </section>
+            </BlurFade>
           );
         })}
       </div>

@@ -32,7 +32,7 @@ export function EditSizesInfo() {
         type="button"
         onClick={openDialog}
         className={cn(
-          "inline-flex min-h-11 items-center gap-1.5 rounded-md text-sm text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground",
+          "inline-flex min-h-11 items-center gap-1.5 rounded-[var(--radius-button)] text-sm text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground",
           "transition-hairline hover:text-foreground",
           "underline decoration-border underline-offset-4 hover:decoration-foreground/40"
         )}

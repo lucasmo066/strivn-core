@@ -56,7 +56,7 @@ export function StrivnButton({
       size={size}
       asChild={asChild}
       className={cn(
-        "group/btn rounded-xl font-sans transition-hairline",
+        "group/btn rounded-[var(--radius-button)] font-sans transition-hairline",
         size === "default" && "h-11 px-5 text-sm",
         size === "sm" && "h-9 px-4",
         size === "lg" && "h-12 px-6 text-base",

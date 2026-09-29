@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { useEffect, useState, type ComponentType } from "react";
 
@@ -18,6 +19,7 @@ type MobileNavProps = {
 };
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [atTop, setAtTop] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [MobileNav, setMobileNav] = useState<ComponentType<MobileNavProps> | null>(null);
@@ -75,13 +77,17 @@ export function SiteHeader() {
     });
   }
 
+  const overHero = atTop && pathname === "/" && !menuOpen;
+
   return (
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b border-border bg-paper/95 backdrop-blur-md transition-shadow duration-200 ease-out dark:border-white/10 dark:bg-void/95",
-          atTop ? "shadow-none" : "shadow-soft",
-          menuOpen && "shadow-soft"
+          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out",
+          overHero
+            ? "border-white/55 bg-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-xl backdrop-saturate-150 dark:border-white/15 dark:bg-black/30 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+            : "border-border bg-paper/95 backdrop-blur-md dark:border-white/10 dark:bg-void/95",
+          !overHero && (!atTop || menuOpen) && "shadow-soft"
         )}
       >
         <Container className="flex h-16 items-center justify-between gap-4 md:gap-6">
@@ -93,11 +99,11 @@ export function SiteHeader() {
               className="h-9 dark:invert md:hidden"
             />
             <Logo
-              variant="lockup"
+              variant="wordmark"
               tone="black"
               loading="eager"
               fetchPriority="low"
-              className="hidden h-8 w-auto dark:invert md:block"
+              className="hidden h-10 w-auto dark:invert md:block"
             />
           </Link>
 
@@ -138,7 +144,7 @@ export function SiteHeader() {
               onClick={openMenu}
               aria-expanded={menuOpen}
               aria-label="Open menu"
-              className="inline-flex size-10 items-center justify-center rounded-xl text-foreground transition-hairline hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40 md:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-[var(--radius-button)] text-foreground transition-hairline hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40 md:hidden"
             >
               <Menu className="size-5" />
             </button>
@@ -148,7 +154,9 @@ export function SiteHeader() {
           </div>
         </Container>
       </header>
-      <div className="h-16 shrink-0" aria-hidden="true" />
+      {pathname === "/" ? null : (
+        <div className="h-16 shrink-0" aria-hidden="true" />
+      )}
     </>
   );
 }
