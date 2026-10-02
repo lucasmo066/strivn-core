@@ -179,7 +179,7 @@ export function WorkCarousel({
                 className="h-full"
                 direction="right"
                 delay={index === 1 ? 0.14 : 0}
-                duration={0.75}
+                duration={1.05}
                 offset={10}
                 inViewAmount={0.34}
               >

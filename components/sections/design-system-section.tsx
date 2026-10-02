@@ -91,7 +91,7 @@ export function DesignSystemSection() {
                 { name: "Paper", token: "--paper", swatch: "#F8F7F4" },
                 { name: "Ink", token: "--ink", swatch: "#0A0A0A" },
                 { name: "Orange", token: "--orange", swatch: "#FF5C00" },
-                { name: "Void", token: "--void", swatch: "#0A0A0A" },
+                { name: "Void", token: "--void", swatch: "#2A3439" },
               ].map((color) => (
                 <HairlineCard key={color.token}>
                   <HairlineCardContent className="space-y-2 pt-4">

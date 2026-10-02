@@ -40,7 +40,7 @@ export function RetainerCard({ plan, yearlyBilling, selected, active, delay }: R
       active={active}
       direction="up"
       delay={delay}
-      duration={0.72}
+      duration={1.02}
       offset={10}
     >
       <div className={styles.planHeader}>

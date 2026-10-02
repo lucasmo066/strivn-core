@@ -15,10 +15,8 @@ type FrontRangeMediaProps = {
 
 /**
  * Central services-bento image with Aceternity's pointer-driven WebGL treatment.
- * Uses the original Aceternity image via SERVICES_MEDIA in lib/constants.ts.
- * A future finished Higgsfield still can replace it through the same config.
- * Ideal source: 4:5 portrait, 1200 x 1500 WebP or AVIF. Desktop shows 4:5;
- * tablet/mobile crop to 16:9. Keep the focal subject within the central 50%.
+ * Source and crop come from SERVICES_MEDIA in lib/constants.ts.
+ * Desktop shows 4:5; tablet/mobile crop to 16:9.
  * The reserved geometry is shared by the placeholder, loading, and error states.
  */
 export function FrontRangeMedia({

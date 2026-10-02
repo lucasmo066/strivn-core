@@ -1,0 +1,86 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shadow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--paper) 0%,
+    color-mix(in srgb, var(--paper) 96%, transparent) 30%,
+    color-mix(in srgb, var(--paper) 68%, transparent) 46%,
+    color-mix(in srgb, var(--paper) 20%, transparent) 60%,
+    transparent 72%
+  );
+}
+
+:global(.dark) .shadow {
+  background: linear-gradient(
+    to right,
+    var(--void) 0%,
+    color-mix(in srgb, var(--void) 96%, transparent) 30%,
+    color-mix(in srgb, var(--void) 70%, transparent) 46%,
+    color-mix(in srgb, var(--void) 22%, transparent) 60%,
+    transparent 72%
+  );
+}
+
+@media (max-width: 767px) {
+  .shadow {
+    background: linear-gradient(
+      to right,
+      var(--paper) 0%,
+      color-mix(in srgb, var(--paper) 96%, transparent) 28%,
+      color-mix(in srgb, var(--paper) 70%, transparent) 46%,
+      color-mix(in srgb, var(--paper) 22%, transparent) 64%,
+      transparent 78%
+    );
+  }
+
+  :global(.dark) .shadow {
+    background: linear-gradient(
+      to right,
+      var(--void) 0%,
+      color-mix(in srgb, var(--void) 96%, transparent) 28%,
+      color-mix(in srgb, var(--void) 72%, transparent) 46%,
+      color-mix(in srgb, var(--void) 24%, transparent) 64%,
+      transparent 78%
+    );
+  }
+}
+
+.stipple {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--ink) 32%, transparent) 0.9px,
+    transparent 1.05px
+  );
+  background-size: 6px 6px;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    rgb(0 0 0 / 0.45) 10%,
+    rgb(0 0 0 / 0.08) 24%,
+    transparent 38%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    rgb(0 0 0 / 0.45) 10%,
+    rgb(0 0 0 / 0.08) 24%,
+    transparent 38%
+  );
+}
+
+:global(.dark) .stipple {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, #f7f7f4 62%, transparent) 0.9px,
+    transparent 1.05px
+  );
+}

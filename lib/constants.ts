@@ -21,10 +21,10 @@ export const HERO_PROOF = [
 
 /** Hero plate media. Poster for instant paint; video remains available for later use. */
 export const HERO_MEDIA = {
-  still: "/assets/hero/alpine-lakeside.webp",
-  stillWidth: 1920,
-  stillHeight: 1071,
-  blur: "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoQAAkAA4BaJYwCdAEJYZbCIAD+7lQrzl3wwdy7sleRnTWT/ig2403eYoeD/SAxJPKLN5RHTd7bCT/PV+URGGfq8AA=",
+  still: "/assets/hero/lakeside-town.webp",
+  stillWidth: 1024,
+  stillHeight: 576,
+  blur: "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAQBACdASoUAAwAPzmGuVOvKSWisAgB4CcJZACdACIjDjk3E6o30MltAAD+sgguJMuNnLVsF0y5JYE+2piENv69h9C+SpVjuD+3nknkqO4UGxQcBesLtgJsiLIOUe+ohRMBRUgDWdolrXmDLZSpQAAA",
   video: "/assets/hero/alpine-lakeside.mp4",
 } as const;
 
@@ -79,13 +79,10 @@ export const SERVICES = [
 ] as const;
 
 /**
- * Services bento, central image. Uses the original Aceternity demo image.
- * To replace it later, place the approved Higgsfield still at
- * public/assets/services/front-range-chromatic.webp, then set src to
- * "/assets/services/front-range-chromatic.webp" once the file exists.
- * Export 4:5 portrait (ideally 1200 x 1500), without text or baked-in UI.
- * Mobile/tablet use a centered 16:9 crop; keep the subject in the central 50%.
- * Set alt to describe the finished asset and adjust objectPosition if needed.
+ * Services bento, central image.
+ * Portrait still at public/assets/services/front-range-valley.webp.
+ * Mobile/tablet use a centered 16:9 crop; desktop shows 4:5.
+ * Keep the focal subject in the central 50% and adjust objectPosition if needed.
  */
 export const SERVICES_MEDIA: {
   src: string | null;
@@ -93,10 +90,10 @@ export const SERVICES_MEDIA: {
   objectPosition: string;
   backgroundColor: string;
 } = {
-  src: "/assets/services/front-range.webp",
-  alt: "Green dithered abstract gradient",
+  src: "/assets/services/front-range-valley.webp",
+  alt: "Stippled alpine valley with green slopes, a river, and cabins",
   objectPosition: "50% 50%",
-  backgroundColor: "#9cae65",
+  backgroundColor: "#437d66",
 };
 
 export type WorkMedia = {
@@ -136,9 +133,8 @@ export const WORK_ITEMS: readonly WorkProject[] = [
     description: "Menu-forward site built for local search and online ordering.",
     status: "Live",
     media: {
-      src: "/assets/work/sahara-grill.webp",
-      alt: "Ocean waves from the Aceternity carousel demo, not a Sahara Grill screenshot",
-      isDemo: true,
+      src: "/assets/work/sahara-grill-sign.webp",
+      alt: "The Sahara Grill storefront sign, red and green lettering above a Fresh Mediterranean banner",
     },
     href: "/work/sahara-grill",
   },

@@ -23,7 +23,7 @@ export function ServicesBento() {
         className={styles.feature}
         direction="left"
         delay={0.06}
-        duration={0.75}
+        duration={1.05}
         inViewAmount={0.4}
       >
         <FrontRangeMedia {...SERVICES_MEDIA} />
@@ -48,7 +48,7 @@ export function ServicesBento() {
               className={styles.capability}
               direction="left"
               delay={0.14 + index * 0.1}
-              duration={0.7}
+              duration={1}
               inViewAmount={0.7}
             >
               <Link href={href} className={styles.capabilityLink}>

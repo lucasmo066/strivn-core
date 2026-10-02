@@ -35,7 +35,7 @@ export function AddOnsGrid() {
               aria-labelledby={id + "-title"}
               direction="left"
               delay={index * 0.08}
-              duration={0.68}
+              duration={0.98}
               inViewAmount={0.45}
             >
               <h4 id={id + "-title"}>

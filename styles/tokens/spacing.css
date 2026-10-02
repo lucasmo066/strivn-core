@@ -19,7 +19,15 @@
 
 @media (min-width: 1280px) {
   :root {
-    --container-px: 5rem;
+    --container-max: 84rem;
+    --container-px: 4.5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --container-max: 96rem;
+    --container-px: 5.5rem;
   }
 }
 

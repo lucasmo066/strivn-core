@@ -1,8 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useInView } from "motion/react";
-import { BlurFade } from "@/components/ui/blur-fade";
+import { BlurFade, useRevealOnScroll } from "@/components/ui/blur-fade";
 import { RETAINER_PLANS } from "@/lib/constants";
 
 import { EditSizesInfo } from "./edit-sizes-info";
@@ -12,7 +11,7 @@ import styles from "./pricing.module.css";
 
 export function RetainerPlans() {
   const gridRef = useRef<HTMLDivElement>(null);
-  const shown = useInView(gridRef, { once: true, amount: 0.3 });
+  const shown = useRevealOnScroll(gridRef, true, 0.3, "0px 0px -12% 0px");
   const [yearlyBilling, setYearlyBilling] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(RETAINER_PLANS[0].name);
 

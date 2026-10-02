@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/shared/container";
-import dots from "@/components/shared/dotted-section.module.css";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { HERO_PROOF } from "@/lib/constants";
 import { getHomepageIndustries } from "@/lib/industries";
@@ -11,7 +10,7 @@ export function SocialProofSection() {
   const homepageIndustries = getHomepageIndustries();
 
   return (
-    <section className={`border-b border-border bg-background py-12 md:py-16 ${dots.section}`}>
+    <section className="border-b border-border bg-muted/40 py-12 md:py-16">
       <Container className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-14">
         <div className="min-w-0 space-y-6">
           <BlurFade className="space-y-3" inViewAmount={0.8}>
@@ -34,7 +33,7 @@ export function SocialProofSection() {
                 className="h-full min-w-0"
                 direction="right"
                 delay={index * 0.12}
-                duration={0.68}
+                duration={0.98}
                 inViewAmount={0.9}
               >
                 <div className="grid h-full min-h-16 min-w-0 grid-cols-[1fr_auto] items-center gap-3 rounded-[var(--radius-button)] border border-border bg-background px-3 py-4 min-[440px]:grid-cols-1 min-[440px]:grid-rows-[2rem_auto] min-[440px]:gap-2 min-[440px]:text-center">
@@ -78,7 +77,7 @@ export function SocialProofSection() {
                 className="h-full min-w-0"
                 direction="up"
                 delay={index * 0.06}
-                duration={0.6}
+                duration={0.9}
                 offset={10}
                 inViewAmount={0.9}
               >

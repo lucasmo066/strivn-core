@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { Check, ArrowUpRight } from "lucide-react";
 import { useRef, useState } from "react";
-import { useInView } from "motion/react";
 
-import { BlurFade } from "@/components/ui/blur-fade";
+import { BlurFade, useRevealOnScroll } from "@/components/ui/blur-fade";
 import { BUILD_PACKAGES, EXTRA_PAGE_PRICE } from "@/lib/constants";
 import { PlanSelector } from "./plan-selector";
 import styles from "./pricing.module.css";
 
 export function BuildPackages() {
   const gridRef = useRef<HTMLDivElement>(null);
-  const shown = useInView(gridRef, { once: true, amount: 0.35 });
+  const shown = useRevealOnScroll(gridRef, true, 0.35, "0px 0px -12% 0px");
   const [selectedPlan, setSelectedPlan] = useState<string>(BUILD_PACKAGES[0].name);
 
   return (
@@ -46,7 +45,7 @@ export function BuildPackages() {
               active={shown}
               direction="right"
               delay={index * 0.1}
-              duration={0.72}
+              duration={1.02}
             >
               <div className={styles.planHeader}>
                 <div className={styles.nameRow}>

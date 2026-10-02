@@ -10,8 +10,11 @@ import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { Container } from "@/components/shared/container";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { NAV_LINKS, TAGLINES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+
+const HEADER_SOLID_AT = 4;
 
 type MobileNavProps = {
   open: boolean;
@@ -26,7 +29,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     const onScroll = () => {
-      setAtTop(window.scrollY < 4);
+      setAtTop(window.scrollY < HEADER_SOLID_AT);
     };
 
     onScroll();
@@ -85,7 +88,7 @@ export function SiteHeader() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out",
           overHero
-            ? "border-white/55 bg-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-xl backdrop-saturate-150 dark:border-white/15 dark:bg-black/30 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+            ? "border-white/55 bg-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-xl backdrop-saturate-150 dark:border-white/15 dark:bg-void/45 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
             : "border-border bg-paper/95 backdrop-blur-md dark:border-white/10 dark:bg-void/95",
           !overHero && (!atTop || menuOpen) && "shadow-soft"
         )}
@@ -153,6 +156,13 @@ export function SiteHeader() {
             ) : null}
           </div>
         </Container>
+        <ScrollProgress
+          startAt={pathname === "/" ? HEADER_SOLID_AT : 0}
+          className={cn(
+            "transition-opacity duration-300",
+            overHero ? "opacity-0" : "opacity-100"
+          )}
+        />
       </header>
       {pathname === "/" ? null : (
         <div className="h-16 shrink-0" aria-hidden="true" />

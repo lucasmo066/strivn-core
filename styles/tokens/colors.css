@@ -8,8 +8,8 @@
   --line-strong: rgba(10, 10, 10, 0.2);
   --orange: #ff5c00;
   --orange-focus: rgba(255, 92, 0, 0.35);
-  --void: #0a0a0a;
-  --void-2: #141414;
+  --void: #2a3439;
+  --void-2: #343e44;
   --line-dark: rgba(255, 255, 255, 0.1);
   --line-dark-strong: rgba(255, 255, 255, 0.18);
   --status-ok: #3d7a5a;
@@ -49,7 +49,7 @@
   --popover-foreground: #f7f7f4;
   --secondary: var(--void-2);
   --secondary-foreground: #f7f7f4;
-  --muted: #1a1a1a;
+  --muted: #3c474d;
   --muted-foreground: rgba(247, 247, 244, 0.65);
   --accent: var(--void-2);
   --accent-foreground: #fafafa;
