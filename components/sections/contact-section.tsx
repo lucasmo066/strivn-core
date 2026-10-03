@@ -1,7 +1,8 @@
+import Image from "next/image";
+
 import { ContactForm } from "@/components/sections/contact-form";
 import { Container } from "@/components/shared/container";
 import dots from "@/components/shared/dotted-section.module.css";
-import { MediaSlot } from "@/components/shared/media-slot";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BRAND, TAGLINES } from "@/lib/constants";
 
@@ -18,12 +19,15 @@ export function ContactSection() {
               Share a few details and we&apos;ll reply within one business day
               with next steps.
             </p>
-            {/* TODO: Replace with approved project-work media. This stays hidden on mobile to protect the form path. */}
-            <MediaSlot
-              alt="Contact section project-work media"
-              label="Project work media"
-              className="hidden max-w-md lg:grid"
-            />
+            <figure className="relative hidden aspect-4/3 max-w-md overflow-hidden rounded-[var(--radius-button)] border border-border lg:block">
+              <Image
+                src="/assets/contact/limon-cottonwood-v2.webp"
+                alt="A solitary cottonwood tree in eastern Colorado grasslands"
+                fill
+                sizes="(min-width: 1024px) 32vw, 0px"
+                className="object-cover"
+              />
+            </figure>
             <p className="font-pixel text-micro text-muted-foreground">
               {BRAND.name}
               <span className="text-orange"> / </span>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Check, ArrowUpRight } from "lucide-react";
 import { useRef, useState } from "react";
 
+import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade, useRevealOnScroll } from "@/components/ui/blur-fade";
 import { BUILD_PACKAGES, EXTRA_PAGE_PRICE } from "@/lib/constants";
 import { PlanSelector } from "./plan-selector";
@@ -58,12 +59,19 @@ export function BuildPackages() {
               </div>
               <ul className={styles.features}>
                 {pkg.includes.map((item) => (
-                  <li key={item}><Check aria-hidden className="size-4 shrink-0 text-orange" /><span>{item}</span></li>
+                  <li key={item}><Check aria-hidden stroke="url(#strivn-orange-gradient)" className="size-4 shrink-0" /><span>{item}</span></li>
                 ))}
               </ul>
-              <Link href="/#contact" className={styles.planCta} aria-label={"Get started with " + pkg.name}>
-                Get started <ArrowUpRight aria-hidden className="size-4" />
-              </Link>
+              <StrivnButton
+                variant="outline"
+                className={featured ? `${styles.planCta} strivn-3d--white` : styles.planCta}
+                aria-label={"Get started with " + pkg.name}
+                asChild
+              >
+                <Link href="/#contact">
+                  Get started <ArrowUpRight aria-hidden className="size-4" />
+                </Link>
+              </StrivnButton>
             </BlurFade>
           );
         })}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade, useRevealOnScroll } from "@/components/ui/blur-fade";
 import { RETAINER_PLANS } from "@/lib/constants";
 
@@ -22,8 +23,34 @@ export function RetainerPlans() {
         <p className={styles.sectionDescription}>Hosting, maintenance, and growth support after launch.</p>
         <div className={styles.billingRow}>
           <div className={styles.billingToggle} role="group" aria-label="Billing frequency">
-            <button type="button" aria-pressed={!yearlyBilling} onClick={() => setYearlyBilling(false)}>Monthly</button>
-            <button type="button" aria-pressed={yearlyBilling} onClick={() => setYearlyBilling(true)}>Yearly</button>
+            {yearlyBilling ? (
+              <button type="button" aria-pressed={false} onClick={() => setYearlyBilling(false)}>
+                Monthly
+              </button>
+            ) : (
+              <StrivnButton
+                variant="outline"
+                className={styles.billingSelected}
+                aria-pressed
+                onClick={() => setYearlyBilling(false)}
+              >
+                Monthly
+              </StrivnButton>
+            )}
+            {yearlyBilling ? (
+              <StrivnButton
+                variant="outline"
+                className={styles.billingSelected}
+                aria-pressed
+                onClick={() => setYearlyBilling(true)}
+              >
+                Yearly
+              </StrivnButton>
+            ) : (
+              <button type="button" aria-pressed={false} onClick={() => setYearlyBilling(true)}>
+                Yearly
+              </button>
+            )}
           </div>
           <span className={styles.savings}>Save 15% yearly</span>
         </div>

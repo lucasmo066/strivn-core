@@ -13,7 +13,10 @@ export function WorkSection() {
       <Container className="space-y-6">
         <WorkCarousel projects={WORK_ITEMS}>
           <BlurFade inViewAmount={0.8}>
-            <h2 id="work-heading" className="font-display text-[var(--text-h2)]">
+            <h2
+              id="work-heading"
+              className="bg-gradient-to-r from-[#ff7540] via-[#9f3400] to-[#752200] bg-clip-text font-display text-[clamp(2.05rem,4.6vw,3.15rem)] leading-[1.05] text-transparent dark:from-[#f45600] dark:via-[#f95900] dark:to-[#ff8f67]"
+            >
               Recent work
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">

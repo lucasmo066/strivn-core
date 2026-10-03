@@ -51,14 +51,14 @@ export function HeroSection() {
             <StrivnButton
               variant="primary"
               arrow
-              className="w-3/4 px-7 shadow-soft sm:w-auto sm:min-w-[10.75rem]"
+              className="w-3/4 sm:w-auto sm:min-w-[10.75rem]"
               asChild
             >
               <Link href="/#contact">{TAGLINES.heroCta}</Link>
             </StrivnButton>
             <StrivnButton
               variant="outline"
-              className="w-3/4 border-ink/20 bg-paper/85 px-7 shadow-soft backdrop-blur-sm dark:border-white/20 dark:bg-void/80 dark:text-white sm:w-auto sm:min-w-[10.75rem]"
+              className="w-3/4 sm:w-auto sm:min-w-[10.75rem]"
               asChild
             >
               <Link href="/#pricing">See pricing</Link>

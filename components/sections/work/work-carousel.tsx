@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, ReactNode } from "react";
 
 import { BlurFade } from "@/components/ui/blur-fade";
+import { StripedPattern } from "@/components/ui/striped-pattern";
 import type { WorkProject } from "@/lib/constants";
 
 import { ProjectMedia } from "./project-media";
@@ -127,22 +128,24 @@ export function WorkCarousel({
         Swipe to browse projects, use the previous and next buttons, or focus this
         gallery and use the arrow keys. Home goes to the first project and End to the last.
       </p>
-      <div
-        id="work-track"
-        ref={trackRef}
-        className={styles.track}
-        tabIndex={0}
-        role="group"
-        aria-label="Portfolio projects"
-        aria-describedby="work-instructions"
-        onScroll={updateBounds}
-        onKeyDown={handleKeyDown}
-      >
+      <div className={styles.scroller}>
+        <div
+          id="work-track"
+          ref={trackRef}
+          className={styles.track}
+          tabIndex={0}
+          role="group"
+          aria-label="Portfolio projects"
+          aria-describedby="work-instructions"
+          onScroll={updateBounds}
+          onKeyDown={handleKeyDown}
+        >
         {projects.map((project, index) => {
           const content = (
             <>
               <ProjectMedia title={project.title} media={project.media} />
               <div className={styles.details}>
+                <StripedPattern className={styles.stripes} />
                 {project.media?.isDemo && (
                   <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
                     Aceternity demo image
@@ -191,11 +194,20 @@ export function WorkCarousel({
                   >
                     {content}
                   </Link>
-                ) : <div className={styles.card}>{content}</div>}
+                ) : (
+                  <div className={styles.card}>{content}</div>
+                )}
               </BlurFade>
             </article>
           );
         })}
+        </div>
+        <div
+          className={styles.edgeBlur}
+          style={{ backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
+          data-hidden={bounds.end || undefined}
+          aria-hidden="true"
+        />
       </div>
       <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announcement}</p>
     </div>

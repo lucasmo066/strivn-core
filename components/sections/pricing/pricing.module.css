@@ -1,8 +1,17 @@
 .shell {
   --pricing-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground));
+  --orange-gradient-from: #ff7540;
+  --orange-gradient-via: #ff9a4a;
+  --orange-gradient-to: #ffb56a;
   border: 1px solid var(--border);
   border-radius: var(--radius-button);
   background: var(--background);
+}
+
+:global(.dark) .shell {
+  --orange-gradient-from: #f45600;
+  --orange-gradient-via: #f95900;
+  --orange-gradient-to: #ff8f67;
 }
 
 .intro {
@@ -60,21 +69,9 @@
 .features li { display: flex; align-items: flex-start; gap: 0.625rem; }
 .features svg { margin-top: 0.125rem; }
 .planCta {
-  display: flex;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
+  width: 100%;
   margin-top: auto;
-  padding: 0.625rem 0.875rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-button);
-  color: var(--foreground);
-  font-size: 0.875rem;
-  font-weight: 500;
 }
-.planCard[data-featured="true"] .planCta { background: var(--foreground); border-color: var(--foreground); color: var(--background); }
-.planCta:hover { border-color: var(--pricing-accent); }
 .planCta:hover svg { transform: translate(2px, -2px); }
 .planCta:focus-visible, .exclusions summary:focus-visible, .termsDisclosure summary:focus-visible,
 .addonToggle:focus-visible { outline: 2px solid var(--foreground); outline-offset: 3px; }
@@ -100,12 +97,23 @@
   font-size: 0.8125rem;
 }
 .planSelector button[aria-pressed="true"] { box-shadow: inset 0 -2px var(--orange); background: var(--muted); color: var(--foreground); font-weight: 600; }
-.planSelector button:focus-visible, .billingToggle button:focus-visible { outline: 2px solid var(--foreground); outline-offset: -4px; }
+.planSelector button:focus-visible, .billingToggle > button:focus-visible { outline: 2px solid var(--foreground); outline-offset: -4px; }
 .billingRow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.75rem 1rem; margin-top: 1.5rem; }
-.billingToggle { display: inline-flex; border: 1px solid var(--border); padding: 3px; border-radius: var(--radius-md); }
-.billingToggle button { min-height: 44px; border-radius: var(--radius-button); padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer; color: var(--muted-foreground); }
-.billingToggle button[aria-pressed="true"] { background: var(--foreground); color: var(--background); }
-.billingToggle button[aria-pressed="true"]:focus-visible { outline-color: var(--background); }
+.billingToggle { display: inline-flex; align-items: center; border: 1px solid var(--border); padding: 3px; border-radius: var(--radius-md); }
+.billingToggle > button { min-height: 44px; border-radius: var(--radius-button); padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer; color: var(--muted-foreground); }
+.billingSelected :global(.strivn-3d.aws-btn) {
+  --button-secondary-color: var(--ink);
+  --button-secondary-color-dark: #6a6a6a;
+  --button-secondary-color-light: #fffaf5;
+  --button-secondary-color-hover: #242424;
+  --button-secondary-border: none;
+}
+:global(.dark) .billingSelected :global(.strivn-3d.aws-btn) {
+  --button-secondary-color: #fffaf5;
+  --button-secondary-color-dark: #d5cec6;
+  --button-secondary-color-light: var(--ink);
+  --button-secondary-color-hover: #f4f0ea;
+}
 .savings { font-size: 0.75rem; font-weight: 500; color: var(--pricing-accent); }
 
 .note { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem 1.5rem; padding: 1.25rem; color: var(--muted-foreground); font-size: 0.75rem; line-height: 1.6; }

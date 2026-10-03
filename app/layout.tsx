@@ -5,7 +5,10 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { ViewportBlur } from "@/components/layout/viewport-blur";
 
+import "react-3d-button/styles";
+
 import "./globals.css";
+import "@/styles/tokens/button-3d.css";
 
 const geistSans = localFont({
   src: "../node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2",

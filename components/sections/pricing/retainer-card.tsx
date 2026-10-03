@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Check, ChevronDown, Minus } from "lucide-react";
+import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade } from "@/components/ui/blur-fade";
 import type { RetainerSection } from "@/lib/constants";
 import styles from "./pricing.module.css";
@@ -59,7 +60,7 @@ export function RetainerCard({ plan, yearlyBilling, selected, active, delay }: R
       </div>
       <ul className={styles.features}>
         {included.map((item) => (
-          <li key={item.text}><Check aria-hidden className="size-4 shrink-0 text-orange" /><span>{item.text}</span></li>
+          <li key={item.text}><Check aria-hidden stroke="url(#strivn-orange-gradient)" className="size-4 shrink-0" /><span>{item.text}</span></li>
         ))}
       </ul>
       {excluded.length > 0 && (
@@ -72,9 +73,16 @@ export function RetainerCard({ plan, yearlyBilling, selected, active, delay }: R
           </ul>
         </details>
       )}
-      <Link href="/#contact" className={styles.planCta} aria-label={"Get started with " + plan.name + " care"}>
-        Get started <ArrowUpRight aria-hidden className="size-4" />
-      </Link>
+      <StrivnButton
+        variant="outline"
+        className={plan.featured ? `${styles.planCta} strivn-3d--white` : styles.planCta}
+        aria-label={"Get started with " + plan.name + " care"}
+        asChild
+      >
+        <Link href="/#contact">
+          Get started <ArrowUpRight aria-hidden className="size-4" />
+        </Link>
+      </StrivnButton>
     </BlurFade>
   );
 }
