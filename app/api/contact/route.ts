@@ -1,47 +1,52 @@
-import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { after, NextResponse } from "next/server";
 
-import {
-  contactSchema,
-  fieldErrorsFromZod,
-  type ContactErrorResponse,
-  type ContactSuccessResponse,
-} from "@/lib/contact";
-import { createNotionLead } from "@/lib/notion-leads";
+import { contactSchema, fieldErrorsFromZod, type ContactErrorResponse } from "@/lib/contact";
+import { LeadStoreError, saveLead } from "@/lib/lead-store";
+import { notifyLead } from "@/lib/lead-notifications";
 import { rateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
+const MAX_BODY_BYTES = 16_384;
 
-function clientIp(request: Request): string {
-  const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) {
-    return forwarded.split(",")[0]?.trim() || "unknown";
-  }
-  return request.headers.get("x-real-ip")?.trim() || "unknown";
-}
-
-function jsonError(
-  status: number,
-  body: ContactErrorResponse,
-  headers?: HeadersInit
-) {
+function jsonError(status: number, body: ContactErrorResponse, headers?: HeadersInit) {
   return NextResponse.json(body, { status, headers });
 }
 
 export async function POST(request: Request) {
-  const ip = clientIp(request);
+  const origin = request.headers.get("origin");
+  if (origin && origin !== new URL(request.url).origin) {
+    return jsonError(403, { ok: false, error: "Please submit from our website." });
+  }
+
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   const limited = rateLimit(`contact:${ip}`);
   if (!limited.success) {
-    return jsonError(
-      429,
-      { ok: false, error: "Too many requests. Please try again later." },
-      { "Retry-After": String(limited.retryAfterSec) }
-    );
+    return jsonError(429, { ok: false, error: "Too many requests. Please try again in 10 minutes." },
+      { "Retry-After": String(limited.retryAfterSec) });
+  }
+
+  if (!request.headers.get("content-type")?.includes("application/json")) {
+    return jsonError(415, { ok: false, error: "Please submit using the contact form." });
   }
 
   let body: unknown;
   try {
-    body = await request.json();
+    const reader = request.body?.getReader();
+    if (!reader) throw new Error("Missing body");
+    const chunks: Uint8Array[] = [];
+    let size = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > MAX_BODY_BYTES) {
+        await reader.cancel();
+        return jsonError(413, { ok: false, error: "Your message is too long. Please shorten it." });
+      }
+      chunks.push(value);
+    }
+    body = JSON.parse(Buffer.concat(chunks).toString("utf8"));
   } catch {
     return jsonError(400, { ok: false, error: "Invalid request body." });
   }
@@ -49,71 +54,28 @@ export async function POST(request: Request) {
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
     return jsonError(400, {
-      ok: false,
-      error: "Please check the form and try again.",
+      ok: false, error: "Please check the form and try again.",
       fieldErrors: fieldErrorsFromZod(parsed.error),
     });
   }
-
-  const { website, ...lead } = parsed.data;
-
-  // Honeypot tripped — pretend success without sending.
-  if (website && website.trim().length > 0) {
-    const ok: ContactSuccessResponse = { ok: true };
-    return NextResponse.json(ok);
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL;
-
-  if (!apiKey || !to || !from) {
-    console.error("Contact form missing RESEND_API_KEY / CONTACT_* env");
-    return jsonError(500, {
-      ok: false,
-      error: "Something went wrong. Please try again later.",
-    });
-  }
-
-  const resend = new Resend(apiKey);
+  if (parsed.data.website?.trim()) return NextResponse.json({ ok: true });
 
   try {
-    const { error } = await resend.emails.send({
-      from,
-      to: [to],
-      replyTo: lead.email,
-      subject: `New lead: ${lead.business}`,
-      text: [
-        `Name: ${lead.name}`,
-        `Email: ${lead.email}`,
-        `Business: ${lead.business}`,
-        "",
-        "What they need:",
-        lead.details,
-      ].join("\n"),
-    });
-
-    if (error) {
-      console.error("Resend error:", error);
-      return jsonError(500, {
-        ok: false,
-        error: "Something went wrong. Please try again later.",
-      });
+    const saved = await saveLead(parsed.data);
+    // Persist first. Notification failures must never discard a lead or invite duplicate submissions.
+    if (saved.created) after(() => notifyLead(parsed.data, saved.id));
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    if (error instanceof LeadStoreError && error.status === 429) {
+      return jsonError(429, { ok: false, error: "Too many requests. Please try again in 10 minutes." },
+        { "Retry-After": "600" });
     }
-  } catch (err) {
-    console.error("Resend send failed:", err);
-    return jsonError(500, {
-      ok: false,
-      error: "Something went wrong. Please try again later.",
+    if (error instanceof LeadStoreError && error.status === 409) {
+      return jsonError(409, { ok: false, error: "This request was already sent. Refresh the page to send a new message." });
+    }
+    console.error("Contact form could not save a lead", {
+      status: error instanceof LeadStoreError ? error.status : "unavailable",
     });
+    return jsonError(503, { ok: false, error: "We couldn’t save your message. Please try again, or email us directly." });
   }
-
-  try {
-    await createNotionLead(lead);
-  } catch (err) {
-    console.error("Notion lead create failed:", err);
-  }
-
-  const ok: ContactSuccessResponse = { ok: true };
-  return NextResponse.json(ok);
 }

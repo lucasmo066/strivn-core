@@ -6,6 +6,8 @@ export const contactSchema = z.object({
   business: z.string().trim().min(1, "Business is required").max(120),
   details: z.string().trim().min(1, "Tell us what you need").max(2000),
   website: z.string().max(200).optional(),
+  source: z.enum(["contact_form", "call_request"]).default("contact_form"),
+  requestId: z.uuid("Please refresh the page and try again."),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

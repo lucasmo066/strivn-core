@@ -12,7 +12,7 @@ export async function createNotionLead(
     return;
   }
 
-  const notion = new Client({ auth: token });
+  const notion = new Client({ auth: token, timeoutMs: 10_000 });
 
   await notion.pages.create({
     parent: { database_id: databaseId },
@@ -29,7 +29,7 @@ export async function createNotionLead(
         ],
       },
       Stage: {
-        select: { name: "Contacted" },
+        select: { name: "New" },
       },
       Source: {
         select: { name: "Website form" },
