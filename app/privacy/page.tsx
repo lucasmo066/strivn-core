@@ -97,9 +97,19 @@ export default function PrivacyPage() {
               </h2>
               <p>
                 Inquiries submitted through the Site may be stored in our CRM
-                or project tools (for example, email and Notion) so we can
+                database and project tools (Supabase, email, and optionally Notion) so we can
                 follow up. Access is limited to people who need it to respond
                 to your request or deliver services.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-display text-lg text-foreground">Scheduling a call</h2>
+              <p>
+                When online scheduling is available, choosing to open the calendar
+                loads Calendly. Information you provide there is processed by
+                Calendly to arrange your meeting, under its privacy and cookie
+                policies. You can also send a call request through our form.
               </p>
             </section>
 

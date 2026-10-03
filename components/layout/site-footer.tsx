@@ -49,7 +49,7 @@ export function SiteFooter() {
               </p>
             </div>
             <StrivnButton variant="primary" size="sm" arrow asChild>
-              <Link href="/#contact">{TAGLINES.heroCta}</Link>
+              <Link href="/book">{TAGLINES.heroCta}</Link>
             </StrivnButton>
           </div>
 

@@ -3,7 +3,7 @@ import { Client } from "@notionhq/client";
 import type { ContactInput } from "@/lib/contact";
 
 export async function createNotionLead(
-  lead: Pick<ContactInput, "name" | "email" | "business" | "details">
+  lead: Pick<ContactInput, "name" | "email" | "business" | "details" | "source">
 ): Promise<void> {
   const token = process.env.NOTION_TOKEN;
   const databaseId = process.env.NOTION_PIPELINE_DATABASE_ID;
@@ -38,7 +38,7 @@ export async function createNotionLead(
         rich_text: [
           {
             type: "text",
-            text: { content: lead.details.slice(0, 2000) },
+            text: { content: `${lead.source === "call_request" ? "Call requested\n\n" : ""}${lead.details}`.slice(0, 2000) },
           },
         ],
       },

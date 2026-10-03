@@ -21,7 +21,8 @@ A conversion-focused marketing site with a shared design system ("Hairline OS"),
 - Homepage sections (hero, services, work, pricing, contact)
 - Industry vertical expansion and deeper per-vertical pages
 - Pre-launch content and copy pass
-- Contact / lead capture flow
+- Connect production Supabase and owner notifications ([setup](docs/lead-intake.md))
+- Create the Calendly event and supply Sahara Grill’s live URL / page captures
 
 ## Tech stack
 
@@ -42,6 +43,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ```bash
 npm run build   # production build
 npm run lint    # ESLint
+npm test        # intake, PostgreSQL migration, and access tests (Node 20.9+)
 ```
 
 ## Project structure
@@ -59,3 +61,7 @@ lib/
 ## License
 
 Private — not for redistribution.
+
+## Lead capture and booking
+
+The contact form and `/book` call requests persist to Supabase before optional email and Notion notifications. Set up the database, owner inbox, and Calendly integration using [the lead-intake guide](docs/lead-intake.md). Production credentials and a real submission check are required before launch.

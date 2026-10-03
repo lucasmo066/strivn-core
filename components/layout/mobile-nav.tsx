@@ -44,7 +44,7 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
               className="mt-3 w-full"
               asChild
             >
-              <Link href="/#contact">{TAGLINES.navCta}</Link>
+              <Link href="/book">{TAGLINES.navCta}</Link>
             </StrivnButton>
           </SheetClose>
         </nav>

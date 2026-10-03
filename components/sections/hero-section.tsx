@@ -54,7 +54,7 @@ export function HeroSection() {
               className="w-3/4 sm:w-auto sm:min-w-[10.75rem]"
               asChild
             >
-              <Link href="/#contact">{TAGLINES.heroCta}</Link>
+              <Link href="/book">{TAGLINES.heroCta}</Link>
             </StrivnButton>
             <StrivnButton
               variant="outline"

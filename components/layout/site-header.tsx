@@ -136,7 +136,7 @@ export function SiteHeader() {
               className="hidden sm:inline-flex"
               asChild
             >
-              <Link href="/#contact">{TAGLINES.navCta}</Link>
+              <Link href="/book">{TAGLINES.navCta}</Link>
             </StrivnButton>
 
             <ThemeToggle />

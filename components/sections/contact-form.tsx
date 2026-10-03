@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { Input } from "@/components/ui/input";
 import type { ContactFieldErrors, ContactResponse } from "@/lib/contact";
-import { TAGLINES } from "@/lib/constants";
+import { BRAND } from "@/lib/constants";
+import { ContactSuccess } from "@/components/sections/contact-success";
 import { cn } from "@/lib/utils";
 
 const fields = ["name", "email", "business", "details"] as const;
@@ -40,7 +40,13 @@ function validationMessage(field: ContactField, value: string) {
   return undefined;
 }
 
-export function ContactForm() {
+interface ContactFormProps {
+  source?: "contact_form" | "call_request";
+}
+
+export function ContactForm({ source = "contact_form" }: ContactFormProps) {
+  const requestId = useRef<string | null>(null);
+  const submitting = useRef(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [business, setBusiness] = useState("");
@@ -81,6 +87,7 @@ export function ContactForm() {
     setValue: (nextValue: string) => void
   ) {
     setValue(value);
+    requestId.current = null;
 
     if (touched[field] || fieldErrors[field]) {
       setFieldError(field, value);
@@ -94,6 +101,7 @@ export function ContactForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
     setError(null);
     setTouched({ name: true, email: true, business: true, details: true });
 
@@ -117,6 +125,8 @@ export function ContactForm() {
       return;
     }
 
+    submitting.current = true;
+    requestId.current ??= crypto.randomUUID();
     setStatus("loading");
     setFieldErrors({});
 
@@ -124,7 +134,8 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, business, details, website }),
+        body: JSON.stringify({ name, email, business, details, website, source, requestId: requestId.current }),
+        signal: AbortSignal.timeout(20_000),
       });
 
       const data = (await res.json()) as ContactResponse;
@@ -144,26 +155,13 @@ export function ContactForm() {
     } catch {
       setError("Something went wrong. Please try again.");
       setStatus("error");
+    } finally {
+      submitting.current = false;
     }
   }
 
   if (status === "success") {
-    return (
-      <div
-        className="flex h-full flex-col rounded-[var(--radius-button)] border border-orange/30 bg-orange/5 p-6 sm:p-8"
-        role="status"
-        aria-live="polite"
-        tabIndex={-1}
-      >
-        <CheckCircle2 className="size-6 text-orange" aria-hidden />
-        <p className="mt-4 font-display text-xl tracking-wide text-foreground">
-          Thanks, we got it.
-        </p>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          We&apos;ll reply within one business day with next steps.
-        </p>
-      </div>
-    );
+    return <ContactSuccess source={source} />;
   }
 
   return (
@@ -171,6 +169,7 @@ export function ContactForm() {
       className="relative flex h-full flex-col space-y-6 rounded-[var(--radius-button)] border border-border bg-background p-5 shadow-soft sm:p-7 dark:bg-card"
       onSubmit={onSubmit}
       noValidate
+      aria-busy={loading}
       aria-describedby={error ? "contact-form-error" : undefined}
     >
       <div
@@ -197,6 +196,8 @@ export function ContactForm() {
           <Input
             id="contact-name"
             name="name"
+            maxLength={100}
+            required
             placeholder="Alex Rivera"
             autoComplete="name"
             value={name}
@@ -208,7 +209,7 @@ export function ContactForm() {
             className={fieldClass}
           />
           {fieldErrors.name ? (
-            <p id="contact-name-error" className="text-xs font-medium text-destructive">
+            <p id="contact-name-error" className="text-xs font-medium text-destructive dark:text-red-300">
               {fieldErrors.name}
             </p>
           ) : null}
@@ -220,6 +221,8 @@ export function ContactForm() {
           <Input
             id="contact-email"
             name="email"
+            maxLength={254}
+            required
             type="email"
             placeholder="alex@yourbusiness.com"
             autoComplete="email"
@@ -232,7 +235,7 @@ export function ContactForm() {
             className={fieldClass}
           />
           {fieldErrors.email ? (
-            <p id="contact-email-error" className="text-xs font-medium text-destructive">
+            <p id="contact-email-error" className="text-xs font-medium text-destructive dark:text-red-300">
               {fieldErrors.email}
             </p>
           ) : null}
@@ -246,6 +249,8 @@ export function ContactForm() {
         <Input
           id="contact-business"
           name="business"
+          maxLength={120}
+          required
           placeholder="Your business name"
           autoComplete="organization"
           value={business}
@@ -257,7 +262,7 @@ export function ContactForm() {
           className={fieldClass}
         />
         {fieldErrors.business ? (
-          <p id="contact-business-error" className="text-xs font-medium text-destructive">
+          <p id="contact-business-error" className="text-xs font-medium text-destructive dark:text-red-300">
             {fieldErrors.business}
           </p>
         ) : null}
@@ -265,13 +270,15 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <label htmlFor="contact-details" className={fieldLabelClass}>
-          What do you need?
+          {source === "call_request" ? "What would you like to discuss?" : "What do you need?"}
         </label>
         <textarea
           id="contact-details"
           name="details"
+          maxLength={2000}
+          required
           className={textareaClass}
-          placeholder="New website, redesign, or ongoing support"
+          placeholder={source === "call_request" ? "Tell us about your project and a few times you’re available (including your timezone)." : "New website, redesign, or ongoing support"}
           rows={3}
           value={details}
           onChange={(e) => onFieldChange("details", e.target.value, setDetails)}
@@ -281,7 +288,7 @@ export function ContactForm() {
           aria-describedby={fieldErrors.details ? "contact-details-error" : undefined}
         />
         {fieldErrors.details ? (
-          <p id="contact-details-error" className="text-xs font-medium text-destructive">
+          <p id="contact-details-error" className="text-xs font-medium text-destructive dark:text-red-300">
             {fieldErrors.details}
           </p>
         ) : null}
@@ -295,25 +302,26 @@ export function ContactForm() {
           disabled={loading}
           className="w-full sm:w-auto"
         >
-          {loading ? "Sending…" : TAGLINES.heroCta}
+          {loading ? "Sending…" : source === "call_request" ? "Request a call" : "Send project details"}
         </StrivnButton>
 
         {error ? (
-          <p id="contact-form-error" className="text-sm font-medium text-destructive" role="alert">
-            {error}
-          </p>
+          <div id="contact-form-error" className="space-y-2 text-sm" role="alert">
+            <p className="font-medium text-destructive dark:text-red-300">{error}</p>
+            <a href={`mailto:${BRAND.email}`} className="text-foreground underline underline-offset-4">Email {BRAND.email}</a>
+          </div>
         ) : null}
 
-        <p className="text-xs text-muted-foreground">
-          Prefer a calendar link?{" "}
-          <Link
-            href="#contact"
-            className="font-medium text-foreground underline-offset-4 hover:underline"
-          >
-            Ask in your message
-          </Link>
-          .
+        <p className="text-xs leading-relaxed text-muted-foreground">
+          We’ll use these details to respond to your inquiry. Read our{" "}
+          <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">privacy policy</Link>.
         </p>
+        {source === "contact_form" && (
+          <p className="border-t border-border pt-4 text-sm text-muted-foreground">
+            Prefer a conversation?{" "}
+            <Link href="/book" className="font-medium text-foreground underline underline-offset-4">Book a call</Link>
+          </p>
+        )}
       </div>
     </form>
   );

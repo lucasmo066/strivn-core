@@ -32,7 +32,7 @@ export function ServicesBento() {
           <h3 className="font-display text-xl leading-tight sm:text-2xl">
             Local roots.<br />A clear next step.
           </h3>
-          <Link href="/#contact" className={styles.contactLink}>
+          <Link href="/book" className={styles.contactLink}>
             Book a call <ArrowUpRight className="size-4" aria-hidden />
           </Link>
         </figcaption>

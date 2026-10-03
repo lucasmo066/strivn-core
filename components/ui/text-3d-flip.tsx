@@ -191,7 +191,7 @@ const Text3DFlip = ({
   }, [characters, transition, getStaggerDelay, rotationTransform, animate]);
 
   const playRef = useRef(handleHoverStart);
-  playRef.current = handleHoverStart;
+  useLayoutEffect(() => { playRef.current = handleHoverStart; }, [handleHoverStart]);
 
   useLayoutEffect(() => {
     const root = scope.current as HTMLElement | null;

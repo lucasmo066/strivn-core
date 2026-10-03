@@ -470,12 +470,6 @@ export const SAHARA_CASE_STUDY = {
   title: "Sahara Grill",
   category: "Restaurant",
   location: "Denver, CO",
-  metric: "Live / Lighthouse 98",
   summary:
-    "Menu-forward site built for local search and online ordering.",
-  body: [
-    "Sahara Grill needed a site that worked as hard as the kitchen: clear menus, fast mobile load, and a path from search to order without friction. The previous presence buried the food behind generic stock layouts and made it hard for Denver diners to see hours, specialties, or place an order on their phone. On mobile especially, the experience felt like a brochure instead of a storefront.",
-    "We rebuilt around the menu: dish photography, dietary callouts, and ordering CTAs above the fold on every key page. Structure was tuned for local search with neighborhood and cuisine cues, Google Business alignment, and page speed that holds a Lighthouse score in the high 90s. Copy and hierarchy answer the questions diners actually ask first: what’s good, what’s open, and how do I order.",
-    "The result is a live restaurant site that gets found, shows the food first, and moves hungry visitors into online ordering instead of stopping at “looks nice.” Performance stays high enough that a slow connection on the Front Range doesn’t cost the sale. That same foundation is what we bring to Front Range service businesses that need credibility and conversions, not templates.",
-  ],
+    "A menu-forward restaurant website focused on local discovery and online ordering.",
 } as const;

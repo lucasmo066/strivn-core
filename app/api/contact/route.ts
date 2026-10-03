@@ -15,8 +15,17 @@ function jsonError(status: number, body: ContactErrorResponse, headers?: Headers
 
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) {
-    return jsonError(403, { ok: false, error: "Please submit from our website." });
+  if (origin) {
+    // Next can use an internal hostname in request.url behind a reverse proxy.
+    // Host is the address the browser actually requested; browsers cannot forge it.
+    const internal = new URL(request.url);
+    const host = request.headers.get("host") ?? internal.host;
+    const forwardedProtocol = request.headers.get("x-forwarded-proto");
+    const protocol = forwardedProtocol === "https" || forwardedProtocol === "http"
+      ? `${forwardedProtocol}:` : internal.protocol;
+    if (origin !== `${protocol}//${host}`) {
+      return jsonError(403, { ok: false, error: "Please submit from our website." });
+    }
   }
 
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";

@@ -13,6 +13,7 @@ async function emailLead(lead: ContactInput, id: string): Promise<DeliveryStatus
 
   try {
     const resend = new Resend(apiKey);
+    const options = { idempotencyKey: `website-lead/${id}`, signal: AbortSignal.timeout(10_000) };
     const { error } = await resend.emails.send({
       from,
       to: [to],
@@ -25,7 +26,7 @@ async function emailLead(lead: ContactInput, id: string): Promise<DeliveryStatus
         ...(process.env.CONTACT_LEADS_URL ? [`Lead inbox: ${process.env.CONTACT_LEADS_URL}`] : []),
         `Lead ID: ${id}`,
       ].join("\n"),
-    }, { idempotencyKey: `website-lead/${id}` });
+    }, options);
     return error ? "failed" : "sent";
   } catch {
     return "failed";

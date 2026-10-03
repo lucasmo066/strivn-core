@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ type ScrollProgressProps = {
 
 export function ScrollProgress({ className, startAt = 0 }: ScrollProgressProps) {
   const startAtRef = useRef(startAt);
-  startAtRef.current = startAt;
+  useLayoutEffect(() => { startAtRef.current = startAt; }, [startAt]);
 
   const { scrollY } = useScroll();
   const progress = useTransform(scrollY, (latest) => {

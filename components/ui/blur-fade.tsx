@@ -54,7 +54,7 @@ function blurFadeVariants(
 
   return {
     hidden: {
-      [axis]: shift(direction, offset),
+      ...(axis === "x" ? { x: shift(direction, offset) } : { y: shift(direction, offset) }),
       opacity: 0,
       filter: `blur(${blur})`,
       transition: {
@@ -65,7 +65,7 @@ function blurFadeVariants(
       },
     },
     visible: {
-      [axis]: 0,
+      ...(axis === "x" ? { x: 0 } : { y: 0 }),
       opacity: 1,
       filter: "blur(0px)",
       transition: {
@@ -118,7 +118,7 @@ export function useRevealOnScroll(
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [enabled, amount, margin]);
+  }, [ref, enabled, amount, margin]);
 
   return shown;
 }
@@ -161,7 +161,7 @@ export function BlurFade({
 
   return (
     <MotionTag
-      ref={ref}
+      ref={(element) => { ref.current = element; }}
       id={id}
       data-blur-fade=""
       className={cn(className)}
