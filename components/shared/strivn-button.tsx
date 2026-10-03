@@ -2,6 +2,7 @@ import { cloneElement, isValidElement, type ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 import { BrandArrow } from "@/components/shared/brand-arrow";
+import { StripedPattern } from "@/components/ui/striped-pattern";
 import { cn } from "@/lib/utils";
 import type { StrivnButtonProps } from "@/types/design-system";
 
@@ -30,12 +31,18 @@ export function StrivnButton({
     />
   ) : null;
 
+  const stripes =
+    variant === "primary" ? (
+      <StripedPattern className="opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:opacity-100 group-focus-visible/btn:opacity-100 motion-reduce:transition-none" />
+    ) : null;
+
   let content = children;
 
-  if (asChild && arrow && isValidElement<{ children?: ReactNode }>(children)) {
+  if (asChild && isValidElement<{ children?: ReactNode }>(children)) {
     content = cloneElement(children, {
       children: (
         <>
+          {stripes}
           {children.props.children}
           {arrowEl}
         </>
@@ -44,6 +51,7 @@ export function StrivnButton({
   } else if (!asChild) {
     content = (
       <>
+        {stripes}
         {children}
         {arrowEl}
       </>
@@ -61,7 +69,7 @@ export function StrivnButton({
         size === "sm" && "h-9 px-4",
         size === "lg" && "h-12 px-6 text-base",
         variant === "primary" &&
-          "border-orange bg-orange text-white hover:border-orange hover:bg-orange/90 focus-visible:ring-orange/35",
+          "relative isolate overflow-hidden border-orange bg-orange text-white hover:border-orange hover:bg-orange/90 focus-visible:ring-orange/35",
         variant === "outline" &&
           "border-border bg-transparent hover:border-[var(--line-strong)] hover:bg-card",
         variant === "ghost" && "hover:bg-transparent hover:text-foreground",

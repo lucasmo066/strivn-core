@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/shared/container";
 import { BlurFade } from "@/components/ui/blur-fade";
+import { StripedPattern } from "@/components/ui/striped-pattern";
 import { HERO_PROOF } from "@/lib/constants";
 import { getHomepageIndustries } from "@/lib/industries";
 
@@ -83,9 +84,10 @@ export function SocialProofSection() {
               >
                 <Link
                   href={`/industries#${industry.slug}`}
-                  className="group flex h-full min-h-14 items-center justify-between gap-3 rounded-[var(--radius-button)] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground transition-hairline hover:border-orange/50 hover:bg-[color-mix(in_srgb,var(--orange)_5%,var(--background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
+                  className="group relative isolate flex h-full min-h-14 items-center justify-between gap-3 overflow-hidden rounded-[var(--radius-button)] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground transition-hairline hover:border-orange/50 hover:bg-[color-mix(in_srgb,var(--orange)_5%,var(--background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
                 >
-                  <span>{industry.shortName ?? industry.name}</span>
+                  <StripedPattern className="opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none" />
+                  <span className="relative">{industry.shortName ?? industry.name}</span>
                   <ArrowUpRight className="size-4 shrink-0 text-orange transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
                 </Link>
               </BlurFade>

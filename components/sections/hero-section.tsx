@@ -11,7 +11,7 @@ import styles from "./hero-section.module.css";
 
 export function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-paper dark:bg-void">
+    <section className="relative isolate min-h-dvh overflow-hidden bg-paper dark:bg-void">
       <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden>
         <Image
           src={HERO_MEDIA.still}

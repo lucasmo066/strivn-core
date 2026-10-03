@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Gauge, HeartHandshake, PenTool, ScanSearch } from "lucide-react";
 
 import { BlurFade } from "@/components/ui/blur-fade";
+import { StripedPattern } from "@/components/ui/striped-pattern";
 import { SERVICES, SERVICES_MEDIA } from "@/lib/constants";
 
 import { FrontRangeMedia } from "./services/front-range-media";
@@ -52,6 +53,7 @@ export function ServicesBento() {
               inViewAmount={0.7}
             >
               <Link href={href} className={styles.capabilityLink}>
+                <StripedPattern className={styles.stripes} />
                 <Icon className={styles.icon} strokeWidth={1.5} aria-hidden />
                 <div className={styles.copy}>
                   <h3 className="font-display text-lg leading-tight">
