@@ -1,5 +1,8 @@
+import Link from "next/link";
+
 import { Container } from "@/components/shared/container";
 import dots from "@/components/shared/dotted-section.module.css";
+import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { PRICING_COPY } from "@/lib/constants";
 
@@ -30,6 +33,9 @@ export function PricingSection() {
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               {PRICING_COPY.intro}
             </p>
+            <StrivnButton variant="outline" className="mt-6" asChild>
+              <Link href="/pricing">How pricing works</Link>
+            </StrivnButton>
           </BlurFade>
           <BuildPackages />
           <RetainerPlans />

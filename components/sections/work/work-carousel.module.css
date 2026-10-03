@@ -29,18 +29,19 @@
 .control:not([aria-disabled="true"]):active { transform: scale(0.96); }
 
 .track {
+  --lane: calc(100% - var(--bleed-right, 0px));
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: calc(100% - 1.25rem);
+  grid-auto-columns: calc(var(--lane) - 1.25rem);
   align-items: stretch;
   gap: 0.75rem;
-  margin: -4px;
-  padding: 4px 4px 1rem;
+  margin-block: -4px;
+  padding: 4px 0 1rem 4px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: 4px;
   overscroll-behavior-x: contain;
-  border-radius: var(--radius-button);
+  border-radius: var(--radius-button) 0 0 var(--radius-button);
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
 }
@@ -59,20 +60,35 @@
   color: var(--foreground);
 }
 
-.scroller { position: relative; }
+.section { container-type: inline-size; }
+
+.scroller {
+  /* Cover the container padding and any centering margin out to the viewport. */
+  --bleed-right: max(
+    0px,
+    calc((100cqw - min(100cqw, var(--container-max))) / 2 + var(--container-px))
+  );
+  position: relative;
+  width: calc(100% + var(--bleed-right));
+  margin-right: calc(var(--bleed-right) * -1);
+}
 
 .edgeBlur {
   position: absolute;
   z-index: 2;
-  top: 0;
+  top: -4px;
   right: 0;
-  bottom: 0;
+  bottom: -4px;
   width: 4.5rem;
+  width: calc(4.5rem + var(--bleed-right, 0px));
   pointer-events: none;
-  mask-image: linear-gradient(to right, transparent, #000 70%);
+  opacity: 1;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 calc(4.5rem * 0.85));
+  mask-image: linear-gradient(to right, transparent, #000 calc(4.5rem * 0.85));
+  transition: opacity 320ms var(--ease-out);
 }
-
-.edgeBlur[data-hidden] { opacity: 0; }
 
 .stripes {
   z-index: 0;
@@ -155,17 +171,17 @@
 @media (prefers-reduced-motion: reduce) {
   .track { scroll-behavior: auto; }
   .control, .destination svg { transform: none !important; }
-  .stripes { transition: none; }
+  .stripes, .edgeBlur { transition: none; }
 }
 
 @media (min-width: 640px) {
-  .track { grid-auto-columns: 72%; gap: 1rem; }
+  .track { grid-auto-columns: calc(var(--lane) * 0.72); gap: 1rem; }
   .details { padding: 1.5rem; }
 }
 
 @media (min-width: 1024px) {
   .track {
     --work-peek: 9.5rem;
-    grid-auto-columns: calc((100% - 2 * 1rem - var(--work-peek)) / 2);
+    grid-auto-columns: calc((var(--lane) - 2 * 1rem - var(--work-peek)) / 2);
   }
 }

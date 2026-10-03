@@ -6,10 +6,11 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { WORK_ITEMS } from "@/lib/constants";
 
 import { WorkCarousel } from "./work/work-carousel";
+import styles from "./work/work-carousel.module.css";
 
 export function WorkSection() {
   return (
-    <section id="work" className="section-y border-t border-border bg-muted/40">
+    <section id="work" className={`${styles.section} section-y border-t border-border bg-muted/40`}>
       <Container className="space-y-6">
         <WorkCarousel projects={WORK_ITEMS}>
           <BlurFade inViewAmount={0.8}>

@@ -442,6 +442,29 @@ export const PRICING_QUICK_REF = [
   { label: "Payment due", value: "7 days", suffix: "from invoice" },
 ] as const;
 
+export const PRICING_PROCESS = [
+  {
+    title: "Tell us about the project",
+    body: "Book a call or send a note through the contact form. Bring an idea, an existing website, or a problem you want to solve.",
+  },
+  {
+    title: "Agree a fixed package and scope",
+    body: `Scope is fixed per tier. Extra pages are ${EXTRA_PAGE_PRICE} each.`,
+  },
+  {
+    title: "Pay half to start",
+    body: "50% deposit at signing. The balance is 50% at launch, due within 7 days of the invoice.",
+  },
+  {
+    title: "Launch in weeks",
+    body: "A typical build launches in 2–4 weeks.",
+  },
+  {
+    title: "Care after launch, if you want it",
+    body: "An optional monthly care plan covers hosting and included edits. Medium and large edits are estimated in writing and approved before any extra charge.",
+  },
+] as const;
+
 export const PRICING_COPY = {
   intro: `Website builds ${PRICING_FLOOR.replace("From ", "from ")}. Clear tiers, fixed scope.`,
   buildSub:

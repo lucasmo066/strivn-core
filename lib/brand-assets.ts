@@ -10,8 +10,8 @@ export const BRAND_ASSETS = {
     whiteOnBlack: `${PACK}/strivn_full_logo_white_on_black.png`,
   },
   wordmark: {
-    black: `${PACK}/strivn_wordmark_black_transparent.png`,
-    white: `${PACK}/strivn_wordmark_white_transparent.png`,
+    black: `${PACK}/strivn_wordmark_black.png`,
+    white: `${PACK}/strivn_wordmark_white.png`,
   },
   cube: {
     black: `${PACK}/strivn_cube_mark_black_transparent.png`,

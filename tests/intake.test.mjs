@@ -81,6 +81,15 @@ test('success means the inquiry is saved before notifications run', async () => 
   assert.equal((await rows())[0].email_status, 'not_configured');
 });
 
+test('the migration is safe after the SQL Editor has already applied it', async () => {
+  const migration = await readFile(
+    new URL('../supabase/migrations/202610030001_website_leads.sql', import.meta.url),
+    'utf8',
+  );
+  await db.exec(migration);
+  assert.equal((await rows()).length, 0);
+});
+
 test('database outage or missing configuration never reports success', async () => {
   databaseDown = true;
   assert.equal((await submit(valid())).status, 503);

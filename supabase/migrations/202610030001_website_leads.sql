@@ -1,7 +1,7 @@
 -- Website intake is server-only. Future portal access needs explicit tenant policies.
 begin;
 
-create table public.website_leads (
+create table if not exists public.website_leads (
   id uuid primary key default gen_random_uuid(),
   request_id uuid not null unique,
   created_at timestamptz not null default now(),
@@ -17,14 +17,14 @@ create table public.website_leads (
   notion_status text not null default 'pending' check (notion_status in ('pending', 'sent', 'failed', 'not_configured'))
 );
 
-create index website_leads_inbox on public.website_leads (status, created_at desc);
-create index website_leads_email_recent on public.website_leads (lower(email), created_at desc);
+create index if not exists website_leads_inbox on public.website_leads (status, created_at desc);
+create index if not exists website_leads_email_recent on public.website_leads (lower(email), created_at desc);
 
 alter table public.website_leads enable row level security;
 revoke all on public.website_leads from anon, authenticated;
 grant select, insert, update, delete on public.website_leads to service_role;
 
-create function public.submit_website_lead(
+create or replace function public.submit_website_lead(
   p_request_id uuid, p_name text, p_email text, p_business text, p_details text, p_source text
 ) returns jsonb
 language plpgsql

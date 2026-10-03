@@ -29,7 +29,7 @@ export function Logo({
       <Image
         src={WORDMARK[tone]}
         alt="strivn"
-        width={415}
+        width={348}
         height={195}
         {...loadingProps}
         className={cn("h-7 w-auto", className)}
