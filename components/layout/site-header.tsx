@@ -16,6 +16,11 @@ import { cn } from "@/lib/utils";
 
 const HEADER_SOLID_AT = 4;
 
+function isCurrentPage(pathname: string, href: string) {
+  if (href.includes("#")) return false;
+  return href === pathname || pathname.startsWith(`${href}/`);
+}
+
 type MobileNavProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -120,7 +125,11 @@ export function SiteHeader() {
                 ) : null}
                 <Link
                   href={link.href}
-                  className="rounded-xl px-2.5 py-1.5 transition-hairline hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
+                  aria-current={isCurrentPage(pathname, link.href) ? "page" : undefined}
+                  className={cn(
+                    "rounded-xl px-2.5 py-1.5 transition-hairline hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40",
+                    isCurrentPage(pathname, link.href) && "text-foreground"
+                  )}
                 >
                   {link.label}
                 </Link>

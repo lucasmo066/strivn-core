@@ -176,7 +176,7 @@ export const VALUE_WORDS = [
 export const NAV_LINKS = [
   { label: "Work", href: "/#work" },
   { label: "Services", href: "/#services" },
-  { label: "Pricing", href: "/#pricing" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 

@@ -74,19 +74,21 @@
 }
 
 .edgeBlur {
+  --edge: 3.75rem;
   position: absolute;
   z-index: 2;
   top: -4px;
   right: 0;
   bottom: -4px;
-  width: 4.5rem;
-  width: calc(4.5rem + var(--bleed-right, 0px));
+  width: var(--edge);
+  width: calc(var(--edge) + var(--bleed-right, 0px));
   pointer-events: none;
   opacity: 1;
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 calc(4.5rem * 0.85));
-  mask-image: linear-gradient(to right, transparent, #000 calc(4.5rem * 0.85));
+  background: color-mix(in srgb, var(--background) 42%, transparent);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 calc(var(--edge) * 0.72));
+  mask-image: linear-gradient(to right, transparent, #000 calc(var(--edge) * 0.72));
   transition: opacity 320ms var(--ease-out);
 }
 

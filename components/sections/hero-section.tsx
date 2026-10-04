@@ -18,7 +18,7 @@ export function HeroSection() {
           alt=""
           fill
           priority
-          quality={100}
+          quality={75}
           placeholder="blur"
           blurDataURL={HERO_MEDIA.blur}
           sizes="(min-width: 1920px) 1920px, 100vw"
@@ -61,7 +61,7 @@ export function HeroSection() {
               className="w-3/4 sm:w-auto sm:min-w-[10.75rem]"
               asChild
             >
-              <Link href="/#pricing">See pricing</Link>
+              <Link href="/pricing">See pricing</Link>
             </StrivnButton>
           </div>
         </div>
