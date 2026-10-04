@@ -18,7 +18,11 @@ async function databaseRequest(path: string, init: RequestInit) {
   const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new LeadStoreError(503);
 
-  const response = await fetch(`${url.replace(/\/$/, "")}/rest/v1/${path}`, {
+  // The dashboard sometimes presents the Data API endpoint rather than the
+  // project origin. Accept either without creating /rest/v1/rest/v1 URLs.
+  const baseUrl = url.replace(/\/rest\/v1\/?$/, "").replace(/\/$/, "");
+
+  const response = await fetch(`${baseUrl}/rest/v1/${path}`, {
     ...init,
     headers: {
       apikey: key,

@@ -81,6 +81,12 @@ test('success means the inquiry is saved before notifications run', async () => 
   assert.equal((await rows())[0].email_status, 'not_configured');
 });
 
+test('accepts the Data API URL copied from the Supabase dashboard', async () => {
+  process.env.SUPABASE_URL = 'https://database.test/rest/v1/';
+  assert.equal((await submit(valid())).status, 200);
+  assert.equal((await rows()).length, 1);
+});
+
 test('the migration is safe after the SQL Editor has already applied it', async () => {
   const migration = await readFile(
     new URL('../supabase/migrations/202610030001_website_leads.sql', import.meta.url),
