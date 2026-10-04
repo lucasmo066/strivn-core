@@ -35,7 +35,7 @@ export default function TermsPage() {
               <p>
                 These Terms of Use (“Terms”) govern your access to and use of
                 the {BRAND.name} website at{" "}
-                <span className="text-foreground">strivn.com</span> (the
+                <span className="text-foreground">strivnagency.com</span> (the
                 “Site”). By using the Site, you agree to these Terms. If you
                 do not agree, do not use the Site.
               </p>

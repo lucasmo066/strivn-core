@@ -483,7 +483,7 @@ export const BRAND = {
   name: "Strivn",
   location: "Front Range, CO",
   basedIn: "Based in Colorado's Front Range",
-  email: "hello@strivn.com",
+  email: "hello@strivnagency.com",
   phone: "(720) 555-0142",
   phoneHref: "tel:+17205550142",
   accent: "#FF5C00",

@@ -36,7 +36,7 @@ export default function PrivacyPage() {
                 {BRAND.name} (“we,” “us,” or “our”) is a web design and
                 development studio based in {BRAND.location}. This policy
                 explains how we handle information when you visit{" "}
-                <span className="text-foreground">strivn.com</span> (the
+                <span className="text-foreground">strivnagency.com</span> (the
                 “Site”) or contact us about our services.
               </p>
             </section>
