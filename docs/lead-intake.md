@@ -12,7 +12,7 @@
 
 Use the Supabase Table Editor as the private lead inbox until the admin portal exists. Sort by `created_at` descending, filter `status = new`, and move a lead through `new → contacted → qualified → won` (or `closed`). Use `follow_up_at` for the next action date and `notes` for context. `call_request` identifies people waiting to arrange a call; a form submission does not confirm a meeting.
 
-Set `RESEND_API_KEY`, `CONTACT_FROM_EMAIL` (a verified sender), and `CONTACT_TO_EMAIL` to receive owner notifications. Replying addresses the prospect. Set `CONTACT_LEADS_URL` to the private Supabase table or Notion inbox you want linked in those emails. No prospective-client confirmation email is sent automatically.
+For production email, add and verify `notify.strivnagency.com` in Resend, then create a sending-only API key restricted to that domain. Set `RESEND_API_KEY`, `CONTACT_FROM_EMAIL=Strivn Leads <leads@notify.strivnagency.com>`, and `CONTACT_TO_EMAIL=lucas@strivnagency.com` in Vercel. Replying addresses the prospect. Set `CONTACT_LEADS_URL` to the private Supabase table you want linked in those emails. No prospective-client confirmation email is sent automatically. Keep Resend's DNS records alongside Google Workspace's records; do not replace the root-domain Google MX records.
 
 Saving a lead is the success condition. Email and Notion run after the response; failure cannot erase the lead. Inspect `email_status` and `notion_status`: `sent`, `failed`, `not_configured`, or `pending`. Notifications are best effort, with no scheduled retry worker yet. A long-running `pending` status can mean the process stopped; handle the lead from the inbox. A browser retry reuses the request ID and does not create a second lead or resend notifications.
 
@@ -32,7 +32,15 @@ Notion is an optional copy. The Supabase row remains the source of truth. Call r
 
 The `/book` page embeds the configured Calendly event so visitors can select a date and finish booking without leaving Strivn. `CALENDLY_URL` can override the default public event link for a deployment. The page also provides a direct Calendly link as a fallback. If no valid URL is available, it clearly offers a call request instead.
 
-Bookings made directly in Calendly are managed in Calendly and its connected calendar. They are not automatically copied into Supabase. Add a verified Calendly webhook when the future admin dashboard needs a unified booking view; never treat a browser event as a confirmed booking.
+The signed webhook endpoint is `/api/webhooks/calendly`. Apply `supabase/migrations/202610040001_calendly_bookings.sql`, then set the same random `CALENDLY_WEBHOOK_SIGNING_KEY` in Vercel and in the Calendly webhook subscription. The endpoint rejects bad signatures, timestamps older than three minutes, malformed payloads, and oversized requests. It stores `invitee.created` and `invitee.canceled` events idempotently and reuses the owner email notification after the database write.
+
+After the production domain and Vercel variable are active, create a Calendly personal access token with `users:read`, `scheduled_events:read`, and `webhooks:write`. Keep it local and run `npm run calendly:webhook` with these temporary environment variables:
+
+- `CALENDLY_PERSONAL_ACCESS_TOKEN`: the one-time setup token; do not add it to Vercel.
+- `CALENDLY_WEBHOOK_SIGNING_KEY`: the same random secret stored in Vercel.
+- `CALENDLY_WEBHOOK_URL=https://strivnagency.com/api/webhooks/calendly`
+
+The script subscribes the current Calendly user to `invitee.created` and `invitee.canceled`. A browser-side Calendly success event is only presentation; the signed webhook remains the source of truth.
 
 ## Verify before launch
 
@@ -42,6 +50,7 @@ Bookings made directly in Calendly are managed in Calendly and its connected cal
 - Notification errors still leave a saved lead, with delivery status available to the owner.
 - Anonymous and authenticated client API keys cannot read or write leads or call the intake function.
 - A real Calendly test booking reaches the correct connected calendar and appears in Calendly, then cancel that test through Calendly.
+- The booking creates one `calendly_booking` row, cancellation updates that same row, and each state change sends an owner email.
 
 The route has an in-memory IP guard and a durable database limit of five saved inquiries per email per ten minutes. The IP guard is per process and depends on a trusted hosting proxy; it is not global bot protection. Add hosting-level rate limits or a verified challenge if traffic warrants it.
 

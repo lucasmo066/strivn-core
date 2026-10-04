@@ -1,9 +1,13 @@
 import { Client } from "@notionhq/client";
 
-import type { ContactInput } from "@/lib/contact";
-
 export async function createNotionLead(
-  lead: Pick<ContactInput, "name" | "email" | "business" | "details" | "source">
+  lead: {
+    name: string;
+    email: string;
+    business: string;
+    details: string;
+    source: "contact_form" | "call_request" | "calendly_booking";
+  }
 ): Promise<void> {
   const token = process.env.NOTION_TOKEN;
   const databaseId = process.env.NOTION_PIPELINE_DATABASE_ID;

@@ -13,6 +13,10 @@ export interface SavedLead {
   created: boolean;
 }
 
+export interface SyncedCalendlyLead extends SavedLead {
+  changed: boolean;
+}
+
 async function databaseRequest(path: string, init: RequestInit) {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -68,4 +72,45 @@ export async function updateLeadDelivery(
     headers: { Prefer: "return=minimal" },
     body: JSON.stringify(delivery),
   });
+}
+
+export async function syncCalendlyLead(lead: {
+  name: string;
+  email: string;
+  business: string;
+  details: string;
+  eventUri: string;
+  inviteeUri: string;
+  startAt: string;
+  endAt: string;
+  timezone: string;
+  bookingStatus: "active" | "canceled";
+  canceledAt: string | null;
+  cancelReason: string | null;
+}): Promise<SyncedCalendlyLead> {
+  const response = await databaseRequest("rpc/sync_calendly_lead", {
+    method: "POST",
+    body: JSON.stringify({
+      p_name: lead.name,
+      p_email: lead.email,
+      p_business: lead.business,
+      p_details: lead.details,
+      p_event_uri: lead.eventUri,
+      p_invitee_uri: lead.inviteeUri,
+      p_start_at: lead.startAt,
+      p_end_at: lead.endAt,
+      p_timezone: lead.timezone,
+      p_booking_status: lead.bookingStatus,
+      p_canceled_at: lead.canceledAt,
+      p_cancel_reason: lead.cancelReason,
+    }),
+  });
+  const saved: unknown = await response.json();
+  if (
+    !saved || typeof saved !== "object" || !("id" in saved) ||
+    typeof saved.id !== "string" || !("created" in saved) ||
+    typeof saved.created !== "boolean" || !("changed" in saved) ||
+    typeof saved.changed !== "boolean"
+  ) throw new LeadStoreError(502);
+  return saved as SyncedCalendlyLead;
 }

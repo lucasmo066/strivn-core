@@ -6,8 +6,15 @@ import { createNotionLead } from "./notion-leads";
 import { updateLeadDelivery } from "./lead-store";
 
 type DeliveryStatus = "sent" | "failed" | "not_configured";
+type LeadNotification = Pick<ContactInput, "name" | "email" | "business" | "details"> & {
+  source: ContactInput["source"] | "calendly_booking";
+};
 
-async function emailLead(lead: ContactInput, id: string): Promise<DeliveryStatus> {
+async function emailLead(
+  lead: LeadNotification,
+  id: string,
+  subjectPrefix?: string,
+): Promise<DeliveryStatus> {
   const { RESEND_API_KEY: apiKey, CONTACT_TO_EMAIL: to, CONTACT_FROM_EMAIL: from } = process.env;
   if (!apiKey || !to || !from) return "not_configured";
 
@@ -18,7 +25,7 @@ async function emailLead(lead: ContactInput, id: string): Promise<DeliveryStatus
       from,
       to: [to],
       replyTo: lead.email,
-      subject: `${lead.source === "call_request" ? "Call request" : "New project inquiry"}: ${lead.business.replace(/[\r\n]/g, " ")}`,
+      subject: `${subjectPrefix ?? (lead.source === "call_request" ? "Call request" : "New project inquiry")}: ${lead.business.replace(/[\r\n]/g, " ")}`,
       text: [
         `Name: ${lead.name}`, `Email: ${lead.email}`, `Business: ${lead.business}`,
         `Source: ${lead.source}`, "", lead.details, "",
@@ -33,7 +40,7 @@ async function emailLead(lead: ContactInput, id: string): Promise<DeliveryStatus
   }
 }
 
-async function mirrorLead(lead: ContactInput): Promise<DeliveryStatus> {
+async function mirrorLead(lead: LeadNotification): Promise<DeliveryStatus> {
   if (!process.env.NOTION_TOKEN || !process.env.NOTION_PIPELINE_DATABASE_ID) {
     return "not_configured";
   }
@@ -45,8 +52,15 @@ async function mirrorLead(lead: ContactInput): Promise<DeliveryStatus> {
   }
 }
 
-export async function notifyLead(lead: ContactInput, id: string) {
-  const [email_status, notion_status] = await Promise.all([emailLead(lead, id), mirrorLead(lead)]);
+export async function notifyLead(
+  lead: LeadNotification,
+  id: string,
+  options: { subjectPrefix?: string; mirrorToNotion?: boolean } = {},
+) {
+  const [email_status, notion_status] = await Promise.all([
+    emailLead(lead, id, options.subjectPrefix),
+    options.mirrorToNotion === false ? Promise.resolve("not_configured" as const) : mirrorLead(lead),
+  ]);
   if (email_status === "failed" || notion_status === "failed") {
     console.error("Lead saved; a notification needs follow-up", { id, email_status, notion_status });
   }

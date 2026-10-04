@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
-import { randomUUID } from 'node:crypto';
+import { createHmac, randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { after, before, beforeEach, test } from 'node:test';
 import { PGlite } from '@electric-sql/pglite';
 import { POST } from '../app/api/contact/route.ts';
+import { POST as calendlyWebhook } from '../app/api/webhooks/calendly/route.ts';
 import { drainAfter, pendingAfter } from './next-server.mjs';
 import { calendlyUrl, DEFAULT_CALENDLY_URL } from '../lib/booking.ts';
 import { saharaSiteUrl } from '../lib/sahara.ts';
@@ -12,6 +13,10 @@ const db = new PGlite();
 const originalFetch = globalThis.fetch;
 const originalEnv = { ...process.env };
 const rpc = 'select public.submit_website_lead($1::uuid, $2, $3, $4, $5, $6) as result';
+const calendlyRpc = `select public.sync_calendly_lead(
+  $1, $2, $3, $4, $5, $6, $7::timestamptz, $8::timestamptz, $9, $10,
+  $11::timestamptz, $12
+) as result`;
 let databaseDown = false;
 let emailFails = false;
 let emailCalls = [];
@@ -28,9 +33,49 @@ async function submit(lead, options = {}) {
 }
 async function rows() { return (await db.query('select * from public.website_leads')).rows; }
 
+function calendlyBody(event = 'invitee.created') {
+  return JSON.stringify({
+    event,
+    created_at: '2026-10-04T01:00:00.000Z',
+    created_by: 'https://api.calendly.com/users/host',
+    payload: {
+      email: 'prospect@example.com',
+      name: 'Prospect Person',
+      uri: 'https://api.calendly.com/scheduled_events/event-1/invitees/invitee-1',
+      timezone: 'America/Denver',
+      questions_and_answers: [{ question: 'Business name', answer: 'Prospect Co' }],
+      cancellation: event === 'invitee.canceled'
+        ? { canceled_at: '2026-10-04T01:05:00.000Z', reason: 'Schedule changed' }
+        : null,
+      scheduled_event: {
+        uri: 'https://api.calendly.com/scheduled_events/event-1',
+        name: 'Website Strategy Call',
+        start_time: '2026-10-10T18:00:00.000Z',
+        end_time: '2026-10-10T18:30:00.000Z',
+      },
+    },
+  });
+}
+
+async function submitCalendly(event = 'invitee.created', options = {}) {
+  const body = options.body ?? calendlyBody(event);
+  const timestamp = options.timestamp ?? Math.floor(Date.now() / 1000);
+  const signature = options.signature ?? createHmac('sha256', process.env.CALENDLY_WEBHOOK_SIGNING_KEY)
+    .update(`${timestamp}.${body}`).digest('hex');
+  return calendlyWebhook(new Request('https://strivn.test/api/webhooks/calendly', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'calendly-webhook-signature': `t=${timestamp},v1=${signature}`,
+    },
+    body,
+  }));
+}
+
 before(async () => {
   await db.exec('create role anon; create role authenticated; create role service_role bypassrls; grant usage on schema public to anon, authenticated, service_role;');
   await db.exec(await readFile(new URL('../supabase/migrations/202610030001_website_leads.sql', import.meta.url), 'utf8'));
+  await db.exec(await readFile(new URL('../supabase/migrations/202610040001_calendly_bookings.sql', import.meta.url), 'utf8'));
   globalThis.fetch = async (input, init) => {
     const url = new URL(input);
     if (url.hostname === 'api.resend.com') {
@@ -50,6 +95,15 @@ before(async () => {
         return Response.json({}, { status: error.code === 'PT429' ? 429 : error.code === 'PT409' ? 409 : 500 });
       }
     }
+    if (url.pathname.endsWith('/rpc/sync_calendly_lead')) {
+      const p = JSON.parse(init.body);
+      const result = await db.query(calendlyRpc, [
+        p.p_name, p.p_email, p.p_business, p.p_details, p.p_event_uri,
+        p.p_invitee_uri, p.p_start_at, p.p_end_at, p.p_timezone,
+        p.p_booking_status, p.p_canceled_at, p.p_cancel_reason,
+      ]);
+      return Response.json(result.rows[0].result);
+    }
     assert.equal(init.method, 'PATCH');
     const p = JSON.parse(init.body);
     await db.query('update public.website_leads set email_status = $1, notion_status = $2 where id = $3', [p.email_status, p.notion_status, url.searchParams.get('id').slice(3)]);
@@ -62,6 +116,7 @@ beforeEach(async () => {
   databaseDown = false; emailFails = false; emailCalls = [];
   process.env.SUPABASE_URL = 'https://database.test';
   process.env.SUPABASE_SECRET_KEY = 'sb_secret_test';
+  process.env.CALENDLY_WEBHOOK_SIGNING_KEY = 'calendly-signing-test';
   for (const key of ['RESEND_API_KEY', 'CONTACT_TO_EMAIL', 'CONTACT_FROM_EMAIL', 'NOTION_TOKEN', 'NOTION_PIPELINE_DATABASE_ID', 'SUPABASE_SERVICE_ROLE_KEY']) delete process.env[key];
 });
 after(async () => {
@@ -173,6 +228,39 @@ test('owner email succeeds without needing Notion', async () => {
   await drainAfter();
   assert.equal((await rows())[0].email_status, 'sent');
   assert.equal((await rows())[0].notion_status, 'not_configured');
+});
+
+test('signed Calendly bookings sync once and cancellations update the same lead', async () => {
+  assert.equal((await submitCalendly()).status, 200);
+  let leads = await rows();
+  assert.equal(leads.length, 1);
+  assert.equal(leads[0].source, 'calendly_booking');
+  assert.equal(leads[0].business, 'Prospect Co');
+  assert.equal(leads[0].booking_status, 'active');
+  assert.equal(leads[0].invitee_timezone, 'America/Denver');
+  assert.equal(pendingAfter(), 1);
+  await drainAfter();
+  assert.equal((await rows())[0].email_status, 'not_configured');
+
+  assert.equal((await submitCalendly()).status, 200);
+  assert.equal((await rows()).length, 1);
+  assert.equal(pendingAfter(), 0);
+
+  assert.equal((await submitCalendly('invitee.canceled')).status, 200);
+  await drainAfter();
+  leads = await rows();
+  assert.equal(leads.length, 1);
+  assert.equal(leads[0].booking_status, 'canceled');
+  assert.equal(leads[0].cancel_reason, 'Schedule changed');
+});
+
+test('Calendly webhooks reject invalid, stale, oversized and unconfigured requests', async () => {
+  assert.equal((await submitCalendly('invitee.created', { signature: '0'.repeat(64) })).status, 401);
+  assert.equal((await submitCalendly('invitee.created', { timestamp: Math.floor(Date.now() / 1000) - 181 })).status, 401);
+  assert.equal((await submitCalendly('invitee.created', { body: 'x'.repeat(262145) })).status, 413);
+  delete process.env.CALENDLY_WEBHOOK_SIGNING_KEY;
+  assert.equal((await submitCalendly('invitee.created', { signature: '0'.repeat(64) })).status, 503);
+  assert.equal((await rows()).length, 0);
 });
 
 test('anonymous and client roles cannot access intake; service role can', async () => {
