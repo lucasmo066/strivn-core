@@ -106,10 +106,10 @@ export default function PrivacyPage() {
             <section className="space-y-3">
               <h2 className="font-display text-lg text-foreground">Scheduling a call</h2>
               <p>
-                When online scheduling is available, choosing to open the calendar
-                loads Calendly. Information you provide there is processed by
+                The booking calendar on our booking page loads Calendly.
+                Information you provide there is processed by
                 Calendly to arrange your meeting, under its privacy and cookie
-                policies. You can also send a call request through our form.
+                policies. You can also send project details through our form.
               </p>
             </section>
 

@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/sections/contact-form";
 import { BookingCalendar } from "@/components/shared/booking-calendar";
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
-import { calendlyUrl } from "@/lib/booking";
+import { calendlyUrl, DEFAULT_CALENDLY_URL } from "@/lib/booking";
 import { BRAND } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function BookingPage() {
-  const url = calendlyUrl(process.env.CALENDLY_URL);
+  const url = calendlyUrl(process.env.CALENDLY_URL || DEFAULT_CALENDLY_URL);
   return (
     <main className="pt-28 sm:pt-36">
       <Container className="pb-20 sm:pb-28">

@@ -5,7 +5,7 @@ import { after, before, beforeEach, test } from 'node:test';
 import { PGlite } from '@electric-sql/pglite';
 import { POST } from '../app/api/contact/route.ts';
 import { drainAfter, pendingAfter } from './next-server.mjs';
-import { calendlyUrl } from '../lib/booking.ts';
+import { calendlyUrl, DEFAULT_CALENDLY_URL } from '../lib/booking.ts';
 import { saharaSiteUrl } from '../lib/sahara.ts';
 
 const db = new PGlite();
@@ -198,6 +198,7 @@ test('scheduling and portfolio URLs reject unsafe destinations', () => {
   assert.equal(calendlyUrl('https://calendly.com.evil.test/event'), null);
   assert.equal(calendlyUrl('https://user:password@calendly.com/event'), null);
   assert.equal(calendlyUrl('https://calendly.com/studio/intro'), 'https://calendly.com/studio/intro');
+  assert.equal(calendlyUrl(DEFAULT_CALENDLY_URL), 'https://calendly.com/lucas-strivnagency/30min');
   assert.equal(saharaSiteUrl('javascript:alert(1)'), null);
   assert.equal(saharaSiteUrl('https://example.com'), 'https://example.com/');
 });

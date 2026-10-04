@@ -30,7 +30,7 @@ Notion is an optional copy. The Supabase row remains the source of truth. Call r
 
 ## Calendar setup
 
-Create a Calendly event, connect the calendar where you manage calls, configure availability, timezone, meeting location, and notifications, then set `CALENDLY_URL` to the real profile/event link. The `/book` page will offer the embedded calendar and a direct link. Visitors load Calendly only when they choose to show available times. If no valid URL is set, the page clearly offers a call request instead.
+The `/book` page embeds the configured Calendly event so visitors can select a date and finish booking without leaving Strivn. `CALENDLY_URL` can override the default public event link for a deployment. The page also provides a direct Calendly link as a fallback. If no valid URL is available, it clearly offers a call request instead.
 
 Bookings made directly in Calendly are managed in Calendly and its connected calendar. They are not automatically copied into Supabase. Add a verified Calendly webhook when the future admin dashboard needs a unified booking view; never treat a browser event as a confirmed booking.
 

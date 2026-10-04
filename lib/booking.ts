@@ -1,3 +1,5 @@
+export const DEFAULT_CALENDLY_URL = "https://calendly.com/lucas-strivnagency/30min";
+
 /** Only a specific Calendly profile/event can be embedded. Never expose secret configuration. */
 export function calendlyUrl(value: string | undefined): string | null {
   if (!value) return null;
