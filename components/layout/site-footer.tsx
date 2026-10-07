@@ -5,6 +5,7 @@ import { Container } from "@/components/shared/container";
 import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { ScrollGlass } from "@/components/shared/scroll-glass";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BRAND, LEGAL_LINKS, NAV_LINKS, TAGLINES } from "@/lib/constants";
 
@@ -19,7 +20,9 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <ScrollGlass as="footer" atBottom id="site-footer" className="bg-muted/40 text-foreground">
+    <ScrollGlass as="footer" atBottom id="site-footer" className="footer-glass relative overflow-hidden bg-muted/40 text-foreground">
+      <BackgroundBeams className="footer-beams" />
+      <div className="relative z-10">
       <div className="h-1 bg-orange" aria-hidden />
       <Container className="py-14 md:py-18">
         <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
@@ -98,6 +101,7 @@ export function SiteFooter() {
           </nav>
         </div>
       </Container>
+      </div>
     </ScrollGlass>
   );
 }
