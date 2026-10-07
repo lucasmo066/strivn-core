@@ -73,25 +73,6 @@
   margin-right: calc(var(--bleed-right) * -1);
 }
 
-.edgeBlur {
-  --edge: 3.75rem;
-  position: absolute;
-  z-index: 2;
-  top: -4px;
-  right: 0;
-  bottom: -4px;
-  width: var(--edge);
-  width: calc(var(--edge) + var(--bleed-right, 0px));
-  pointer-events: none;
-  opacity: 1;
-  background: color-mix(in srgb, var(--background) 42%, transparent);
-  -webkit-backdrop-filter: blur(22px);
-  backdrop-filter: blur(22px);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 calc(var(--edge) * 0.72));
-  mask-image: linear-gradient(to right, transparent, #000 calc(var(--edge) * 0.72));
-  transition: opacity 320ms var(--ease-out);
-}
-
 .stripes {
   z-index: 0;
   color: var(--orange);
@@ -140,8 +121,8 @@
   font-size: 0.75rem;
   color: var(--muted-foreground);
 }
-.live, .planned { font-weight: 500; color: var(--foreground); }
-.live { text-decoration: underline var(--orange); text-underline-offset: 0.35em; }
+.live, .planned { font-weight: 500; }
+.live { letter-spacing: 0.04em; }
 .planned { padding: 0.125rem 0.5rem; border: 1px solid var(--border); border-radius: 6px; }
 .destination {
   display: flex;
@@ -173,7 +154,7 @@
 @media (prefers-reduced-motion: reduce) {
   .track { scroll-behavior: auto; }
   .control, .destination svg { transform: none !important; }
-  .stripes, .edgeBlur { transition: none; }
+  .stripes { transition: none; }
 }
 
 @media (min-width: 640px) {

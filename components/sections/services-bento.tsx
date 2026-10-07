@@ -3,6 +3,7 @@ import { ArrowUpRight, Gauge, HeartHandshake, PenTool, ScanSearch } from "lucide
 
 import { BlurFade } from "@/components/ui/blur-fade";
 import { StripedPattern } from "@/components/ui/striped-pattern";
+import { SectionLink } from "@/components/shared/section-link";
 import { SERVICES, SERVICES_MEDIA } from "@/lib/constants";
 
 import { FrontRangeMedia } from "./services/front-range-media";
@@ -11,9 +12,9 @@ import styles from "./services/services-bento.module.css";
 
 const capabilityLinks = [
   { icon: PenTool, href: "/#work" },
-  { icon: Gauge, href: "/#pricing" },
+  { icon: Gauge, href: "/process" },
   { icon: ScanSearch, href: "/industries" },
-  { icon: HeartHandshake, href: "/#pricing" },
+  { icon: HeartHandshake, href: "/pricing#care" },
 ] as const;
 
 export function ServicesBento() {
@@ -29,7 +30,7 @@ export function ServicesBento() {
       >
         <FrontRangeMedia {...SERVICES_MEDIA} />
         <figcaption className={styles.caption}>
-          <h3 className="font-display text-xl leading-tight sm:text-2xl">
+          <h3 className="text-orange-gradient font-display text-xl leading-tight sm:text-2xl">
             Local roots.<br />A clear next step.
           </h3>
           <Link href="/book" className={styles.contactLink}>
@@ -52,11 +53,11 @@ export function ServicesBento() {
               duration={1}
               inViewAmount={0.7}
             >
-              <Link href={href} className={styles.capabilityLink}>
+              <SectionLink href={href} className={styles.capabilityLink}>
                 <StripedPattern className={styles.stripes} />
                 <Icon className={styles.icon} strokeWidth={1.5} aria-hidden />
                 <div className={styles.copy}>
-                  <h3 className="font-display text-lg leading-tight">
+                  <h3 className="text-orange-gradient font-display text-lg leading-tight">
                     {service.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -64,7 +65,7 @@ export function ServicesBento() {
                   </p>
                 </div>
                 <ArrowUpRight className={styles.arrow} aria-hidden />
-              </Link>
+              </SectionLink>
             </BlurFade>
           );
         })}

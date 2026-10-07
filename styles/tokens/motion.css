@@ -25,6 +25,19 @@
   .transition-lift {
     transition: none;
   }
+
+  .scroll-glass { transition: none; }
+}
+
+@keyframes stripe-settle {
+  0%, 28% { opacity: 0.85; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-revealed="true"] .reveal-stripes {
+    animation: stripe-settle 1.25s ease-out var(--reveal-delay, 0s) backwards;
+  }
 }
 
 @media (prefers-reduced-motion: reduce), (scripting: none) {

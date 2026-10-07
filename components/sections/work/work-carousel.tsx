@@ -14,14 +14,6 @@ import styles from "./work-carousel.module.css";
 
 type Direction = "previous" | "next" | "first" | "last";
 
-function edgeOpacity(track: HTMLDivElement) {
-  const max = Math.max(0, track.scrollWidth - track.clientWidth);
-  if (max <= 2) return 0;
-  const remaining = Math.max(0, max - track.scrollLeft);
-  const fadeDistance = Math.min(220, Math.max(72, max * 0.45));
-  return Math.min(1, remaining / fadeDistance);
-}
-
 function slidePositions(track: HTMLDivElement) {
   const max = Math.max(0, track.scrollWidth - track.clientWidth);
   const left = track.getBoundingClientRect().left;
@@ -43,7 +35,6 @@ export function WorkCarousel({
   children: ReactNode;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const blurRef = useRef<HTMLDivElement>(null);
   const [bounds, setBounds] = useState({ start: true, end: projects.length < 2 });
   const [announcement, setAnnouncement] = useState("");
 
@@ -52,7 +43,6 @@ export function WorkCarousel({
     if (!track) return;
     const start = track.scrollLeft <= 2;
     const end = track.scrollWidth - track.clientWidth - track.scrollLeft <= 2;
-    if (blurRef.current) blurRef.current.style.opacity = edgeOpacity(track).toFixed(3);
     setBounds((previous) =>
       previous.start === start && previous.end === end ? previous : { start, end }
     );
@@ -108,7 +98,7 @@ export function WorkCarousel({
   }
 
   return (
-    <div role="region" aria-roledescription="carousel" aria-labelledby="work-heading">
+    <div data-scroll-content role="region" aria-roledescription="carousel" aria-labelledby="work-heading">
       <div className={styles.toolbar}>
         <div>{children}</div>
         <div className={styles.controls}>
@@ -166,7 +156,7 @@ export function WorkCarousel({
                   <p>
                     {project.category}{project.location ? ` / ${project.location}` : ""}
                   </p>
-                  <span className={project.status === "Live" ? styles.live : styles.planned}>
+                  <span className={project.status === "Live" ? `${styles.live} text-orange-gradient font-pixel` : styles.planned}>
                     {project.status}
                   </span>
                 </div>
@@ -195,6 +185,7 @@ export function WorkCarousel({
                 delay={index === 1 ? 0.14 : 0}
                 duration={1.05}
                 offset={10}
+                blur="0px"
                 inViewAmount={0.34}
               >
                 {project.href ? (
@@ -213,7 +204,6 @@ export function WorkCarousel({
           );
         })}
         </div>
-        <div ref={blurRef} className={styles.edgeBlur} aria-hidden="true" />
       </div>
       <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announcement}</p>
     </div>

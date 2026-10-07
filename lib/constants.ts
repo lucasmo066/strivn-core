@@ -129,7 +129,7 @@ export const WORK_ITEMS: readonly WorkProject[] = [
     id: "sahara-grill",
     title: "Sahara Grill",
     category: "Restaurant",
-    location: "Denver, CO",
+    location: "Woodstock, GA",
     description: "Menu-forward site built for local search and online ordering.",
     status: "Live",
     media: {
@@ -176,6 +176,7 @@ export const VALUE_WORDS = [
 export const NAV_LINKS = [
   { label: "Work", href: "/#work" },
   { label: "Services", href: "/#services" },
+  { label: "Process", href: "/process" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/#contact" },
 ] as const;
@@ -492,7 +493,7 @@ export const BRAND = {
 export const SAHARA_CASE_STUDY = {
   title: "Sahara Grill",
   category: "Restaurant",
-  location: "Denver, CO",
+  location: "Woodstock, GA",
   summary:
     "A menu-forward restaurant website focused on local discovery and online ordering.",
 } as const;

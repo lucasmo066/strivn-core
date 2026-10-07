@@ -17,7 +17,7 @@ export function RetainerPlans() {
   const [selectedPlan, setSelectedPlan] = useState(RETAINER_PLANS[0].name);
 
   return (
-    <section className={styles.careSection} aria-labelledby="care-plans-heading">
+    <section id="care" className={styles.careSection} aria-labelledby="care-plans-heading">
       <BlurFade className={styles.sectionHeader} direction="up" inViewAmount={0.6}>
         <h3 id="care-plans-heading" className="font-display text-xl">Monthly care plans</h3>
         <p className={styles.sectionDescription}>Hosting, maintenance, and growth support after launch.</p>

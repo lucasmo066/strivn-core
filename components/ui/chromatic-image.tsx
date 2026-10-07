@@ -19,15 +19,11 @@ export type ChromaticImageProps = {
   sizes?: string;
   objectPosition?: string;
   onError?: () => void;
+  animateOnReveal?: boolean;
+  touchEnabled?: boolean;
 };
 
 const INTERACTION_QUERY = "(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)";
-function subscribeInteraction(callback: () => void) {
-  const query = window.matchMedia(INTERACTION_QUERY);
-  query.addEventListener("change", callback);
-  return () => query.removeEventListener("change", callback);
-}
-const getInteraction = () => window.matchMedia(INTERACTION_QUERY).matches;
 const getServerInteraction = () => false;
 
 export function ChromaticImage({
@@ -43,11 +39,22 @@ export function ChromaticImage({
   sizes = "100vw",
   objectPosition = "50% 50%",
   onError,
+  animateOnReveal = false,
+  touchEnabled = false,
 }: ChromaticImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loadedImage, setLoadedImage] = useState<{ src: string; url: string } | null>(null);
-  const interactive = useSyncExternalStore(subscribeInteraction, getInteraction, getServerInteraction);
+  const interactionQuery = touchEnabled ? "(prefers-reduced-motion: no-preference)" : INTERACTION_QUERY;
+  const interactive = useSyncExternalStore(
+    (callback) => {
+      const query = window.matchMedia(interactionQuery);
+      query.addEventListener("change", callback);
+      return () => query.removeEventListener("change", callback);
+    },
+    () => window.matchMedia(interactionQuery).matches,
+    getServerInteraction,
+  );
   const textureUrl = loadedImage?.src === src ? loadedImage.url : null;
 
   useEffect(() => {
@@ -70,6 +77,8 @@ export function ChromaticImage({
         chromaticShift,
         tilt,
         objectPosition,
+        animateOnReveal,
+        touchEnabled,
       });
     });
 
@@ -77,7 +86,7 @@ export function ChromaticImage({
       disposed = true;
       detach();
     };
-  }, [backgroundColor, displacement, chromaticShift, textureUrl, tilt, zoom, objectPosition, interactive]);
+  }, [backgroundColor, displacement, chromaticShift, textureUrl, tilt, zoom, objectPosition, interactive, animateOnReveal, touchEnabled]);
 
   return (
     <div

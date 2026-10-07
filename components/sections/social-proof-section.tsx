@@ -37,7 +37,8 @@ export function SocialProofSection() {
                 duration={0.98}
                 inViewAmount={0.9}
               >
-                <div className="grid h-full min-h-16 min-w-0 grid-cols-[1fr_auto] items-center gap-3 rounded-[var(--radius-button)] border border-border bg-background px-3 py-4 min-[440px]:grid-cols-1 min-[440px]:grid-rows-[2rem_auto] min-[440px]:gap-2 min-[440px]:text-center">
+                <div className="relative isolate grid h-full min-h-16 min-w-0 grid-cols-[1fr_auto] items-center gap-3 overflow-hidden rounded-[var(--radius-button)] border border-border bg-background px-3 py-4 min-[440px]:grid-cols-1 min-[440px]:grid-rows-[2rem_auto] min-[440px]:gap-2 min-[440px]:text-center">
+                  <StripedPattern className="reveal-stripes opacity-0" />
                   <dt className="text-xs leading-4 text-muted-foreground">
                     {stat.label}
                   </dt>
@@ -86,7 +87,7 @@ export function SocialProofSection() {
                   href={`/industries#${industry.slug}`}
                   className="group relative isolate flex h-full min-h-14 items-center justify-between gap-3 overflow-hidden rounded-[var(--radius-button)] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground transition-hairline hover:border-orange/50 hover:bg-[color-mix(in_srgb,var(--orange)_5%,var(--background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
                 >
-                  <StripedPattern className="opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none" />
+                  <StripedPattern className="reveal-stripes opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none" />
                   <span className="relative">{industry.shortName ?? industry.name}</span>
                   <ArrowUpRight className="size-4 shrink-0 text-orange transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
                 </Link>

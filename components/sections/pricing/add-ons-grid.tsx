@@ -18,7 +18,7 @@ export function AddOnsGrid() {
   const [expanded, setExpanded] = useState<string | null>(addOnGroups[0][0]);
 
   return (
-    <section className={styles.addonsSection} aria-labelledby="addons-heading">
+    <section id="add-ons" className={styles.addonsSection} aria-labelledby="addons-heading">
       <BlurFade className={styles.sectionHeader} direction="left" inViewAmount={0.7}>
         <h3 id="addons-heading" className="font-display text-xl">Add-ons</h3>
         <p className={styles.sectionDescription}>{PRICING_COPY.addonSub}</p>

@@ -93,7 +93,7 @@ export function SiteHeader() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out",
           overHero
-            ? "border-white/55 bg-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-xl backdrop-saturate-150 dark:border-white/15 dark:bg-void/45 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+            ? "nav-glass"
             : "border-border bg-paper/95 backdrop-blur-md dark:border-white/10 dark:bg-void/95",
           !overHero && (!atTop || menuOpen) && "shadow-soft"
         )}
@@ -142,7 +142,7 @@ export function SiteHeader() {
               variant="primary"
               size="sm"
               arrow
-              className="hidden sm:inline-flex"
+              className="hidden sm:inline-flex md:hidden lg:inline-flex"
               asChild
             >
               <Link href="/book">{TAGLINES.navCta}</Link>

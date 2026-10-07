@@ -50,6 +50,7 @@ export function HeroSection() {
           <div className="flex w-full flex-col items-center gap-5 pt-2 sm:flex-row sm:items-center sm:justify-start sm:gap-6">
             <StrivnButton
               variant="primary"
+              touchFeedback
               arrow
               className="w-3/4 sm:w-auto sm:min-w-[10.75rem]"
               asChild
@@ -58,6 +59,7 @@ export function HeroSection() {
             </StrivnButton>
             <StrivnButton
               variant="outline"
+              touchFeedback
               className="w-3/4 sm:w-auto sm:min-w-[10.75rem]"
               asChild
             >

@@ -16,7 +16,7 @@ export function BuildPackages() {
   const [selectedPlan, setSelectedPlan] = useState<string>(BUILD_PACKAGES[0].name);
 
   return (
-    <section aria-labelledby="build-plans-heading">
+    <section id="builds" aria-labelledby="build-plans-heading">
       <BlurFade className={styles.sectionHeader} inViewAmount={0.75}>
         <h3 id="build-plans-heading" className="font-display text-xl">Website builds</h3>
         <p className={styles.sectionDescription}>One-time project fees. A clear scope for every stage.</p>
@@ -68,8 +68,8 @@ export function BuildPackages() {
                 aria-label={"Get started with " + pkg.name}
                 asChild
               >
-                <Link href="/#contact">
-                  Get started <ArrowUpRight aria-hidden className="size-4" />
+                <Link href={`/start?package=${pkg.name.toLowerCase()}`}>
+                  Choose {pkg.name} <ArrowUpRight aria-hidden className="size-4" />
                 </Link>
               </StrivnButton>
             </BlurFade>

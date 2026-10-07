@@ -29,7 +29,7 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-[min(100%,18rem)] p-0">
+      <SheetContent side="right" className="nav-glass w-[min(100%,18rem)] p-0" aria-describedby={undefined}>
         <SheetHeader className="border-b border-border">
           <SheetTitle className="font-display tracking-wide">
             Menu

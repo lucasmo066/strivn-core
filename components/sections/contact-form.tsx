@@ -50,10 +50,11 @@ function validationMessage(field: ContactField, value: string) {
 
 interface ContactFormProps {
   source?: "contact_form" | "call_request";
+  selectionSummary?: string;
 }
 
-export function ContactForm({ source = "contact_form" }: ContactFormProps) {
-  const requestId = useRef<string | null>(null);
+export function ContactForm({ source = "contact_form", selectionSummary }: ContactFormProps) {
+  const requestId = useRef<{ id: string; selection?: string } | null>(null);
   const submitting = useRef(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -118,6 +119,10 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
       if (message) errors[field] = message;
       return errors;
     }, {});
+    const detailsLimit = 2000 - (selectionSummary ? selectionSummary.length + 2 : 0);
+    if (details.length > detailsLimit) {
+      clientErrors.details = `Keep your project details under ${detailsLimit} characters so we can include your package selection.`;
+    }
 
     if (Object.keys(clientErrors).length > 0) {
       setFieldErrors(clientErrors);
@@ -134,7 +139,9 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
     }
 
     submitting.current = true;
-    requestId.current ??= crypto.randomUUID();
+    if (!requestId.current || requestId.current.selection !== selectionSummary) {
+      requestId.current = { id: crypto.randomUUID(), selection: selectionSummary };
+    }
     setStatus("loading");
     setFieldErrors({});
 
@@ -142,7 +149,7 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, business, details, website, source, requestId: requestId.current }),
+        body: JSON.stringify({ name, email, business, details: selectionSummary ? `${selectionSummary}\n\n${details}` : details, website, source, requestId: requestId.current.id }),
         signal: AbortSignal.timeout(20_000),
       });
 
@@ -287,7 +294,7 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
         <textarea
           id="contact-details"
           name="details"
-          maxLength={2000}
+          maxLength={2000 - (selectionSummary ? selectionSummary.length + 2 : 0)}
           required
           className={textareaClass}
           placeholder={source === "call_request" ? "Tell us about your project and a few times you’re available (including your timezone)." : "New website, redesign, or ongoing support"}
@@ -314,7 +321,7 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
           disabled={loading}
           className="w-full sm:w-auto"
         >
-          {loading ? "Sending…" : source === "call_request" ? "Request a call" : "Send project details"}
+          {loading ? "Sending…" : selectionSummary ? "Send package request" : source === "call_request" ? "Request a call" : "Send project details"}
         </StrivnButton>
 
         {error ? (

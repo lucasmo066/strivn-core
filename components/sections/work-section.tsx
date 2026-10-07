@@ -10,10 +10,10 @@ import styles from "./work/work-carousel.module.css";
 
 export function WorkSection() {
   return (
-    <section id="work" className={`${styles.section} section-y border-t border-border bg-muted/40`}>
+    <section id="work" tabIndex={-1} aria-labelledby="work-heading" className={`${styles.section} section-y border-t border-border bg-muted/40 focus:outline-none`}>
       <Container className="space-y-6">
         <WorkCarousel projects={WORK_ITEMS}>
-          <BlurFade inViewAmount={0.8}>
+          <BlurFade inViewAmount={0.8} blur="0px">
             <h2
               id="work-heading"
               className="bg-gradient-to-r from-[#ff7540] via-[#9f3400] to-[#752200] bg-clip-text font-display text-[clamp(2.05rem,4.6vw,3.15rem)] leading-[1.05] text-transparent dark:from-[#f45600] dark:via-[#f95900] dark:to-[#ff8f67]"
@@ -26,7 +26,7 @@ export function WorkSection() {
           </BlurFade>
         </WorkCarousel>
 
-        <BlurFade className="w-fit" direction="up" inViewAmount={0.9}>
+        <BlurFade className="w-fit" direction="up" inViewAmount={0.9} blur="0px">
           <Link
             href="/#contact"
             className="inline-flex min-h-11 items-center gap-2 rounded-md text-sm font-medium text-foreground underline decoration-orange underline-offset-4 hover:decoration-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"

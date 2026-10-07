@@ -1,6 +1,6 @@
 "use client";
 
-import { type AriaAttributes, type ReactNode, type RefObject, useEffect, useRef, useState } from "react";
+import { type AriaAttributes, type CSSProperties, type ReactNode, type RefObject, useEffect, useRef, useState } from "react";
 import { motion, type UseInViewOptions, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
@@ -68,6 +68,7 @@ function blurFadeVariants(
       ...(axis === "x" ? { x: 0 } : { y: 0 }),
       opacity: 1,
       filter: "blur(0px)",
+      transitionEnd: { filter: "none" },
       transition: {
         delay: 0.04 + delay,
         duration,
@@ -164,6 +165,8 @@ export function BlurFade({
       ref={(element) => { ref.current = element; }}
       id={id}
       data-blur-fade=""
+      data-revealed={visible}
+      style={{ "--reveal-delay": `${0.04 + delay}s` } as CSSProperties}
       className={cn(className)}
       initial="hidden"
       animate={visible ? "visible" : "hidden"}

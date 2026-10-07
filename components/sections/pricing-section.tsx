@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/shared/container";
 import dots from "@/components/shared/dotted-section.module.css";
@@ -6,10 +7,7 @@ import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { PRICING_COPY } from "@/lib/constants";
 
-import { AddOnsGrid } from "./pricing/add-ons-grid";
 import { BuildPackages } from "./pricing/build-packages";
-import { OverageAndQuickRef } from "./pricing/overage-quick-ref";
-import { RetainerPlans } from "./pricing/retainer-plans";
 import styles from "./pricing/pricing.module.css";
 
 export function PricingSection() {
@@ -38,9 +36,24 @@ export function PricingSection() {
             </StrivnButton>
           </BlurFade>
           <BuildPackages />
-          <RetainerPlans />
-          <OverageAndQuickRef />
-          <AddOnsGrid />
+          <div className="grid border-t border-border sm:grid-cols-2">
+            <Link href="/pricing#care" className="group flex items-center justify-between gap-4 p-6 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-orange sm:p-8">
+              <div>
+                <p className="font-display text-lg">Care after launch</p>
+                <p className="mt-2 text-sm text-muted-foreground">Optional plans from $200/month.</p>
+                <p className="mt-3 text-sm font-medium text-orange">Compare care plans</p>
+              </div>
+              <ArrowUpRight className="size-5 shrink-0 text-orange" aria-hidden />
+            </Link>
+            <Link href="/pricing#add-ons" className="group flex items-center justify-between gap-4 border-t border-border p-6 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-orange sm:border-t-0 sm:border-l sm:p-8">
+              <div>
+                <p className="font-display text-lg">Make it yours</p>
+                <p className="mt-2 text-sm text-muted-foreground">SEO, branding, booking, and more.</p>
+                <p className="mt-3 text-sm font-medium text-orange">Explore add-ons & pricing</p>
+              </div>
+              <ArrowUpRight className="size-5 shrink-0 text-orange" aria-hidden />
+            </Link>
+          </div>
         </div>
       </Container>
     </section>

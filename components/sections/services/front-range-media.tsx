@@ -42,6 +42,8 @@ export function FrontRangeMedia({
           displacement={0.035}
           chromaticShift={0.009}
           tilt={0.14}
+          animateOnReveal
+          touchEnabled
           onError={() => setFailedSrc(src)}
         />
       ) : (

@@ -3,6 +3,7 @@ import { Container } from "@/components/shared/container";
 import dots from "@/components/shared/dotted-section.module.css";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ChromaticImage } from "@/components/ui/chromatic-image";
+import { ScrollGlass } from "@/components/shared/scroll-glass";
 import { BRAND, TAGLINES } from "@/lib/constants";
 
 export function ContactSection() {
@@ -46,7 +47,9 @@ export function ContactSection() {
           </BlurFade>
 
           <BlurFade className="h-full" delay={0.12} inViewAmount={0.35}>
-            <ContactForm />
+            <ScrollGlass className="contact-glass h-full rounded-[var(--radius-button)] border border-border bg-background dark:bg-card">
+              <ContactForm />
+            </ScrollGlass>
           </BlurFade>
         </div>
       </Container>

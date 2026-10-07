@@ -8,6 +8,8 @@ type ChromaticGlOptions = {
   chromaticShift: number;
   tilt: number;
   objectPosition: string;
+  animateOnReveal: boolean;
+  touchEnabled: boolean;
 };
 
 const VERTEX_SHADER = `
@@ -114,6 +116,8 @@ export function attachChromaticGl({
   chromaticShift,
   tilt,
   objectPosition,
+  animateOnReveal,
+  touchEnabled,
 }: ChromaticGlOptions) {
   const gl = canvas.getContext("webgl", {
     alpha: false,
@@ -204,6 +208,10 @@ export function attachChromaticGl({
   let previousTime = performance.now();
   let visible = false;
   let contextFailed = false;
+  let revealReady = false;
+  let revealPlayed = false;
+  let revealTimer = 0;
+  let pulseTimer = 0;
 
   const resize = () => {
     if (contextFailed || gl.isContextLost()) return;
@@ -272,10 +280,42 @@ export function attachChromaticGl({
   };
 
   const resetPointer = () => {
+    window.clearTimeout(pulseTimer);
     pointerTarget.x = 0.5;
     pointerTarget.y = 0.5;
     progressTarget = 0;
     requestRender();
+  };
+
+  const pulse = (event?: PointerEvent) => {
+    if (!visible || !imageLoaded || disposed) return;
+    window.clearTimeout(pulseTimer);
+    const bounds = container.getBoundingClientRect();
+    pointerTarget.x = event ? (event.clientX - bounds.left) / bounds.width : 0.76;
+    pointerTarget.y = event ? 1 - (event.clientY - bounds.top) / bounds.height : 0.62;
+    if (Math.abs(pointerTarget.x - 0.5) + Math.abs(pointerTarget.y - 0.5) < 0.2) {
+      pointerTarget.x = 0.76;
+      pointerTarget.y = 0.62;
+    }
+    progressTarget = 1;
+    requestRender();
+    pulseTimer = window.setTimeout(resetPointer, 480);
+  };
+
+  const reveal = () => {
+    if (!animateOnReveal || !revealReady || !imageLoaded || revealPlayed) return;
+    revealPlayed = true;
+    revealTimer = window.setTimeout(() => pulse(), 550);
+  };
+
+  const onPointerDown = (event: PointerEvent) => {
+    if (!touchEnabled || event.pointerType === "mouse") return;
+    window.clearTimeout(revealTimer);
+    revealPlayed = true;
+    pulse(event);
+  };
+  const onPointerLeave = (event: PointerEvent) => {
+    if (event.pointerType !== "touch") resetPointer();
   };
 
   const image = new window.Image();
@@ -299,11 +339,14 @@ export function attachChromaticGl({
     gl.uniform1f(uniforms.imageAspect, image.naturalWidth / image.naturalHeight);
     imageLoaded = true;
     requestRender();
+    reveal();
   };
   image.onerror = () => { canvas.style.opacity = "0"; };
   image.src = textureUrl;
 
   const suspend = () => {
+    window.clearTimeout(revealTimer);
+    window.clearTimeout(pulseTimer);
     cancelAnimationFrame(frame);
     isRendering = false;
     progress = progressTarget = 0;
@@ -313,9 +356,15 @@ export function attachChromaticGl({
   };
   const intersectionObserver = new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
-    if (visible) requestRender();
-    else suspend();
-  });
+    revealReady = entry.intersectionRatio >= 0.65;
+    if (visible) {
+      requestRender();
+      reveal();
+    } else {
+      revealPlayed = false;
+      suspend();
+    }
+  }, { threshold: [0, 0.65] });
   intersectionObserver.observe(container);
   const onVisibilityChange = () => {
     if (document.hidden) suspend();
@@ -340,13 +389,16 @@ export function attachChromaticGl({
   });
   resizeObserver.observe(container);
   container.addEventListener("pointermove", updatePointer, { passive: true });
-  container.addEventListener("pointerleave", resetPointer, { passive: true });
+  container.addEventListener("pointerdown", onPointerDown, { passive: true });
+  container.addEventListener("pointerleave", onPointerLeave, { passive: true });
   container.addEventListener("pointercancel", resetPointer, { passive: true });
   resize();
   requestRender();
 
   return () => {
     disposed = true;
+    window.clearTimeout(revealTimer);
+    window.clearTimeout(pulseTimer);
     cancelAnimationFrame(frame);
     image.onload = image.onerror = null;
     intersectionObserver.disconnect();
@@ -355,7 +407,8 @@ export function attachChromaticGl({
     canvas.removeEventListener("webglcontextrestored", onContextRestored);
     resizeObserver.disconnect();
     container.removeEventListener("pointermove", updatePointer);
-    container.removeEventListener("pointerleave", resetPointer);
+    container.removeEventListener("pointerdown", onPointerDown);
+    container.removeEventListener("pointerleave", onPointerLeave);
     container.removeEventListener("pointercancel", resetPointer);
     canvas.style.transform = "";
     canvas.style.opacity = "0";

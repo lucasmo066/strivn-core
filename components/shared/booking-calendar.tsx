@@ -1,14 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Script from "next/script";
 import { ArrowUpRight, CheckCircle2, Clock3 } from "lucide-react";
 
 interface BookingCalendarProps {
   url: string;
 }
 
+declare global {
+  interface Window {
+    Calendly?: { initInlineWidget: (options: { url: string; parentElement: HTMLElement; resize: boolean }) => void };
+  }
+}
+
 export function BookingCalendar({ url }: BookingCalendarProps) {
   const [booked, setBooked] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [calendarLoaded, setCalendarLoaded] = useState(false);
+  const [slowLoading, setSlowLoading] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const embed = new URL(url);
   embed.searchParams.set("hide_gdpr_banner", "0");
   embed.searchParams.set("hide_event_type_details", "1");
@@ -16,10 +28,30 @@ export function BookingCalendar({ url }: BookingCalendarProps) {
   embed.searchParams.set("utm_source", "strivnagency.com");
   embed.searchParams.set("utm_medium", "website");
   embed.searchParams.set("utm_campaign", "book_call");
+  const embedUrl = embed.toString();
+
+  useEffect(() => {
+    if (calendarLoaded) return;
+    const timer = window.setTimeout(() => setSlowLoading(true), 12_000);
+    return () => window.clearTimeout(timer);
+  }, [calendarLoaded]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!ready || !container || !window.Calendly) return;
+    window.Calendly.initInlineWidget({ url: embedUrl, parentElement: container, resize: true });
+    const iframe = container.querySelector("iframe");
+    if (iframe) iframe.title = "Schedule a 30-minute website strategy call with Strivn";
+    return () => container.replaceChildren();
+  }, [ready, embedUrl]);
 
   useEffect(() => {
     function handleCalendlyEvent(event: MessageEvent) {
       if (event.origin !== "https://calendly.com") return;
+      if (event.source !== containerRef.current?.querySelector("iframe")?.contentWindow) return;
+      if (event.data?.event === "calendly.page_height" && Number.parseFloat(String(event.data.payload?.height)) >= 200) {
+        setCalendarLoaded(true);
+      }
       if (event.data?.event === "calendly.event_scheduled") setBooked(true);
     }
     window.addEventListener("message", handleCalendlyEvent);
@@ -28,6 +60,7 @@ export function BookingCalendar({ url }: BookingCalendarProps) {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-background">
+      <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" onReady={() => setReady(true)} onError={() => setFailed(true)} />
       <div className="flex items-center justify-between gap-4 border-b border-border px-5 py-4 sm:px-7">
         <div className="flex min-w-0 items-center gap-3">
           <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
@@ -51,11 +84,14 @@ export function BookingCalendar({ url }: BookingCalendarProps) {
           </div>
         </div>
       )}
-      <iframe
-        src={embed.toString()}
-        title="Schedule a 30-minute website strategy call with Strivn"
-        className="h-[46rem] w-full border-0 bg-white"
-      />
+      {slowLoading && !calendarLoaded && !failed && (
+        <p role="status" className="border-b border-border px-5 py-4 text-sm leading-relaxed sm:px-7">
+          The calendar is taking a little longer to load. <a href={url} target="_blank" rel="noopener noreferrer" className="font-medium underline underline-offset-4">Open scheduling directly</a> to choose a time.
+        </p>
+      )}
+      {failed ? (
+        <p role="status" className="p-6 text-sm leading-relaxed">The calendar couldn’t load here. <a href={url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Open Calendly to choose a time.</a></p>
+      ) : <div ref={containerRef} data-testid="booking-embed" data-loaded={calendarLoaded} aria-busy={!calendarLoaded} className="h-[700px] w-full bg-white data-[loaded=false]:min-h-[700px] [&_iframe]:block [&_iframe]:w-full [&_iframe]:border-0" />}
       <p className="border-t border-border px-5 py-3 text-center text-xs leading-relaxed text-muted-foreground sm:px-7">
         Availability is shown in your timezone. Scheduling is securely handled by Calendly.
       </p>

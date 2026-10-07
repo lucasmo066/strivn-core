@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowUpRight, CalendarDays, Layers, Wallet } from "lucide-react";
 
 import { AddOnsGrid } from "@/components/sections/pricing/add-ons-grid";
 import { BuildPackages } from "@/components/sections/pricing/build-packages";
@@ -9,7 +10,7 @@ import { RetainerPlans } from "@/components/sections/pricing/retainer-plans";
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
-import { BRAND, PRICING_COPY, PRICING_PROCESS, TAGLINES } from "@/lib/constants";
+import { BRAND, PRICING_COPY, PRICING_PROCESS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Pricing — Strivn",
@@ -19,29 +20,50 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <main className="pt-28 sm:pt-36">
+    <main className="pt-12 sm:pt-20">
       <section className="pb-16 sm:pb-20" aria-labelledby="pricing-page-heading">
         <Container className="space-y-10">
-          <div className="mx-auto max-w-2xl space-y-4 text-center md:mx-0 md:text-left">
-            <MonoLabel>{BRAND.basedIn}</MonoLabel>
+          <div className="grid items-end gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div className="max-w-2xl space-y-5">
+            <MonoLabel className="text-orange">{BRAND.basedIn} / Pricing</MonoLabel>
             <h1
               id="pricing-page-heading"
-              className="font-display text-[clamp(1.65rem,6.5vw,2.5rem)] leading-[1.15]"
+              className="font-display text-[clamp(2.1rem,7vw,4rem)] leading-[1.1]"
             >
-              How pricing works
+              A clear scope.<br /><span className="text-orange-gradient">A confident start.</span>
             </h1>
             <p className="font-ui text-muted-foreground">
               {PRICING_COPY.intro} Here is how a project is scoped, paid, and launched.
             </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <StrivnButton arrow asChild><Link href="/start">Choose your package</Link></StrivnButton>
+              <StrivnButton variant="outline" asChild><Link href="/book">Talk it through</Link></StrivnButton>
+            </div>
+          </div>
+          <div className="rounded-[var(--radius-button)] border border-border p-6 sm:p-8">
+            <p className="font-pixel text-xs text-muted-foreground">YOUR WEBSITE, BUILT FOR YOU</p>
+            <p className="mt-4 font-display text-4xl"><span className="mr-2 text-base text-muted-foreground">from</span><span className="text-orange-gradient">$2,000</span></p>
+            <ul className="mt-6 space-y-4 border-t border-border pt-6 text-sm">
+              <li className="flex items-center gap-3"><Layers className="size-4 text-orange" aria-hidden />Fixed scope, custom design</li>
+              <li className="flex items-center gap-3"><Wallet className="size-4 text-orange" aria-hidden />50% to start. 50% at launch.</li>
+              <li className="flex items-center gap-3"><CalendarDays className="size-4 text-orange" aria-hidden />Typical launch in 2–4 weeks</li>
+            </ul>
+          </div>
           </div>
 
-          <ol className="divide-y divide-border border-y border-border">
+          <nav aria-label="Pricing sections" className="flex flex-wrap gap-2 border-y border-border py-4">
+            {[{ label: "Website builds", href: "#builds" }, { label: "Monthly care", href: "#care" }, { label: "Add-ons", href: "#add-ons" }].map((item) => (
+              <Link key={item.href} href={item.href} className="inline-flex min-h-11 items-center gap-4 rounded-full border border-border px-4 text-sm hover:border-orange focus-visible:outline-2 focus-visible:outline-orange">{item.label}<ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
+            ))}
+          </nav>
+
+          <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {PRICING_PROCESS.map((step, index) => (
               <li
                 key={step.title}
-                className="grid gap-2 py-6 sm:grid-cols-[4.5rem_1fr] sm:items-start sm:gap-6"
+                className="grid content-start gap-4 rounded-[var(--radius-button)] border border-border p-5 sm:p-6"
               >
-                <span className="font-mono text-micro text-muted-foreground">
+                <span className="text-orange-gradient font-pixel text-xl">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
@@ -51,9 +73,14 @@ export default function PricingPage() {
                   <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                     {step.body}
                   </p>
+                  {index === 1 && <Link href="/start" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium underline decoration-orange underline-offset-4">Choose your package <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
                 </div>
               </li>
             ))}
+            <li className="flex flex-col justify-between gap-6 rounded-[var(--radius-button)] border border-orange/30 p-5 sm:p-6">
+              <div><p className="font-display text-lg">See the whole journey.</p><p className="mt-2 text-sm leading-relaxed text-muted-foreground">From first conversation to launch day and the care that comes after.</p></div>
+              <Link href="/process" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium">Explore the process <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
+            </li>
           </ol>
         </Container>
       </section>
@@ -78,10 +105,10 @@ export default function PricingPage() {
 
           <div className="mt-10 flex flex-col items-start gap-5 border-t border-border pt-10 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Ready to start? Book a call and tell us about the project.
+              Know what you need? Choose a package and send your project details. Prefer a conversation? We can start there, too.
             </p>
             <StrivnButton variant="primary" arrow className="w-full sm:w-auto" asChild>
-              <Link href="/book">{TAGLINES.heroCta}</Link>
+              <Link href="/start">Choose your package</Link>
             </StrivnButton>
           </div>
         </Container>

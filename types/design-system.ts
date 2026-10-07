@@ -26,6 +26,8 @@ export interface StrivnButtonProps extends ComponentProps<"button"> {
   size?: "default" | "sm" | "lg";
   arrow?: boolean;
   asChild?: boolean;
+  /** Let a quick touch press finish before following a navigation link. */
+  touchFeedback?: boolean;
 }
 
 export interface MonoLabelProps {
