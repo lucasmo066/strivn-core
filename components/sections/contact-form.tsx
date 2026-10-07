@@ -17,6 +17,14 @@ type ContactField = (typeof fields)[number];
 const fieldLabelClass =
   "text-xs font-semibold tracking-[0.08em] text-foreground uppercase";
 
+function RequiredMark() {
+  return (
+    <span aria-hidden="true" className="ml-1 text-orange">
+      *
+    </span>
+  );
+}
+
 const fieldClass =
   "h-12 rounded-xl border-input bg-background px-3.5 text-[16px] shadow-none placeholder:text-muted-foreground/80 focus-visible:border-orange focus-visible:ring-4 focus-visible:ring-orange/15 md:text-sm";
 
@@ -192,6 +200,7 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
         <div className="space-y-2">
           <label htmlFor="contact-name" className={fieldLabelClass}>
             Name
+            <RequiredMark />
           </label>
           <Input
             id="contact-name"
@@ -217,6 +226,7 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
         <div className="space-y-2">
           <label htmlFor="contact-email" className={fieldLabelClass}>
             Email
+            <RequiredMark />
           </label>
           <Input
             id="contact-email"
@@ -245,6 +255,7 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
       <div className="space-y-2">
         <label htmlFor="contact-business" className={fieldLabelClass}>
           Business
+          <RequiredMark />
         </label>
         <Input
           id="contact-business"
@@ -271,6 +282,7 @@ export function ContactForm({ source = "contact_form" }: ContactFormProps) {
       <div className="space-y-2">
         <label htmlFor="contact-details" className={fieldLabelClass}>
           {source === "call_request" ? "What would you like to discuss?" : "What do you need?"}
+          <RequiredMark />
         </label>
         <textarea
           id="contact-details"
