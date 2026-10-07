@@ -8,6 +8,9 @@
   --line-strong: rgba(10, 10, 10, 0.2);
   --orange: #ff5c00;
   --orange-focus: rgba(255, 92, 0, 0.35);
+  --brand-gradient-from: #ff7540;
+  --brand-gradient-via: #9f3400;
+  --brand-gradient-to: #752200;
   --void: #2a3439;
   --void-2: #343e44;
   --line-dark: rgba(255, 255, 255, 0.1);
@@ -37,6 +40,12 @@
   --border: var(--line);
   --input: var(--line);
   --ring: var(--orange);
+}
+
+.dark {
+  --brand-gradient-from: #f45600;
+  --brand-gradient-via: #f95900;
+  --brand-gradient-to: #ff8f67;
 }
 
 .dark,

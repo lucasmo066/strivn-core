@@ -8,6 +8,7 @@ import { useEffect, useState, type ComponentType } from "react";
 import { BrandIcon } from "@/components/shared/brand-icon";
 import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
+import { SectionLink } from "@/components/shared/section-link";
 import { Container } from "@/components/shared/container";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
@@ -94,12 +95,12 @@ export function SiteHeader() {
           "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out",
           overHero
             ? "nav-glass"
-            : "border-border bg-paper/95 backdrop-blur-md dark:border-white/10 dark:bg-void/95",
+            : "border-border bg-paper/90 backdrop-blur-md dark:border-white/10 dark:bg-void/90",
           !overHero && (!atTop || menuOpen) && "shadow-soft"
         )}
       >
         <Container className="flex h-16 items-center justify-between gap-4 md:gap-6">
-          <Link href="/" className="shrink-0" aria-label="Strivn home">
+          <Link scroll={false} href="/" className="shrink-0" aria-label="Strivn home">
             <BrandIcon
               size="sm"
               loading="eager"
@@ -115,7 +116,7 @@ export function SiteHeader() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-1 text-sm font-medium text-muted-foreground md:flex">
+          <nav aria-label="Main navigation" className="hidden items-center gap-1 text-sm font-medium text-muted-foreground md:flex">
             {NAV_LINKS.map((link, index) => (
               <span key={link.href} className="flex items-center">
                 {index > 0 ? (
@@ -123,7 +124,7 @@ export function SiteHeader() {
                     /
                   </span>
                 ) : null}
-                <Link
+                <SectionLink
                   href={link.href}
                   aria-current={isCurrentPage(pathname, link.href) ? "page" : undefined}
                   className={cn(
@@ -132,7 +133,7 @@ export function SiteHeader() {
                   )}
                 >
                   {link.label}
-                </Link>
+                </SectionLink>
               </span>
             ))}
           </nav>
@@ -145,7 +146,7 @@ export function SiteHeader() {
               className="hidden sm:inline-flex md:hidden lg:inline-flex"
               asChild
             >
-              <Link href="/book">{TAGLINES.navCta}</Link>
+              <Link scroll={false} href="/book">{TAGLINES.navCta}</Link>
             </StrivnButton>
 
             <ThemeToggle />

@@ -1,15 +1,15 @@
 import { ContactForm } from "@/components/sections/contact-form";
 import { Container } from "@/components/shared/container";
-import dots from "@/components/shared/dotted-section.module.css";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ChromaticImage } from "@/components/ui/chromatic-image";
-import { ScrollGlass } from "@/components/shared/scroll-glass";
 import { BRAND, TAGLINES } from "@/lib/constants";
 
 export function ContactSection() {
   return (
-    <section id="contact" className={`section-y border-t border-border ${dots.section}`}>
-      <Container>
+    <section id="contact" className="section-y relative isolate overflow-hidden border-t border-border bg-muted/40">
+      <BackgroundBeams className="contact-beams" />
+      <Container className="relative z-10">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch lg:gap-16 xl:gap-20">
           <BlurFade className="flex h-full flex-col" inViewAmount={0.45}>
             <div className="space-y-5">
@@ -35,6 +35,8 @@ export function ContactSection() {
                     displacement={0.032}
                     chromaticShift={0.008}
                     tilt={0.16}
+                    animateOnReveal
+                    touchEnabled
                   />
                 </div>
               </figure>
@@ -47,9 +49,9 @@ export function ContactSection() {
           </BlurFade>
 
           <BlurFade className="h-full" delay={0.12} inViewAmount={0.35}>
-            <ScrollGlass className="contact-glass h-full rounded-[var(--radius-button)] border border-border bg-background dark:bg-card">
+            <div className="nav-glass contact-glass h-full rounded-[var(--radius-button)] border">
               <ContactForm />
-            </ScrollGlass>
+            </div>
           </BlurFade>
         </div>
       </Container>

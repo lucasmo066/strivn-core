@@ -7,10 +7,11 @@ import { BuildPackages } from "@/components/sections/pricing/build-packages";
 import { OverageAndQuickRef } from "@/components/sections/pricing/overage-quick-ref";
 import styles from "@/components/sections/pricing/pricing.module.css";
 import { RetainerPlans } from "@/components/sections/pricing/retainer-plans";
+import { WebsiteValue } from "@/components/sections/pricing/website-value";
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
-import { BRAND, PRICING_COPY, PRICING_PROCESS } from "@/lib/constants";
+import { PRICING_COPY, PRICING_PROCESS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Pricing — Strivn",
@@ -20,24 +21,28 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <main className="pt-12 sm:pt-20">
+    <main className="pt-8 sm:pt-20">
       <section className="pb-16 sm:pb-20" aria-labelledby="pricing-page-heading">
         <Container className="space-y-10">
           <div className="grid items-end gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <div className="max-w-2xl space-y-5">
-            <MonoLabel className="text-orange">{BRAND.basedIn} / Pricing</MonoLabel>
-            <h1
-              id="pricing-page-heading"
-              className="font-display text-[clamp(2.1rem,7vw,4rem)] leading-[1.1]"
-            >
-              A clear scope.<br /><span className="text-orange-gradient">A confident start.</span>
-            </h1>
+          <div className="max-w-2xl space-y-6 sm:space-y-5">
+            <div className="space-y-4">
+              <MonoLabel className="block text-xs font-medium tracking-wide text-orange">
+                Website pricing
+              </MonoLabel>
+              <h1
+                id="pricing-page-heading"
+                className="font-display text-[clamp(2.1rem,7vw,4rem)] leading-[1.18] sm:leading-[1.1]"
+              >
+                A clear scope.<br /><span className="text-orange-gradient">A confident start.</span>
+              </h1>
+            </div>
             <p className="font-ui text-muted-foreground">
               {PRICING_COPY.intro} Here is how a project is scoped, paid, and launched.
             </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <StrivnButton arrow asChild><Link href="/start">Choose your package</Link></StrivnButton>
-              <StrivnButton variant="outline" asChild><Link href="/book">Talk it through</Link></StrivnButton>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+              <StrivnButton arrow className="w-full sm:w-auto" asChild><Link scroll={false} href="/start">Choose your package</Link></StrivnButton>
+              <StrivnButton variant="outline" className="w-full sm:w-auto" asChild><Link scroll={false} href="/book">Talk it through</Link></StrivnButton>
             </div>
           </div>
           <div className="rounded-[var(--radius-button)] border border-border p-6 sm:p-8">
@@ -52,8 +57,8 @@ export default function PricingPage() {
           </div>
 
           <nav aria-label="Pricing sections" className="flex flex-wrap gap-2 border-y border-border py-4">
-            {[{ label: "Website builds", href: "#builds" }, { label: "Monthly care", href: "#care" }, { label: "Add-ons", href: "#add-ons" }].map((item) => (
-              <Link key={item.href} href={item.href} className="inline-flex min-h-11 items-center gap-4 rounded-full border border-border px-4 text-sm hover:border-orange focus-visible:outline-2 focus-visible:outline-orange">{item.label}<ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
+            {[{ label: "Website builds", href: "#builds" }, { label: "Website value", href: "#website-value" }, { label: "Monthly care", href: "#care" }, { label: "Add-ons", href: "#add-ons" }].map((item) => (
+              <Link scroll={false} key={item.href} href={item.href} className="inline-flex min-h-11 items-center gap-4 rounded-full border border-border px-4 text-sm hover:border-orange focus-visible:outline-2 focus-visible:outline-orange">{item.label}<ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
             ))}
           </nav>
 
@@ -73,13 +78,13 @@ export default function PricingPage() {
                   <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                     {step.body}
                   </p>
-                  {index === 1 && <Link href="/start" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium underline decoration-orange underline-offset-4">Choose your package <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
+                  {index === 1 && <Link scroll={false} href="/start" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium underline decoration-orange underline-offset-4">Choose your package <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
                 </div>
               </li>
             ))}
             <li className="flex flex-col justify-between gap-6 rounded-[var(--radius-button)] border border-orange/30 p-5 sm:p-6">
               <div><p className="font-display text-lg">See the whole journey.</p><p className="mt-2 text-sm leading-relaxed text-muted-foreground">From first conversation to launch day and the care that comes after.</p></div>
-              <Link href="/process" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium">Explore the process <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
+              <Link scroll={false} href="/process" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium">Explore the process <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
             </li>
           </ol>
         </Container>
@@ -98,6 +103,7 @@ export default function PricingPage() {
               </defs>
             </svg>
             <BuildPackages />
+            <WebsiteValue />
             <RetainerPlans />
             <OverageAndQuickRef />
             <AddOnsGrid />
@@ -108,7 +114,7 @@ export default function PricingPage() {
               Know what you need? Choose a package and send your project details. Prefer a conversation? We can start there, too.
             </p>
             <StrivnButton variant="primary" arrow className="w-full sm:w-auto" asChild>
-              <Link href="/start">Choose your package</Link>
+              <Link scroll={false} href="/start">Choose your package</Link>
             </StrivnButton>
           </div>
         </Container>

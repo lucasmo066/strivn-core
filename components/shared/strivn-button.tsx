@@ -101,7 +101,7 @@ export const StrivnButton = forwardRef<HTMLSpanElement, StrivnButtonProps>(
           if (!remaining) return;
           event.preventDefault();
           if (navigationTimer.current) clearTimeout(navigationTimer.current);
-          navigationTimer.current = setTimeout(() => router.push(href), remaining);
+          navigationTimer.current = setTimeout(() => router.push(href, { scroll: false }), remaining);
         }}
       >
         <Button3D
@@ -116,6 +116,7 @@ export const StrivnButton = forwardRef<HTMLSpanElement, StrivnButtonProps>(
           containerProps={
             {
               ...props,
+              ...(href && element ? { scroll: false } : {}),
               ...(href
                 ? {}
                 : {

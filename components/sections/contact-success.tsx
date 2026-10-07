@@ -27,7 +27,7 @@ export function ContactSuccess({ source }: ContactSuccessProps) {
       {source === "contact_form" && (
         <div className="mt-8 border-t border-orange/20 pt-6">
           <p className="mb-4 text-sm text-muted-foreground">Want to talk it through?</p>
-          <StrivnButton variant="outline" arrow asChild><Link href="/book">Book a call</Link></StrivnButton>
+          <StrivnButton variant="outline" arrow asChild><Link scroll={false} href="/book">Book a call</Link></StrivnButton>
         </div>
       )}
     </div>

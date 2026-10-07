@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 export default function BookingPage() {
   const url = calendlyUrl(process.env.CALENDLY_URL || DEFAULT_CALENDLY_URL);
   return (
-    <main className="pt-8 sm:pt-12">
+    <main id="book-top" tabIndex={-1} className="pt-8 focus:outline-none sm:pt-12">
       <Container className="pb-20 sm:pb-28">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+        <Link scroll={false} href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="size-4" aria-hidden /> Back to Strivn
         </Link>
         <div className="mt-8 grid gap-12 sm:mt-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
@@ -50,7 +50,7 @@ export default function BookingPage() {
               </div>
             </div>
             <p className="mt-7 text-sm text-muted-foreground">Prefer to write it out?</p>
-            <Link href="/#contact" className="mt-2 inline-flex items-center gap-1 text-sm font-medium hover:underline">Send project details <ArrowUpRight className="size-4" aria-hidden /></Link>
+            <Link scroll={false} href="/#contact" className="mt-2 inline-flex items-center gap-1 text-sm font-medium hover:underline">Send project details <ArrowUpRight className="size-4" aria-hidden /></Link>
             <a href={`mailto:${BRAND.email}`} className="mt-3 block text-sm text-muted-foreground hover:text-foreground">{BRAND.email}</a>
           </div>
           <div className="min-w-0 max-[399px]:-mx-[var(--container-px)]">

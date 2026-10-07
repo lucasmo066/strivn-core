@@ -206,6 +206,7 @@ export default function TermsPage() {
                 </a>
                 , or our{" "}
                 <Link
+                  scroll={false}
                   href="/#contact"
                   className="text-foreground underline-offset-4 hover:underline"
                 >

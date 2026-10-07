@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const BackgroundBeams = React.memo(
   ({ className }: { className?: string }) => {
+    const reduceMotion = useReducedMotion();
     const paths = [
       "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
       "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
@@ -70,6 +71,7 @@ export const BackgroundBeams = React.memo(
           width="100%"
           height="100%"
           viewBox="0 0 696 316"
+          preserveAspectRatio="none"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -83,6 +85,7 @@ export const BackgroundBeams = React.memo(
           {paths.map((path, index) => (
             <motion.path
               key={`path-` + index}
+              data-beam=""
               d={path}
               stroke={`url(#linearGradient-${index})`}
               strokeOpacity="0.4"
@@ -100,23 +103,25 @@ export const BackgroundBeams = React.memo(
                   y1: "0%",
                   y2: "0%",
                 }}
-                animate={{
+                animate={reduceMotion ? {
+                  x1: "0%", x2: "95%", y1: "0%", y2: "100%",
+                } : {
                   x1: ["0%", "100%"],
                   x2: ["0%", "95%"],
                   y1: ["0%", "100%"],
                   y2: ["0%", `${(93 + ((index * 17) % 8)).toFixed(2)}%`],
                 }}
-                transition={{
+                transition={reduceMotion ? { duration: 0 } : {
                   duration: 10 + (index % 11),
                   ease: "easeInOut",
                   repeat: Infinity,
                   delay: (index % 10) * 0.8,
                 }}
               >
-                <stop stopColor="#18CCFC" stopOpacity="0"></stop>
-                <stop stopColor="#18CCFC"></stop>
-                <stop offset="32.5%" stopColor="#6344F5"></stop>
-                <stop offset="100%" stopColor="#AE48FF" stopOpacity="0"></stop>
+                <stop stopColor="var(--brand-gradient-from)" stopOpacity="0"></stop>
+                <stop stopColor="var(--brand-gradient-from)"></stop>
+                <stop offset="32.5%" stopColor="var(--brand-gradient-via)"></stop>
+                <stop offset="100%" stopColor="var(--brand-gradient-to)" stopOpacity="0"></stop>
               </motion.linearGradient>
             ))}
 
@@ -128,9 +133,9 @@ export const BackgroundBeams = React.memo(
               gradientUnits="userSpaceOnUse"
               gradientTransform="translate(352 34) rotate(90) scale(555 1560.62)"
             >
-              <stop offset="0.0666667" stopColor="#d4d4d4"></stop>
-              <stop offset="0.243243" stopColor="#d4d4d4"></stop>
-              <stop offset="0.43594" stopColor="white" stopOpacity="0"></stop>
+              <stop offset="0.0666667" stopColor="var(--brand-gradient-from)"></stop>
+              <stop offset="0.243243" stopColor="var(--brand-gradient-via)"></stop>
+              <stop offset="0.43594" stopColor="var(--brand-gradient-to)" stopOpacity="0"></stop>
             </radialGradient>
           </defs>
         </svg>

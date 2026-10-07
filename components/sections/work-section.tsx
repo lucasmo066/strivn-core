@@ -28,6 +28,7 @@ export function WorkSection() {
 
         <BlurFade className="w-fit" direction="up" inViewAmount={0.9} blur="0px">
           <Link
+            scroll={false}
             href="/#contact"
             className="inline-flex min-h-11 items-center gap-2 rounded-md text-sm font-medium text-foreground underline decoration-orange underline-offset-4 hover:decoration-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
           >

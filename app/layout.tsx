@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Suspense } from "react";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { ViewportBlur } from "@/components/layout/viewport-blur";
+import { NavigationScroll } from "@/components/layout/navigation-scroll";
 
 import "react-3d-button/styles";
 
@@ -59,6 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${geistPixel.variable}`}
     >
@@ -69,6 +72,9 @@ export default function RootLayout({
         className={`${geistSans.className} min-h-screen overflow-x-clip bg-background antialiased`}
       >
         <SiteHeader />
+        <Suspense fallback={null}>
+          <NavigationScroll />
+        </Suspense>
         {children}
         <SiteFooter />
         <ViewportBlur />

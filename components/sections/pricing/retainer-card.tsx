@@ -79,7 +79,7 @@ export function RetainerCard({ plan, yearlyBilling, selected, active, delay }: R
         aria-label={"Get started with " + plan.name + " care"}
         asChild
       >
-        <Link href="/#contact">
+        <Link scroll={false} href="/#contact">
           Get started <ArrowUpRight aria-hidden className="size-4" />
         </Link>
       </StrivnButton>

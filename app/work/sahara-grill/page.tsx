@@ -27,7 +27,7 @@ export default function SaharaGrillCaseStudyPage() {
   return (
     <main className="pt-28 sm:pt-36">
       <Container>
-        <Link href="/#work" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+        <Link scroll={false} href="/#work" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="size-4" aria-hidden /> All work
         </Link>
         <section className="pt-12 pb-10 sm:pt-16 sm:pb-14">
@@ -68,7 +68,7 @@ export default function SaharaGrillCaseStudyPage() {
         <ProjectGallery captures={SAHARA_CAPTURES} />
         <section className="mb-16 mt-4 flex flex-col justify-between gap-8 rounded-2xl border border-border bg-muted/40 p-7 sm:mb-24 sm:p-12 md:flex-row md:items-center">
           <div><MonoLabel className="text-muted-foreground">Your business, next.</MonoLabel><h2 className="mt-4 font-display text-[var(--text-h2)]">Make a better first impression.</h2><p className="mt-3 text-sm text-muted-foreground">Let’s build a site that makes the next step feel easy.</p></div>
-          <StrivnButton variant="primary" arrow asChild><Link href="/book">Book a call</Link></StrivnButton>
+          <StrivnButton variant="primary" arrow asChild><Link scroll={false} href="/book">Book a call</Link></StrivnButton>
         </section>
       </Container>
     </main>

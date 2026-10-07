@@ -55,7 +55,7 @@ export function HeroSection() {
               className="w-3/4 sm:w-auto sm:min-w-[10.75rem]"
               asChild
             >
-              <Link href="/book">{TAGLINES.heroCta}</Link>
+              <Link scroll={false} href="/book">{TAGLINES.heroCta}</Link>
             </StrivnButton>
             <StrivnButton
               variant="outline"
@@ -63,7 +63,7 @@ export function HeroSection() {
               className="w-3/4 sm:w-auto sm:min-w-[10.75rem]"
               asChild
             >
-              <Link href="/pricing">See pricing</Link>
+              <Link scroll={false} href="/pricing">See pricing</Link>
             </StrivnButton>
           </div>
         </div>

@@ -30,7 +30,7 @@ export default function IndustriesPage() {
               directly drives leads, bookings, and trust.
             </p>
             <StrivnButton variant="primary" arrow className="w-full sm:w-auto" asChild>
-              <Link href="/#contact">Start your project</Link>
+              <Link scroll={false} href="/#contact">Start your project</Link>
             </StrivnButton>
           </div>
 

@@ -299,7 +299,9 @@ export function attachChromaticGl({
     }
     progressTarget = 1;
     requestRender();
-    pulseTimer = window.setTimeout(resetPointer, 480);
+    // Let touch users see the color separation before it eases back to the still.
+    const touchPulse = event?.pointerType === "touch" || window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    pulseTimer = window.setTimeout(resetPointer, touchPulse ? 1200 : 480);
   };
 
   const reveal = () => {

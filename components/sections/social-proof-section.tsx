@@ -63,6 +63,7 @@ export function SocialProofSection() {
                 </h3>
               </div>
               <Link
+                scroll={false}
                 href="/industries"
                 className="inline-flex shrink-0 items-center gap-1 rounded-[var(--radius-button)] px-2 py-1 text-sm font-medium text-orange transition-hairline hover:bg-orange/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
               >
@@ -84,6 +85,7 @@ export function SocialProofSection() {
                 inViewAmount={0.9}
               >
                 <Link
+                  scroll={false}
                   href={`/industries#${industry.slug}`}
                   className="group relative isolate flex h-full min-h-14 items-center justify-between gap-3 overflow-hidden rounded-[var(--radius-button)] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground transition-hairline hover:border-orange/50 hover:bg-[color-mix(in_srgb,var(--orange)_5%,var(--background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange/40"
                 >

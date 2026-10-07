@@ -39,7 +39,8 @@ export function BookingCalendar({ url }: BookingCalendarProps) {
   useEffect(() => {
     const container = containerRef.current;
     if (!ready || !container || !window.Calendly) return;
-    window.Calendly.initInlineWidget({ url: embedUrl, parentElement: container, resize: true });
+    // Resize from verified messages below; Calendly's resize handler also forces page scrolling.
+    window.Calendly.initInlineWidget({ url: embedUrl, parentElement: container, resize: false });
     const iframe = container.querySelector("iframe");
     if (iframe) iframe.title = "Schedule a 30-minute website strategy call with Strivn";
     return () => container.replaceChildren();
@@ -48,9 +49,14 @@ export function BookingCalendar({ url }: BookingCalendarProps) {
   useEffect(() => {
     function handleCalendlyEvent(event: MessageEvent) {
       if (event.origin !== "https://calendly.com") return;
-      if (event.source !== containerRef.current?.querySelector("iframe")?.contentWindow) return;
-      if (event.data?.event === "calendly.page_height" && Number.parseFloat(String(event.data.payload?.height)) >= 200) {
-        setCalendarLoaded(true);
+      const container = containerRef.current;
+      if (!container || event.source !== container.querySelector("iframe")?.contentWindow) return;
+      if (event.data?.event === "calendly.page_height") {
+        const height = Number.parseFloat(String(event.data.payload?.height));
+        if (Number.isFinite(height) && height >= 200) {
+          container.style.height = `${height}px`;
+          setCalendarLoaded(true);
+        }
       }
       if (event.data?.event === "calendly.event_scheduled") setBooked(true);
     }

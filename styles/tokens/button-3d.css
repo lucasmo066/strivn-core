@@ -65,7 +65,8 @@
 }
 
 .strivn-3d-wrap[data-touch-pressed="true"] .aws-btn__content {
-  transform: translate3d(0, var(--button-raise-level), 0) rotateX(-3deg);
+  /* Keep the face parallel to its base so the base cannot occlude the label. */
+  transform: translate3d(0, var(--button-raise-level), 0);
   transition: transform 65ms ease-out;
 }
 
@@ -96,7 +97,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .strivn-3d-wrap[data-touch-pressed="true"] .aws-btn__content {
-    transform: translate3d(0, var(--button-raise-level), 0);
     transition: none;
   }
 

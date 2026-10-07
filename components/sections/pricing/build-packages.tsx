@@ -68,7 +68,7 @@ export function BuildPackages() {
                 aria-label={"Get started with " + pkg.name}
                 asChild
               >
-                <Link href={`/start?package=${pkg.name.toLowerCase()}`}>
+                <Link scroll={false} href={`/start?package=${pkg.name.toLowerCase()}`}>
                   Choose {pkg.name} <ArrowUpRight aria-hidden className="size-4" />
                 </Link>
               </StrivnButton>

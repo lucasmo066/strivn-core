@@ -177,8 +177,21 @@ export const NAV_LINKS = [
   { label: "Work", href: "/#work" },
   { label: "Services", href: "/#services" },
   { label: "Process", href: "/process" },
+  { label: "Industries", href: "/industries" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/#contact" },
+] as const;
+
+export const FOOTER_LINK_GROUPS = [
+  { label: "Explore", links: NAV_LINKS },
+  {
+    label: "Get started",
+    links: [
+      { label: "Choose a package", href: "/start" },
+      { label: "Monthly care", href: "/pricing#care" },
+      { label: "Add-ons", href: "/pricing#add-ons" },
+    ],
+  },
 ] as const;
 
 export const LEGAL_LINKS = [

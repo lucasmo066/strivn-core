@@ -32,12 +32,12 @@ export function PricingSection() {
               {PRICING_COPY.intro}
             </p>
             <StrivnButton variant="outline" className="mt-6" asChild>
-              <Link href="/pricing">How pricing works</Link>
+              <Link scroll={false} href="/pricing">How pricing works</Link>
             </StrivnButton>
           </BlurFade>
           <BuildPackages />
           <div className="grid border-t border-border sm:grid-cols-2">
-            <Link href="/pricing#care" className="group flex items-center justify-between gap-4 p-6 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-orange sm:p-8">
+            <Link scroll={false} href="/pricing#care" className="group flex items-center justify-between gap-4 p-6 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-orange sm:p-8">
               <div>
                 <p className="font-display text-lg">Care after launch</p>
                 <p className="mt-2 text-sm text-muted-foreground">Optional plans from $200/month.</p>
@@ -45,7 +45,7 @@ export function PricingSection() {
               </div>
               <ArrowUpRight className="size-5 shrink-0 text-orange" aria-hidden />
             </Link>
-            <Link href="/pricing#add-ons" className="group flex items-center justify-between gap-4 border-t border-border p-6 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-orange sm:border-t-0 sm:border-l sm:p-8">
+            <Link scroll={false} href="/pricing#add-ons" className="group flex items-center justify-between gap-4 border-t border-border p-6 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-orange sm:border-t-0 sm:border-l sm:p-8">
               <div>
                 <p className="font-display text-lg">Make it yours</p>
                 <p className="mt-2 text-sm text-muted-foreground">SEO, branding, booking, and more.</p>

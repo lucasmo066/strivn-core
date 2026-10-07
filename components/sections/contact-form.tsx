@@ -26,10 +26,10 @@ function RequiredMark() {
 }
 
 const fieldClass =
-  "h-12 rounded-xl border-input bg-background px-3.5 text-[16px] shadow-none placeholder:text-muted-foreground/80 focus-visible:border-orange focus-visible:ring-4 focus-visible:ring-orange/15 md:text-sm";
+  "h-12 rounded-xl border-input bg-background/85 px-3.5 text-[16px] shadow-none placeholder:text-muted-foreground/80 focus-visible:border-orange focus-visible:ring-4 focus-visible:ring-orange/15 md:text-sm";
 
 const textareaClass = cn(
-  "min-h-32 w-full resize-y rounded-xl border border-input bg-background px-3.5 py-3 text-[16px] leading-relaxed outline-none transition-colors placeholder:text-muted-foreground/80 focus-visible:border-orange focus-visible:ring-4 focus-visible:ring-orange/15 disabled:cursor-not-allowed disabled:opacity-60 md:text-sm"
+  "min-h-32 w-full resize-y rounded-xl border border-input bg-background/85 px-3.5 py-3 text-[16px] leading-relaxed outline-none transition-colors placeholder:text-muted-foreground/80 focus-visible:border-orange focus-visible:ring-4 focus-visible:ring-orange/15 disabled:cursor-not-allowed disabled:opacity-60 md:text-sm"
 );
 
 type FormStatus = "idle" | "loading" | "success" | "error";
@@ -333,12 +333,12 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
 
         <p className="text-xs leading-relaxed text-muted-foreground">
           We’ll use these details to respond to your inquiry. Read our{" "}
-          <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">privacy policy</Link>.
+          <Link scroll={false} href="/privacy" className="underline underline-offset-4 hover:text-foreground">privacy policy</Link>.
         </p>
         {source === "contact_form" && (
           <p className="border-t border-border pt-4 text-sm text-muted-foreground">
             Prefer a conversation?{" "}
-            <Link href="/book" className="font-medium text-foreground underline underline-offset-4">Book a call</Link>
+            <Link scroll={false} href="/book" className="font-medium text-foreground underline underline-offset-4">Book a call</Link>
           </p>
         )}
       </div>

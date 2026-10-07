@@ -190,6 +190,7 @@ export function WorkCarousel({
               >
                 {project.href ? (
                   <Link
+                    scroll={false}
                     href={project.href}
                     className={styles.cardLink}
                     aria-label={`View ${project.title} case study`}

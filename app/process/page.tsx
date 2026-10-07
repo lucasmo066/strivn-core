@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
+import { ProcessHeading } from "@/components/sections/process-heading";
 
 export const metadata: Metadata = {
   title: "Our process — Strivn",
@@ -60,11 +61,11 @@ export default function ProcessPage() {
   return (
     <main className="pt-8 pb-20 sm:pt-12 sm:pb-28">
       <Container>
-        <Link href="/" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4" aria-hidden />Back to Strivn</Link>
+        <Link scroll={false} href="/" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4" aria-hidden />Back to Strivn</Link>
         <header className="mt-8 grid gap-8 border-b border-border pb-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16">
           <div>
             <MonoLabel className="text-orange">The Strivn process</MonoLabel>
-            <h1 className="mt-5 font-display text-[clamp(2.15rem,7vw,4.5rem)] leading-[1.08]">From first hello<br />to <span className="text-orange-gradient">launch day.</span></h1>
+            <ProcessHeading />
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">A clear next step at every stage. Here’s how we turn your goals into a website, and keep it working for your business after launch.</p>
           </div>
           <div className="rounded-[var(--radius-button)] border border-border p-6">
@@ -88,8 +89,8 @@ export default function ProcessPage() {
               <div className="border-t border-border pt-5 sm:col-start-2 lg:col-start-auto lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
                 <p className="font-pixel text-xs text-muted-foreground">YOUR PART</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.bring}</p>
-                {index === 1 && <Link href="/pricing" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium">See packages & pricing <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
-                {index === 5 && <Link href="/pricing#care" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium">Explore care plans <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
+                {index === 1 && <Link scroll={false} href="/pricing" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium">See packages & pricing <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
+                {index === 5 && <Link scroll={false} href="/pricing#care" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium">Explore care plans <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
               </div>
             </li>
           ))}
@@ -97,7 +98,7 @@ export default function ProcessPage() {
 
         <section className="mt-12 flex flex-col items-start justify-between gap-8 border-t border-border pt-10 md:flex-row md:items-center" aria-labelledby="process-next">
           <div><h2 id="process-next" className="font-display text-2xl">Let’s find your first step.</h2><p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground">Talk through an idea, or choose a package and send the details when you know what you need.</p></div>
-          <div className="flex flex-wrap gap-4"><StrivnButton arrow asChild><Link href="/book">Book a call</Link></StrivnButton><StrivnButton variant="outline" asChild><Link href="/start">Choose a package</Link></StrivnButton></div>
+          <div className="flex flex-wrap gap-4"><StrivnButton arrow asChild><Link scroll={false} href="/book">Book a call</Link></StrivnButton><StrivnButton variant="outline" asChild><Link scroll={false} href="/start">Choose a package</Link></StrivnButton></div>
         </section>
       </Container>
     </main>
