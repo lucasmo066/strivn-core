@@ -3,13 +3,14 @@ export type IndustryTier = 1 | 2 | 3;
 export type Industry = {
   slug: string;
   name: string;
-  shortName?: string;
+  shortName: string;
   tier: IndustryTier;
   homepage: boolean;
-  tagline: string;
-  painPoints: string[];
-  outcomes: string[];
-  relatedSlugs?: string[];
+  headline: string;
+  decision: string;
+  approach: { title: string; description: string }[];
+  journey: [string, string, string];
+  goal: string;
 };
 
 export const INDUSTRIES: readonly Industry[] = [
@@ -19,39 +20,31 @@ export const INDUSTRIES: readonly Industry[] = [
     shortName: "Med spas",
     tier: 1,
     homepage: true,
-    tagline:
-      "Your entire business sells on looking premium — a dated site breaks that promise before they book.",
-    painPoints: [
-      "Template-heavy sites create cognitive dissonance with a luxury brand",
-      "Instagram looks polished but the website feels like an afterthought",
-      "Competitors with cleaner sites win the consultation booking",
+    headline: "Make confidence the first impression.",
+    decision: "Before someone trusts you with their appearance, they need to feel good about your expertise. Your website is where interest in a treatment becomes confidence in the people providing it.",
+    approach: [
+      { title: "Match the experience", description: "Bring the care and character of your clinic online with thoughtful design, real photography, and a clear introduction to your providers." },
+      { title: "Answer before they ask", description: "Give each treatment room to explain the experience, expectations, and common questions, so a prospective client can take the next step informed." },
+      { title: "Turn interest into a conversation", description: "Put consultation requests within easy reach and connect your booking tool when it’s part of the scope." },
     ],
-    outcomes: [
-      "Visual-first design that matches your in-clinic experience",
-      "Clear treatment pages that convert browsers into bookings",
-      "Fast load times on mobile where most research happens",
-    ],
-    relatedSlugs: ["dental-practices", "salons"],
+    journey: ["Explore a treatment", "Get to know your team", "Request a consultation"],
+    goal: "More informed consultation requests.",
   },
   {
     slug: "dental-practices",
     name: "Dental practices",
-    shortName: "Dental",
+    shortName: "Dental practices",
     tier: 1,
     homepage: true,
-    tagline:
-      "New patients Google first — your website decides whether they call or bounce.",
-    painPoints: [
-      "Cosmetic and general dentistry sells on trust and aesthetics",
-      "An outdated site undermines the quality of care you deliver",
-      "Existing sites often underperform without a clear mobile experience",
+    headline: "Help a new patient feel at home. Before they arrive.",
+    decision: "Choosing a dentist is personal. Someone might be anxious, new to the area, or unsure about cost. A useful website answers those concerns and makes that first appointment feel easier.",
+    approach: [
+      { title: "Make your care feel familiar", description: "Introduce your team, your space, and your approach so patients can picture themselves in your care." },
+      { title: "Clear up the unknowns", description: "Organize services, new-patient information, and your payment or insurance guidance around the questions your front desk hears every day." },
+      { title: "Make the first call simple", description: "Give mobile visitors a clear way to call or request an appointment, with location and hours close at hand." },
     ],
-    outcomes: [
-      "Trust-building design with clear new-patient pathways",
-      "Service pages structured for local search visibility",
-      "Online scheduling and contact flows that reduce friction",
-    ],
-    relatedSlugs: ["med-spas", "veterinary"],
+    journey: ["Find the right care", "Feel comfortable", "Request a first visit"],
+    goal: "A clearer path to new-patient appointments.",
   },
   {
     slug: "law-firms",
@@ -59,19 +52,15 @@ export const INDUSTRIES: readonly Industry[] = [
     shortName: "Law firms",
     tier: 1,
     homepage: true,
-    tagline:
-      "Prospective clients judge your credibility within seconds of landing on your site.",
-    painPoints: [
-      "Competitive practice areas require a site that stands apart from templates",
-      "High case values justify marketing spend — but the site must earn trust first",
-      "Slow decision-making means the site needs to answer objections upfront",
+    headline: "Be the clear next step in a complicated moment.",
+    decision: "A prospective client often arrives with an urgent question and little certainty. Your site needs to show that you understand their situation, handle the right matters, and are easy to reach.",
+    approach: [
+      { title: "Help people find their fit", description: "Build practice-area pages around the situations you handle, who you serve, and what an initial conversation looks like." },
+      { title: "Give credibility substance", description: "Present attorney experience, your approach, and firm-approved credentials in a design that feels considered and professional." },
+      { title: "Create a useful first inquiry", description: "Keep the contact path clear and intake questions focused, helping your team understand the inquiry and follow up." },
     ],
-    outcomes: [
-      "Professional layouts that signal competence and authority",
-      "Practice-area pages optimized for search and conversion",
-      "Lead capture that respects the seriousness of legal inquiries",
-    ],
-    relatedSlugs: ["financial-advisors"],
+    journey: ["Recognize their situation", "Understand your expertise", "Request a conversation"],
+    goal: "Inquiries that better fit your practice.",
   },
   {
     slug: "real-estate-teams",
@@ -79,38 +68,31 @@ export const INDUSTRIES: readonly Industry[] = [
     shortName: "Real estate teams",
     tier: 1,
     homepage: true,
-    tagline:
-      "A polished web presence separates your team from the sea of cookie-cutter brokerage templates.",
-    painPoints: [
-      "Individual agent sites blend together with no brand differentiation",
-      "Teams live and die on perceived professionalism and market expertise",
-      "Lead generation depends on a site that showcases listings and results",
+    headline: "Give people a reason to choose your team.",
+    decision: "A property may bring someone to your site. Your local knowledge and approach give them a reason to stay. Build a presence that helps buyers and sellers see the value of having you in their corner.",
+    approach: [
+      { title: "Show the local advantage", description: "Connect neighborhood knowledge, team profiles, and your market perspective so visitors see what you bring to their move." },
+      { title: "Let your work make the case", description: "Give listings and approved past-sale stories thoughtful presentation, with room to explain the work behind each property." },
+      { title: "Separate the next steps", description: "Create distinct routes for buying and selling, from an initial property inquiry to a conversation about listing a home." },
     ],
-    outcomes: [
-      "Brand-forward design that elevates your team above the brokerage default",
-      "Listing and agent pages built for local search and referrals",
-      "Clear CTAs for buyers, sellers, and investor leads",
-    ],
+    journey: ["Explore your market", "Choose a local partner", "Plan the next move"],
+    goal: "More meaningful buyer and seller conversations.",
   },
   {
     slug: "home-remodeling",
     name: "Home remodeling & custom home builders",
-    shortName: "Home remodeling",
+    shortName: "Remodeling & builders",
     tier: 1,
     homepage: true,
-    tagline:
-      "Homeowners visit three to five contractor sites before calling — the best portfolio wins.",
-    painPoints: [
-      "High-ticket projects require a site that builds trust before the first call",
-      "Poor photography presentation loses jobs to competitors with cleaner portfolios",
-      "Some owners are skeptical of digital — the site must demonstrate clear ROI",
+    headline: "Turn “we love your work” into “let’s talk about ours.”",
+    decision: "A homeowner is trusting you with their space, budget, and daily life. Great project photos start the conversation. A clear explanation of your process helps them feel ready to have it.",
+    approach: [
+      { title: "Show the thinking behind the finish", description: "Build project stories around the brief, the craftsmanship, and the finished space, so visitors understand the value behind the photographs." },
+      { title: "Set the right expectations", description: "Explain the work you take on, where you build, and how a project moves forward. Help homeowners recognize whether you’re the right fit." },
+      { title: "Start with a better brief", description: "Shape inquiries around project type, location, timing, and budget, giving your team useful context before the first call." },
     ],
-    outcomes: [
-      "Portfolio-forward layouts that showcase craftsmanship and finished work",
-      "Service-area structure for local SEO across your markets",
-      "Quote and consultation flows that capture qualified leads",
-    ],
-    relatedSlugs: ["architecture"],
+    journey: ["See the possibilities", "Understand the process", "Discuss their project"],
+    goal: "Project inquiries that fit the work you want.",
   },
   {
     slug: "financial-advisors",
@@ -118,101 +100,81 @@ export const INDUSTRIES: readonly Industry[] = [
     shortName: "Financial advisors",
     tier: 1,
     homepage: true,
-    tagline:
-      "Compliance limits social reach — for many RIAs, the website is the primary marketing asset.",
-    painPoints: [
-      "Trust and credibility are everything; a dated site erodes both instantly",
-      "Compliance review can slow updates, so the foundation needs to be right from launch",
-      "Prospects compare multiple advisors online before ever scheduling a call",
+    headline: "Make a personal connection before the first meeting.",
+    decision: "A referral can get your name in front of someone. Your website helps them understand who you work with, how you think, and whether your approach fits what they’re looking for.",
+    approach: [
+      { title: "Make your fit clear", description: "Explain the clients and life stages you serve, using plain language that helps people recognize their own priorities." },
+      { title: "Put your approach into focus", description: "Give your team, planning process, and firm-approved information a thoughtful home, with space for the disclosures your reviewers require." },
+      { title: "Make introductions approachable", description: "Explain what to expect from a first conversation and provide a simple way to request it, without asking for sensitive financial details." },
     ],
-    outcomes: [
-      "Clean, compliant-ready structure for services and disclosures",
-      "Trust-focused design that reflects the caliber of your practice",
-      "Lead capture paths for consultations and portfolio reviews",
-    ],
-    relatedSlugs: ["law-firms"],
+    journey: ["Follow a referral", "Understand your approach", "Arrange an introduction"],
+    goal: "Better-fit introductions for your advisory team.",
   },
   {
     slug: "chiropractors",
     name: "Chiropractors & physical therapy clinics",
-    shortName: "Chiropractors",
+    shortName: "Chiropractic & PT",
     tier: 1,
     homepage: false,
-    tagline:
-      "Patient acquisition is search-driven — and most chiropractic sites are leaving leads on the table.",
-    painPoints: [
-      "Embarrassingly outdated sites are common in this vertical",
-      "Owners understand the site is a sales tool, not a brochure — but theirs doesn't perform",
-      "Mobile experience is critical for patients searching symptoms and providers nearby",
+    headline: "Make the first step toward care feel manageable.",
+    decision: "Someone looking for help wants to know whether you treat their concern and what happens next. Your website can turn an unfamiliar process into a clear, welcoming first step.",
+    approach: [
+      { title: "Connect needs with services", description: "Organize practitioner-reviewed service information so visitors can find relevant care and understand your approach." },
+      { title: "Take the mystery out of a visit", description: "Show your practitioners and space, explain a first appointment, and make practical details easy to find." },
+      { title: "Help people reach your team", description: "Build a straightforward mobile path to calling or requesting an appointment, with directions and hours where they’re needed." },
     ],
-    outcomes: [
-      "Modern, accessible design that builds patient confidence",
-      "Condition and service pages structured for local SEO",
-      "Booking and contact flows that turn searches into appointments",
-    ],
-    relatedSlugs: ["dental-practices", "veterinary"],
+    journey: ["Explore care options", "Know what to expect", "Request an appointment"],
+    goal: "More confident first-appointment inquiries.",
   },
   {
     slug: "veterinary",
     name: "Veterinary clinics & specialty animal hospitals",
-    shortName: "Veterinary",
+    shortName: "Veterinary clinics",
     tier: 1,
     homepage: false,
-    tagline:
-      "Pet owners research extensively online before trusting someone with their animal.",
-    painPoints: [
-      "Outdated or confusing sites lose clients to the clinic down the street",
-      "Emotional decision-making means design and tone matter as much as information",
-      "Younger practice owners expect a digital presence that matches their standards",
+    headline: "Care for the pet starts with reassuring the person.",
+    decision: "Pet owners need warmth and clarity, whether they’re choosing a regular vet or looking for timely help. Your site should help them find the right information without adding to the worry.",
+    approach: [
+      { title: "Put a face to your care", description: "Introduce your team, your facilities, and the animals you treat so new clients can understand your practice." },
+      { title: "Make practical answers immediate", description: "Keep service details, hours, location, and your clinic-approved urgent-care instructions easy to find on a phone." },
+      { title: "Welcome new clients clearly", description: "Explain the first visit and create a simple inquiry or appointment path, helping owners know what to do and what to bring." },
     ],
-    outcomes: [
-      "Warm, trustworthy design that reflects your care approach",
-      "Clear service and emergency information for anxious pet owners",
-      "New client intake paths that reduce phone tag",
-    ],
-    relatedSlugs: ["dental-practices"],
+    journey: ["Find the right clinic", "Feel reassured", "Arrange a visit"],
+    goal: "A smoother welcome for new clients and their pets.",
   },
   {
     slug: "architecture",
     name: "Architecture & interior design firms",
-    shortName: "Architecture",
+    shortName: "Architecture & interiors",
     tier: 1,
     homepage: false,
-    tagline:
-      "Visual professionals know design value — a poorly presented portfolio directly costs projects.",
-    painPoints: [
-      "The website is the portfolio, and many firms underpresent their best work",
-      "Premium-rate firms need a site that reflects the quality they charge for",
-      "Project galleries often load slowly or fail on mobile",
+    headline: "Let your next client see themselves in your work.",
+    decision: "A beautiful portfolio catches the eye. The story behind it helps a prospective client understand your perspective, your process, and why you’re the right partner for their space.",
+    approach: [
+      { title: "Give the work room to breathe", description: "Create carefully paced, image-led project pages that preserve the detail of your work and feel good to browse on any screen." },
+      { title: "Show more than a signature style", description: "Explain the brief, design decisions, and collaboration behind each project to make your expertise tangible." },
+      { title: "Invite the right commissions", description: "Make your services and process clear, then shape an inquiry around the type, scale, and timing of the project." },
     ],
-    outcomes: [
-      "Portfolio-first layouts that let work speak before words do",
-      "Fast, image-optimized pages that hold up on any device",
-      "Inquiry flows that attract the right clients, not just any client",
-    ],
-    relatedSlugs: ["home-remodeling"],
+    journey: ["Connect with the work", "See the design thinking", "Share a project brief"],
+    goal: "New commissions aligned with your practice.",
   },
   {
     slug: "salons",
     name: "High-end salons & barbershops",
-    shortName: "Salons",
+    shortName: "Salons & barbershops",
     tier: 1,
     homepage: false,
-    tagline:
-      "Premium clientele expects a polished experience from the first Google search to the chair.",
-    painPoints: [
-      "Brand investment in interiors and photography doesn't extend to the website",
-      "Online booking and service menus are often clunky or outdated",
-      "Discount chains dominate search — premium shops need to stand out visually",
+    headline: "Bring the feeling of your space to the first click.",
+    decision: "Someone may discover your work on social. Your site is where they find the right service, get to know a stylist, and decide to make an appointment. Keep that experience as considered as the one in your chair.",
+    approach: [
+      { title: "Carry your style through", description: "Bring your photography, personality, and atmosphere together in a site that feels like an extension of your space." },
+      { title: "Help clients find their match", description: "Give services, pricing guidance, and stylist specialties a clear structure so people can choose with confidence." },
+      { title: "Keep booking within reach", description: "Create a direct mobile path to your chosen booking platform when included in scope, with location and visit details close by." },
     ],
-    outcomes: [
-      "Brand-aligned design that matches your in-salon aesthetic",
-      "Service and stylist pages that convert lookers into bookings",
-      "Mobile-first experience for clients searching on the go",
-    ],
-    relatedSlugs: ["med-spas"],
+    journey: ["Discover your style", "Find a service & stylist", "Book time in the chair"],
+    goal: "An easier path from social interest to an appointment.",
   },
-] as const;
+];
 
 export function getHomepageIndustries(): Industry[] {
   return INDUSTRIES.filter((industry) => industry.homepage);

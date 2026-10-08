@@ -1,0 +1,138 @@
+{
+  "capturedAt": "2026-10-07",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 1000
+    },
+    "tablet": {
+      "width": 834,
+      "height": 1112
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "notes": [
+    "Homepage captures are cropped to the hero; direction capture is cropped to the location card.",
+    "The menu-item detail was captured earlier in the same production review.",
+    "All images depict the actual production site; device and browser frames are presentation only.",
+    "No before comparison or CMS editor screenshot is supplied, so neither is simulated."
+  ],
+  "captures": [
+    {
+      "file": "/assets/work/sahara-grill/homepage-desktop.webp",
+      "width": 1440,
+      "height": 765,
+      "bytes": 103346,
+      "source": "https://www.thesaharagrill.com/",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Production browser screenshot"
+    },
+    {
+      "file": "/assets/work/sahara-grill/homepage-mobile.webp",
+      "width": 390,
+      "height": 622,
+      "bytes": 38330,
+      "source": "https://www.thesaharagrill.com/",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Production browser screenshot"
+    },
+    {
+      "file": "/assets/work/sahara-grill/homepage-tablet.webp",
+      "width": 834,
+      "height": 765,
+      "bytes": 72198,
+      "source": "https://www.thesaharagrill.com/",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Production browser screenshot"
+    },
+    {
+      "file": "/assets/work/sahara-grill/menu-desktop.webp",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 72922,
+      "source": "https://www.thesaharagrill.com/menu",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Production browser screenshot"
+    },
+    {
+      "file": "/assets/work/sahara-grill/menu-items-mobile.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 36084,
+      "source": "https://www.thesaharagrill.com/menu",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Production browser screenshot"
+    },
+    {
+      "file": "/assets/work/sahara-grill/menu-mobile.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 29046,
+      "source": "https://www.thesaharagrill.com/menu",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Production browser screenshot"
+    },
+    {
+      "file": "/assets/work/sahara-grill/menu-tablet.webp",
+      "width": 834,
+      "height": 1112,
+      "bytes": 59804,
+      "source": "https://www.thesaharagrill.com/menu",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Production browser screenshot"
+    },
+    {
+      "file": "/assets/work/sahara-grill/visit-mobile.webp",
+      "width": 390,
+      "height": 645,
+      "bytes": 30748,
+      "source": "https://www.thesaharagrill.com/",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Production browser screenshot"
+    },
+    {
+      "file": "/assets/work/sahara-grill/homepage-phone-full.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 32572,
+      "source": "https://www.thesaharagrill.com/",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Full viewport production screenshot for device mockup"
+    },
+    {
+      "file": "/assets/work/sahara-grill/homepage-tablet-full.webp",
+      "width": 834,
+      "height": 1112,
+      "bytes": 68282,
+      "source": "https://www.thesaharagrill.com/",
+      "capturedAt": "2026-10-07",
+      "theme": "dark",
+      "kind": "Full viewport production screenshot for device mockup"
+    }
+  ],
+  "performance": {
+    "status": "Installation reported by user; production activation and populated results not independently verified.",
+    "observedScripts": [
+      "/_vercel/insights/script.js"
+    ],
+    "publicClaims": "No Core Web Vitals scores or performance improvement claims published."
+  },
+  "audience": {
+    "source": "Authenticated Vercel Web Analytics dashboard",
+    "range": "2026-09-07 to 2026-10-07",
+    "mobileSharePercent": 82,
+    "note": "Rounded audience share; not a redesign uplift measurement."
+  }
+}
