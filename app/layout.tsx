@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Suspense } from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -78,6 +79,7 @@ export default function RootLayout({
         {children}
         <SiteFooter />
         <ViewportBlur />
+        <Analytics />
       </body>
     </html>
   );
