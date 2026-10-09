@@ -117,16 +117,9 @@ export default function SaharaGrillCaseStudyPage() {
               <ul className="mt-6 space-y-3 text-sm">
                 {["Delivery and takeout links to Toast", "A map, address and directions in one place", "Hours and a clear route to catering inquiries"].map((item) => <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-orange" aria-hidden />{item}</li>)}
               </ul>
-              <div className="mt-8 max-w-lg divide-y divide-border border-t border-border">
-                <div className="flex items-start gap-4 py-5">
-                  <span className="font-pixel text-3xl text-orange-gradient">82%</span>
-                  <div><p className="text-sm">of visitors were browsing on mobile.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Audience context that makes the phone experience a priority.</p></div>
-                </div>
-                <div className="flex items-start gap-4 py-5">
-                  <span className="font-pixel text-3xl text-orange-gradient">85%</span>
-                  <div><p className="text-sm">of users clicked a menu link on the site.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Most visits go straight to the menu.</p></div>
-                </div>
-                <p className="pt-4 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.</p>
+              <div className="mt-8 flex max-w-lg items-start gap-4 border-t border-border pt-5">
+                <span className="font-pixel text-3xl text-orange-gradient">82%</span>
+                <div><p className="text-sm">of visitors were browsing on mobile.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />Audience context that makes the phone experience a priority.</p></div>
               </div>
             </div>
             <figure className="sahara-detail-stage">
@@ -146,6 +139,10 @@ export default function SaharaGrillCaseStudyPage() {
                 {[["Edit", "Update the menu in Sanity Studio."], ["Publish", "Keep drafts private until the changes are ready."], ["Serve", "Published changes refresh the website’s menu without a new deployment."]].map(([title, body], index) => <li key={title} className="grid grid-cols-[1.5rem_5rem_1fr] items-baseline gap-2 py-4 text-sm"><span className="font-mono text-xs text-orange">0{index + 1}</span><span className="font-medium">{title}</span><span className="leading-relaxed text-muted-foreground">{body}</span></li>)}
               </ol>
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">A client guide supports the handoff, so everyday menu updates can stay with the restaurant.</p>
+              <div className="mt-8 flex max-w-lg items-start gap-4 border-t border-border pt-5">
+                <span className="font-pixel text-3xl text-orange-gradient">85%</span>
+                <div><p className="text-sm">of users clicked a menu link on the site.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />Most visits go straight to the menu.</p></div>
+              </div>
             </div>
             <figure className="sahara-detail-stage sahara-cms-visual">
               <div className="mb-5 flex items-center justify-center gap-2 text-sm text-muted-foreground"><UtensilsCrossed className="size-4 text-orange" aria-hidden />The menu their guests see</div>
