@@ -141,7 +141,7 @@ export default function SaharaGrillCaseStudyPage() {
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">A client guide supports the handoff, so everyday menu updates can stay with the restaurant.</p>
               <div className="mt-8 flex max-w-lg items-start gap-4 border-t border-border pt-5">
                 <span className="font-pixel text-3xl text-orange-gradient">85%</span>
-                <div><p className="text-sm">of users clicked a menu link on the site.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />Most visits go straight to the menu.</p></div>
+                <div><p className="text-sm">of visitors clicked a menu link.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />The menu was the site’s most-used destination.</p></div>
               </div>
             </div>
             <figure className="sahara-detail-stage sahara-cms-visual">
