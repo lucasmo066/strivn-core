@@ -32,15 +32,14 @@ export function WebsiteValue() {
   const [monthlyLeads, setMonthlyLeads] = useState("");
   const [carePlan, setCarePlan] = useState("None");
   const careCost = RETAINER_PLANS.find((plan) => plan.name === carePlan)?.monthly ?? 0;
-  const [monthlyCosts, setMonthlyCosts] = useState("0");
-  const [showTiming, setShowTiming] = useState(false);
+  const [showTiming, setShowTiming] = useState(true);
 
   const result = calculateWebsiteReturn({
     investment: number(investment) ?? NaN,
     customerContribution: number(contribution) ?? NaN,
     closeRatePercent: showTiming ? number(closeRate) : undefined,
     monthlyLeads: showTiming ? number(monthlyLeads) : undefined,
-    monthlyCosts: (number(monthlyCosts) ?? 0) + careCost,
+    careCost,
   });
   const invalidAmount = (value: string) => value !== "" && (!Number.isFinite(Number(value)) || Number(value) <= 0);
   const invalidRate = closeRate !== "" && (!Number.isFinite(Number(closeRate)) || Number(closeRate) < 0 || Number(closeRate) > 100);
@@ -51,10 +50,10 @@ export function WebsiteValue() {
       <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <div className="max-w-2xl">
           <p className="mb-3 font-mono text-xs text-orange">Beyond the price tag</p>
-          <h3 id="website-value-heading" className="font-display text-xl sm:text-2xl">What could your website earn back?</h3>
+          <h3 id="website-value-heading" className="font-display text-xl sm:text-2xl">What could a few more customers mean for your business?</h3>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             Fast pages, clear design, and a foundation for search help people find you, trust your work, and get in touch.
-            Monthly care keeps that foundation improving. Explore the build and ongoing costs using your own numbers.
+            Care keeps your site hosted, monitored, and up to date. Estimate what new customers could contribute each month after care, and how quickly that could cover your website build.
           </p>
           {!expanded && <p className="mt-3 text-sm leading-relaxed"><span className="text-muted-foreground">For example:</span> <span className="font-medium">2 new customers</span> at {money.format(packages[0].amount / 2)} kept each would cover a {money.format(packages[0].amount)} build.</p>}
         </div>
@@ -117,11 +116,11 @@ export function WebsiteValue() {
                 <option value="None">Build only · no care plan</option>
                 {RETAINER_PLANS.map((plan) => <option key={plan.name} value={plan.name}>{plan.name} · {money.format(plan.monthly)}/month</option>)}
               </select>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Monthly billing shown. Add lead estimates below to see recovery time after care and other running costs.</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Monthly pricing includes hosting, monitoring, security updates, and content edits. The selected plan is included in your ongoing costs.</p>
             </div>
-            <details onToggle={(event) => setShowTiming(event.currentTarget.open)} className="border-t border-border pt-2">
+            <details open={showTiming} onToggle={(event) => setShowTiming(event.currentTarget.open)} className="border-t border-border pt-2">
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-sm font-medium focus-visible:outline-2 focus-visible:outline-orange [&::-webkit-details-marker]:hidden">
-                Add lead estimates & timing
+                Your lead estimates & timing
                 <ChevronDown className={`size-4 shrink-0 ${showTiming ? "rotate-180" : ""}`} aria-hidden />
               </summary>
               <div className="space-y-4 pt-3">
@@ -142,53 +141,53 @@ export function WebsiteValue() {
                     <p id="return-leads-help" className="mt-2 text-xs text-muted-foreground">{invalidMonthly(monthlyLeads) ? "Enter zero or a positive number." : "Your assumption, not a traffic forecast."}</p>
                   </div>
                 </div>
-                <div>
-                  <label htmlFor="return-monthly-costs" className="block text-sm font-medium">Extra monthly costs ($)</label>
-                  <Input id="return-monthly-costs" type="number" inputMode="decimal" min="0" step="0.01" value={monthlyCosts}
-                    onChange={(event) => setMonthlyCosts(event.target.value)} aria-invalid={invalidMonthly(monthlyCosts)}
-                    aria-describedby="return-costs-help" className="mt-2 h-11 text-base md:text-base" />
-                  <p id="return-costs-help" className="mt-2 text-xs leading-relaxed text-muted-foreground">{invalidMonthly(monthlyCosts) ? "Enter zero or a positive amount." : "Include ads and other running costs. Your selected care plan is added separately."}</p>
-                </div>
               </div>
             </details>
           </div>
 
-          <div className="flex min-w-0 flex-col rounded-[var(--radius-button)] border border-orange/25 bg-orange/5 p-5 sm:p-6">
+          <div className="flex h-fit min-w-0 flex-col rounded-[var(--radius-button)] border border-orange/25 bg-orange/5 p-5 sm:p-6">
             <div role="status" aria-live="polite" aria-atomic="true" className="space-y-5">
-              <p className="font-mono text-xs text-muted-foreground">Your break-even estimate</p>
-              <p className="text-sm text-muted-foreground">Build: {money.format(Number(investment) || 0)} · Care: {money.format(careCost)}/month</p>
+              <p className="font-mono text-xs text-muted-foreground">Your website’s potential</p>
+              <dl className="space-y-2 border-b border-border pb-4 text-sm">
+                <div className="flex justify-between gap-4"><dt className="text-muted-foreground">One-time build</dt><dd>{invalidAmount(investment) || !investment.trim() ? "—" : money.format(Number(investment))}</dd></div>
+                <div className="flex justify-between gap-4"><dt className="text-muted-foreground">Care / month</dt><dd>{money.format(careCost)}</dd></div>
+              </dl>
               {result ? (
                 <>
-                  <div>
-                    <p className="text-orange-gradient font-display text-4xl tabular-nums break-words">{whole.format(result.customersNeeded)}</p>
-                    <p className="mt-2 font-medium">new {result.customersNeeded === 1 ? "customer" : "customers"} to cover the build</p>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{money.format(Number(investment))} ÷ {money.format(Number(contribution))} kept per customer, rounded up.</p>
-                  </div>
-                  {showTiming && result.valuePerLead !== null && (
-                    <div className="space-y-2 border-t border-border pt-4 text-sm leading-relaxed">
-                      <p><span className="font-semibold">{money.format(result.valuePerLead)}</span> estimated value per lead at your {closeRate}% close rate.</p>
-                      {result.leadsNeeded !== null && <p className="text-muted-foreground">About {whole.format(result.leadsNeeded)} leads to win {whole.format(result.customersNeeded)} new {result.customersNeeded === 1 ? "customer" : "customers"} at that rate.</p>}
-                      {result.monthlyNet !== null && (
-                        result.monthsToRecover !== null ? (
-                          <div className="pt-2">
-                            <p className="font-display text-xl text-orange-gradient">{paybackLabel(result.monthsToRecover)}</p>
-                            <p className="mt-1 text-muted-foreground">to recover the build cost at {money.format(result.monthlyNet)}/month after the costs entered.</p>
-                          </div>
-                        ) : <p className="font-medium">These inputs don’t cover the build cost over time. New business needs to exceed the monthly costs.</p>
-                      )}
+                  {result.monthlyNet !== null ? (
+                    <div>
+                      <p className="text-orange-gradient font-display text-4xl tabular-nums break-words">{money.format(result.monthlyNet)}<span className="text-base text-muted-foreground"> /month</span></p>
+                      <p className="mt-2 font-medium">{result.monthlyNet > 0 ? "could remain after monthly care" : result.monthlyNet === 0 ? "remaining after monthly care" : "monthly shortfall after care"}</p>
+                      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">Based on {monthlyLeads} new leads/month × {closeRate}% becoming customers × {money.format(Number(contribution))} kept per customer, minus {money.format(careCost)}/month for care.</p>
+                      {result.monthsToRecover !== null ? (
+                        <div className="mt-4 border-t border-border pt-4">
+                          <p className="font-display text-xl text-orange-gradient">{paybackLabel(result.monthsToRecover)}</p>
+                          <p className="mt-1 text-sm text-muted-foreground">to recover the {money.format(Number(investment))} build. After that, the monthly amount could go toward your business.</p>
+                        </div>
+                      ) : <p className="mt-4 text-sm leading-relaxed text-muted-foreground">These estimates don’t leave an amount to recover the build. Try a different lead estimate, close rate, or customer value.</p>}
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="font-display text-xl">See what could remain each month.</p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Enter your monthly leads and close rate to estimate the amount after care and your build recovery time.</p>
                     </div>
                   )}
+                  <div className="space-y-2 border-t border-border pt-4 text-sm leading-relaxed">
+                    <p><span className="font-semibold">{whole.format(result.customersNeeded)} new {result.customersNeeded === 1 ? "customer" : "customers"}</span> to cover the build alone, before monthly care.</p>
+                    {careCost > 0 && result.monthlyCustomersNeeded !== null && <p className="text-muted-foreground"><span className="font-semibold text-foreground">{whole.format(result.monthlyCustomersNeeded)} additional {result.monthlyCustomersNeeded === 1 ? "customer" : "customers"}/month</span> to cover your care plan.</p>}
+                  </div>
                 </>
               ) : (
                 <div>
                   <p className="font-display text-xl">What is a new customer worth to you?</p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Enter your build cost and the amount you keep from one customer to see how many new customers could cover the investment.</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Enter the amount you keep per customer, your monthly leads, and your close rate. We’ll show the estimated monthly amount after care and the time to recover your build.</p>
                 </div>
               )}
             </div>
             <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
-              Estimates use your numbers, not industry averages or guaranteed results. Timing starts when the assumed leads arrive and excludes taxes or costs you haven’t entered.
+              Estimates use your numbers, not industry averages or guaranteed results. The monthly amount is after care, before recovering the build. Timing starts when the assumed leads arrive. Only website build and care costs are included.
             </p>
+            {result && !showTiming && <p className="mt-4 text-xs leading-relaxed text-muted-foreground">Add lead estimates to see how much could remain each month and how long it could take to recover the build.</p>}
             <a href="https://legacy.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs/break-even-point" target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-2 text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-orange">
               How break-even is calculated <ArrowUpRight className="size-3" aria-hidden />
             </a>

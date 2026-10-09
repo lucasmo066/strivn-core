@@ -118,6 +118,10 @@ export default function SaharaGrillCaseStudyPage() {
                 {["Delivery and takeout links to Toast", "A map, address and directions in one place", "Hours and a clear route to catering inquiries"].map((item) => <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-orange" aria-hidden />{item}</li>)}
               </ul>
               <div className="mt-8 flex max-w-lg items-start gap-4 border-t border-border pt-5">
+                <span className="font-pixel text-3xl text-orange-gradient">26%</span>
+                <div><p className="text-sm">of visitors took a next step.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Tapped to call, get directions, or start an order.</p></div>
+              </div>
+              <div className="mt-5 flex max-w-lg items-start gap-4 border-t border-border pt-5">
                 <span className="font-pixel text-3xl text-orange-gradient">82%</span>
                 <div><p className="text-sm">of visitors were browsing on mobile.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />Audience context that makes the phone experience a priority.</p></div>
               </div>

@@ -54,7 +54,7 @@ export function ServicesBento() {
               inViewAmount={0.7}
             >
               <SectionLink href={href} className={styles.capabilityLink}>
-                <StripedPattern className={styles.stripes} />
+                <StripedPattern className={`reveal-stripes ${styles.stripes}`} />
                 <Icon className={styles.icon} strokeWidth={1.5} aria-hidden />
                 <div className={styles.copy}>
                   <h3 className="text-orange-gradient font-display text-lg leading-tight">
