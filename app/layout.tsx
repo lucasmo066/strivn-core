@@ -51,6 +51,21 @@ export const metadata: Metadata = {
   title: "Strivn - Web Design & Development for Small Business",
   description:
     "Strivn builds fast, custom websites for small businesses. Based in Colorado's Front Range. Design, development, SEO, and ongoing support. Launch in weeks, not months.",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-light.png",
+        type: "image/png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-dark.png",
+        type: "image/png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: "/favicon-light.png",
+  },
 };
 
 export default function RootLayout({

@@ -19,11 +19,12 @@ export function SocialProofSection() {
               Built for local demand
             </p>
             <h2 className="max-w-none font-display text-[clamp(1.25rem,5.9vw,1.45rem)] leading-tight tracking-wide text-foreground sm:text-[clamp(1.45rem,2.9vw,2.25rem)] lg:max-w-[15ch]">
-              Clear enough to earn<span className="block lg:inline"> the next call.</span>
+              Make your <span className="text-orange-gradient">value</span><span className="block lg:inline"> impossible to miss.</span>
             </h2>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-              Local businesses need a fast answer, a credible first impression,
-              and a direct route to getting in touch.
+              Your website should show people what you offer, why you’re the
+              right choice, and how to get started. We build custom sites for
+              Front Range businesses that make every step feel easy.
             </p>
           </BlurFade>
 

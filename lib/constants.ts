@@ -127,7 +127,7 @@ export type WorkProject = {
 export const WORK_ITEMS: readonly WorkProject[] = [
   {
     id: "sahara-grill",
-    title: "Sahara Grill",
+    title: "The Sahara Grill",
     category: "Restaurant",
     location: "Woodstock, GA",
     description: "Menu-forward site built for local search and online ordering.",
@@ -504,7 +504,7 @@ export const BRAND = {
 } as const;
 
 export const SAHARA_CASE_STUDY = {
-  title: "Sahara Grill",
+  title: "The Sahara Grill",
   category: "Restaurant",
   location: "Woodstock, GA",
   summary:

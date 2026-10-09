@@ -16,8 +16,8 @@ import { SAHARA_CAPTURES, SAHARA_SITE_URL, saharaSiteUrl } from "@/lib/sahara";
 import "./sahara.css";
 
 export const metadata: Metadata = {
-  title: "Sahara Grill — Restaurant Website & Sanity CMS | Strivn",
-  description: "A closer look at Sahara Grill’s custom restaurant website: a responsive menu, clear ordering and visit information, and menu management with Sanity CMS."
+  title: "The Sahara Grill — Restaurant Website & Sanity CMS | Strivn",
+  description: "A closer look at The Sahara Grill’s custom restaurant website: a responsive menu, clear ordering and visit information, and menu management with Sanity CMS."
 };
 
 const priorities = [
@@ -38,7 +38,7 @@ export default function SaharaGrillCaseStudyPage() {
           <div className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16">
             <div>
               <MonoLabel className="text-orange">Selected work / Restaurant</MonoLabel>
-              <h1 className="mt-4 font-display text-[clamp(3.25rem,7.5vw,7rem)] leading-[0.95] tracking-tight">Sahara Grill<span className="text-orange">.</span></h1>
+              <h1 className="mt-4 font-display text-[clamp(3.25rem,7.5vw,7rem)] leading-[0.95] tracking-tight">The Sahara Grill<span className="text-orange">.</span></h1>
             </div>
             <div>
               <p className="max-w-md text-lg leading-relaxed text-muted-foreground sm:text-xl">A warm welcome. A menu worth exploring. An easy way to order.</p>
@@ -57,18 +57,18 @@ export default function SaharaGrillCaseStudyPage() {
             <div className="sahara-hero-macbook">
               <Macbook>
                 <ProjectDeviceFrame device="desktop">
-                  <Image src="/assets/work/sahara-grill/homepage-desktop.webp" alt="Sahara Grill homepage in Safari on a MacBook, with food photography and clear menu and ordering links" width={1440} height={765} priority sizes="(min-width: 1536px) 900px, 72vw" className="h-auto w-full" />
+                  <Image src="/assets/work/sahara-grill/homepage-desktop.webp" alt="The Sahara Grill homepage in Safari on a MacBook, with food photography and clear menu and ordering links" width={1440} height={765} priority sizes="(min-width: 1536px) 900px, 72vw" className="h-auto w-full" />
                 </ProjectDeviceFrame>
               </Macbook>
             </div>
             <div className="sahara-hero-tablet">
               <ProjectDeviceFrame device="tablet">
-                <Image src="/assets/work/sahara-grill/homepage-tablet-full.webp" alt="Sahara Grill homepage adapted to a tablet" width={834} height={1112} sizes="(min-width: 1536px) 340px, 25vw" className="h-auto w-full" />
+                <Image src="/assets/work/sahara-grill/homepage-tablet-full.webp" alt="The Sahara Grill homepage adapted to a tablet" width={834} height={1112} sizes="(min-width: 1536px) 340px, 25vw" className="h-auto w-full" />
               </ProjectDeviceFrame>
             </div>
             <div className="sahara-hero-phone">
               <ProjectDeviceFrame device="mobile">
-                <Image src="/assets/work/sahara-grill/homepage-phone-full.webp" alt="The same Sahara Grill homepage in an iPhone frame" width={390} height={844} sizes="(min-width: 1280px) 230px, 19vw" className="h-auto w-full" />
+                <Image src="/assets/work/sahara-grill/homepage-phone-full.webp" alt="The Sahara Grill homepage in an iPhone frame" width={390} height={844} sizes="(min-width: 1280px) 230px, 19vw" className="h-auto w-full" />
               </ProjectDeviceFrame>
             </div>
           </div>
@@ -83,9 +83,9 @@ export default function SaharaGrillCaseStudyPage() {
             <BlurFade inViewAmount={0.2}>
               <MonoLabel className="text-orange">The brief</MonoLabel>
               <h2 id="sahara-brief" className="mt-4 font-display text-[var(--text-h1)] leading-tight">A local favorite.<br /><span className="text-orange-gradient">An easier way in.</span></h2>
-              <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">Sahara Grill is a family-owned Mediterranean restaurant in Woodstock, Georgia. The website brings its food and hospitality online, with the details diners need to choose a meal, place an order or plan a visit.</p>
+              <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">The Sahara Grill is a family-owned Mediterranean restaurant in Woodstock, Georgia. The website brings its food and hospitality online, with the details diners need to choose a meal, place an order or plan a visit.</p>
               <div className="mt-7 flex items-center gap-4">
-                <Image src="/assets/work/sahara-grill-sign.webp" alt="Sahara Grill’s storefront sign in Woodstock, Georgia" width={144} height={108} sizes="96px" className="h-20 w-24 rounded-lg object-cover" />
+                <Image src="/assets/work/sahara-grill-sign.webp" alt="The Sahara Grill’s storefront sign in Woodstock, Georgia" width={144} height={108} sizes="96px" className="h-20 w-24 rounded-lg object-cover" />
                 <p className="max-w-48 text-xs leading-relaxed text-muted-foreground">Fresh Mediterranean food.<br />A real neighborhood restaurant.</p>
               </div>
             </BlurFade>
@@ -123,7 +123,7 @@ export default function SaharaGrillCaseStudyPage() {
               </div>
             </div>
             <figure className="sahara-detail-stage">
-              <ProjectDeviceFrame device="mobile" className="sahara-detail-phone"><Image src="/assets/work/sahara-grill/visit-mobile.webp" alt="Sahara Grill mobile location card showing the map, Woodstock address and Get Directions button" width={390} height={645} sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 80vw" className="h-auto w-full" /></ProjectDeviceFrame>
+              <ProjectDeviceFrame device="mobile" className="sahara-detail-phone"><Image src="/assets/work/sahara-grill/visit-mobile.webp" alt="The Sahara Grill mobile location card showing the map, Woodstock address and Get Directions button" width={390} height={844} sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 80vw" className="h-auto w-full" /></ProjectDeviceFrame>
               <figcaption className="mt-5 text-center font-mono text-micro text-muted-foreground">Find it. Order it. Make a plan.</figcaption>
             </figure>
           </div>
@@ -142,7 +142,7 @@ export default function SaharaGrillCaseStudyPage() {
             </div>
             <figure className="sahara-detail-stage sahara-cms-visual">
               <div className="mb-5 flex items-center justify-center gap-2 text-sm text-muted-foreground"><UtensilsCrossed className="size-4 text-orange" aria-hidden />The menu their guests see</div>
-              <ProjectDeviceFrame device="mobile" className="sahara-detail-phone"><Image src="/assets/work/sahara-grill/menu-items-mobile.webp" alt="Published Sahara Grill menu items with editable names, descriptions and prices shown to guests on mobile" width={390} height={844} sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 80vw" className="h-auto w-full" /></ProjectDeviceFrame>
+              <ProjectDeviceFrame device="mobile" className="sahara-detail-phone"><Image src="/assets/work/sahara-grill/menu-items-mobile.webp" alt="The Sahara Grill menu items as published, with editable names, descriptions and prices shown to guests on mobile" width={390} height={844} sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 80vw" className="h-auto w-full" /></ProjectDeviceFrame>
               <figcaption className="mt-5 text-center font-mono text-micro text-muted-foreground">Content managed with Sanity</figcaption>
             </figure>
           </div>
@@ -150,7 +150,7 @@ export default function SaharaGrillCaseStudyPage() {
 
         <section className="sahara-next nav-glass" aria-labelledby="sahara-next-heading">
           <div><MonoLabel className="text-orange">Your business, next</MonoLabel><h2 id="sahara-next-heading" className="mt-4 max-w-2xl font-display text-[var(--text-h1)] leading-tight">Make the next step<br />feel this simple.</h2><p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">A website built around your customers, with the tools to keep it working for your business.</p></div>
-          <div className="flex flex-col items-start gap-4"><StrivnButton variant="primary" arrow asChild><Link scroll={false} href="/book">Book a call</Link></StrivnButton><a href={siteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-orange">Explore Sahara Grill <ArrowUpRight className="size-4" aria-hidden /></a></div>
+          <div className="flex flex-col items-start gap-4"><StrivnButton variant="primary" arrow asChild><Link scroll={false} href="/book">Book a call</Link></StrivnButton><a href={siteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-orange">Explore The Sahara Grill <ArrowUpRight className="size-4" aria-hidden /></a></div>
         </section>
       </Container>
     </main>

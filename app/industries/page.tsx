@@ -31,7 +31,7 @@ export default function IndustriesPage() {
           <div className={styles.heroGrid}>
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}><span className={styles.smallCross} aria-hidden="true">+</span> Built around your business</p>
-              <h1 id="industries-title" className={styles.heroTitle}>Your business.<br /><span>Its next chapter.</span></h1>
+              <h1 id="industries-title" className={styles.heroTitle}>Your business.<br /><span className="text-orange-gradient">Its next chapter.</span></h1>
               <p className={styles.heroDescription}>A booked consultation. A signed project. A new customer. Your website should help move your business toward what comes next.</p>
               <p className={styles.heroDetail}>We bring strategy, design, and development together around the people you serve and the decisions that make them choose you.</p>
               <div className={styles.heroActions}>
@@ -67,7 +67,7 @@ export default function IndustriesPage() {
       <section id="find-your-industry" className={styles.industrySection} aria-labelledby="industry-heading">
         <Container>
           <div className={styles.sectionHeading}>
-            <div><p className={styles.eyebrow}>01 / Your business, understood</p><h2 id="industry-heading">Different businesses.<br /><span>Different reasons to say yes.</span></h2></div>
+            <div><p className={styles.eyebrow}>01 / Your business, understood</p><h2 id="industry-heading">Different businesses.<br /><span className="text-orange-gradient">Different reasons to say yes.</span></h2></div>
             <p>A new patient and a future homeowner need different things to feel ready. We build around the moments that matter to your customers.</p>
           </div>
           <IndustryExplorer industries={industries.map(({ slug, shortName }) => ({ slug, name: shortName }))}>
@@ -98,10 +98,10 @@ export default function IndustriesPage() {
         </Container>
       </section>
 
-      <section className={styles.partnership} aria-labelledby="partnership-heading">
+      <section className={`dark void ${styles.partnership}`} aria-labelledby="partnership-heading">
         <Container>
           <div className={styles.partnershipHeading}>
-            <div><p className={styles.eyebrow}>02 / A team behind the website</p><h2 id="partnership-heading">From the planning board<br />to the next <span>“yes.”</span></h2></div>
+            <div><p className={styles.eyebrow}>02 / A team behind the website</p><h2 id="partnership-heading">From the planning board<br />to the next <span className="text-orange-gradient">“yes.”</span></h2></div>
             <p>You know your business. We help translate it into a website with purpose, connecting the big picture to the details that move a customer forward.</p>
           </div>
           <ol className={styles.partnershipSteps}>
@@ -118,7 +118,7 @@ export default function IndustriesPage() {
 
       <section className={styles.closing} aria-labelledby="closing-heading">
         <Container className={styles.closingGrid}>
-          <div><p className={styles.eyebrow}>03 / Let’s build what’s next</p><h2 id="closing-heading">What should your website<br /><span>make possible?</span></h2></div>
+          <div><p className={styles.eyebrow}>03 / Let’s build what’s next</p><h2 id="closing-heading">What should your website<br /><span className="text-orange-gradient">make possible?</span></h2></div>
           <div className={styles.closingCopy}><p>Tell us where you want your business to go. We’ll talk through what your website needs to do to help you get there.</p><div className={styles.closingActions}><StrivnButton arrow asChild><Link scroll={false} href="/book">Talk through your project</Link></StrivnButton><Link scroll={false} href="/pricing" className={styles.textLink}>Explore pricing <ArrowUpRight size={16} aria-hidden="true" /></Link></div></div>
         </Container>
       </section>
