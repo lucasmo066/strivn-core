@@ -117,9 +117,16 @@ export default function SaharaGrillCaseStudyPage() {
               <ul className="mt-6 space-y-3 text-sm">
                 {["Delivery and takeout links to Toast", "A map, address and directions in one place", "Hours and a clear route to catering inquiries"].map((item) => <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-orange" aria-hidden />{item}</li>)}
               </ul>
-              <div className="mt-8 flex max-w-lg items-start gap-4 border-t border-border pt-5">
-                <span className="font-pixel text-3xl text-orange-gradient">82%</span>
-                <div><p className="text-sm">of visitors were browsing on mobile.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />Audience context that makes the phone experience a priority.</p></div>
+              <div className="mt-8 max-w-lg divide-y divide-border border-t border-border">
+                <div className="flex items-start gap-4 py-5">
+                  <span className="font-pixel text-3xl text-orange-gradient">82%</span>
+                  <div><p className="text-sm">of visitors were browsing on mobile.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Audience context that makes the phone experience a priority.</p></div>
+                </div>
+                <div className="flex items-start gap-4 py-5">
+                  <span className="font-pixel text-3xl text-orange-gradient">85%</span>
+                  <div><p className="text-sm">of users clicked a menu link on the site.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Most visits go straight to the menu.</p></div>
+                </div>
+                <p className="pt-4 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.</p>
               </div>
             </div>
             <figure className="sahara-detail-stage">

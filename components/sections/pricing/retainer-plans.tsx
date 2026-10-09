@@ -19,8 +19,9 @@ export function RetainerPlans() {
   return (
     <section id="care" className={styles.careSection} aria-labelledby="care-plans-heading">
       <BlurFade className={styles.sectionHeader} direction="up" inViewAmount={0.6}>
-        <h3 id="care-plans-heading" className="font-display text-xl">Monthly care plans</h3>
-        <p className={styles.sectionDescription}>Hosting, maintenance, and growth support after launch.</p>
+        <h3 id="care-plans-heading" className="font-display text-xl">Your website deserves an ongoing partner.</h3>
+        <p className={styles.sectionDescription}>A great site should keep up with your business. Our monthly care plans give you a team to turn to for updates, monitor performance, and keep improving what works.</p>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Basic for reliable upkeep, Growth for ongoing content and search support, or Premium for priority support and a monthly strategy call with someone who knows your business. Larger additions are scoped and priced before work starts.</p>
         <div className={styles.billingRow}>
           <div className={styles.billingToggle} role="group" aria-label="Billing frequency">
             {yearlyBilling ? (

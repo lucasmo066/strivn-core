@@ -11,6 +11,8 @@ export type Industry = {
   approach: { title: string; description: string }[];
   journey: [string, string, string];
   goal: string;
+  ongoingSupport?: { title: string; description: string };
+  caseStudy?: { title: string; description: string; href: string; image: string; imageAlt: string };
 };
 
 export const INDUSTRIES: readonly Industry[] = [
@@ -95,11 +97,38 @@ export const INDUSTRIES: readonly Industry[] = [
     goal: "Project inquiries that fit the work you want.",
   },
   {
+    slug: "restaurants",
+    name: "Restaurants",
+    shortName: "Restaurants",
+    tier: 1,
+    homepage: true,
+    headline: "Make the next meal an easy choice.",
+    decision: "A hungry guest wants to see the food, check the menu, and know how to order or visit. Your website should bring the character of your restaurant online and make those decisions easy, especially on a phone.",
+    approach: [
+      { title: "Put the menu first", description: "Give your food room to shine with real photography, clear categories, descriptions, and prices. Build a menu that is easy to read on a phone and keep current as dishes change." },
+      { title: "Turn a local search into a visit", description: "Bring your hours, location, directions, and contact details together. Give search engines useful information about your restaurant and guests the details they need to make a plan." },
+      { title: "Make ordering the easy part", description: "Connect guests to your ordering or reservation platform, with a clear route for catering inquiries. We shape the next steps around how your restaurant actually serves people." },
+    ],
+    journey: ["Discover the food", "Explore the menu", "Order or plan a visit"],
+    goal: "An easier path to orders, visits, and catering inquiries.",
+    ongoingSupport: {
+      title: "A website that keeps up with your kitchen.",
+      description: "Seasonal menus, holiday hours, new photos, and promotions should be easy to keep current. Monthly care gives you a responsive partner for included updates and performance monitoring. Growth adds content and search support; Premium adds a monthly strategy call to plan what comes next. Larger additions are scoped and quoted before work starts.",
+    },
+    caseStudy: {
+      title: "The Sahara Grill",
+      description: "A custom website for a family-owned Mediterranean restaurant in Woodstock, Georgia. Explore its mobile-friendly menu, clear takeout and delivery links, and menu tools the restaurant can update itself.",
+      href: "/work/sahara-grill",
+      image: "/assets/work/sahara-grill/homepage-desktop.webp",
+      imageAlt: "The Sahara Grill website with Mediterranean food photography and clear menu and ordering links",
+    },
+  },
+  {
     slug: "financial-advisors",
     name: "Financial advisors & wealth management",
     shortName: "Financial advisors",
     tier: 1,
-    homepage: true,
+    homepage: false,
     headline: "Make a personal connection before the first meeting.",
     decision: "A referral can get your name in front of someone. Your website helps them understand who you work with, how you think, and whether your approach fits what they’re looking for.",
     approach: [

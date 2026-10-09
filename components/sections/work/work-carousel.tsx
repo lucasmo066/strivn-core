@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Plus } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, ReactNode } from "react";
 
@@ -142,16 +142,18 @@ export function WorkCarousel({
           onKeyDown={handleKeyDown}
         >
         {projects.map((project, index) => {
+          const isInvitation = project.status === "Your turn";
           const content = (
             <>
-              <ProjectMedia title={project.title} media={project.media} />
+              {isInvitation ? (
+                <div className={`${styles.media} ${styles.invitationMedia}`} aria-hidden="true">
+                  <span className={styles.invitationPlus}><Plus strokeWidth={1} /></span>
+                  <p className="font-display text-3xl sm:text-4xl">Your next<br /><span className="text-orange-gradient">chapter.</span></p>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Let’s build it together</span>
+                </div>
+              ) : <ProjectMedia title={project.title} media={project.media} />}
               <div className={styles.details}>
                 <StripedPattern className={styles.stripes} />
-                {project.media?.isDemo && (
-                  <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                    Aceternity demo image
-                  </p>
-                )}
                 <div className={styles.metadata}>
                   <p>
                     {project.category}{project.location ? ` / ${project.location}` : ""}
@@ -163,7 +165,9 @@ export function WorkCarousel({
                 <h3 className="font-display text-xl sm:text-2xl">{project.title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
                 <p className={styles.destination}>
-                  {project.href ? (
+                  {isInvitation ? (
+                    <>{project.ctaLabel} <ArrowUpRight className="size-4" aria-hidden /></>
+                  ) : project.href ? (
                     <>View case study <ArrowUpRight className="size-4" aria-hidden /></>
                   ) : "Preview to come"}
                 </p>
@@ -192,8 +196,8 @@ export function WorkCarousel({
                   <Link
                     scroll={false}
                     href={project.href}
-                    className={styles.cardLink}
-                    aria-label={`View ${project.title} case study`}
+                    className={`${styles.cardLink}${isInvitation ? ` ${styles.invitationCard}` : ""}`}
+                    aria-label={isInvitation ? `${project.title}: ${project.ctaLabel}` : `View ${project.title} case study`}
                   >
                     {content}
                   </Link>

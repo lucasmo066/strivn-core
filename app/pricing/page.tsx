@@ -38,7 +38,7 @@ export default function PricingPage() {
               </h1>
             </div>
             <p className="font-ui text-muted-foreground">
-              {PRICING_COPY.intro} Here is how a project is scoped, paid, and launched.
+              {PRICING_COPY.intro} Start with a custom build, then keep it moving with a monthly care plan and a team that stays involved.
             </p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
               <StrivnButton arrow className="w-full sm:w-auto" asChild><Link scroll={false} href="/start">Choose your package</Link></StrivnButton>
@@ -103,8 +103,8 @@ export default function PricingPage() {
               </defs>
             </svg>
             <BuildPackages />
-            <WebsiteValue />
             <RetainerPlans />
+            <WebsiteValue />
             <OverageAndQuickRef />
             <AddOnsGrid />
           </div>

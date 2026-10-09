@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Calculator, ChevronDown, ArrowUpRight } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
-import { BUILD_PACKAGES } from "@/lib/constants";
+import { BUILD_PACKAGES, RETAINER_PLANS } from "@/lib/constants";
 import { calculateWebsiteReturn } from "@/lib/website-return";
 
 const packages = BUILD_PACKAGES.map((plan) => ({
@@ -30,6 +30,8 @@ export function WebsiteValue() {
   const [contribution, setContribution] = useState("");
   const [closeRate, setCloseRate] = useState("");
   const [monthlyLeads, setMonthlyLeads] = useState("");
+  const [carePlan, setCarePlan] = useState("None");
+  const careCost = RETAINER_PLANS.find((plan) => plan.name === carePlan)?.monthly ?? 0;
   const [monthlyCosts, setMonthlyCosts] = useState("0");
   const [showTiming, setShowTiming] = useState(false);
 
@@ -38,7 +40,7 @@ export function WebsiteValue() {
     customerContribution: number(contribution) ?? NaN,
     closeRatePercent: showTiming ? number(closeRate) : undefined,
     monthlyLeads: showTiming ? number(monthlyLeads) : undefined,
-    monthlyCosts: number(monthlyCosts) ?? 0,
+    monthlyCosts: (number(monthlyCosts) ?? 0) + careCost,
   });
   const invalidAmount = (value: string) => value !== "" && (!Number.isFinite(Number(value)) || Number(value) <= 0);
   const invalidRate = closeRate !== "" && (!Number.isFinite(Number(closeRate)) || Number(closeRate) < 0 || Number(closeRate) > 100);
@@ -52,7 +54,7 @@ export function WebsiteValue() {
           <h3 id="website-value-heading" className="font-display text-xl sm:text-2xl">What could your website earn back?</h3>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             Fast pages, clear design, and a foundation for search help people find you, trust your work, and get in touch.
-            What would that next customer be worth to you?
+            Monthly care keeps that foundation improving. Explore the build and ongoing costs using your own numbers.
           </p>
           {!expanded && <p className="mt-3 text-sm leading-relaxed"><span className="text-muted-foreground">For example:</span> <span className="font-medium">2 new customers</span> at {money.format(packages[0].amount / 2)} kept each would cover a {money.format(packages[0].amount)} build.</p>}
         </div>
@@ -109,6 +111,14 @@ export function WebsiteValue() {
                 </p>
               </div>
             </div>
+            <div>
+              <label htmlFor="return-care" className="block text-sm font-medium">Include a monthly care plan</label>
+              <select id="return-care" value={carePlan} onChange={(event) => setCarePlan(event.target.value)} className="mt-2 min-h-11 w-full rounded-lg border border-input bg-background px-3 text-base focus-visible:outline-2 focus-visible:outline-orange">
+                <option value="None">Build only · no care plan</option>
+                {RETAINER_PLANS.map((plan) => <option key={plan.name} value={plan.name}>{plan.name} · {money.format(plan.monthly)}/month</option>)}
+              </select>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Monthly billing shown. Add lead estimates below to see recovery time after care and other running costs.</p>
+            </div>
             <details onToggle={(event) => setShowTiming(event.currentTarget.open)} className="border-t border-border pt-2">
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-sm font-medium focus-visible:outline-2 focus-visible:outline-orange [&::-webkit-details-marker]:hidden">
                 Add lead estimates & timing
@@ -137,7 +147,7 @@ export function WebsiteValue() {
                   <Input id="return-monthly-costs" type="number" inputMode="decimal" min="0" step="0.01" value={monthlyCosts}
                     onChange={(event) => setMonthlyCosts(event.target.value)} aria-invalid={invalidMonthly(monthlyCosts)}
                     aria-describedby="return-costs-help" className="mt-2 h-11 text-base md:text-base" />
-                  <p id="return-costs-help" className="mt-2 text-xs leading-relaxed text-muted-foreground">{invalidMonthly(monthlyCosts) ? "Enter zero or a positive amount." : "Include hosting, care, ads, or other extra running costs. Zero assumes none."}</p>
+                  <p id="return-costs-help" className="mt-2 text-xs leading-relaxed text-muted-foreground">{invalidMonthly(monthlyCosts) ? "Enter zero or a positive amount." : "Include ads and other running costs. Your selected care plan is added separately."}</p>
                 </div>
               </div>
             </details>
@@ -146,6 +156,7 @@ export function WebsiteValue() {
           <div className="flex min-w-0 flex-col rounded-[var(--radius-button)] border border-orange/25 bg-orange/5 p-5 sm:p-6">
             <div role="status" aria-live="polite" aria-atomic="true" className="space-y-5">
               <p className="font-mono text-xs text-muted-foreground">Your break-even estimate</p>
+              <p className="text-sm text-muted-foreground">Build: {money.format(Number(investment) || 0)} · Care: {money.format(careCost)}/month</p>
               {result ? (
                 <>
                   <div>

@@ -7,6 +7,7 @@ import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { PRICING_COPY } from "@/lib/constants";
 
+import { WebsiteValue } from "./pricing/website-value";
 import { BuildPackages } from "./pricing/build-packages";
 import styles from "./pricing/pricing.module.css";
 
@@ -26,10 +27,10 @@ export function PricingSection() {
           </svg>
           <BlurFade as="header" className={styles.intro} inViewAmount={0.7}>
             <h2 id="pricing-heading" className="font-display text-[var(--text-h2)]">
-              Clear pricing. No surprises.
+              Launch strong. Keep getting better.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              {PRICING_COPY.intro}
+              {PRICING_COPY.intro} Monthly care keeps your site supported and moving forward.
             </p>
             <StrivnButton variant="outline" className="mt-6" asChild>
               <Link scroll={false} href="/pricing">How pricing works</Link>
@@ -39,8 +40,8 @@ export function PricingSection() {
           <div className="grid border-t border-border sm:grid-cols-2">
             <Link scroll={false} href="/pricing#care" className="group flex items-center justify-between gap-4 p-6 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-orange sm:p-8">
               <div>
-                <p className="font-display text-lg">Care after launch</p>
-                <p className="mt-2 text-sm text-muted-foreground">Optional plans from $200/month.</p>
+                <p className="font-display text-lg">A website partner who stays involved</p>
+                <p className="mt-2 text-sm text-muted-foreground">Updates, performance checks, and a team that knows your business. Plans from $200/month.</p>
                 <p className="mt-3 text-sm font-medium text-orange">Compare care plans</p>
               </div>
               <ArrowUpRight className="size-5 shrink-0 text-orange" aria-hidden />
@@ -54,6 +55,7 @@ export function PricingSection() {
               <ArrowUpRight className="size-5 shrink-0 text-orange" aria-hidden />
             </Link>
           </div>
+          <WebsiteValue />
         </div>
       </Container>
     </section>

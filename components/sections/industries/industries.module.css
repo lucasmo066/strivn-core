@@ -71,6 +71,13 @@
 .outcomeGoal p { margin-top: .35rem; font-family: var(--font-display); font-size: 1.125rem; letter-spacing: .01em; line-height: 1.4; }
 .outcomeGoal > svg { flex-shrink: 0; color: var(--industry-accent); }
 .scopeNote { margin-top: 1.25rem; font-size: .75rem; color: var(--muted-foreground); }
+.industryProject { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 1.5rem; margin-top: 2rem; padding-block: 2rem; border-block: 1px solid var(--border); }
+.industryProjectImage { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: var(--radius-button); }
+.industryProject h4, .industryCare h4 { margin-top: .65rem; font-family: var(--font-display); font-size: var(--text-h3); line-height: 1.35; }
+.industryProjectDescription, .industryCare > p:not(.eyebrow) { margin-top: .75rem; font-size: .875rem; line-height: 1.8; color: var(--muted-foreground); }
+.industryProject .textLink { margin-top: 1rem; }
+.industryCare { margin-top: 2rem; }
+.industryCare .eyebrow, .industryProject .eyebrow { color: var(--industry-accent); }
 .partnership { --industry-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground)); padding-block: 5.5rem 3rem; }
 .partnershipHeading { display: grid; grid-template-columns: 1.3fr .8fr; align-items: end; gap: 3rem; }
 .partnershipHeading .eyebrow { color: var(--industry-accent); margin-bottom: 1rem; }
@@ -112,6 +119,7 @@
   .partnershipSteps li { padding-inline: 1rem; }
 }
 @media (max-width: 800px) {
+  .industryProject { grid-template-columns: 1fr; }
   .heroGrid { grid-template-columns: 1fr; gap: 2.5rem; }
   .heroTitle { font-size: clamp(2.1rem, 7vw, 4rem); }
   .heroDescription, .heroDetail { max-width: 36rem; }

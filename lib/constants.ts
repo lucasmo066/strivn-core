@@ -72,9 +72,9 @@ export const SERVICES = [
       "Help nearby patients and clients find the services they are already looking for.",
   },
   {
-    title: "Care after launch",
+    title: "A partner after launch",
     description:
-      "Hosting, updates, and ongoing edits that keep your site in step with your business.",
+      "A responsive team for updates and improvements, with care plans that grow alongside your business.",
   },
 ] as const;
 
@@ -113,6 +113,7 @@ export type WorkProject = {
 } & (
   | { status: "Live"; href: string }
   | { status: "Planned" | "In development"; href?: never }
+  | { status: "Your turn"; href: string; ctaLabel: string }
 );
 
 /**
@@ -121,8 +122,8 @@ export type WorkProject = {
  * public/assets/work/, then replace the relevant demo media with
  * { src: "/assets/work/project-name.webp", alt: "Description of the image" }.
  * The media component uses the shared pointer-driven ChromaticImage treatment.
- * Current demo images come from the user's Aceternity carousel sample and
- * are visibly labelled. Remove isDemo only when supplying real project media.
+ * Current demo images come from the user's Aceternity carousel sample.
+ * Remove isDemo only when supplying real project media.
  */
 export const WORK_ITEMS: readonly WorkProject[] = [
   {
@@ -151,16 +152,14 @@ export const WORK_ITEMS: readonly WorkProject[] = [
     },
   },
   {
-    id: "vertical-template",
-    title: "Vertical template",
-    category: "Service business",
-    description: "A planned website template for a priority service industry.",
-    status: "Planned",
-    media: {
-      src: "/assets/work/vertical-template.webp",
-      alt: "Classical columns at sunset from the Aceternity carousel demo, not a template screenshot",
-      isDemo: true,
-    },
+    id: "your-business",
+    title: "Be our next business",
+    category: "Your business, next",
+    description: "Let’s build a website worth showing off, with a partner who stays involved after launch.",
+    status: "Your turn",
+    media: null,
+    href: "/start",
+    ctaLabel: "Start your project",
   },
 ];
 
@@ -474,8 +473,8 @@ export const PRICING_PROCESS = [
     body: "A typical build launches in 2–4 weeks.",
   },
   {
-    title: "Care after launch, if you want it",
-    body: "An optional monthly care plan covers hosting and included edits. Medium and large edits are estimated in writing and approved before any extra charge.",
+    title: "Keep improving after launch",
+    body: "Choose monthly care for ongoing support, included edits, and room to grow. Growth adds content and search support; Premium adds priority support and monthly strategy. Larger changes are quoted for approval.",
   },
 ] as const;
 

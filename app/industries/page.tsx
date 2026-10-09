@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Compass, MousePointer2, Search, Sparkles } from "lucide-react";
 
@@ -11,7 +12,7 @@ import styles from "@/components/sections/industries/industries.module.css";
 
 export const metadata: Metadata = {
   title: "Websites built around your business — Strivn Industries",
-  description: "See how Strivn builds custom websites around the decisions that bring your business new patients, clients, bookings, and project inquiries. Strategy, design, and optional care after launch.",
+  description: "Custom websites for restaurants, practices, and local businesses. Explore our approach to menus, ordering, bookings, and inquiries, with ongoing website care.",
 };
 
 const partnership = [
@@ -91,6 +92,35 @@ export default function IndustriesPage() {
                   </ol>
                   <div className={styles.outcomeGoal}><div><span className={styles.eyebrow}>What we’re building toward</span><p>{industry.goal}</p></div><ArrowUpRight size={28} strokeWidth={1.3} aria-hidden="true" /></div>
                 </div>
+                {industry.caseStudy && (
+                  <div className={styles.industryProject}>
+                    <Image
+                      src={industry.caseStudy.image}
+                      alt={industry.caseStudy.imageAlt}
+                      width={1440}
+                      height={765}
+                      sizes="(max-width: 800px) 90vw, 30vw"
+                      className={styles.industryProjectImage}
+                    />
+                    <div>
+                      <p className={styles.eyebrow}>See the work</p>
+                      <h4>{industry.caseStudy.title}</h4>
+                      <p className={styles.industryProjectDescription}>{industry.caseStudy.description}</p>
+                      <Link scroll={false} href={industry.caseStudy.href} className={styles.textLink}>Explore the restaurant website <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                    </div>
+                  </div>
+                )}
+                {industry.ongoingSupport && (
+                  <div className={styles.industryCare}>
+                    <p className={styles.eyebrow}>After launch</p>
+                    <h4>{industry.ongoingSupport.title}</h4>
+                    <p>{industry.ongoingSupport.description}</p>
+                    <div className={styles.closingActions}>
+                      <StrivnButton arrow asChild><Link scroll={false} href="/book">Let’s talk about your restaurant</Link></StrivnButton>
+                      <Link scroll={false} href="/pricing#care" className={styles.textLink}>Explore monthly care <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                    </div>
+                  </div>
+                )}
               </article>
             ))}
           </IndustryExplorer>
