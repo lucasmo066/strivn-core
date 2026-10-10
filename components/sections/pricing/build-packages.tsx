@@ -92,7 +92,7 @@ export function BuildPackages() {
         })}
       </div>
       <div className={styles.note}>
-        <p>Extra pages: {EXTRA_PAGE_PRICE} each. 50% deposit, 50% at launch.</p>
+        <p>Extra pages: {EXTRA_PAGE_PRICE} each. 50% deposit, 50% at launch. Shopify subscription billed separately by Shopify.</p>
       </div>
     </section>
   );

@@ -247,7 +247,7 @@ export const BUILD_PACKAGES = [
       "Custom theme build",
       "Product catalog setup",
       "Checkout optimization",
-      "Client pays Shopify plan",
+      "Mobile-ready shopping experience",
     ],
   },
 ] as const;
@@ -290,6 +290,12 @@ export const ADD_ONS = [
     name: "Product upload (per 10 items)",
     description: "Add and format up to 10 store items.",
     price: "$100",
+  },
+  {
+    category: "Content & commerce",
+    name: "On-site photography",
+    description: "Original photos for your website, menu, or service pages, captured for your business.",
+    price: "Custom quote",
   },
   {
     category: "Site operations",
@@ -494,6 +500,7 @@ export const PRICING_COPY = {
 
 export const BRAND = {
   name: "Strivn",
+  legalName: "Strivn Agency",
   location: "Front Range, CO",
   basedIn: "Based in Colorado's Front Range",
   email: "hello@strivnagency.com",

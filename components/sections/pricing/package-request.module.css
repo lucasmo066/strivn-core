@@ -1,0 +1,11 @@
+.buildOption[data-featured="true"] {
+  background: var(--muted);
+}
+
+.careOption[data-featured="true"] {
+  background: var(--muted);
+}
+
+.careOption[data-featured="true"]:has(input:checked) {
+  background: var(--muted);
+}

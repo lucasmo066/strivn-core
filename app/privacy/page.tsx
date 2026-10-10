@@ -7,7 +7,7 @@ import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `How ${BRAND.name} collects, uses, and protects information when you visit our website or contact us.`,
+  description: `How ${BRAND.legalName} collects, uses, and protects information when you visit our website or contact us.`,
 };
 
 const LAST_UPDATED = "July 22, 2026";
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
                 Who we are
               </h2>
               <p>
-                {BRAND.name} (“we,” “us,” or “our”) is a web design and
+                {BRAND.legalName} (“we,” “us,” or “our”) is a web design and
                 development studio based in {BRAND.location}. This policy
                 explains how we handle information when you visit{" "}
                 <span className="text-foreground">strivnagency.com</span> (the
@@ -215,7 +215,7 @@ export default function PrivacyPage() {
                 .
               </p>
               <p>
-                {BRAND.name} · {BRAND.location}
+                {BRAND.legalName} · {BRAND.location}
               </p>
             </section>
           </div>

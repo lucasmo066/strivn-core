@@ -18,7 +18,7 @@ import "./sahara.css";
 
 export const metadata: Metadata = {
   title: "Sahara Grill",
-  description: "A closer look at The Sahara Grill’s custom restaurant website: a responsive menu, clear ordering and visit information, and menu management with Sanity CMS."
+  description: "A closer look at The Sahara Grill’s custom restaurant website, including original menu and website photography, a responsive menu, and menu management with Sanity CMS."
 };
 
 const priorities = [
@@ -47,8 +47,8 @@ export default function SaharaGrillCaseStudyPage() {
             </div>
           </div>
           <BlurFade className="mt-8 sm:mt-10" inViewAmount={0.2}>
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 sm:grid-cols-4">
-              {[["Client", SAHARA_CASE_STUDY.title], ["Location", "Woodstock, Georgia"], ["Scope", "Design & development"], ["Content", "Sanity menu CMS"]].map(([label, value]) => (
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 sm:grid-cols-3 lg:grid-cols-5">
+              {[["Client", SAHARA_CASE_STUDY.title], ["Location", "Woodstock, Georgia"], ["Scope", "Design & development"], ["Photography", "Original menu & website photography"], ["Content", "Sanity menu CMS"]].map(([label, value]) => (
                 <div key={label}><dt className="font-mono text-micro text-muted-foreground">{label}</dt><dd className="mt-2 text-sm font-medium">{value}</dd></div>
               ))}
             </dl>
@@ -106,7 +106,7 @@ export default function SaharaGrillCaseStudyPage() {
         <section id="screens" className="sahara-section border-t border-border" aria-labelledby="sahara-screens-heading">
           <BlurFade className="mb-8 grid gap-5 md:grid-cols-[1fr_0.8fr] md:items-end md:gap-16" inViewAmount={0.2}>
             <div><MonoLabel className="text-orange">The experience</MonoLabel><h2 id="sahara-screens-heading" className="mt-4 font-display text-[var(--text-h1)] leading-tight">A full menu.<br /><span className="text-orange-gradient">On any screen.</span></h2></div>
-            <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">Food and drinks are organized for easy browsing, with photography, descriptions and prices together. Explore the actual site at three screen sizes, and select any image for a closer look.</p>
+            <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">Original food photography captured for the menu and website brings each dish to life, alongside clear descriptions and prices. Explore the actual site at three screen sizes, and select any image for a closer look.</p>
           </BlurFade>
           <BlurFade inViewAmount={0.15}><ProjectGallery captures={SAHARA_CAPTURES} /></BlurFade>
         </section>

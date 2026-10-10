@@ -7,7 +7,7 @@ import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
-  description: `Terms governing use of the ${BRAND.name} website. Project work is covered by a separate agreement.`,
+  description: `Terms governing use of the ${BRAND.legalName} website. Project work is covered by a separate agreement.`,
 };
 
 const LAST_UPDATED = "July 22, 2026";
@@ -34,7 +34,7 @@ export default function TermsPage() {
               </h2>
               <p>
                 These Terms of Use (“Terms”) govern your access to and use of
-                the {BRAND.name} website at{" "}
+                the {BRAND.legalName} website at{" "}
                 <span className="text-foreground">strivnagency.com</span> (the
                 “Site”). By using the Site, you agree to these Terms. If you
                 do not agree, do not use the Site.
@@ -43,7 +43,7 @@ export default function TermsPage() {
                 These Terms apply to the Site only. Design, development,
                 hosting, and retainer work are governed by a separate written
                 agreement (proposal, statement of work, or master services
-                agreement) between you and {BRAND.name}.
+                agreement) between you and {BRAND.legalName}.
               </p>
             </section>
 
@@ -95,7 +95,7 @@ export default function TermsPage() {
               </h2>
               <p>
                 The Site and its content — including text, design, logos,
-                graphics, and code — are owned by {BRAND.name} or our
+                graphics, and code — are owned by {BRAND.legalName} or our
                 licensors and are protected by intellectual property laws. You
                 may view and use the Site for personal, non-commercial
                 evaluation of our services. You may not copy, modify,
@@ -127,7 +127,7 @@ export default function TermsPage() {
               </h2>
               <p>
                 The Site is provided “as is” and “as available.” To the fullest
-                extent permitted by law, {BRAND.name} disclaims all warranties,
+                extent permitted by law, {BRAND.legalName} disclaims all warranties,
                 express or implied, including merchantability, fitness for a
                 particular purpose, and non-infringement. We do not warrant
                 that the Site will be uninterrupted, error-free, or free of
@@ -140,7 +140,7 @@ export default function TermsPage() {
                 Limitation of liability
               </h2>
               <p>
-                To the fullest extent permitted by law, {BRAND.name} and its
+                To the fullest extent permitted by law, {BRAND.legalName} and its
                 owners, employees, and contractors will not be liable for any
                 indirect, incidental, special, consequential, or punitive
                 damages, or any loss of profits, data, or goodwill, arising
@@ -160,7 +160,7 @@ export default function TermsPage() {
                 Indemnity
               </h2>
               <p>
-                You agree to indemnify and hold harmless {BRAND.name} from
+                You agree to indemnify and hold harmless {BRAND.legalName} from
                 claims, damages, and expenses (including reasonable attorneys’
                 fees) arising from your misuse of the Site or violation of
                 these Terms.
@@ -215,7 +215,7 @@ export default function TermsPage() {
                 .
               </p>
               <p>
-                {BRAND.name} · {BRAND.location}
+                {BRAND.legalName} · {BRAND.location}
               </p>
             </section>
           </div>

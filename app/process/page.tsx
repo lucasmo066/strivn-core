@@ -6,8 +6,8 @@ import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { ProcessHeading } from "@/components/sections/process-heading";
+import { GridPatternLinearGradient } from "@/components/sections/process/grid-pattern-linear-gradient";
 import { BlurFade } from "@/components/ui/blur-fade";
-import { cn } from "@/lib/utils";
 import { ShineBorder } from "@/registry/magicui/shine-border";
 
 export const metadata: Metadata = {
@@ -63,16 +63,7 @@ const steps = [
 export default function ProcessPage() {
   return (
     <main className="relative isolate overflow-hidden pt-8 pb-20 sm:pt-12 sm:pb-28">
-      <div
-        aria-hidden="true"
-        className={cn(
-          "pointer-events-none absolute inset-0 z-[-1]",
-          "[background-size:20px_20px]",
-          "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
-          "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
-          "[mask-image:radial-gradient(ellipse_at_center,black_0%,transparent_75%)]",
-        )}
-      />
+      <GridPatternLinearGradient />
       <Container className="relative z-10">
         <Link scroll={false} href="/" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4" aria-hidden />Back to Strivn</Link>
         <BlurFade as="header" className="relative mt-8 grid gap-8 pb-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16" inViewAmount={0.15}>

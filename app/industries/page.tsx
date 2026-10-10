@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, Compass, MousePointer2, Search, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, Compass, MousePointer2, Search, Sparkles } from "lucide-react";
 
 import { IndustryExplorer } from "@/components/sections/industries/industry-explorer";
 import { Container } from "@/components/shared/container";
 import { StrivnButton } from "@/components/shared/strivn-button";
+import { GridPatternLinearGradient } from "@/components/sections/process/grid-pattern-linear-gradient";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { StripedPattern } from "@/components/ui/striped-pattern";
 import { getIndustriesByTier } from "@/lib/industries";
@@ -30,7 +31,8 @@ export default function IndustriesPage() {
   const industries = getIndustriesByTier(1);
 
   return (
-    <main className={styles.page}>
+    <main className={`${styles.page} relative isolate`}>
+      <GridPatternLinearGradient />
       <section className={styles.hero} aria-labelledby="industries-title">
         <Container>
           <div className={styles.heroGrid}>
@@ -45,7 +47,7 @@ export default function IndustriesPage() {
               </div>
             </div>
 
-            <div className={styles.journeyVisual} aria-label="A website’s role: help customers find you, trust you, and take the next step">
+            <div className={`${styles.journeyVisual} nav-glass`} aria-label="A website’s role: help customers find you, trust you, and take the next step">
               <div className={styles.visualHeading}><span className={styles.eyebrow}>The website’s job</span><Compass size={20} strokeWidth={1.25} aria-hidden="true" /></div>
               <p className={styles.visualTitle}>From curious<br />to committed.</p>
               <ol className={styles.journeySteps}>
@@ -97,7 +99,7 @@ export default function IndustriesPage() {
                 <BlurFade className={styles.businessOutcome} delay={0.1} duration={0.8} inViewAmount={0.15}>
                   <StripedPattern className="reveal-stripes opacity-0" />
                   <ol aria-label="Your customer’s path" className={styles.customerPath}>
-                    {industry.journey.map((step, stepIndex) => <li key={step}>{stepIndex > 0 && <ArrowRight size={14} aria-hidden="true" />}<span>{step}</span></li>)}
+                    {industry.journey.map((step) => <li key={step}><ArrowUp size={14} aria-hidden="true" /><span>{step}</span></li>)}
                   </ol>
                   <div className={styles.outcomeGoal}><div><span className={styles.eyebrow}>What we’re building toward</span><p>{industry.goal}</p></div><ArrowUpRight size={28} strokeWidth={1.3} aria-hidden="true" /></div>
                 </BlurFade>
@@ -140,7 +142,7 @@ export default function IndustriesPage() {
       <section className={styles.partnership} aria-labelledby="partnership-heading">
         <Container>
           <div className={styles.partnershipHeading}>
-            <div><p className={styles.eyebrow}>02 / A team behind the website</p><h2 id="partnership-heading">From the planning board<br />to the next <span className="text-orange-gradient">“yes.”</span></h2></div>
+            <div><p className={styles.eyebrow}>02 / A team behind the website</p><h2 id="partnership-heading">From the planning board<br />to the next <span className="text-orange-gradient">“yes!”</span></h2></div>
             <p>You know your business. We help translate it into a website with purpose, connecting the big picture to the details that move a customer forward.</p>
           </div>
           <ol className={styles.partnershipSteps}>

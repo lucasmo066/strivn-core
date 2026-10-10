@@ -15,7 +15,15 @@
 .textLink:hover svg { transform: translate(2px, -2px); }
 .textLink:hover { color: var(--industry-accent); }
 .textLink:focus-visible, .industryLink:focus-visible, .navNote a:focus-visible, .projectLink:focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; border-radius: 2px; }
-.journeyVisual { position: relative; isolation: isolate; overflow: hidden; padding: 1.6rem 1.8rem 0; border: 1px solid var(--border); border-radius: var(--radius-button); background-color: var(--background); background-image: radial-gradient(var(--border) .8px, transparent .8px); background-size: 12px 12px; box-shadow: 12px 12px 0 color-mix(in srgb, var(--foreground) 3%, transparent); }
+.journeyVisual { position: relative; isolation: isolate; overflow: hidden; padding: 1.6rem 1.8rem 0; border: 1px solid var(--border); border-radius: var(--radius-button); }
+.journeyVisual:global(.nav-glass) { background-color: rgb(255 255 255 / .12); box-shadow: inset 0 1px 0 rgb(255 255 255 / .45), 12px 12px 0 transparent; transition: box-shadow 550ms ease-out; -webkit-backdrop-filter: blur(24px) saturate(1.6); backdrop-filter: blur(24px) saturate(1.6); }
+.journeyVisual:global(.nav-glass):has(.journeyStep:last-child[data-revealed="true"]) { box-shadow: inset 0 1px 0 rgb(255 255 255 / .45), 12px 12px 0 color-mix(in srgb, var(--ink) 6%, transparent); transition-delay: 250ms; }
+:global(.dark) .journeyVisual:global(.nav-glass) { background-color: color-mix(in srgb, var(--void) 30%, transparent); box-shadow: inset 0 1px 0 rgb(255 255 255 / .12), 12px 12px 0 transparent; }
+:global(.dark) .journeyVisual:global(.nav-glass):has(.journeyStep:last-child[data-revealed="true"]) { box-shadow: inset 0 1px 0 rgb(255 255 255 / .12), 12px 12px 0 color-mix(in srgb, white 2%, transparent); transition-delay: 250ms; }
+@media (prefers-reduced-motion: reduce) {
+  .journeyVisual:global(.nav-glass) { box-shadow: inset 0 1px 0 rgb(255 255 255 / .45), 12px 12px 0 color-mix(in srgb, var(--ink) 6%, transparent); transition: none; }
+  :global(.dark) .journeyVisual:global(.nav-glass) { box-shadow: inset 0 1px 0 rgb(255 255 255 / .12), 12px 12px 0 color-mix(in srgb, white 2%, transparent); }
+}
 .visualHeading { display: flex; align-items: center; justify-content: space-between; color: var(--muted-foreground); }
 .visualHeading svg { color: var(--industry-accent); }
 .visualTitle { margin-top: 1.25rem; font-family: var(--font-display); font-size: clamp(1.65rem, 2.5vw, 2.3rem); line-height: var(--leading-tight); letter-spacing: .01em; }
@@ -97,7 +105,7 @@
 .industryProject .textLink { margin-top: 1rem; }
 .industryCare { margin-top: 2rem; }
 .industryCare .eyebrow, .industryProject .eyebrow { color: var(--industry-accent); }
-.partnership { --industry-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground)); padding-block: 5.5rem 3rem; background-color: var(--background); color: var(--foreground); }
+.partnership { --industry-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground)); padding-block: 5.5rem 3rem; border-bottom: 1px solid var(--border); background-color: var(--background); color: var(--foreground); }
 .partnershipHeading { display: grid; grid-template-columns: 1.3fr .8fr; align-items: end; gap: 3rem; }
 .partnershipHeading .eyebrow { color: var(--industry-accent); margin-bottom: 1rem; }
 .partnershipHeading h2 { font-size: var(--text-h1); line-height: var(--leading-tight); }
@@ -116,7 +124,7 @@
 .projectLink > span { color: var(--muted-foreground); font-size: .75rem; }
 .projectLink strong { display: flex; align-items: center; gap: 1rem; font-weight: 500; font-size: 1rem; }
 .projectLink:hover strong { color: var(--industry-accent); }
-.closing { padding-block: 5.5rem; background-image: radial-gradient(var(--border) .6px, transparent .6px); background-size: 10px 10px; }
+.closing { padding-block: 5.5rem; }
 .closingGrid { display: grid; grid-template-columns: 1.3fr .8fr; align-items: center; gap: 3rem; }
 .closingCopy > p { color: var(--muted-foreground); font-size: 1rem; line-height: 1.8; }
 .closingActions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1.5rem; }
@@ -187,8 +195,6 @@
   .approachItem p { grid-column: 2; margin: 0; font-size: .875rem; }
   .customerPath { flex-direction: column; align-items: flex-start; gap: .6rem; }
   .customerPath li { font-size: .75rem; }
-  .customerPath li:first-child { padding-left: 1.675rem; }
-  .customerPath svg { transform: rotate(90deg); }
   .outcomeGoal p { font-size: 1rem; }
   .partnershipHeading h2 { font-size: var(--text-h2); }
   .partnershipSteps { grid-template-columns: 1fr; gap: 1.5rem; }

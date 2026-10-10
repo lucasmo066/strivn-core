@@ -6,13 +6,16 @@ import { AddOnsGrid } from "@/components/sections/pricing/add-ons-grid";
 import { BuildPackages } from "@/components/sections/pricing/build-packages";
 import { OverageAndQuickRef } from "@/components/sections/pricing/overage-quick-ref";
 import styles from "@/components/sections/pricing/pricing.module.css";
+import dots from "@/components/shared/dotted-section.module.css";
 import { RetainerPlans } from "@/components/sections/pricing/retainer-plans";
 import { WebsiteValue } from "@/components/sections/pricing/website-value";
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade } from "@/components/ui/blur-fade";
+import { StripedPattern } from "@/components/ui/striped-pattern";
 import { PRICING_COPY, PRICING_PROCESS } from "@/lib/constants";
+import { ShineBorder } from "@/registry/magicui/shine-border";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -22,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <main className="pt-8 sm:pt-20">
+    <main className={`${dots.section} pt-8 sm:pt-20`}>
       <section className="pb-16 sm:pb-20" aria-labelledby="pricing-page-heading">
         <Container className="space-y-10">
           <div className="grid items-end gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
@@ -42,11 +45,12 @@ export default function PricingPage() {
               {PRICING_COPY.intro} Start with a custom build, then keep it moving with a monthly care plan and a team that stays involved.
             </p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
-              <StrivnButton arrow className="w-full sm:w-auto" asChild><Link scroll={false} href="/start">Choose your package</Link></StrivnButton>
+              <StrivnButton arrow className="w-full whitespace-nowrap sm:w-auto" asChild><Link scroll={false} href="/start">Choose your package</Link></StrivnButton>
               <StrivnButton variant="outline" className="w-full sm:w-auto" asChild><Link scroll={false} href="/book">Talk it through</Link></StrivnButton>
             </div>
           </BlurFade>
-          <BlurFade className="rounded-[var(--radius-button)] border border-border p-6 sm:p-8" direction="right" delay={0.12} inViewAmount={0.2}>
+          <BlurFade className="nav-glass relative rounded-[var(--radius-button)] border border-border p-6 sm:p-8" direction="right" delay={0.12} inViewAmount={0.2}>
+            <ShineBorder shineColor={["#ff7540", "#ff9a4a", "#ffb56a"]} />
             <p className="font-pixel text-xs text-muted-foreground">YOUR WEBSITE, BUILT FOR YOU</p>
             <p className="mt-4 font-display text-4xl"><span className="mr-2 text-base text-muted-foreground">from</span><span className="text-orange-gradient">$2,000</span></p>
             <ul className="mt-6 space-y-4 border-t border-border pt-6 text-sm">
@@ -58,8 +62,11 @@ export default function PricingPage() {
           </div>
 
           <nav aria-label="Pricing sections" className="flex flex-wrap gap-2 border-y border-border py-4">
-            {[{ label: "Website builds", href: "#builds" }, { label: "Website value", href: "#website-value" }, { label: "Monthly care", href: "#care" }, { label: "Add-ons", href: "#add-ons" }].map((item) => (
-              <Link scroll={false} key={item.href} href={item.href} className="inline-flex min-h-11 items-center gap-4 rounded-full border border-border px-4 text-sm hover:border-orange focus-visible:outline-2 focus-visible:outline-orange">{item.label}<ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
+            {[{ label: "Website builds", href: "#builds" }, { label: "Website value", href: "#website-value" }, { label: "Monthly care", href: "#care" }, { label: "Add-ons", href: "#add-ons" }].map((item, index) => (
+              <BlurFade key={item.href} className="relative isolate overflow-hidden rounded-full border border-border bg-background transition-colors hover:border-orange" delay={index * 0.1} duration={0.8} inViewAmount={0.2}>
+                <StripedPattern className="reveal-stripes opacity-0" />
+                <Link scroll={false} href={item.href} className="relative z-0 inline-flex min-h-11 items-center gap-4 rounded-full px-4 text-sm focus-visible:outline-2 focus-visible:outline-orange">{item.label}<ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
+              </BlurFade>
             ))}
           </nav>
 
@@ -68,11 +75,12 @@ export default function PricingPage() {
               <BlurFade
                 as="li"
                 key={step.title}
-                className="grid content-start gap-4 rounded-[var(--radius-button)] border border-border p-5 sm:p-6"
+                className="relative isolate grid content-start gap-4 overflow-hidden rounded-[var(--radius-button)] border border-border bg-background p-5 sm:p-6"
                 delay={index * 0.1}
                 duration={0.8}
                 inViewAmount={0.2}
               >
+                <StripedPattern className="reveal-stripes opacity-0" />
                 <span className="text-orange-gradient font-pixel text-xl">
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -87,7 +95,8 @@ export default function PricingPage() {
                 </div>
               </BlurFade>
             ))}
-            <BlurFade as="li" className="flex flex-col justify-between gap-6 rounded-[var(--radius-button)] border border-orange/30 p-5 sm:p-6" delay={PRICING_PROCESS.length * 0.1} duration={0.8} inViewAmount={0.2}>
+            <BlurFade as="li" className="relative isolate flex flex-col justify-between gap-6 overflow-hidden rounded-[var(--radius-button)] border border-orange/30 bg-background p-5 sm:p-6" delay={PRICING_PROCESS.length * 0.1} duration={0.8} inViewAmount={0.2}>
+              <StripedPattern className="reveal-stripes opacity-0" />
               <div><p className="font-display text-lg">See the whole journey.</p><p className="mt-2 text-sm leading-relaxed text-muted-foreground">From first conversation to launch day and the care that comes after.</p></div>
               <Link scroll={false} href="/process" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium">Explore the process <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
             </BlurFade>
@@ -118,7 +127,7 @@ export default function PricingPage() {
             <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
               Know what you need? Choose a package and send your project details. Prefer a conversation? We can start there, too.
             </p>
-            <StrivnButton variant="primary" arrow className="w-full sm:w-auto" asChild>
+            <StrivnButton variant="primary" arrow className="w-full whitespace-nowrap sm:w-auto" asChild>
               <Link scroll={false} href="/start">Choose your package</Link>
             </StrivnButton>
           </div>

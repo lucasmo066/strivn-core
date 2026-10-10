@@ -77,7 +77,7 @@ export function IndustryExplorer({ industries, children }: {
       <div className={styles.panels}>
         {industries.map((industry, index) => (
           <div key={industry.slug} id={`panel-${industry.slug}`} hidden={industry.slug !== selected.slug} className={styles.panel}>
-            {panels[index]}
+            {industry.slug === selected.slug ? panels[index] : null}
           </div>
         ))}
       </div>
