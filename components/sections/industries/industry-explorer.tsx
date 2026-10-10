@@ -3,6 +3,7 @@
 import { Children, useSyncExternalStore, type ReactNode } from "react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 
+import { StripedPattern } from "@/components/ui/striped-pattern";
 import styles from "./industries.module.css";
 
 type IndustryOption = { slug: string; name: string };
@@ -62,7 +63,9 @@ export function IndustryExplorer({ industries, children }: {
         {industries.map((industry, index) => (
           <a key={industry.slug} href={`#${industry.slug}`}
             aria-current={industry.slug === selected.slug ? "true" : undefined}
+            data-revealed={industry.slug === selected.slug ? "true" : undefined}
             aria-controls={`panel-${industry.slug}`} className={styles.industryLink}>
+            {industry.slug === selected.slug && <StripedPattern className="reveal-stripes opacity-0" />}
             <span className={styles.navNumber} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             <span>{industry.name}</span>
             <ArrowUpRight size={16} aria-hidden="true" />

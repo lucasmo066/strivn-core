@@ -6,12 +6,16 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Check, Compass, MousePointer2, Sea
 import { IndustryExplorer } from "@/components/sections/industries/industry-explorer";
 import { Container } from "@/components/shared/container";
 import { StrivnButton } from "@/components/shared/strivn-button";
+import { BlurFade } from "@/components/ui/blur-fade";
+import { StripedPattern } from "@/components/ui/striped-pattern";
 import { getIndustriesByTier } from "@/lib/industries";
+import { GlareHover } from "@/registry/magicui/glare-hover";
+import { ShineBorder } from "@/registry/magicui/shine-border";
 
 import styles from "@/components/sections/industries/industries.module.css";
 
 export const metadata: Metadata = {
-  title: "Websites built around your business — Strivn Industries",
+  title: "Industries",
   description: "Custom websites for restaurants, practices, and local businesses. Explore our approach to menus, ordering, bookings, and inquiries, with ongoing website care.",
 };
 
@@ -45,20 +49,24 @@ export default function IndustriesPage() {
               <div className={styles.visualHeading}><span className={styles.eyebrow}>The website’s job</span><Compass size={20} strokeWidth={1.25} aria-hidden="true" /></div>
               <p className={styles.visualTitle}>From curious<br />to committed.</p>
               <ol className={styles.journeySteps}>
-                <li className={styles.journeyStep}>
+                <BlurFade as="li" className={styles.journeyStep} delay={0.12} duration={0.9} offset={12} inViewAmount={0.5}>
                   <span className={styles.stepIcon}><Search size={20} strokeWidth={1.5} aria-hidden="true" /></span>
                   <div><span className={styles.stepLabel}>01 / Get discovered</span><p>“This is what I’m looking for.”</p></div>
-                </li>
-                <li className={styles.journeyStep}>
+                </BlurFade>
+                <BlurFade as="li" className={styles.journeyStep} delay={0.38} duration={0.9} offset={12} inViewAmount={0.5}>
                   <span className={styles.stepIcon}><Sparkles size={20} strokeWidth={1.5} aria-hidden="true" /></span>
                   <div><span className={styles.stepLabel}>02 / Earn their confidence</span><p>“These are my kind of people.”</p></div>
-                </li>
-                <li className={styles.journeyStep}>
+                </BlurFade>
+                <BlurFade as="li" className={`${styles.journeyStep} ${styles.journeyStepHighlighted}`} delay={0.64} duration={0.9} offset={12} inViewAmount={0.5}>
+                  <ShineBorder shineColor={["#ff7540", "#ff9a4a", "#ffb56a"]} />
                   <span className={styles.stepIcon}><MousePointer2 size={20} strokeWidth={1.5} aria-hidden="true" /></span>
-                  <div><span className={styles.stepLabel}>03 / Make action easy</span><p>“Let’s make it happen.”</p></div>
-                </li>
+                  <div><span className={styles.stepLabel}>03 / Make action easy</span><p>“Let’s make it happen!”</p></div>
+                </BlurFade>
               </ol>
-              <div className={styles.visualOutcome}><Check size={18} aria-hidden="true" /><span>A clear path to your next customer.</span></div>
+              <BlurFade className={styles.visualOutcome} delay={0.64} duration={0.9} offset={12} inViewAmount={0.5}>
+                <Check size={18} aria-hidden="true" /><span>A clear path to your next customer.</span>
+                <GlareHover overlay className={styles.outcomeGlare} duration={700} />
+              </BlurFade>
             </div>
           </div>
           <div className={styles.heroFootnote}><span>Local businesses. Real ambitions.</span><span>Strategy <i>/</i> Design <i>/</i> Development <i>/</i> Care</span></div>
@@ -80,18 +88,19 @@ export default function IndustriesPage() {
                 <p className={styles.approachLabel}>How Strivn helps move things forward</p>
                 <div className={styles.approachGrid}>
                   {industry.approach.map((move, moveIndex) => (
-                    <div key={move.title} className={styles.approachItem}>
+                    <BlurFade key={move.title} className={styles.approachItem} delay={moveIndex * 0.12} duration={0.8} inViewAmount={0.2}>
                       <span className={styles.approachNumber} aria-hidden="true">{String(moveIndex + 1).padStart(2, "0")}</span>
                       <h4>{move.title}</h4><p>{move.description}</p>
-                    </div>
+                    </BlurFade>
                   ))}
                 </div>
-                <div className={styles.businessOutcome}>
+                <BlurFade className={styles.businessOutcome} delay={0.1} duration={0.8} inViewAmount={0.15}>
+                  <StripedPattern className="reveal-stripes opacity-0" />
                   <ol aria-label="Your customer’s path" className={styles.customerPath}>
                     {industry.journey.map((step, stepIndex) => <li key={step}>{stepIndex > 0 && <ArrowRight size={14} aria-hidden="true" />}<span>{step}</span></li>)}
                   </ol>
                   <div className={styles.outcomeGoal}><div><span className={styles.eyebrow}>What we’re building toward</span><p>{industry.goal}</p></div><ArrowUpRight size={28} strokeWidth={1.3} aria-hidden="true" /></div>
-                </div>
+                </BlurFade>
                 {industry.caseStudy && (
                   <div className={styles.industryProject}>
                     <Image
@@ -128,7 +137,7 @@ export default function IndustriesPage() {
         </Container>
       </section>
 
-      <section className={`dark void ${styles.partnership}`} aria-labelledby="partnership-heading">
+      <section className={styles.partnership} aria-labelledby="partnership-heading">
         <Container>
           <div className={styles.partnershipHeading}>
             <div><p className={styles.eyebrow}>02 / A team behind the website</p><h2 id="partnership-heading">From the planning board<br />to the next <span className="text-orange-gradient">“yes.”</span></h2></div>
@@ -136,7 +145,7 @@ export default function IndustriesPage() {
           </div>
           <ol className={styles.partnershipSteps}>
             {partnership.map((step, index) => (
-              <li key={step.title}><div className={styles.partnershipNumber}><span>{String(index + 1).padStart(2, "0")}</span><ArrowRight size={20} strokeWidth={1.3} aria-hidden="true" /></div><h3>{step.title}</h3><p>{step.body}</p><span className={styles.deliverable}>{step.deliverable}</span></li>
+              <BlurFade as="li" key={step.title} delay={index * 0.22} duration={1.1} inViewAmount={0.2}><div className={styles.partnershipNumber}><span>{String(index + 1).padStart(2, "0")}</span><ArrowRight size={20} strokeWidth={1.3} aria-hidden="true" /></div><h3>{step.title}</h3><p>{step.body}</p><span className={styles.deliverable}>{step.deliverable}</span></BlurFade>
             ))}
           </ol>
           <div className={styles.partnershipFooter}>

@@ -15,6 +15,12 @@ export function BuildPackages() {
   const gridRef = useRef<HTMLDivElement>(null);
   const shown = useRevealOnScroll(gridRef, true, 0.35, "0px 0px -12% 0px");
   const [selectedPlan, setSelectedPlan] = useState<string>(BUILD_PACKAGES[0].name);
+  const [glare, setGlare] = useState<{ plan: string; sequence: number } | null>(null);
+
+  function selectPlan(name: string) {
+    setSelectedPlan(name);
+    setGlare((current) => ({ plan: name, sequence: (current?.sequence ?? 0) + 1 }));
+  }
 
   return (
     <section id="builds" aria-labelledby="build-plans-heading">
@@ -28,7 +34,7 @@ export function BuildPackages() {
           label="Choose a website build"
           names={BUILD_PACKAGES.map((pkg) => pkg.name)}
           selected={selectedPlan}
-          onChange={setSelectedPlan}
+          onChange={selectPlan}
         />
       </BlurFade>
       <div ref={gridRef} className={styles.buildGrid}>
@@ -50,7 +56,13 @@ export function BuildPackages() {
               delay={index * 0.1}
               duration={1.02}
             >
-              <GlareHover overlay duration={600} revealDelay={index * 0.65} />
+              <GlareHover
+                key={glare?.plan === pkg.name ? glare.sequence : "idle"}
+                overlay
+                pulse={glare?.plan === pkg.name}
+                duration={600}
+                revealDelay={index * 0.65}
+              />
               <div className={styles.planHeader}>
                 <div className={styles.nameRow}>
                   <h4 id={id + "-title"} className="text-base font-semibold">{pkg.name}</h4>

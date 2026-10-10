@@ -6,7 +6,7 @@ import { MonoLabel } from "@/components/shared/mono-label";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Strivn",
+  title: "Privacy Policy",
   description: `How ${BRAND.name} collects, uses, and protects information when you visit our website or contact us.`,
 };
 

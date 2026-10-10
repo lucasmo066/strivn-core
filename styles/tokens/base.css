@@ -29,6 +29,34 @@ section[id] {
   color: transparent;
 }
 
+.process-launch-gradient {
+  background-image: linear-gradient(
+    to right,
+    #ff7540,
+    #f45a1b,
+    #d94b17
+  );
+}
+
+.dark .process-launch-gradient,
+.void .process-launch-gradient {
+  background-image: linear-gradient(
+    to right,
+    var(--brand-gradient-from),
+    var(--brand-gradient-via),
+    var(--brand-gradient-to)
+  );
+}
+
+.process-card.nav-glass {
+  border-color: #cecbc7;
+}
+
+.dark .process-card.nav-glass,
+.void .process-card.nav-glass {
+  border-color: rgb(255 255 255 / 0.15);
+}
+
 /* The same translucent material as the header over the hero. */
 .nav-glass,
 .scroll-glass[data-glass="true"] {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Calculator, ChevronDown, ArrowUpRight } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
+import { StrivnButton } from "@/components/shared/strivn-button";
 import { BUILD_PACKAGES, RETAINER_PLANS } from "@/lib/constants";
 import { calculateWebsiteReturn } from "@/lib/website-return";
 
@@ -57,17 +58,17 @@ export function WebsiteValue() {
           </p>
           {!expanded && <p className="mt-3 text-sm leading-relaxed"><span className="text-muted-foreground">For example:</span> <span className="font-medium">2 new customers</span> at {money.format(packages[0].amount / 2)} kept each would cover a {money.format(packages[0].amount)} build.</p>}
         </div>
-        <button
-          type="button"
+        <StrivnButton
+          variant="outline"
+          className="w-full shrink-0 lg:w-64"
           aria-expanded={expanded}
           aria-controls="website-value-calculator"
-          onClick={() => setExpanded(!expanded)}
-          className="inline-flex min-h-11 shrink-0 items-center justify-center gap-3 rounded-[var(--radius-button)] border border-orange/40 px-4 py-3 text-sm font-medium hover:bg-orange/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange"
+          onClick={() => setExpanded((value) => !value)}
         >
           <Calculator className="size-4 text-orange" aria-hidden />
           {expanded ? "Close calculator" : "Calculate your return"}
           <ChevronDown className={`size-4 ${expanded ? "rotate-180" : ""}`} aria-hidden />
-        </button>
+        </StrivnButton>
       </div>
 
       <div id="website-value-calculator" hidden={!expanded} className="mt-6 border-t border-border pt-6">
@@ -75,20 +76,23 @@ export function WebsiteValue() {
           <div className="min-w-0 space-y-5">
             <div>
               <label htmlFor="return-package" className="block text-sm font-medium">Start with a package</label>
-              <select
-                id="return-package"
-                value={selectedPackage}
-                onChange={(event) => {
-                  const name = event.target.value;
-                  setSelectedPackage(name);
-                  const plan = packages.find((item) => item.name === name);
-                  if (plan) setInvestment(String(plan.amount));
-                }}
-                className="mt-2 min-h-11 w-full rounded-lg border border-input bg-background px-3 text-base focus-visible:outline-2 focus-visible:outline-orange"
-              >
-                {packages.map((plan) => <option key={plan.name} value={plan.name}>{plan.label}</option>)}
-                <option value="custom">My total / custom amount</option>
-              </select>
+              <div className="relative mt-2">
+                <select
+                  id="return-package"
+                  value={selectedPackage}
+                  onChange={(event) => {
+                    const name = event.target.value;
+                    setSelectedPackage(name);
+                    const plan = packages.find((item) => item.name === name);
+                    if (plan) setInvestment(String(plan.amount));
+                  }}
+                  className="min-h-11 w-full appearance-none rounded-lg border border-input bg-background px-3 pr-12 text-base focus-visible:outline-2 focus-visible:outline-orange"
+                >
+                  {packages.map((plan) => <option key={plan.name} value={plan.name}>{plan.label}</option>)}
+                  <option value="custom">My total / custom amount</option>
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-4 top-1/2 size-5 -translate-y-1/2" aria-hidden />
+              </div>
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
@@ -112,10 +116,13 @@ export function WebsiteValue() {
             </div>
             <div>
               <label htmlFor="return-care" className="block text-sm font-medium">Include a monthly care plan</label>
-              <select id="return-care" value={carePlan} onChange={(event) => setCarePlan(event.target.value)} className="mt-2 min-h-11 w-full rounded-lg border border-input bg-background px-3 text-base focus-visible:outline-2 focus-visible:outline-orange">
-                <option value="None">Build only · no care plan</option>
-                {RETAINER_PLANS.map((plan) => <option key={plan.name} value={plan.name}>{plan.name} · {money.format(plan.monthly)}/month</option>)}
-              </select>
+              <div className="relative mt-2">
+                <select id="return-care" value={carePlan} onChange={(event) => setCarePlan(event.target.value)} className="min-h-11 w-full appearance-none rounded-lg border border-input bg-background px-3 pr-12 text-base focus-visible:outline-2 focus-visible:outline-orange">
+                  <option value="None">Build only · no care plan</option>
+                  {RETAINER_PLANS.map((plan) => <option key={plan.name} value={plan.name}>{plan.name} · {money.format(plan.monthly)}/month</option>)}
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-4 top-1/2 size-5 -translate-y-1/2" aria-hidden />
+              </div>
               <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Monthly pricing includes hosting, monitoring, security updates, and content edits. The selected plan is included in your ongoing costs.</p>
             </div>
             <details open={showTiming} onToggle={(event) => setShowTiming(event.currentTarget.open)} className="border-t border-border pt-2">

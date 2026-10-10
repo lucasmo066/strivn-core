@@ -25,6 +25,9 @@
     animation: sweep var(--glare-duration) ease-in-out;
   }
 }
+@media (max-width: 639px) and (prefers-reduced-motion: no-preference) {
+  .overlay[data-glare-pulse="true"] > .hover { animation: sweep var(--glare-duration) ease-in-out; }
+}
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   :global([data-glare-host]:hover) > .overlay .hover,
   .surface:hover > .hover { animation: sweep var(--glare-duration) ease-in-out; }

@@ -15,20 +15,39 @@
 .textLink:hover svg { transform: translate(2px, -2px); }
 .textLink:hover { color: var(--industry-accent); }
 .textLink:focus-visible, .industryLink:focus-visible, .navNote a:focus-visible, .projectLink:focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; border-radius: 2px; }
-.journeyVisual { position: relative; isolation: isolate; padding: 1.6rem 1.8rem 0; border: 1px solid var(--border); border-radius: var(--radius-button); background-color: var(--background); background-image: radial-gradient(var(--border) .8px, transparent .8px); background-size: 12px 12px; box-shadow: 12px 12px 0 color-mix(in srgb, var(--foreground) 3%, transparent); }
+.journeyVisual { position: relative; isolation: isolate; overflow: hidden; padding: 1.6rem 1.8rem 0; border: 1px solid var(--border); border-radius: var(--radius-button); background-color: var(--background); background-image: radial-gradient(var(--border) .8px, transparent .8px); background-size: 12px 12px; box-shadow: 12px 12px 0 color-mix(in srgb, var(--foreground) 3%, transparent); }
 .visualHeading { display: flex; align-items: center; justify-content: space-between; color: var(--muted-foreground); }
 .visualHeading svg { color: var(--industry-accent); }
 .visualTitle { margin-top: 1.25rem; font-family: var(--font-display); font-size: clamp(1.65rem, 2.5vw, 2.3rem); line-height: var(--leading-tight); letter-spacing: .01em; }
 .journeySteps { position: relative; margin: 1.7rem 0; display: flex; flex-direction: column; gap: .75rem; list-style: none; }
-.journeySteps::before { position: absolute; top: 1.5rem; bottom: 2rem; left: 1.5rem; z-index: -1; width: 1px; content: ""; background: var(--orange); transform: rotate(-16deg); transform-origin: top; }
-.journeyStep { display: flex; align-items: center; gap: .9rem; padding: .85rem 1rem; border: 1px solid var(--border); background: var(--background); box-shadow: 0 3px 8px rgb(0 0 0 / .025); animation: journey-in 650ms both; }
-.journeyStep:nth-child(1) { margin-right: 2.5rem; animation-delay: 80ms; }
-.journeyStep:nth-child(2) { margin-left: 1.25rem; margin-right: 1.25rem; animation-delay: 220ms; }
-.journeyStep:nth-child(3) { margin-left: 2.5rem; border-color: color-mix(in srgb, var(--orange) 42%, var(--border)); animation-delay: 360ms; }
+.journeySteps::before { position: absolute; top: 1.5rem; bottom: 2rem; left: 1.5rem; z-index: -1; width: 1px; content: ""; background: var(--orange); opacity: 0; transform: rotate(-16deg) scaleY(0); transform-origin: top; }
+.journeySteps:has(> .journeyStep:first-child[data-revealed="true"])::before { animation: journey-connector 700ms ease-out 1.06s both; }
+.journeyStep { display: flex; align-items: center; gap: .9rem; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-button); background: var(--background); box-shadow: 0 3px 8px rgb(0 0 0 / .025); }
+.journeyStep:nth-child(1) { margin-right: 2.5rem; }
+.journeyStep:nth-child(2) { margin-left: 1.25rem; margin-right: 1.25rem; }
+.journeyStep:nth-child(3) { margin-left: 2.5rem; border-color: color-mix(in srgb, var(--orange) 42%, var(--border)); }
+.journeyStepHighlighted { position: relative; }
 .stepIcon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2.25rem; height: 2.25rem; background: color-mix(in srgb, var(--orange) 9%, var(--background)); color: var(--industry-accent); }
 .stepLabel { display: block; font-family: var(--font-mono); font-size: .625rem; letter-spacing: .035em; text-transform: uppercase; color: var(--muted-foreground); }
 .journeyStep p { margin-top: .25rem; font-size: .8125rem; }
-.visualOutcome { display: flex; align-items: center; justify-content: center; gap: .7rem; margin: 0 -1.8rem; padding: .9rem 1rem; background: var(--orange); color: #20120b; font-size: .8125rem; font-weight: 500; }
+.visualOutcome { position: relative; display: flex; align-items: center; justify-content: center; gap: .7rem; overflow: hidden; margin: 0 -1.8rem; padding: .9rem 1rem; background: var(--orange); color: #20120b; font-size: .8125rem; font-weight: 500; }
+@media (prefers-reduced-motion: no-preference) {
+  :global([data-revealed="true"]).visualOutcome > .outcomeGlare > span:first-child {
+    animation: outcome-glare 700ms ease-in-out calc(var(--reveal-delay, 0s) + 1.9s) forwards,
+      outcome-glare-loop 3s ease-in-out calc(var(--reveal-delay, 0s) + 2.9s) infinite;
+  }
+}
+@keyframes outcome-glare {
+  0% { background-position: 100% 0; opacity: 0; }
+  15%, 85% { opacity: 1; }
+  100% { background-position: 0% 0; opacity: 0; }
+}
+@keyframes outcome-glare-loop {
+  0% { background-position: 100% 0; opacity: 0; }
+  5%, 19% { opacity: 1; }
+  24% { background-position: 0% 0; opacity: 0; }
+  100% { background-position: 0% 0; opacity: 0; }
+}
 .heroFootnote { display: flex; justify-content: space-between; gap: 1rem; margin-top: 4rem; padding-block: 1.2rem; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: .6875rem; color: var(--muted-foreground); }
 .heroFootnote i { padding-inline: .5rem; color: var(--industry-accent); font-style: normal; }
 .industrySection { padding-block: 5.5rem; }
@@ -40,7 +59,7 @@
 .anchor { position: absolute; top: 0; left: 0; width: 1px; height: 100%; pointer-events: none; scroll-margin-top: 6rem; outline: none; }
 .industryNav { min-width: 0; padding: 1.5rem 1.5rem 2rem 0; border-right: 1px solid var(--border); }
 .industryNav > .eyebrow { margin-bottom: 1.25rem; color: var(--muted-foreground); }
-.industryLink { display: flex; min-height: 3rem; align-items: center; gap: .75rem; padding: .65rem .7rem; margin: .15rem 0; font-size: .8125rem; border: 1px solid transparent; transition: background 180ms, border-color 180ms; }
+.industryLink { position: relative; isolation: isolate; display: flex; min-height: 3rem; align-items: center; gap: .75rem; padding: .65rem .7rem; margin: .15rem 0; font-size: .8125rem; border: 1px solid transparent; border-radius: var(--radius-button); transition: background 180ms, border-color 180ms; }
 .navNumber { font-family: var(--font-mono); font-size: .625rem; color: var(--muted-foreground); }
 .industryLink svg { margin-left: auto; flex-shrink: 0; opacity: 0; }
 .industryLink:hover { background: var(--muted); }
@@ -62,7 +81,7 @@
 .approachNumber { color: var(--industry-accent); font-family: var(--font-display); font-size: 1.2rem; }
 .approachItem h4 { margin-top: .55rem; font-size: 1.125rem; line-height: 1.35; }
 .approachItem p { margin-top: .6rem; font-size: .8125rem; line-height: 1.75; color: var(--muted-foreground); }
-.businessOutcome { margin-top: 2rem; border: 1px solid color-mix(in srgb, var(--orange) 22%, var(--border)); background: color-mix(in srgb, var(--orange) 4%, var(--background)); }
+.businessOutcome { position: relative; isolation: isolate; margin-top: 2rem; overflow: hidden; border: 1px solid color-mix(in srgb, var(--orange) 22%, var(--border)); border-radius: var(--radius-button); background: color-mix(in srgb, var(--orange) 4%, var(--background)); }
 .customerPath { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid color-mix(in srgb, var(--orange) 18%, var(--border)); list-style: none; }
 .customerPath li { display: flex; align-items: center; gap: .8rem; font-size: .6875rem; color: var(--muted-foreground); }
 .customerPath svg { color: var(--industry-accent); flex-shrink: 0; }
@@ -78,7 +97,7 @@
 .industryProject .textLink { margin-top: 1rem; }
 .industryCare { margin-top: 2rem; }
 .industryCare .eyebrow, .industryProject .eyebrow { color: var(--industry-accent); }
-.partnership { --industry-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground)); padding-block: 5.5rem 3rem; }
+.partnership { --industry-accent: color-mix(in srgb, var(--orange) 75%, var(--foreground)); padding-block: 5.5rem 3rem; background-color: var(--background); color: var(--foreground); }
 .partnershipHeading { display: grid; grid-template-columns: 1.3fr .8fr; align-items: end; gap: 3rem; }
 .partnershipHeading .eyebrow { color: var(--industry-accent); margin-bottom: 1rem; }
 .partnershipHeading h2 { font-size: var(--text-h1); line-height: var(--leading-tight); }
@@ -101,8 +120,8 @@
 .closingGrid { display: grid; grid-template-columns: 1.3fr .8fr; align-items: center; gap: 3rem; }
 .closingCopy > p { color: var(--muted-foreground); font-size: 1rem; line-height: 1.8; }
 .closingActions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1.5rem; }
-@keyframes journey-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes panel-in { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes journey-connector { from { opacity: 0; transform: rotate(-16deg) scaleY(0); } 10% { opacity: 1; } to { opacity: 1; transform: rotate(-16deg) scaleY(1); } }
 @media (min-width: 1536px) { .journeyVisual { max-width: 36rem; } }
 @media (max-width: 1100px) {
   .heroGrid { gap: 2.5rem; }
@@ -137,7 +156,7 @@
   .mobilePicker { display: block; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
   .mobilePicker > label { display: block; margin-bottom: .6rem; color: var(--muted-foreground); }
   .selectWrap { position: relative; }
-  .selectWrap select { appearance: none; width: 100%; min-height: 3.25rem; padding: .75rem 2.75rem .75rem 1rem; border: 1px solid color-mix(in srgb, var(--orange) 40%, var(--border)); border-radius: 2px; background: var(--background); color: var(--foreground); font: inherit; font-size: 1rem; }
+  .selectWrap select { appearance: none; width: 100%; min-height: 3.25rem; padding: .75rem 2.75rem .75rem 1rem; border: 1px solid color-mix(in srgb, var(--orange) 40%, var(--border)); border-radius: var(--radius-button); background: var(--background); color: var(--foreground); font: inherit; font-size: 1rem; }
   .selectWrap select:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
   .selectWrap > svg { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--industry-accent); }
   .panels { padding: 1.5rem 0 2rem; }
@@ -182,6 +201,7 @@
   .closingActions { align-items: flex-start; flex-direction: column; gap: .5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .journeyStep, .panel:not([hidden]) { animation: none; }
+  .journeySteps::before { opacity: 1; transform: rotate(-16deg); }
+  .panel:not([hidden]) { animation: none; }
   .textLink svg, .industryLink { transition: none; }
 }

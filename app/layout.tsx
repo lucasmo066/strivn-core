@@ -48,23 +48,26 @@ const geistPixel = localFont({
 const themeBootScript = `(function(){try{var t=localStorage.getItem("strivn-theme");if(t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}})();`;
 
 export const metadata: Metadata = {
-  title: "Strivn - Web Design & Development for Small Business",
+  title: {
+    default: "Home",
+    template: "Strivn Agency - %s",
+  },
   description:
     "Strivn builds fast, custom websites for small businesses. Based in Colorado's Front Range. Design, development, SEO, and ongoing support. Launch in weeks, not months.",
   icons: {
     icon: [
       {
-        url: "/favicon-light.png",
+        url: "/favicon-light.png?v=2",
         type: "image/png",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/favicon-dark.png",
+        url: "/favicon-dark.png?v=2",
         type: "image/png",
         media: "(prefers-color-scheme: dark)",
       },
     ],
-    apple: "/favicon-light.png",
+    apple: "/favicon-light.png?v=2",
   },
 };
 

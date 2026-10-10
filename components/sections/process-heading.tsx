@@ -48,7 +48,7 @@ export function ProcessHeading() {
         <button
           ref={launchRef}
           type="button"
-          className="text-orange-gradient cursor-pointer rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange"
+          className="process-launch-gradient text-orange-gradient cursor-pointer rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange"
           title="Replay confetti"
           onPointerEnter={(event) => {
             if (event.pointerType === "mouse") celebrate();

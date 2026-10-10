@@ -182,7 +182,7 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
 
   return (
     <form
-      className="relative flex h-full flex-col space-y-6 rounded-[var(--radius-button)] border border-border bg-background p-5 shadow-soft sm:p-7 dark:bg-card"
+      className="relative flex h-full flex-col gap-6 rounded-[var(--radius-button)] border border-border bg-background p-5 shadow-soft sm:p-7 dark:bg-card"
       onSubmit={onSubmit}
       noValidate
       aria-busy={loading}

@@ -11,10 +11,11 @@ import { WebsiteValue } from "@/components/sections/pricing/website-value";
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { PRICING_COPY, PRICING_PROCESS } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Pricing — Strivn",
+  title: "Pricing",
   description:
     "How Strivn prices a website: fixed packages, a 50% deposit, a typical 2–4 week launch, and optional care after launch.",
 };
@@ -25,7 +26,7 @@ export default function PricingPage() {
       <section className="pb-16 sm:pb-20" aria-labelledby="pricing-page-heading">
         <Container className="space-y-10">
           <div className="grid items-end gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <div className="max-w-2xl space-y-6 sm:space-y-5">
+          <BlurFade className="max-w-2xl space-y-6 sm:space-y-5" inViewAmount={0.2}>
             <div className="space-y-4">
               <MonoLabel className="block text-xs font-medium tracking-wide text-orange">
                 Website pricing
@@ -44,8 +45,8 @@ export default function PricingPage() {
               <StrivnButton arrow className="w-full sm:w-auto" asChild><Link scroll={false} href="/start">Choose your package</Link></StrivnButton>
               <StrivnButton variant="outline" className="w-full sm:w-auto" asChild><Link scroll={false} href="/book">Talk it through</Link></StrivnButton>
             </div>
-          </div>
-          <div className="rounded-[var(--radius-button)] border border-border p-6 sm:p-8">
+          </BlurFade>
+          <BlurFade className="rounded-[var(--radius-button)] border border-border p-6 sm:p-8" direction="right" delay={0.12} inViewAmount={0.2}>
             <p className="font-pixel text-xs text-muted-foreground">YOUR WEBSITE, BUILT FOR YOU</p>
             <p className="mt-4 font-display text-4xl"><span className="mr-2 text-base text-muted-foreground">from</span><span className="text-orange-gradient">$2,000</span></p>
             <ul className="mt-6 space-y-4 border-t border-border pt-6 text-sm">
@@ -53,7 +54,7 @@ export default function PricingPage() {
               <li className="flex items-center gap-3"><Wallet className="size-4 text-orange" aria-hidden />50% to start. 50% at launch.</li>
               <li className="flex items-center gap-3"><CalendarDays className="size-4 text-orange" aria-hidden />Typical launch in 2–4 weeks</li>
             </ul>
-          </div>
+          </BlurFade>
           </div>
 
           <nav aria-label="Pricing sections" className="flex flex-wrap gap-2 border-y border-border py-4">
@@ -64,9 +65,13 @@ export default function PricingPage() {
 
           <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {PRICING_PROCESS.map((step, index) => (
-              <li
+              <BlurFade
+                as="li"
                 key={step.title}
                 className="grid content-start gap-4 rounded-[var(--radius-button)] border border-border p-5 sm:p-6"
+                delay={index * 0.1}
+                duration={0.8}
+                inViewAmount={0.2}
               >
                 <span className="text-orange-gradient font-pixel text-xl">
                   {String(index + 1).padStart(2, "0")}
@@ -80,12 +85,12 @@ export default function PricingPage() {
                   </p>
                   {index === 1 && <Link scroll={false} href="/start" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium underline decoration-orange underline-offset-4">Choose your package <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
                 </div>
-              </li>
+              </BlurFade>
             ))}
-            <li className="flex flex-col justify-between gap-6 rounded-[var(--radius-button)] border border-orange/30 p-5 sm:p-6">
+            <BlurFade as="li" className="flex flex-col justify-between gap-6 rounded-[var(--radius-button)] border border-orange/30 p-5 sm:p-6" delay={PRICING_PROCESS.length * 0.1} duration={0.8} inViewAmount={0.2}>
               <div><p className="font-display text-lg">See the whole journey.</p><p className="mt-2 text-sm leading-relaxed text-muted-foreground">From first conversation to launch day and the care that comes after.</p></div>
               <Link scroll={false} href="/process" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium">Explore the process <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>
-            </li>
+            </BlurFade>
           </ol>
         </Container>
       </section>

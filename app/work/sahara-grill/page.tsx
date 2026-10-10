@@ -17,7 +17,7 @@ import { SAHARA_CAPTURES, SAHARA_SITE_URL, saharaSiteUrl } from "@/lib/sahara";
 import "./sahara.css";
 
 export const metadata: Metadata = {
-  title: "The Sahara Grill — Restaurant Website & Sanity CMS | Strivn",
+  title: "Sahara Grill",
   description: "A closer look at The Sahara Grill’s custom restaurant website: a responsive menu, clear ordering and visit information, and menu management with Sanity CMS."
 };
 
@@ -46,11 +46,13 @@ export default function SaharaGrillCaseStudyPage() {
               <a href={siteUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium hover:text-orange">Visit the live website <ArrowUpRight className="size-4 text-orange" aria-hidden /></a>
             </div>
           </div>
-          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 sm:mt-10 sm:grid-cols-4">
-            {[["Client", SAHARA_CASE_STUDY.title], ["Location", "Woodstock, Georgia"], ["Scope", "Design & development"], ["Content", "Sanity menu CMS"]].map(([label, value]) => (
-              <div key={label}><dt className="font-mono text-micro text-muted-foreground">{label}</dt><dd className="mt-2 text-sm font-medium">{value}</dd></div>
-            ))}
-          </dl>
+          <BlurFade className="mt-8 sm:mt-10" inViewAmount={0.2}>
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 sm:grid-cols-4">
+              {[["Client", SAHARA_CASE_STUDY.title], ["Location", "Woodstock, Georgia"], ["Scope", "Design & development"], ["Content", "Sanity menu CMS"]].map(([label, value]) => (
+                <div key={label}><dt className="font-mono text-micro text-muted-foreground">{label}</dt><dd className="mt-2 text-sm font-medium">{value}</dd></div>
+              ))}
+            </dl>
+          </BlurFade>
         </header>
 
         <figure>
@@ -102,16 +104,16 @@ export default function SaharaGrillCaseStudyPage() {
         </section>
 
         <section id="screens" className="sahara-section border-t border-border" aria-labelledby="sahara-screens-heading">
-          <div className="mb-8 grid gap-5 md:grid-cols-[1fr_0.8fr] md:items-end md:gap-16">
+          <BlurFade className="mb-8 grid gap-5 md:grid-cols-[1fr_0.8fr] md:items-end md:gap-16" inViewAmount={0.2}>
             <div><MonoLabel className="text-orange">The experience</MonoLabel><h2 id="sahara-screens-heading" className="mt-4 font-display text-[var(--text-h1)] leading-tight">A full menu.<br /><span className="text-orange-gradient">On any screen.</span></h2></div>
             <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">Food and drinks are organized for easy browsing, with photography, descriptions and prices together. Explore the actual site at three screen sizes, and select any image for a closer look.</p>
-          </div>
-          <ProjectGallery captures={SAHARA_CAPTURES} />
+          </BlurFade>
+          <BlurFade inViewAmount={0.15}><ProjectGallery captures={SAHARA_CAPTURES} /></BlurFade>
         </section>
 
         <section className="sahara-section border-t border-border" aria-labelledby="sahara-mobile-heading">
           <div className="sahara-visit-layout">
-            <div>
+            <BlurFade inViewAmount={0.2}>
               <MonoLabel className="text-orange">From browsing to visiting</MonoLabel>
               <h2 id="sahara-mobile-heading" className="mt-4 max-w-lg font-display text-[var(--text-h1)] leading-tight">The next step,<br /><span className="text-orange-gradient">right where it belongs.</span></h2>
               <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">Someone looking for lunch shouldn’t have to hunt for the essentials. Ordering links stay in the navigation, while the homepage brings location, hours and catering together.</p>
@@ -126,17 +128,19 @@ export default function SaharaGrillCaseStudyPage() {
                 <span aria-label="82%" className="font-pixel text-3xl text-orange-gradient tabular-nums whitespace-nowrap"><NumberTicker value={82} aria-hidden="true" className="inline-block w-[2ch] text-right" /><span aria-hidden="true">%</span></span>
                 <div><p className="text-sm">of visitors were browsing on mobile.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />Audience context that makes the phone experience a priority.</p></div>
               </div>
-            </div>
+            </BlurFade>
+            <BlurFade delay={0.12} inViewAmount={0.2}>
             <figure className="sahara-detail-stage">
               <ProjectDeviceFrame device="mobile" className="sahara-detail-phone"><Image src="/assets/work/sahara-grill/visit-mobile.webp" alt="The Sahara Grill mobile location card showing the map, Woodstock address and Get Directions button" width={390} height={844} sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 80vw" className="h-auto w-full" /></ProjectDeviceFrame>
               <figcaption className="mt-5 text-center font-mono text-micro text-muted-foreground">Find it. Order it. Make a plan.</figcaption>
             </figure>
+            </BlurFade>
           </div>
         </section>
 
         <section className="sahara-section border-t border-border" aria-labelledby="sahara-cms-heading">
           <div className="sahara-cms-layout">
-            <div className="sahara-cms-copy">
+            <BlurFade className="sahara-cms-copy" inViewAmount={0.2}>
               <MonoLabel className="text-orange">Built to be kept current</MonoLabel>
               <h2 id="sahara-cms-heading" className="mt-4 font-display text-[var(--text-h1)] leading-tight">Their menu.<br /><span className="text-orange-gradient">Their hands.</span></h2>
               <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">Sanity gives the team a dedicated place to manage the menu. They can edit prices and descriptions, change photos, reorder sections and hide unavailable items—without editing code.</p>
@@ -148,19 +152,21 @@ export default function SaharaGrillCaseStudyPage() {
                 <span aria-label="85%" className="font-pixel text-3xl text-orange-gradient tabular-nums whitespace-nowrap"><NumberTicker value={85} aria-hidden="true" className="inline-block w-[2ch] text-right" /><span aria-hidden="true">%</span></span>
                 <div><p className="text-sm">of visitors clicked a menu link.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />The menu was the site’s most-used destination.</p></div>
               </div>
-            </div>
+            </BlurFade>
+            <BlurFade delay={0.12} inViewAmount={0.2}>
             <figure className="sahara-detail-stage sahara-cms-visual">
               <div className="mb-5 flex items-center justify-center gap-2 text-sm text-muted-foreground"><UtensilsCrossed className="size-4 text-orange" aria-hidden />The menu their guests see</div>
               <ProjectDeviceFrame device="mobile" className="sahara-detail-phone"><Image src="/assets/work/sahara-grill/menu-items-mobile.webp" alt="The Sahara Grill menu items as published, with editable names, descriptions and prices shown to guests on mobile" width={390} height={844} sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 80vw" className="h-auto w-full" /></ProjectDeviceFrame>
               <figcaption className="mt-5 text-center font-mono text-micro text-muted-foreground">Content managed with Sanity</figcaption>
             </figure>
+            </BlurFade>
           </div>
         </section>
 
-        <section className="sahara-next nav-glass" aria-labelledby="sahara-next-heading">
+        <BlurFade as="section" className="sahara-next nav-glass" aria-labelledby="sahara-next-heading" inViewAmount={0.2}>
           <div><MonoLabel className="text-orange">Your business, next</MonoLabel><h2 id="sahara-next-heading" className="mt-4 max-w-2xl font-display text-[var(--text-h1)] leading-tight">Make the next step<br />feel this simple.</h2><p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">A website built around your customers, with the tools to keep it working for your business.</p></div>
           <div className="flex flex-col items-start gap-4"><StrivnButton variant="primary" arrow asChild><Link scroll={false} href="/book">Book a call</Link></StrivnButton><a href={siteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-orange">Explore The Sahara Grill <ArrowUpRight className="size-4" aria-hidden /></a></div>
-        </section>
+        </BlurFade>
       </Container>
     </main>
   );

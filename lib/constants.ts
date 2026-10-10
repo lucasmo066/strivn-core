@@ -1,7 +1,7 @@
 export const TAGLINES = {
   primary: "Custom websites that bring in business",
   heroSub:
-    "Fast, custom sites for small businesses. Built to get you found and booked.",
+    "We build fast, search-ready websites, then help you keep improving them as your business grows.",
   heroDetail: "Launch in weeks, not months.",
   cta: "Tell us about your project",
   heroCta: "Book a call",
@@ -208,7 +208,7 @@ export const BUILD_PACKAGES = [
       "Home, About, Contact",
       "Mobile-responsive",
       "Contact form",
-      "Vercel deploy",
+      "Fast-loading pages",
     ],
   },
   {

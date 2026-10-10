@@ -6,12 +6,13 @@ import { ContactForm } from "@/components/sections/contact-form";
 import { BookingCalendar } from "@/components/shared/booking-calendar";
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { calendlyUrl, DEFAULT_CALENDLY_URL } from "@/lib/booking";
 import { BRAND } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Book a call — Strivn",
+  title: "Book a Call",
   description: "Talk through your website, your goals, and the next step with Strivn.",
 };
 
@@ -24,7 +25,7 @@ export default function BookingPage() {
           <ArrowLeft className="size-4" aria-hidden /> Back to Strivn
         </Link>
         <div className="mt-8 grid gap-12 sm:mt-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div>
+          <BlurFade className="min-w-0" inViewAmount={0.15}>
             <MonoLabel className="text-orange-gradient">A conversation, a clear next step.</MonoLabel>
             <h1 className="mt-5 font-display text-[var(--text-display)] leading-tight">Let’s talk<br />about your site.</h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
@@ -52,8 +53,8 @@ export default function BookingPage() {
             <p className="mt-7 text-sm text-muted-foreground">Prefer to write it out?</p>
             <Link scroll={false} href="/#contact" className="mt-2 inline-flex items-center gap-1 text-sm font-medium hover:underline">Send project details <ArrowUpRight className="size-4" aria-hidden /></Link>
             <a href={`mailto:${BRAND.email}`} className="mt-3 block text-sm text-muted-foreground hover:text-foreground">{BRAND.email}</a>
-          </div>
-          <div className="min-w-0 max-[399px]:-mx-[var(--container-px)]">
+          </BlurFade>
+          <BlurFade className="min-w-0 max-[399px]:-mx-[var(--container-px)]" delay={0.12} inViewAmount={0.15}>
             {url ? <BookingCalendar url={url} /> : (
               <div className="space-y-5">
                 <div className="space-y-2">
@@ -63,7 +64,7 @@ export default function BookingPage() {
                 <ContactForm source="call_request" />
               </div>
             )}
-          </div>
+          </BlurFade>
         </div>
       </Container>
     </main>
