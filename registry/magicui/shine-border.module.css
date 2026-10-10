@@ -1,0 +1,20 @@
+.shine {
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background-size: 300% 300%;
+  background-position: 50% 50%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+@keyframes shine {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .shine { animation: shine var(--shine-duration) linear infinite; }
+}

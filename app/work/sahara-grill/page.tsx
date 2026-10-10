@@ -10,6 +10,7 @@ import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Macbook } from "@/components/ui/macbook";
+import { NumberTicker } from "@/registry/magicui/number-ticker";
 import { SAHARA_CASE_STUDY } from "@/lib/constants";
 import { SAHARA_CAPTURES, SAHARA_SITE_URL, saharaSiteUrl } from "@/lib/sahara";
 
@@ -118,11 +119,11 @@ export default function SaharaGrillCaseStudyPage() {
                 {["Delivery and takeout links to Toast", "A map, address and directions in one place", "Hours and a clear route to catering inquiries"].map((item) => <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-orange" aria-hidden />{item}</li>)}
               </ul>
               <div className="mt-8 flex max-w-lg items-start gap-4 border-t border-border pt-5">
-                <span className="font-pixel text-3xl text-orange-gradient">26%</span>
+                <span aria-label="26%" className="font-pixel text-3xl text-orange-gradient tabular-nums whitespace-nowrap"><NumberTicker value={26} aria-hidden="true" className="inline-block w-[2ch] text-right" /><span aria-hidden="true">%</span></span>
                 <div><p className="text-sm">of visitors took a next step.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Tapped to call, get directions, or start an order.</p></div>
               </div>
               <div className="mt-5 flex max-w-lg items-start gap-4 border-t border-border pt-5">
-                <span className="font-pixel text-3xl text-orange-gradient">82%</span>
+                <span aria-label="82%" className="font-pixel text-3xl text-orange-gradient tabular-nums whitespace-nowrap"><NumberTicker value={82} aria-hidden="true" className="inline-block w-[2ch] text-right" /><span aria-hidden="true">%</span></span>
                 <div><p className="text-sm">of visitors were browsing on mobile.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />Audience context that makes the phone experience a priority.</p></div>
               </div>
             </div>
@@ -144,7 +145,7 @@ export default function SaharaGrillCaseStudyPage() {
               </ol>
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">A client guide supports the handoff, so everyday menu updates can stay with the restaurant.</p>
               <div className="mt-8 flex max-w-lg items-start gap-4 border-t border-border pt-5">
-                <span className="font-pixel text-3xl text-orange-gradient">85%</span>
+                <span aria-label="85%" className="font-pixel text-3xl text-orange-gradient tabular-nums whitespace-nowrap"><NumberTicker value={85} aria-hidden="true" className="inline-block w-[2ch] text-right" /><span aria-hidden="true">%</span></span>
                 <div><p className="text-sm">of visitors clicked a menu link.</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">Vercel Web Analytics · September 7–October 7, 2026.<br />The menu was the site’s most-used destination.</p></div>
               </div>
             </div>

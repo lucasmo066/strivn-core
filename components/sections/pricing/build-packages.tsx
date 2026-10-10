@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade, useRevealOnScroll } from "@/components/ui/blur-fade";
 import { BUILD_PACKAGES, EXTRA_PAGE_PRICE } from "@/lib/constants";
+import { GlareHover } from "@/registry/magicui/glare-hover";
 import { PlanSelector } from "./plan-selector";
 import styles from "./pricing.module.css";
 
@@ -40,6 +41,7 @@ export function BuildPackages() {
               id={id}
               key={pkg.name}
               className={styles.planCard}
+              data-glare-host=""
               data-selected={selectedPlan === pkg.name}
               data-featured={featured || undefined}
               aria-labelledby={id + "-title"}
@@ -48,6 +50,7 @@ export function BuildPackages() {
               delay={index * 0.1}
               duration={1.02}
             >
+              <GlareHover overlay duration={600} revealDelay={index * 0.65} />
               <div className={styles.planHeader}>
                 <div className={styles.nameRow}>
                   <h4 id={id + "-title"} className="text-base font-semibold">{pkg.name}</h4>

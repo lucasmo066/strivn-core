@@ -3,6 +3,7 @@ import { ArrowUpRight, Check, ChevronDown, Minus } from "lucide-react";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade } from "@/components/ui/blur-fade";
 import type { RetainerSection } from "@/lib/constants";
+import { GlareHover } from "@/registry/magicui/glare-hover";
 import styles from "./pricing.module.css";
 
 type RetainerPlan = {
@@ -35,6 +36,7 @@ export function RetainerCard({ plan, yearlyBilling, selected, active, delay }: R
       as="article"
       id={id}
       className={styles.planCard}
+      data-glare-host=""
       data-selected={selected}
       data-featured={plan.featured || undefined}
       aria-labelledby={id + "-title"}
@@ -44,6 +46,7 @@ export function RetainerCard({ plan, yearlyBilling, selected, active, delay }: R
       duration={1.02}
       offset={10}
     >
+      <GlareHover overlay duration={600} revealDelay={delay * 6.5} />
       <div className={styles.planHeader}>
         <div className={styles.nameRow}>
           <h4 id={id + "-title"} className="text-base font-semibold">{plan.name}</h4>

@@ -39,6 +39,8 @@
   background: var(--border);
 }
 .planCard {
+  position: relative;
+  isolation: isolate;
   display: none;
   min-width: 0;
   flex-direction: column;

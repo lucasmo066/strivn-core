@@ -9,6 +9,7 @@ import type { ContactFieldErrors, ContactResponse } from "@/lib/contact";
 import { BRAND } from "@/lib/constants";
 import { ContactSuccess } from "@/components/sections/contact-success";
 import { cn } from "@/lib/utils";
+import { ShineBorder } from "@/registry/magicui/shine-border";
 
 const fields = ["name", "email", "business", "details"] as const;
 
@@ -187,6 +188,7 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
       aria-busy={loading}
       aria-describedby={error ? "contact-form-error" : undefined}
     >
+      <ShineBorder shineColor={["#ff7540", "#ff9a4a", "#ffb56a"]} />
       <div
         className="absolute left-[-9999px] h-0 w-0 overflow-hidden"
         aria-hidden="true"
