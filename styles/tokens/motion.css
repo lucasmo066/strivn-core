@@ -45,7 +45,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   [data-revealed="true"] .reveal-stripes {
-    animation: stripe-settle 1.8s ease-out var(--reveal-delay, 0s) backwards;
+    animation: stripe-settle 1.8s ease-out var(--reveal-delay, 0s) both;
   }
 }
 

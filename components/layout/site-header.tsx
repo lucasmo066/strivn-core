@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
-import { useEffect, useState, type ComponentType } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 
 import { BrandIcon } from "@/components/shared/brand-icon";
 import { Logo } from "@/components/shared/logo";
@@ -16,6 +16,7 @@ import { NAV_LINKS, TAGLINES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const HEADER_SOLID_AT = 4;
+const HEADER_CLEAR_AT = 1;
 
 function isCurrentPage(pathname: string, href: string) {
   if (href.includes("#")) return false;
@@ -30,12 +31,20 @@ type MobileNavProps = {
 export function SiteHeader() {
   const pathname = usePathname();
   const [atTop, setAtTop] = useState(true);
+  const atTopRef = useRef(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [MobileNav, setMobileNav] = useState<ComponentType<MobileNavProps> | null>(null);
 
   useEffect(() => {
     const onScroll = () => {
-      setAtTop(window.scrollY < HEADER_SOLID_AT);
+      const scrollY = window.scrollY;
+      const nextAtTop = atTopRef.current
+        ? scrollY < HEADER_SOLID_AT
+        : scrollY <= HEADER_CLEAR_AT;
+
+      if (nextAtTop === atTopRef.current) return;
+      atTopRef.current = nextAtTop;
+      setAtTop(nextAtTop);
     };
 
     onScroll();
@@ -92,7 +101,7 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out",
+          "fixed inset-x-0 top-0 z-50 transform-gpu border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out",
           overHero
             ? "nav-glass"
             : "border-border bg-paper/90 backdrop-blur-md dark:border-white/10 dark:bg-void/90",
