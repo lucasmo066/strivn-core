@@ -117,7 +117,7 @@ export function SiteHeader() {
               className="h-9 dark:invert md:hidden"
             />
             <Logo
-              variant="wordmark"
+              variant="lockup"
               tone="black"
               loading="eager"
               fetchPriority="low"

@@ -29,8 +29,8 @@ export function Logo({
       <Image
         src={WORDMARK[tone]}
         alt="strivn"
-        width={348}
-        height={195}
+        width={1067}
+        height={228}
         {...loadingProps}
         className={cn("h-7 w-auto", className)}
       />
@@ -41,8 +41,8 @@ export function Logo({
     <Image
       src={LOCKUP[tone]}
       alt="Strivn"
-      width={549}
-      height={218}
+      width={1682}
+      height={510}
       {...loadingProps}
       className={cn("h-8 w-auto", className)}
     />

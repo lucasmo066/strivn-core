@@ -38,7 +38,7 @@ export function HeroSection() {
             tone="black"
             loading="eager"
             fetchPriority="low"
-            className="h-14 w-auto dark:invert sm:h-15 md:h-18 lg:h-22"
+            className="h-[19px] w-auto dark:invert sm:h-5 md:h-6 lg:h-[30px]"
           />
 
           <HeroHeading>{TAGLINES.primary}</HeroHeading>

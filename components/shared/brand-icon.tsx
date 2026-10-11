@@ -36,8 +36,8 @@ export function BrandIcon({
       src={src}
       alt=""
       aria-hidden
-      width={187}
-      height={208}
+      width={431}
+      height={510}
       {...(priority ? { priority: true } : { loading, fetchPriority })}
       className={cn(sizeClass[size], className)}
     />

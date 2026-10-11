@@ -13,6 +13,11 @@ Usage notes:
 - Use full logo lockup for nav/header and main brand moments.
 - Use cube mark for favicon, loading states, cards, small badges.
 - Use arrow icon as secondary CTA/motion detail.
-- Keep arrow angle uniform across cube face and standalone icon: up-right, roughly 2 o’clock / ~58 degrees.
-- Keep border radius and border stroke visually matched to the standalone arrow stroke.
+- The cube uses the approved slim arrow, aligned with its front face's lower-left to upper-right diagonal. Keep this perspective intact.
+- Standalone interface arrows remain separate supporting assets.
+- Use transparent black artwork on light surfaces and transparent white artwork on dark surfaces.
+- Full logos, wordmarks and cube marks share one source silhouette and have tight export bounds; add clear space in the surrounding layout.
+- Browser favicons switch black/white with the browser color scheme and use minimal padding for legibility.
+- Re-export from brand/source/strivn-slim-arrow-black.png with node scripts/export-brand-assets.mjs.
+- PNG artwork is raster. The legacy SVG lockup is an embedded PNG compatibility file, not a vector master.
 - Do not introduce wordmark variations or financial mark yet.

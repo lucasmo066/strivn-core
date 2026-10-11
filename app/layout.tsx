@@ -57,17 +57,19 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon-light.png?v=3",
+        url: "/favicon-light.png?v=20261011-2",
         type: "image/png",
+        sizes: "64x64",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/favicon-dark.png?v=3",
+        url: "/favicon-dark.png?v=20261011-2",
         type: "image/png",
+        sizes: "64x64",
         media: "(prefers-color-scheme: dark)",
       },
     ],
-    apple: "/favicon-light.png?v=3",
+    apple: { url: "/apple-touch-icon.png?v=20261011-2", sizes: "180x180", type: "image/png" },
   },
 };
 

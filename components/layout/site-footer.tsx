@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { BrandIcon } from "@/components/shared/brand-icon";
 import { Container } from "@/components/shared/container";
 import { Logo } from "@/components/shared/logo";
 import { StrivnButton } from "@/components/shared/strivn-button";
@@ -27,11 +26,10 @@ export function SiteFooter() {
           <div className="max-w-md space-y-5">
             <BlurFade {...footerReveal}>
               <Link scroll={false} href="/" aria-label="Strivn home" className="inline-flex items-center gap-4 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange">
-                <BrandIcon size="md" tone="black" className="dark:invert" />
                 <Logo
-                  variant="wordmark"
+                  variant="lockup"
                   tone="black"
-                  className="h-8 w-auto dark:invert"
+                  className="h-12 w-auto dark:invert"
                 />
               </Link>
             </BlurFade>
