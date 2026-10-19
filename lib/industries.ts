@@ -1,3 +1,5 @@
+import { STILLWATER_DEMO } from "@/lib/work-examples";
+
 export type IndustryTier = 1 | 2 | 3;
 
 export type Industry = {
@@ -12,7 +14,7 @@ export type Industry = {
   journey: [string, string, string];
   goal: string;
   ongoingSupport?: { title: string; description: string };
-  caseStudy?: { title: string; description: string; href: string; image: string; imageAlt: string };
+  caseStudy?: { title: string; description: string; href: string; image: string; imageAlt: string; imageWidth?: number; imageHeight?: number; ctaLabel?: string; isDemo?: boolean };
 };
 
 export const INDUSTRIES: readonly Industry[] = [
@@ -31,6 +33,7 @@ export const INDUSTRIES: readonly Industry[] = [
     ],
     journey: ["Explore a treatment", "Get to know your team", "Request a consultation"],
     goal: "More informed consultation requests.",
+    caseStudy: { ...STILLWATER_DEMO, isDemo: true },
   },
   {
     slug: "dental-practices",

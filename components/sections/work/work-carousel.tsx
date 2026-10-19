@@ -168,7 +168,7 @@ export function WorkCarousel({
                   {isInvitation ? (
                     <>{project.ctaLabel} <ArrowUpRight className="size-4" aria-hidden /></>
                   ) : project.href ? (
-                    <>View case study <ArrowUpRight className="size-4" aria-hidden /></>
+                    <>{project.status === "Demo" ? project.ctaLabel : "View case study"} <ArrowUpRight className="size-4" aria-hidden /></>
                   ) : "Preview to come"}
                 </p>
               </div>
@@ -196,8 +196,10 @@ export function WorkCarousel({
                   <Link
                     scroll={false}
                     href={project.href}
+                    target={project.status === "Demo" ? "_blank" : undefined}
+                    rel={project.status === "Demo" ? "noopener noreferrer" : undefined}
                     className={`${styles.cardLink}${isInvitation ? ` ${styles.invitationCard}` : ""}`}
-                    aria-label={isInvitation ? `${project.title}: ${project.ctaLabel}` : `View ${project.title} case study`}
+                    aria-label={isInvitation ? `${project.title}: ${project.ctaLabel}` : project.status === "Demo" ? `Explore ${project.title} demo (opens in a new tab)` : `View ${project.title} case study`}
                   >
                     {content}
                   </Link>

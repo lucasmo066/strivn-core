@@ -1,3 +1,5 @@
+import { STILLWATER_DEMO } from "@/lib/work-examples";
+
 export const TAGLINES = {
   primary: "Custom websites that bring in business",
   heroSub:
@@ -112,12 +114,13 @@ export type WorkProject = {
   media: WorkMedia | null;
 } & (
   | { status: "Live"; href: string }
+  | { status: "Demo"; href: string; ctaLabel: string }
   | { status: "Planned" | "In development"; href?: never }
   | { status: "Your turn"; href: string; ctaLabel: string }
 );
 
 /**
- * Portfolio carousel. Only live projects have case-study destinations.
+ * Portfolio carousel. Client work links to case studies; demos link to their live previews.
  * Add approved 4:3 stills (ideally 1600 x 1200 WebP/AVIF) under
  * public/assets/work/, then replace the relevant demo media with
  * { src: "/assets/work/project-name.webp", alt: "Description of the image" }.
@@ -138,6 +141,16 @@ export const WORK_ITEMS: readonly WorkProject[] = [
       alt: "The Sahara Grill storefront sign, red and green lettering above a Fresh Mediterranean banner",
     },
     href: "/work/sahara-grill",
+  },
+  {
+    id: "stillwater",
+    title: STILLWATER_DEMO.title,
+    category: "Med spa website demo",
+    description: STILLWATER_DEMO.description,
+    status: "Demo",
+    media: { src: STILLWATER_DEMO.image, alt: STILLWATER_DEMO.imageAlt },
+    href: STILLWATER_DEMO.href,
+    ctaLabel: STILLWATER_DEMO.ctaLabel,
   },
   {
     id: "iconic-stripes",

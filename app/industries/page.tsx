@@ -108,16 +108,16 @@ export default function IndustriesPage() {
                     <Image
                       src={industry.caseStudy.image}
                       alt={industry.caseStudy.imageAlt}
-                      width={1440}
-                      height={765}
+                      width={industry.caseStudy.imageWidth ?? 1440}
+                      height={industry.caseStudy.imageHeight ?? 765}
                       sizes="(max-width: 800px) 90vw, 30vw"
                       className={styles.industryProjectImage}
                     />
                     <div>
-                      <p className={styles.eyebrow}>See the work</p>
+                      <p className={styles.eyebrow}>{industry.caseStudy.isDemo ? "Explore a fictional website demo" : "See the work"}</p>
                       <h4>{industry.caseStudy.title}</h4>
                       <p className={styles.industryProjectDescription}>{industry.caseStudy.description}</p>
-                      <Link scroll={false} href={industry.caseStudy.href} className={styles.textLink}>Explore the restaurant website <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                      <Link scroll={false} href={industry.caseStudy.href} target={industry.caseStudy.href.startsWith("https://") ? "_blank" : undefined} rel={industry.caseStudy.href.startsWith("https://") ? "noopener noreferrer" : undefined} className={styles.textLink}>{industry.caseStudy.ctaLabel ?? "Explore the restaurant website"}{industry.caseStudy.href.startsWith("https://") && <span className="sr-only"> (opens in a new tab)</span>} <ArrowUpRight size={16} aria-hidden="true" /></Link>
                     </div>
                   </div>
                 )}

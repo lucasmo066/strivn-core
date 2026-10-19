@@ -21,7 +21,7 @@ export function WorkSection() {
               Recent work
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Live work and planned projects.
+              Client work, website demos, and what’s next.
             </p>
           </BlurFade>
         </WorkCarousel>
