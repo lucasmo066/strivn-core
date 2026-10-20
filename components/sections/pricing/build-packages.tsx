@@ -40,7 +40,7 @@ export function BuildPackages() {
       <div ref={gridRef} className={styles.buildGrid}>
         {BUILD_PACKAGES.map((pkg, index) => {
           const featured = "featured" in pkg && pkg.featured;
-          const id = "build-plan-" + pkg.name.toLowerCase();
+          const id = "build-plan-" + pkg.name.toLowerCase().replaceAll(" ", "-");
           return (
             <BlurFade
               as="article"
@@ -83,7 +83,7 @@ export function BuildPackages() {
                 aria-label={"Get started with " + pkg.name}
                 asChild
               >
-                <Link scroll={false} href={`/start?package=${pkg.name.toLowerCase()}`}>
+                <Link scroll={false} href={`/start?package=${pkg.name.toLowerCase().replaceAll(" ", "-")}`}>
                   Choose {pkg.name} <ArrowUpRight aria-hidden className="size-4" />
                 </Link>
               </StrivnButton>
@@ -92,7 +92,7 @@ export function BuildPackages() {
         })}
       </div>
       <div className={styles.note}>
-        <p>Extra pages: {EXTRA_PAGE_PRICE} each. 50% deposit, 50% at launch. Shopify subscription billed separately by Shopify.</p>
+        <p>Extra pages: {EXTRA_PAGE_PRICE} each. 50% deposit, 50% before launch. Shopify subscription billed separately by Shopify.</p>
       </div>
     </section>
   );

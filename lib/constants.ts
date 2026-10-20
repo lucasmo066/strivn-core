@@ -200,7 +200,7 @@ export const FOOTER_LINK_GROUPS = [
     label: "Get started",
     links: [
       { label: "Choose a package", href: "/start" },
-      { label: "Monthly care", href: "/pricing#care" },
+      { label: "Website care", href: "/pricing#care" },
       { label: "Add-ons", href: "/pricing#add-ons" },
     ],
   },
@@ -264,6 +264,24 @@ export const BUILD_PACKAGES = [
     ],
   },
 ] as const;
+
+/** Industry-specific offer; kept out of the general pricing tiers. */
+export const MED_SPA_PACKAGE = {
+    name: "Med Spa",
+    pages: "8 pages · single location",
+    price: "$4,500",
+    priceNote: "flat fee · 3–4 weeks",
+    includes: [
+      "Your brand on our med spa template",
+      "Home, About/team, Treatments, FAQ, Contact/booking",
+      "3 individual treatment pages",
+      "Mobile design + one booking tool connection",
+      "Copy refinement from your supplied content",
+      "Launch SEO + analytics + inquiry/booking-click tracking",
+      "2 consolidated revision rounds + handoff",
+      "30 days of post-launch defect fixes",
+    ],
+  } as const;
 
 export const EXTRA_PAGE_PRICE = "$200";
 
@@ -334,99 +352,52 @@ export type RetainerSection = {
   items: RetainerFeature[];
 };
 
-export const RETAINER_PLANS: ReadonlyArray<{
+/** Prices are full quarterly and annual charges, never monthly equivalents. */
+export type RetainerPlan = {
   name: string;
-  monthly: number;
+  quarterly: number;
   yearly: number;
+  summary: string;
   featured?: boolean;
   sections: RetainerSection[];
-}> = [
+};
+
+export const RETAINER_PLANS: readonly RetainerPlan[] = [
   {
-    name: "Basic",
-    monthly: 200,
-    yearly: 170,
+    name: "Essential Care",
+    quarterly: 375,
+    yearly: 1350,
+    summary: "Hosting, monitoring, routine maintenance, and 1 hour of content edits per quarter.",
     sections: [
-      {
-        label: "Hosting & Infrastructure",
-        items: [
-          { text: "Vercel hosting", included: true },
-          { text: "Uptime monitoring", included: true },
-          { text: "Security updates", included: true },
-          { text: "Performance monitoring", included: true },
-        ],
-      },
-      {
-        label: "Content Edits",
-        items: [
-          { text: "2 small edits/month", included: true },
-          { text: "SEO blog posts", included: false },
-          { text: "Google Business Profile", included: false },
-          { text: "Monthly report", included: false },
-        ],
-      },
-      {
-        label: "Support",
-        items: [
-          { text: "Standard response time", included: true },
-          { text: "Priority queue", included: false },
-          { text: "Strategy call", included: false },
-        ],
-      },
+      { label: "Website operations", items: [
+        { text: "Standard website hosting within agreed usage limits", included: true },
+        { text: "Uptime monitoring + deployment recovery", included: true },
+        { text: "Routine security and dependency maintenance", included: true },
+        { text: "Monthly form and booking-link checks", included: true },
+      ] },
+      { label: "Edits & support", items: [
+        { text: "1 hour of content edits per quarter", included: true },
+        { text: "Response within 2 business days", included: true },
+        { text: "Ongoing SEO, blog posts, and advertising", included: false },
+      ] },
     ],
   },
   {
-    name: "Growth",
-    monthly: 350,
-    yearly: 297.5,
+    name: "Seasonal Care",
+    quarterly: 675,
+    yearly: 2430,
+    summary: "Essential operations, 3 total editing hours per quarter, a quarterly review, and next-business-day response.",
     featured: true,
     sections: [
-      {
-        label: "Hosting & Infrastructure",
-        items: [{ text: "Everything in Basic", included: true }],
-      },
-      {
-        label: "Content Edits",
-        items: [
-          { text: "2 small edits/month", included: true },
-          { text: "2 SEO blog posts/month", included: true },
-          { text: "Google Business Profile updates", included: true },
-          { text: "Unlimited small edits", included: false },
-        ],
-      },
-      {
-        label: "Reporting",
-        items: [
-          { text: "Monthly performance report", included: true },
-          { text: "Strategy call", included: false },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Premium",
-    monthly: 600,
-    yearly: 510,
-    sections: [
-      {
-        label: "Hosting & Infrastructure",
-        items: [{ text: "Everything in Growth", included: true }],
-      },
-      {
-        label: "Content Edits",
-        items: [
-          { text: "Unlimited small edits", included: true },
-          { text: "2 SEO blog posts/month", included: true },
-          { text: "Google Business Profile updates", included: true },
-        ],
-      },
-      {
-        label: "Support & Strategy",
-        items: [
-          { text: "Monthly performance report", included: true },
-          { text: "Priority response queue", included: true },
-          { text: "Monthly strategy call", included: true },
-        ],
-      },
+      { label: "Website operations", items: [
+        { text: "All Essential Care hosting and maintenance", included: true },
+      ] },
+      { label: "Edits & support", items: [
+        { text: "3 total hours of content edits per quarter", included: true },
+        { text: "Quarterly performance summary and planning review", included: true },
+        { text: "Next-business-day response", included: true },
+        { text: "Ongoing SEO, blog posts, and advertising", included: false },
+      ] },
     ],
   },
 ];
@@ -438,7 +409,7 @@ export const EDIT_SIZES = [
     definition:
       "Text changes, image swaps, hours or menu updates, contact info, minor copy tweaks",
     time: "Under 30 min",
-    billing: "Included in plan (up to plan limit)",
+    billing: "Uses your quarterly editing allowance",
   },
   {
     name: "Medium",
@@ -446,8 +417,8 @@ export const EDIT_SIZES = [
     definition:
       "New section on existing page, new form, new third-party integration (booking, chat, etc.)",
     time: "30 min - 2 hrs",
-    billing: "$75-$150 per edit",
-    billingNote: "billed at $85/hr, estimated first",
+    billing: "$100–$200 per edit",
+    billingNote: "billed at $100/hr, estimated first",
   },
   {
     name: "Large",
@@ -459,18 +430,18 @@ export const EDIT_SIZES = [
   },
 ] as const;
 
-export const OVERAGE_RATE = "$85/hr";
+export const OVERAGE_RATE = "$100/hr";
 
 export const OVERAGE_COPY =
-  "Client receives a written estimate before any billable work begins. Approval is required. Overages are never charged without it. Medium edits typically run $75-$150. Large edits are quoted as a fixed project fee.";
+  "Client receives a written estimate before any billable work begins. Approval is required. Overages are never charged without it. Medium edits typically run $100–$200. Large edits are quoted as a fixed project fee.";
 
 export const PRICING_QUICK_REF = [
   { label: "Build range", value: "$2,000", suffix: "- $6,000" },
-  { label: "Retainer range", value: "$200", suffix: "- $600/mo" },
-  { label: "Yearly discount", value: "15%", suffix: "off monthly" },
-  { label: "Overage rate", value: "$85", suffix: "/hr" },
+  { label: "Retainer range", value: "$375", suffix: "–$675/quarter" },
+  { label: "Yearly discount", value: "10%", suffix: "off four quarterly payments" },
+  { label: "Overage rate", value: "$100", suffix: "/hr" },
   { label: "Deposit", value: "50%", suffix: "at signing" },
-  { label: "Balance", value: "50%", suffix: "at launch" },
+  { label: "Balance", value: "50%", suffix: "before launch" },
   { label: "Payment due", value: "7 days", suffix: "from invoice" },
 ] as const;
 
@@ -485,24 +456,24 @@ export const PRICING_PROCESS = [
   },
   {
     title: "Pay half to start",
-    body: "50% deposit at signing. The balance is 50% at launch, due within 7 days of the invoice.",
+    body: "50% deposit at signing. The remaining 50% is due before launch.",
   },
   {
     title: "Launch in weeks",
-    body: "A typical build launches in 2–4 weeks.",
+    body: "A typical build launches in 2–4 weeks after deposit, approved scope, content, branding, and access. Client feedback delays shift the launch date.",
   },
   {
     title: "Keep improving after launch",
-    body: "Choose monthly care for ongoing support, included edits, and room to grow. Growth adds content and search support; Premium adds priority support and monthly strategy. Larger changes are quoted for approval.",
+    body: "Choose optional Essential Care or Seasonal Care, billed quarterly or yearly. Use your editing allowance anytime within each quarter. Ongoing SEO and larger changes are quoted separately.",
   },
 ] as const;
 
 export const PRICING_COPY = {
   intro: `Website builds ${PRICING_FLOOR.replace("From ", "from ")}. Clear tiers, fixed scope.`,
   buildSub:
-    "One-time project fee. 50% deposit at signing, 50% at launch. Scope is fixed per tier; extra pages billed separately.",
+    "One-time project fee. 50% deposit at signing, 50% before launch. Scope is fixed per tier; extra pages billed separately.",
   retainerSub:
-    "Ongoing hosting, maintenance, and growth support. Billed on the 1st. A yearly commitment saves 15%. All Medium and Large edits are billed separately.",
+    "Optional website care, billed quarterly or yearly in advance. Annual prepayment saves 10% versus four quarterly payments. Editing allowances reset each quarter.",
   editSub:
     "How we classify maintenance or change requests. This determines whether work is included in your retainer or billed separately.",
   addonSub:

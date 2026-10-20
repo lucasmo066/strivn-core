@@ -42,7 +42,7 @@ export default function PricingPage() {
               </h1>
             </div>
             <p className="font-ui text-muted-foreground">
-              {PRICING_COPY.intro} Start with a custom build, then keep it moving with a monthly care plan and a team that stays involved.
+              {PRICING_COPY.intro} Start with a custom build, then keep it moving with a website care plan and a team that stays involved.
             </p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
               <StrivnButton arrow className="w-full whitespace-nowrap sm:w-auto" asChild><Link scroll={false} href="/start">Choose your package</Link></StrivnButton>
@@ -55,14 +55,14 @@ export default function PricingPage() {
             <p className="mt-4 font-display text-4xl"><span className="mr-2 text-base text-muted-foreground">from</span><span className="text-orange-gradient">$2,000</span></p>
             <ul className="mt-6 space-y-4 border-t border-border pt-6 text-sm">
               <li className="flex items-center gap-3"><Layers className="size-4 text-orange" aria-hidden />Fixed scope, custom design</li>
-              <li className="flex items-center gap-3"><Wallet className="size-4 text-orange" aria-hidden />50% to start. 50% at launch.</li>
+              <li className="flex items-center gap-3"><Wallet className="size-4 text-orange" aria-hidden />50% to start. 50% before launch.</li>
               <li className="flex items-center gap-3"><CalendarDays className="size-4 text-orange" aria-hidden />Typical launch in 2–4 weeks</li>
             </ul>
           </BlurFade>
           </div>
 
           <nav aria-label="Pricing sections" className="flex flex-wrap gap-2 border-y border-border py-4">
-            {[{ label: "Website builds", href: "#builds" }, { label: "Website value", href: "#website-value" }, { label: "Monthly care", href: "#care" }, { label: "Add-ons", href: "#add-ons" }].map((item, index) => (
+            {[{ label: "Website builds", href: "#builds" }, { label: "Website value", href: "#website-value" }, { label: "Website care", href: "#care" }, { label: "Add-ons", href: "#add-ons" }].map((item, index) => (
               <BlurFade key={item.href} className="relative isolate overflow-hidden rounded-full border border-border bg-background transition-colors hover:border-orange" delay={index * 0.1} duration={0.8} inViewAmount={0.2}>
                 <StripedPattern className="reveal-stripes opacity-0" />
                 <Link scroll={false} href={item.href} className="relative z-0 inline-flex min-h-11 items-center gap-4 rounded-full px-4 text-sm focus-visible:outline-2 focus-visible:outline-orange">{item.label}<ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>

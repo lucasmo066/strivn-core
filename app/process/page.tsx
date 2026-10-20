@@ -49,12 +49,12 @@ const steps = [
     stage: "Review & launch",
     body: "We review the final pages and check navigation, forms, and the integrations included in your scope before launch. A typical build takes 2–4 weeks; content readiness and feedback help keep it moving.",
     outcome: "Your approved site, published and ready for visitors.",
-    bring: "Final approval. The remaining 50% is due at launch, within 7 days of the invoice.",
+    bring: "Final approval. The remaining 50% is due before launch.",
   },
   {
     title: "Keep moving forward.",
     stage: "Care after launch",
-    body: "Choose an optional care plan for hosting, maintenance, and included edits. Plans start at $200/month. Medium or large changes are estimated in writing and approved before any extra charge.",
+    body: "Choose an optional care plan for hosting, maintenance, and included edits. Plans start at $375/quarter. Medium or large changes are estimated in writing and approved before any extra charge.",
     outcome: "A clear route for updates as your business grows.",
     bring: "New content, changing business needs, and your next priorities.",
   },
@@ -76,7 +76,7 @@ export default function ProcessPage() {
             <p className="font-pixel text-xs text-orange">AT A GLANCE</p>
             <p className="mt-3 font-display text-3xl">2–4 weeks</p>
             <p className="mt-2 text-sm text-muted-foreground">A typical website build, with scope and timing agreed up front.</p>
-            <p className="mt-5 border-t border-border pt-5 text-sm">50% at signing <span className="text-orange">/</span> 50% at launch</p>
+            <p className="mt-5 border-t border-border pt-5 text-sm">50% at signing <span className="text-orange">/</span> 50% before launch</p>
           </BlurFade>
           <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-orange/40 to-transparent" />
         </BlurFade>

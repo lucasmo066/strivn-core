@@ -103,6 +103,14 @@ export default function IndustriesPage() {
                   </ol>
                   <div className={styles.outcomeGoal}><div><span className={styles.eyebrow}>What we’re building toward</span><p>{industry.goal}</p></div><ArrowUpRight size={28} strokeWidth={1.3} aria-hidden="true" /></div>
                 </BlurFade>
+                {industry.slug === "med-spas" && (
+                  <div className={styles.industryCare}>
+                    <p className={styles.eyebrow}>Med Spa Website · $4,500</p>
+                    <h4>Your practice, ready for its next consultation.</h4>
+                    <p>Eight pages customized from our med spa template, including three treatment pages, one booking connection, launch SEO, and analytics. Delivered in 3–4 weeks after content, access, scope, and deposit are ready. Optional care from $375/quarter or $1,350/year.</p>
+                    <Link scroll={false} href="/start?package=med-spa" className={styles.textLink}>Request the med spa package <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                  </div>
+                )}
                 {industry.caseStudy && (
                   <div className={styles.industryProject}>
                     <Image
@@ -128,7 +136,7 @@ export default function IndustriesPage() {
                     <p>{industry.ongoingSupport.description}</p>
                     <div className={styles.closingActions}>
                       <StrivnButton arrow asChild><Link scroll={false} href="/book">Let’s talk about your restaurant</Link></StrivnButton>
-                      <Link scroll={false} href="/pricing#care" className={styles.textLink}>Explore monthly care <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                      <Link scroll={false} href="/pricing#care" className={styles.textLink}>Explore website care <ArrowUpRight size={16} aria-hidden="true" /></Link>
                     </div>
                   </div>
                 )}

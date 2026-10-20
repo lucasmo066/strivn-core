@@ -46,6 +46,10 @@ npm run lint    # ESLint
 npm test        # intake, PostgreSQL migration, and access tests (Node 20.9+)
 ```
 
+### Builds in restricted agent environments
+
+Turbopack processes PostCSS through local Node workers. In this workspace, a sandboxed production build stalled at `Creating an optimized production build ...`, while the same `npm run build` completed successfully outside the sandbox. When this happens in an agent session, stop the stalled build and rerun it with the tool’s approved elevated permissions. Keep the normal build command unchanged; do not switch bundlers or change application code to work around this environment restriction.
+
 ## Project structure
 
 ```

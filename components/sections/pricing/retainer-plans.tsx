@@ -20,13 +20,13 @@ export function RetainerPlans() {
     <section id="care" className={styles.careSection} aria-labelledby="care-plans-heading">
       <BlurFade className={styles.sectionHeader} direction="up" inViewAmount={0.6}>
         <h3 id="care-plans-heading" className="font-display text-xl">Your website deserves an ongoing partner.</h3>
-        <p className={styles.sectionDescription}>A great site should keep up with your business. Our monthly care plans give you a team to turn to for updates, monitor performance, and keep improving what works.</p>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Basic for reliable upkeep, Growth for ongoing content and search support, or Premium for priority support and a monthly strategy call with someone who knows your business. Larger additions are scoped and priced before work starts.</p>
+        <p className={styles.sectionDescription}>A great site should keep up with your business. Our quarterly care plans give you a team to turn to for updates, monitor performance, and keep improving what works.</p>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Essential Care for reliable upkeep and one editing hour per quarter, or Seasonal Care for three total editing hours, a quarterly review, and faster response. Larger additions are scoped and priced before work starts.</p>
         <div className={styles.billingRow}>
           <div className={styles.billingToggle} role="group" aria-label="Billing frequency">
             {yearlyBilling ? (
               <button type="button" aria-pressed={false} onClick={() => setYearlyBilling(false)}>
-                Monthly
+                Quarterly
               </button>
             ) : (
               <StrivnButton
@@ -35,7 +35,7 @@ export function RetainerPlans() {
                 aria-pressed
                 onClick={() => setYearlyBilling(false)}
               >
-                Monthly
+                Quarterly
               </StrivnButton>
             )}
             {yearlyBilling ? (
@@ -53,7 +53,7 @@ export function RetainerPlans() {
               </button>
             )}
           </div>
-          <span className={styles.savings}>Save 15% yearly</span>
+          <span className={styles.savings}>Save 10% yearly</span>
         </div>
       </BlurFade>
       <PlanSelector
@@ -76,11 +76,12 @@ export function RetainerPlans() {
         ))}
       </div>
       <div className={styles.note}>
-        <p>Billed on the 1st. Medium and large edits are billed separately.</p>
+        <p>Care is optional, billed quarterly or yearly in advance. Editing hours are pooled within each quarter and expire at its end; annual billing keeps the same quarterly allowances. Routine maintenance and scheduled reviews do not use editing hours.</p>
+        <p>Response targets mean acknowledgment, not completion. Domains and external subscriptions are separate. Major fixes, new features, and vendor-caused failures are quoted separately. Prefer occasional help? Choose client-managed hosting and approved work at $100/hour, without reserved support priority.</p>
         <EditSizesInfo />
       </div>
       <p className="sr-only" role="status">
-        {yearlyBilling ? "Yearly billing selected. Prices show annual totals with a 15% saving." : "Monthly billing selected. Prices show monthly totals."}
+        {yearlyBilling ? "Yearly billing selected. Prices show annual totals with a 10% saving." : "Quarterly billing selected. Prices show quarterly totals."}
       </p>
     </section>
   );

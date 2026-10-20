@@ -32,7 +32,9 @@ export function WebsiteValue() {
   const [closeRate, setCloseRate] = useState("");
   const [monthlyLeads, setMonthlyLeads] = useState("");
   const [carePlan, setCarePlan] = useState("None");
-  const careCost = RETAINER_PLANS.find((plan) => plan.name === carePlan)?.monthly ?? 0;
+  const [yearlyBilling, setYearlyBilling] = useState(false);
+  const selectedCare = RETAINER_PLANS.find((plan) => plan.name === carePlan);
+  const careCost = selectedCare ? (yearlyBilling ? selectedCare.yearly / 12 : selectedCare.quarterly / 3) : 0;
   const [showTiming, setShowTiming] = useState(true);
 
   const result = calculateWebsiteReturn({
@@ -115,15 +117,19 @@ export function WebsiteValue() {
               </div>
             </div>
             <div>
-              <label htmlFor="return-care" className="block text-sm font-medium">Include a monthly care plan</label>
+              <label htmlFor="return-care-billing" className="mb-2 block text-sm font-medium">Care billing frequency</label>
+              <select id="return-care-billing" value={yearlyBilling ? "yearly" : "quarterly"} onChange={(event) => setYearlyBilling(event.target.value === "yearly")} className="mb-4 w-full rounded border border-border bg-background p-3 text-sm">
+                <option value="quarterly">Quarterly</option><option value="yearly">Yearly — save 10%</option>
+              </select>
+              <label htmlFor="return-care" className="block text-sm font-medium">Include optional website care</label>
               <div className="relative mt-2">
                 <select id="return-care" value={carePlan} onChange={(event) => setCarePlan(event.target.value)} className="min-h-11 w-full appearance-none rounded-lg border border-input bg-background px-3 pr-12 text-base focus-visible:outline-2 focus-visible:outline-orange">
                   <option value="None">Build only · no care plan</option>
-                  {RETAINER_PLANS.map((plan) => <option key={plan.name} value={plan.name}>{plan.name} · {money.format(plan.monthly)}/month</option>)}
+                  {RETAINER_PLANS.map((plan) => <option key={plan.name} value={plan.name}>{plan.name} · {money.format(yearlyBilling ? plan.yearly : plan.quarterly)}/{yearlyBilling ? "year" : "quarter"}</option>)}
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-4 top-1/2 size-5 -translate-y-1/2" aria-hidden />
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Monthly pricing includes hosting, monitoring, security updates, and content edits. The selected plan is included in your ongoing costs.</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Care includes hosting within agreed usage limits, monitoring, routine maintenance, and quarterly editing hours. For this monthly estimate, the quarterly price is divided by 3 or the annual price by 12; actual invoices are quarterly or yearly in advance.</p>
             </div>
             <details open={showTiming} onToggle={(event) => setShowTiming(event.currentTarget.open)} className="border-t border-border pt-2">
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-sm font-medium focus-visible:outline-2 focus-visible:outline-orange [&::-webkit-details-marker]:hidden">
@@ -164,7 +170,7 @@ export function WebsiteValue() {
                   {result.monthlyNet !== null ? (
                     <div>
                       <p className="text-orange-gradient font-display text-4xl tabular-nums break-words">{money.format(result.monthlyNet)}<span className="text-base text-muted-foreground"> /month</span></p>
-                      <p className="mt-2 font-medium">{result.monthlyNet > 0 ? "could remain after monthly care" : result.monthlyNet === 0 ? "remaining after monthly care" : "monthly shortfall after care"}</p>
+                      <p className="mt-2 font-medium">{result.monthlyNet > 0 ? "could remain after the monthly care equivalent" : result.monthlyNet === 0 ? "remaining after the monthly care equivalent" : "monthly shortfall after care"}</p>
                       <p className="mt-3 text-xs leading-relaxed text-muted-foreground">Based on {monthlyLeads} new leads/month × {closeRate}% becoming customers × {money.format(Number(contribution))} kept per customer, minus {money.format(careCost)}/month for care.</p>
                       {result.monthsToRecover !== null ? (
                         <div className="mt-4 border-t border-border pt-4">
@@ -180,7 +186,7 @@ export function WebsiteValue() {
                     </div>
                   )}
                   <div className="space-y-2 border-t border-border pt-4 text-sm leading-relaxed">
-                    <p><span className="font-semibold">{whole.format(result.customersNeeded)} new {result.customersNeeded === 1 ? "customer" : "customers"}</span> to cover the build alone, before monthly care.</p>
+                    <p><span className="font-semibold">{whole.format(result.customersNeeded)} new {result.customersNeeded === 1 ? "customer" : "customers"}</span> to cover the build alone, before ongoing care.</p>
                     {careCost > 0 && result.monthlyCustomersNeeded !== null && <p className="text-muted-foreground"><span className="font-semibold text-foreground">{whole.format(result.monthlyCustomersNeeded)} additional {result.monthlyCustomersNeeded === 1 ? "customer" : "customers"}/month</span> to cover your care plan.</p>}
                   </div>
                 </>

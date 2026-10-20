@@ -19,7 +19,7 @@ export function PlanSelector({ kind, label, names, selected, onChange }: PlanSel
           key={name}
           type="button"
           aria-pressed={selected === name}
-          aria-controls={kind + "-plan-" + name.toLowerCase()}
+          aria-controls={kind + "-plan-" + name.toLowerCase().replaceAll(" ", "-")}
           onClick={() => onChange(name)}
         >
           {name}

@@ -94,7 +94,7 @@
   background: var(--border);
   overflow: hidden;
 }
-.planSelector[data-kind="care"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.planSelector[data-kind="care"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .planSelector button {
   min-width: 0;
   min-height: 44px;
@@ -173,7 +173,7 @@
   .quickRef { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (min-width: 768px) {
-  .careGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .careGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .careGrid .planCard { display: flex; }
   .planSelector[data-kind="care"] { display: none; }
   .addonGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
