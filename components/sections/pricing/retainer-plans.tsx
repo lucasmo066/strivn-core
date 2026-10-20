@@ -21,7 +21,7 @@ export function RetainerPlans() {
       <BlurFade className={styles.sectionHeader} direction="up" inViewAmount={0.6}>
         <h3 id="care-plans-heading" className="font-display text-xl">Your website deserves an ongoing partner.</h3>
         <p className={styles.sectionDescription}>A great site should keep up with your business. Our quarterly care plans give you a team to turn to for updates, monitor performance, and keep improving what works.</p>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Essential Care for reliable upkeep and one editing hour per quarter, or Seasonal Care for three total editing hours, a quarterly review, and faster response. Larger additions are scoped and priced before work starts.</p>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Essential Care for reliable upkeep and one editing hour per quarter, or Seasonal Care for three total editing hours, a quarterly review, and faster response. Larger additions are scoped and priced before work starts.</p>
         <div className={styles.billingRow}>
           <div className={styles.billingToggle} role="group" aria-label="Billing frequency">
             {yearlyBilling ? (
