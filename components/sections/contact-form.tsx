@@ -62,6 +62,12 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
   const [business, setBusiness] = useState("");
   const [details, setDetails] = useState("");
   const [website, setWebsite] = useState("");
+  const [existingTools, setExistingTools] = useState("");
+  const [editingPreference, setEditingPreference] = useState("");
+  const inquiryContext = selectionSummary
+    ? [selectionSummary, existingTools.trim() ? `Existing tools: ${existingTools.trim()}` : "", editingPreference ? `Content editing preference: ${editingPreference}` : ""].filter(Boolean).join("\n")
+    : undefined;
+  const detailsLimit = Math.max(0, 2000 - (inquiryContext ? inquiryContext.length + 2 : 0));
   const [status, setStatus] = useState<FormStatus>("idle");
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
@@ -120,7 +126,6 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
       if (message) errors[field] = message;
       return errors;
     }, {});
-    const detailsLimit = 2000 - (selectionSummary ? selectionSummary.length + 2 : 0);
     if (details.length > detailsLimit) {
       clientErrors.details = `Keep your project details under ${detailsLimit} characters so we can include your package selection.`;
     }
@@ -140,8 +145,8 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
     }
 
     submitting.current = true;
-    if (!requestId.current || requestId.current.selection !== selectionSummary) {
-      requestId.current = { id: crypto.randomUUID(), selection: selectionSummary };
+    if (!requestId.current || requestId.current.selection !== inquiryContext) {
+      requestId.current = { id: crypto.randomUUID(), selection: inquiryContext };
     }
     setStatus("loading");
     setFieldErrors({});
@@ -150,7 +155,7 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, business, details: selectionSummary ? `${selectionSummary}\n\n${details}` : details, website, source, requestId: requestId.current.id }),
+        body: JSON.stringify({ name, email, business, details: inquiryContext ? `${inquiryContext}\n\n${details}` : details, website, source, requestId: requestId.current.id }),
         signal: AbortSignal.timeout(20_000),
       });
 
@@ -288,6 +293,25 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
         ) : null}
       </div>
 
+      {selectionSummary && (
+        <>
+          <div className="space-y-2">
+            <label htmlFor="contact-existing-tools" className={fieldLabelClass}>What booking, ordering, payment, or other tools do you already use? <span className="font-normal normal-case">(optional)</span></label>
+            <Input id="contact-existing-tools" name="existingTools" maxLength={300} value={existingTools} onChange={(event) => { setExistingTools(event.target.value); requestId.current = null; }} disabled={loading} placeholder="For example: Square, Shopify, or your booking platform" className={fieldClass} />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="contact-editing-preference" className={fieldLabelClass}>Would your team like to update website content yourselves? <span className="font-normal normal-case">(optional)</span></label>
+            <select id="contact-editing-preference" name="editingPreference" value={editingPreference} onChange={(event) => { setEditingPreference(event.target.value); requestId.current = null; }} disabled={loading} className={`${fieldClass} w-full border`} aria-describedby="contact-editing-help">
+              <option value="">Choose an option</option>
+              <option value="Our team would like to make updates">Yes, our team would like to make updates</option>
+              <option value="We would prefer Strivn to handle updates">We would prefer Strivn to handle updates</option>
+              <option value="We would like help deciding">We would like help deciding</option>
+            </select>
+            <p id="contact-editing-help" className="text-xs text-muted-foreground">Pro includes an agreed content editor and training. Shopify includes its platform editor and training. Starter and Standard editing functionality is quoted separately.</p>
+          </div>
+        </>
+      )}
+
       <div className="space-y-2">
         <label htmlFor="contact-details" className={fieldLabelClass}>
           {source === "call_request" ? "What would you like to discuss?" : "What do you need?"}
@@ -296,7 +320,7 @@ export function ContactForm({ source = "contact_form", selectionSummary }: Conta
         <textarea
           id="contact-details"
           name="details"
-          maxLength={2000 - (selectionSummary ? selectionSummary.length + 2 : 0)}
+          maxLength={detailsLimit}
           required
           className={textareaClass}
           placeholder={source === "call_request" ? "Tell us about your project and a few times you’re available (including your timezone)." : "New website, redesign, or ongoing support"}

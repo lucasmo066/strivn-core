@@ -20,8 +20,8 @@ export function RetainerPlans() {
     <section id="care" className={styles.careSection} aria-labelledby="care-plans-heading">
       <BlurFade className={styles.sectionHeader} direction="up" inViewAmount={0.6}>
         <h3 id="care-plans-heading" className="font-display text-xl">Your website deserves an ongoing partner.</h3>
-        <p className={styles.sectionDescription}>A great site should keep up with your business. Our quarterly care plans give you a team to turn to for updates, monitor performance, and keep improving what works.</p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Essential Care for reliable upkeep and one editing hour per quarter, or Seasonal Care for three total editing hours, a quarterly review, and faster response. Larger additions are scoped and priced before work starts.</p>
+        <p className={styles.sectionDescription}>We monitor uptime, perform routine maintenance, and check forms and booking links monthly, even when you have no edits to request. Each plan also includes time for content changes you ask us to make.</p>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Essential Care for upkeep and one editing hour per quarter, or Seasonal Care for three total editing hours, a quarterly review, and faster response. An included content editor lets your team make agreed updates yourselves; it is separate from the time we spend editing for you. Larger additions are scoped and priced before work starts.</p>
         <div className={styles.billingRow}>
           <div className={styles.billingToggle} role="group" aria-label="Billing frequency">
             {yearlyBilling ? (

@@ -13,8 +13,8 @@ export function ServicesSection() {
             {SERVICES_HEADLINE}
           </h2>
           <p className="text-base leading-relaxed text-muted-foreground">
-            Custom websites for Front Range practices, from a credible first
-            impression to the next call.
+            Design, setup, and launch for Front Range businesses. Clear mobile
+            pages, tested inquiries, and agreed booking or ordering connections.
           </p>
         </BlurFade>
         <ServicesBento />

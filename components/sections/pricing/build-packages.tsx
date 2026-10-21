@@ -26,7 +26,7 @@ export function BuildPackages() {
     <section id="builds" aria-labelledby="build-plans-heading">
       <BlurFade className={styles.sectionHeader} inViewAmount={0.75}>
         <h3 id="build-plans-heading" className="font-display text-xl">Website builds</h3>
-        <p className={styles.sectionDescription}>One-time project fees. A clear scope for every stage.</p>
+        <p className={styles.sectionDescription}>One project fee for the agreed design, setup, testing, and launch. Page counts define the scope.</p>
       </BlurFade>
       <BlurFade inViewAmount={0.8}>
         <PlanSelector
@@ -92,6 +92,8 @@ export function BuildPackages() {
         })}
       </div>
       <div className={styles.note}>
+        <p>You supply approved copy, brand assets, photos, and account access. We organize your supplied content and agree on any copywriting or photography separately. Two consolidated revision rounds are included; new pages, features, and custom systems require a separate quote.</p>
+        <p>Pro includes a basic editor for agreed content and a training session. Shopify includes its platform editor and handoff training. Editing functionality for Starter and Standard is available by separate quote.</p>
         <p>Extra pages: {EXTRA_PAGE_PRICE} each. 50% deposit, 50% before launch. Shopify subscription billed separately by Shopify.</p>
       </div>
     </section>

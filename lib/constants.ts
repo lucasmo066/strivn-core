@@ -3,7 +3,7 @@ import { STILLWATER_DEMO } from "@/lib/work-examples";
 export const TAGLINES = {
   primary: "Custom websites that bring in business",
   heroSub:
-    "We build fast, search-ready websites, then help you keep improving them as your business grows.",
+    "We handle your website from design to launch, with clear mobile pages, working inquiries, and the booking or ordering connections agreed for your business.",
   heroDetail: "Launch in weeks, not months.",
   cta: "Tell us about your project",
   heroCta: "Book a call",
@@ -61,22 +61,22 @@ export const SERVICES = [
   {
     title: "Design that earns trust",
     description:
-      "Show what makes your practice the right choice, with a clear path to booking.",
+      "Help visitors understand your business and find the next step, with clear content and layouts that work on a phone.",
   },
   {
     title: "Live in weeks",
     description:
-      "Fast on every screen, with a focused build and a clear route to launch.",
+      "One team handles design, agreed setup, testing, and launch, with your scope and review stages settled before work starts.",
   },
   {
     title: "Found in local search",
     description:
-      "Help nearby patients and clients find the services they are already looking for.",
+      "Give search engines clear service information and visitors useful answers, with search setup matched to your package.",
   },
   {
     title: "A partner after launch",
     description:
-      "A responsive team for updates and improvements, with care plans that grow alongside your business.",
+      "Keep ownership of your accounts, get a clear handoff, and choose optional care or handle routine updates with an agreed editor.",
   },
 ] as const;
 
@@ -220,8 +220,10 @@ export const BUILD_PACKAGES = [
     includes: [
       "Home, About, Contact",
       "Mobile-responsive",
-      "Contact form",
+      "Contact form delivered to your designated inbox",
       "Fast-loading pages",
+      "Existing domain connection + launch testing",
+      "2 consolidated revision rounds + access handoff",
     ],
   },
   {
@@ -248,7 +250,7 @@ export const BUILD_PACKAGES = [
       "Service-area pages",
       "Blog / resources setup",
       "Advanced SEO structure",
-      "CMS integration",
+      "Basic editor for agreed content + training session",
     ],
   },
   {
@@ -261,6 +263,9 @@ export const BUILD_PACKAGES = [
       "Product catalog setup",
       "Checkout optimization",
       "Mobile-ready shopping experience",
+      "Existing domain connection + access handoff",
+      "Shopify editor + handoff training",
+      "Launch testing + 2 consolidated revision rounds",
     ],
   },
 ] as const;
@@ -307,7 +312,7 @@ export const ADD_ONS = [
   {
     category: "Brand & conversion",
     name: "Booking or scheduling integration",
-    description: "Connect the calendar or scheduling tool you use.",
+    description: "Connect one existing scheduling service using a supported link or embed. Custom booking systems and provider fees are separate.",
     price: "$200",
   },
   {
@@ -452,7 +457,7 @@ export const PRICING_PROCESS = [
   },
   {
     title: "Agree a fixed package and scope",
-    body: `Scope is fixed per tier. Extra pages are ${EXTRA_PAGE_PRICE} each.`,
+    body: `Agree on the result, included pages, content responsibilities, integrations, and editing options before work starts. Extra pages beyond the package are ${EXTRA_PAGE_PRICE} each.`,
   },
   {
     title: "Pay half to start",
@@ -464,12 +469,12 @@ export const PRICING_PROCESS = [
   },
   {
     title: "Keep improving after launch",
-    body: "Choose optional Essential Care or Seasonal Care, billed quarterly or yearly. Use your editing allowance anytime within each quarter. Ongoing SEO and larger changes are quoted separately.",
+    body: "Keep your accounts in your name and choose how to manage updates. Pro includes an agreed content editor and training; Shopify includes its platform editor and training. Optional care handles maintenance plus a quarterly editing allowance.",
   },
 ] as const;
 
 export const PRICING_COPY = {
-  intro: `Website builds ${PRICING_FLOOR.replace("From ", "from ")}. Clear tiers, fixed scope.`,
+  intro: `Website builds ${PRICING_FLOOR.replace("From ", "from ")}. Design, agreed setup, testing, and launch in one scoped package.`,
   buildSub:
     "One-time project fee. 50% deposit at signing, 50% before launch. Scope is fixed per tier; extra pages billed separately.",
   retainerSub:
@@ -477,7 +482,7 @@ export const PRICING_COPY = {
   editSub:
     "How we classify maintenance or change requests. This determines whether work is included in your retainer or billed separately.",
   addonSub:
-    "Available at time of build or as standalone projects. Billed once, not recurring.",
+    "Optional work beyond your included scope, quoted before we start. Existing-service connections use the provider’s supported link or embed; custom systems and external subscriptions are separate.",
   overageSub:
     "Any Medium or Large edit, or any work beyond included plan scope, is billed at the standard overage rate. Written client approval is always required before charging overages.",
 } as const;

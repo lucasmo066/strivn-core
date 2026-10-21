@@ -29,7 +29,7 @@ export const INDUSTRIES: readonly Industry[] = [
     approach: [
       { title: "Match the experience", description: "Bring the care and character of your clinic online with thoughtful design, real photography, and a clear introduction to your providers." },
       { title: "Answer before they ask", description: "Give each treatment room to explain the experience, expectations, and common questions, so a prospective client can take the next step informed." },
-      { title: "Turn interest into a conversation", description: "Put consultation requests within easy reach and connect your booking tool when it’s part of the scope." },
+      { title: "Turn interest into a conversation", description: "Put consultation requests within easy reach, connect the existing booking tool agreed in scope, and test inquiry delivery before launch. Agree on which treatment details your team needs to update and quote the right editing setup." },
     ],
     journey: ["Explore a treatment", "Get to know your team", "Request a consultation"],
     goal: "More informed consultation requests.",
@@ -108,9 +108,9 @@ export const INDUSTRIES: readonly Industry[] = [
     headline: "Make the next meal an easy choice.",
     decision: "A hungry guest wants to see the food, check the menu, and know how to order or visit. Your website should bring the character of your restaurant online and make those decisions easy, especially on a phone.",
     approach: [
-      { title: "Put the menu first", description: "Give your food room to shine with real photography, clear categories, descriptions, and prices. Build a menu that is easy to read on a phone and keep current as dishes change." },
+      { title: "Put the menu first", description: "Give your food room to shine with real photography, clear categories, descriptions, and prices. Build a menu that is easy to read on a phone. Agree on editing access for menu items, prices, and specials so your team knows how changes will be handled." },
       { title: "Turn a local search into a visit", description: "Bring your hours, location, directions, and contact details together. Give search engines useful information about your restaurant and guests the details they need to make a plan." },
-      { title: "Make ordering the easy part", description: "Connect guests to your ordering or reservation platform, with a clear route for catering inquiries. We shape the next steps around how your restaurant actually serves people." },
+      { title: "Make ordering the easy part", description: "Connect guests to your existing ordering or reservation platform, with a clear route for catering inquiries. We test those paths and inquiry delivery before launch, then hand over access and provide editor training where included." },
     ],
     journey: ["Discover the food", "Explore the menu", "Order or plan a visit"],
     goal: "An easier path to orders, visits, and catering inquiries.",

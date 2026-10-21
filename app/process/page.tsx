@@ -26,7 +26,7 @@ const steps = [
   {
     title: "Agree on the work.",
     stage: "Package & scope",
-    body: "Choose a build package and agree on the pages, features, and any add-ons. Scope is fixed per tier, with extra pages at $200 each. We confirm what’s included before work begins.",
+    body: "Agree on the visitor actions, pages, existing-service connections, content responsibilities, and editing options. Pro includes an editor for agreed content and training; Shopify includes its platform editor and training. Starter and Standard editing is quoted separately.",
     outcome: "A defined scope, project price, and launch plan.",
     bring: "Your must-haves, budget, and any integrations the site needs.",
   },
@@ -40,21 +40,21 @@ const steps = [
   {
     title: "Design. Build. Refine.",
     stage: "The build",
-    body: "We shape the pages around your business and the actions visitors need to take. You review the work with us as it develops, so the design and content stay aligned with the agreed scope.",
+    body: "We shape mobile-friendly pages around your business, connect the existing tools agreed in scope, and review the result with you. Two consolidated revision rounds keep design and content aligned; additional features are quoted before work begins.",
     outcome: "A custom site ready for final review across screen sizes.",
     bring: "Consolidated feedback and any remaining content.",
   },
   {
     title: "Make it live.",
     stage: "Review & launch",
-    body: "We review the final pages and check navigation, forms, and the integrations included in your scope before launch. A typical build takes 2–4 weeks; content readiness and feedback help keep it moving.",
+    body: "We test mobile layouts, navigation, inquiry delivery, and the agreed booking or ordering connections. After approval, we connect your domain, launch, and hand over files and access. Editor training is included with Pro and Shopify. A typical build takes 2–4 weeks after content and access are ready.",
     outcome: "Your approved site, published and ready for visitors.",
     bring: "Final approval. The remaining 50% is due before launch.",
   },
   {
     title: "Keep moving forward.",
     stage: "Care after launch",
-    body: "Choose an optional care plan for hosting, maintenance, and included edits. Plans start at $375/quarter. Medium or large changes are estimated in writing and approved before any extra charge.",
+    body: "Your domain and business accounts stay in your name. Make updates with your agreed editor, use your own hosting, or choose care from $375/quarter for hosting, proactive maintenance, and included editing time. Occasional work is $100/hour with written approval.",
     outcome: "A clear route for updates as your business grows.",
     bring: "New content, changing business needs, and your next priorities.",
   },
@@ -95,6 +95,7 @@ export default function ProcessPage() {
                 <p className="font-pixel text-xs text-muted-foreground">YOUR PART</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.bring}</p>
                 {index === 1 && <Link scroll={false} href="/pricing" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium">See packages & pricing <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
+                {index === 4 && <Link scroll={false} href="/pricing#ownership" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium">Ownership & editing options <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
                 {index === 5 && <Link scroll={false} href="/pricing#care" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium">Explore care plans <ArrowUpRight className="size-4 text-orange" aria-hidden /></Link>}
               </div>
             </BlurFade>

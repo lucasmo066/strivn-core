@@ -42,7 +42,7 @@ export default function PricingPage() {
               </h1>
             </div>
             <p className="font-ui text-muted-foreground">
-              {PRICING_COPY.intro} Start with a custom build, then keep it moving with a website care plan and a team that stays involved.
+              {PRICING_COPY.intro} Know what we handle, what you supply, and how you can manage the site after launch.
             </p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
               <StrivnButton arrow className="w-full whitespace-nowrap sm:w-auto" asChild><Link scroll={false} href="/start">Choose your package</Link></StrivnButton>
@@ -117,6 +117,12 @@ export default function PricingPage() {
               </defs>
             </svg>
             <BuildPackages />
+            <section id="ownership" aria-labelledby="ownership-heading" className="border-t border-border p-5 sm:p-8">
+              <h3 id="ownership-heading" className="font-display text-xl">Your website. Your accounts. A clear handoff.</h3>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">Your domain and business accounts stay in your name. At handoff, you receive the agreed website files and account access. Choose your own hosting account or optional Strivn care with hosting within agreed usage limits. Domains and external subscriptions are separate.</p>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">Pro includes a basic editor for content agreed before the build, such as service details, hours, or specials, plus a training session. Shopify includes its built-in editor and handoff training. Starter and Standard can add editing functionality by separate quote. Editing access covers the agreed content, while new layouts and features are scoped separately.</p>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">You can make routine updates within your agreed editor, ask us for occasional approved work at $100/hour, or choose a care plan. Ongoing care is optional.</p>
+            </section>
             <RetainerPlans />
             <WebsiteValue />
             <OverageAndQuickRef />

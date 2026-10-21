@@ -42,7 +42,7 @@ export function PackageRequest({ initialPackage, initialCare = "None", initialYe
         <section aria-labelledby="care-choice-heading" className="border-t border-border pt-6">
           <BlurFade delay={0.68} duration={1.15} inViewAmount={0.1}>
             <h2 id="care-choice-heading" className="font-display text-xl">A partner after launch</h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">A website creates value when it stays secure, current, and useful as your business changes. Our care plans keep a team involved after launch, so you are not left chasing help when you need an update or want to build on what is working.</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Care covers proactive monitoring, routine maintenance, and monthly form and booking-link checks, even when you request no changes. Your quarterly allowance covers content edits you ask us to make. Care is optional; your own editing access is agreed separately in the build scope.</p>
           </BlurFade>
           <div className="mt-4">
             <label htmlFor="request-care-billing" className="block text-sm font-medium">Care billing frequency</label>
@@ -81,6 +81,7 @@ export function PackageRequest({ initialPackage, initialCare = "None", initialYe
         <BlurFade className="rounded-[var(--radius-button)] border border-border p-5" delay={1.32} duration={1.15} inViewAmount={0.1} aria-live="polite">
           <h2 className="font-medium">Included with {pkg.name}</h2>
           <ul className="mt-4 space-y-3">{pkg.includes.map((item) => <li key={item} className="flex gap-2 text-sm text-muted-foreground"><Check className="mt-0.5 size-4 shrink-0 text-orange" aria-hidden />{item}</li>)}</ul>
+          <p className="mt-4 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">You supply approved copy, photos, brand assets, and account access. Two consolidated revision rounds, launch testing, and access handoff are included. Pro includes a basic editor for agreed content and a training session; Shopify includes its platform editor and handoff training. Starter and Standard editing functionality is quoted separately. Med spa editing options are agreed in its scope. External subscriptions, original copywriting, photography, and custom systems are separate unless expressly included.</p>
           {pkg.name === "Med Spa" && <p className="mt-4 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">Single-location template customization. Delivery starts after deposit, approved scope, content, branding, and access. Feedback is due within 2 business days; delays shift launch. Includes formatting supplied privacy and terms. Branding, photography, original clinical copy, ongoing SEO, patient intake, and custom booking systems are excluded. External subscriptions are separate; completed-booking tracking depends on your booking provider.</p>}
           {pkg.name === "Shopify" && <p className="mt-4 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">Shopify subscription billed separately by Shopify.</p>}
         </BlurFade>
