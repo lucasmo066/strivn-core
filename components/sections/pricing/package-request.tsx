@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 import { ContactForm } from "@/components/sections/contact-form";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { StripedPattern } from "@/components/ui/striped-pattern";
-import { ADD_ONS, BUILD_PACKAGES, MED_SPA_PACKAGE, RETAINER_PLANS } from "@/lib/constants";
+import { ADD_ONS, BUILD_PACKAGES, CARE_TERMS, MED_SPA_PACKAGE, RETAINER_PLANS } from "@/lib/constants";
 import styles from "./package-request.module.css";
 
 export function PackageRequest({ initialPackage, initialCare = "None", initialYearlyBilling = false }: { initialPackage: string; initialCare?: string; initialYearlyBilling?: boolean }) {
@@ -16,7 +16,7 @@ export function PackageRequest({ initialPackage, initialCare = "None", initialYe
   const availablePackages = initialPackage === MED_SPA_PACKAGE.name ? [MED_SPA_PACKAGE, ...BUILD_PACKAGES] : BUILD_PACKAGES;
   const pkg = availablePackages.find((item) => item.name === selected) ?? BUILD_PACKAGES[0];
   const retainer = RETAINER_PLANS.find((item) => item.name === selectedRetainer);
-  const selectionSummary = `Package requested: ${pkg.name} (${pkg.price}${pkg.priceNote === "up to $6,000" ? "–$6,000" : ""}; ${pkg.pages}).\nOngoing care requested: ${retainer ? `${retainer.name} ($${yearlyBilling ? retainer.yearly : retainer.quarterly}/${yearlyBilling ? "year" : "quarter"}; billed ${yearlyBilling ? "yearly" : "quarterly"} in advance)` : "None — client-managed hosting; ad hoc work quoted separately"}. We’ll confirm the right scope and start date together.${extras.length ? `\nAdd-ons requested: ${extras.join(", ")}.` : ""}`;
+  const selectionSummary = `Package requested: ${pkg.name} (${pkg.price}${pkg.name === "Shopify" ? "–$5,500" : ""}; ${pkg.pages}).\nOngoing care requested: ${retainer ? `${retainer.name} ($${yearlyBilling ? retainer.yearly : retainer.quarterly}/${yearlyBilling ? "year" : "quarter"}; billed ${yearlyBilling ? "yearly" : "quarterly"} in advance)` : "None — client-managed hosting; ad hoc work quoted separately"}. We’ll confirm the right scope and start date together.${extras.length ? `\nAdd-ons requested: ${extras.join(", ")}.` : ""}`;
 
   return (
     <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-12">
@@ -78,6 +78,10 @@ export function PackageRequest({ initialPackage, initialCare = "None", initialYe
             <p className="mt-3 text-xs leading-relaxed text-muted-foreground">Annual prepayment saves 10% versus four quarterly payments. Editing hours reset each quarter and do not roll over. Care is optional. This request is not a commitment; we’ll confirm the plan and scope together.</p>
           </fieldset>
         </section>
+        <details className="rounded-[var(--radius-button)] border border-border p-5 text-sm leading-relaxed text-muted-foreground">
+          <summary className="cursor-pointer font-medium text-foreground">Hosting, costs & cancellation</summary>
+          <div className="mt-3 space-y-3"><p>{CARE_TERMS.hosting}</p><p>{CARE_TERMS.exclusions}</p><p>{CARE_TERMS.renewal}</p><p>{CARE_TERMS.cancellation}</p><p>{CARE_TERMS.handoff}</p></div>
+        </details>
         <BlurFade className="rounded-[var(--radius-button)] border border-border p-5" delay={1.32} duration={1.15} inViewAmount={0.1} aria-live="polite">
           <h2 className="font-medium">Included with {pkg.name}</h2>
           <ul className="mt-4 space-y-3">{pkg.includes.map((item) => <li key={item} className="flex gap-2 text-sm text-muted-foreground"><Check className="mt-0.5 size-4 shrink-0 text-orange" aria-hidden />{item}</li>)}</ul>

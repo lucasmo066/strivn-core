@@ -13,7 +13,7 @@ export const TAGLINES = {
 } as const;
 
 /** Canonical build floor. Keep stat bar, work teaser, and pricing intro in sync. */
-export const PRICING_FLOOR = "From $2,000";
+export const PRICING_FLOOR = "From $1,500";
 
 export const HERO_PROOF = [
   { value: "2-4 wks", label: "Typical launch" },
@@ -215,7 +215,7 @@ export const BUILD_PACKAGES = [
   {
     name: "Starter",
     pages: "3 pages",
-    price: "$2,000",
+    price: "$1,500",
     priceNote: "flat fee",
     includes: [
       "Home, About, Contact",
@@ -229,7 +229,7 @@ export const BUILD_PACKAGES = [
   {
     name: "Standard",
     pages: "5 pages",
-    price: "$3,000",
+    price: "$2,500",
     priceNote: "flat fee",
     includes: [
       "Everything in Starter",
@@ -241,7 +241,7 @@ export const BUILD_PACKAGES = [
   {
     name: "Pro",
     pages: "8+ pages",
-    price: "$4,500+",
+    price: "$4,000+",
     priceNote: "starting price",
     badge: "Most Popular",
     featured: true,
@@ -256,8 +256,8 @@ export const BUILD_PACKAGES = [
   {
     name: "Shopify",
     pages: "E-commerce, custom",
-    price: "$3,500",
-    priceNote: "up to $6,000",
+    price: "$3,000",
+    priceNote: "up to $5,500",
     includes: [
       "Custom theme build",
       "Product catalog setup",
@@ -370,29 +370,29 @@ export type RetainerPlan = {
 export const RETAINER_PLANS: readonly RetainerPlan[] = [
   {
     name: "Essential Care",
-    quarterly: 375,
-    yearly: 1350,
-    summary: "Hosting, monitoring, routine maintenance, and 1 hour of content edits per quarter.",
+    featured: true,
+    quarterly: 225,
+    yearly: 810,
+    summary: "One-site hosting allowance, monitoring, routine maintenance, and 30 minutes of small content edits per quarter.",
     sections: [
       { label: "Website operations", items: [
-        { text: "Standard website hosting within agreed usage limits", included: true },
+        { text: "One standard business site: up to $25/month in hosting-provider costs", included: true },
         { text: "Uptime monitoring + deployment recovery", included: true },
         { text: "Routine security and dependency maintenance", included: true },
         { text: "Monthly form and booking-link checks", included: true },
       ] },
       { label: "Edits & support", items: [
-        { text: "1 hour of content edits per quarter", included: true },
+        { text: "30 minutes of small content edits per quarter", included: true },
         { text: "Response within 2 business days", included: true },
         { text: "Ongoing SEO, blog posts, and advertising", included: false },
       ] },
     ],
   },
   {
-    name: "Seasonal Care",
+    name: "Priority Care",
     quarterly: 675,
     yearly: 2430,
     summary: "Essential operations, 3 total editing hours per quarter, a quarterly review, and next-business-day response.",
-    featured: true,
     sections: [
       { label: "Website operations", items: [
         { text: "All Essential Care hosting and maintenance", included: true },
@@ -406,6 +406,15 @@ export const RETAINER_PLANS: readonly RetainerPlan[] = [
     ],
   },
 ];
+
+/** Shared customer-facing policy; the signed service agreement records these terms. */
+export const CARE_TERMS = {
+  hosting: "Both care plans include hosting for one standard business website, with up to $25 per calendar month of hosting-provider costs covered by Strivn. This allowance is part of the care fee, not an extra charge or cash credit, and unused allowance does not roll over. Any shared base hosting cost is allocated in the written scope before service begins. We review usage monthly and request written approval for an upgrade or additional charges before exceeding the allowance; it is not an automatic spending cap at the provider.",
+  exclusions: "Domain renewals, business email, paid editors/CMS plans, databases, booking or ordering subscriptions, and other external services are paid separately by the client unless the written scope expressly includes them. Shopify’s subscription provides its hosting and is paid directly to Shopify; care covers our support and maintenance without a hosting credit or discount.",
+  renewal: "Care is optional and paid quarterly or yearly in advance. Your agreed care price is fixed for the first 12 months; any later change applies only at renewal with at least 30 days’ written notice. Renewal and payment arrangements are recorded in your service agreement.",
+  cancellation: "Email hello@strivnagency.com before the next renewal date to cancel the next period. Care and included hosting remain available through the paid-through date. Prepaid periods are not refunded pro rata unless your agreement or applicable law requires otherwise. Unused editing time and hosting allowance are not refundable credits.",
+  handoff: "Your domain and business accounts remain yours. Before care ends, arrange a client-paid hosting account and transfer date. One standard handoff of the existing project, agreed files, and access to a compatible hosting account is included when requested before the paid-through date. Rebuilds, paid licenses, and migrations requiring extra development are quoted for approval. Strivn-paid hosting ends on the paid-through date, so a site that has not been transferred may go offline. Third-party subscriptions must be canceled separately with their providers.",
+} as const;
 
 export const EDIT_SIZES = [
   {
@@ -441,8 +450,8 @@ export const OVERAGE_COPY =
   "Client receives a written estimate before any billable work begins. Approval is required. Overages are never charged without it. Medium edits typically run $100–$200. Large edits are quoted as a fixed project fee.";
 
 export const PRICING_QUICK_REF = [
-  { label: "Build range", value: "$2,000", suffix: "- $6,000" },
-  { label: "Retainer range", value: "$375", suffix: "–$675/quarter" },
+  { label: "Build range", value: "$1,500", suffix: "–$5,500" },
+  { label: "Retainer range", value: "$225", suffix: "–$675/quarter" },
   { label: "Yearly discount", value: "10%", suffix: "off four quarterly payments" },
   { label: "Overage rate", value: "$100", suffix: "/hr" },
   { label: "Deposit", value: "50%", suffix: "at signing" },

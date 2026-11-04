@@ -116,7 +116,7 @@ export const INDUSTRIES: readonly Industry[] = [
     goal: "An easier path to orders, visits, and catering inquiries.",
     ongoingSupport: {
       title: "A website that keeps up with your kitchen.",
-      description: "Seasonal menus, holiday hours, new photos, and promotions should be easy to keep current. Website care gives you a responsive partner for included updates and performance monitoring. Essential Care includes one editing hour per quarter; Seasonal Care includes three total hours and a quarterly planning review. Larger additions are scoped and quoted before work starts.",
+      description: "Seasonal menus, holiday hours, new photos, and promotions should be easy to keep current. Website care gives you a responsive partner for included updates and performance monitoring. Essential Care includes 30 minutes of small content edits per quarter; Priority Care includes three total hours and a quarterly planning review. Larger additions are scoped and quoted before work starts.",
     },
     caseStudy: {
       title: "The Sahara Grill",

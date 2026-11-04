@@ -14,7 +14,7 @@ import { MonoLabel } from "@/components/shared/mono-label";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { StripedPattern } from "@/components/ui/striped-pattern";
-import { PRICING_COPY, PRICING_PROCESS } from "@/lib/constants";
+import { CARE_TERMS, PRICING_COPY, PRICING_FLOOR, PRICING_PROCESS } from "@/lib/constants";
 import { ShineBorder } from "@/registry/magicui/shine-border";
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export default function PricingPage() {
           <BlurFade className="nav-glass relative rounded-[var(--radius-button)] border border-border p-6 sm:p-8" direction="right" delay={0.12} inViewAmount={0.2}>
             <ShineBorder shineColor={["#ff7540", "#ff9a4a", "#ffb56a"]} />
             <p className="font-pixel text-xs text-muted-foreground">YOUR WEBSITE, BUILT FOR YOU</p>
-            <p className="mt-4 font-display text-4xl"><span className="mr-2 text-base text-muted-foreground">from</span><span className="text-orange-gradient">$2,000</span></p>
+            <p className="mt-4 font-display text-4xl"><span className="mr-2 text-base text-muted-foreground">from</span><span className="text-orange-gradient">{PRICING_FLOOR.replace("From ", "")}</span></p>
             <ul className="mt-6 space-y-4 border-t border-border pt-6 text-sm">
               <li className="flex items-center gap-3"><Layers className="size-4 text-orange" aria-hidden />Fixed scope, custom design</li>
               <li className="flex items-center gap-3"><Wallet className="size-4 text-orange" aria-hidden />50% to start. 50% before launch.</li>
@@ -119,9 +119,11 @@ export default function PricingPage() {
             <BuildPackages />
             <section id="ownership" aria-labelledby="ownership-heading" className="border-t border-border p-5 sm:p-8">
               <h3 id="ownership-heading" className="font-display text-xl">Your website. Your accounts. A clear handoff.</h3>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">Your domain and business accounts stay in your name. At handoff, you receive the agreed website files and account access. Choose your own hosting account or optional Strivn care with hosting within agreed usage limits. Domains and external subscriptions are separate.</p>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">Your domain and business accounts stay in your name. At handoff, you receive the agreed website files and account access. Choose your own hosting account or optional Strivn care with the stated hosting allowance. Domains and external subscriptions are separate.</p>
               <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">Pro includes a basic editor for content agreed before the build, such as service details, hours, or specials, plus a training session. Shopify includes its built-in editor and handoff training. Starter and Standard can add editing functionality by separate quote. Editing access covers the agreed content, while new layouts and features are scoped separately.</p>
               <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">You can make routine updates within your agreed editor, ask us for occasional approved work at $100/hour, or choose a care plan. Ongoing care is optional.</p>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{CARE_TERMS.exclusions}</p>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">Canceling care does not remove your ownership. Arrange a hosting transfer before your paid period ends. <Link href="/terms#website-care" className="underline underline-offset-4">Read the hosting, renewal, cancellation, and handoff policy</Link>.</p>
             </section>
             <RetainerPlans />
             <WebsiteValue />

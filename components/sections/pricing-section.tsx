@@ -41,7 +41,7 @@ export function PricingSection() {
             <Link scroll={false} href="/pricing#care" className="group flex items-center justify-between gap-4 p-6 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-orange sm:p-8">
               <div>
                 <p className="font-display text-lg">A website partner who stays involved</p>
-                <p className="mt-2 text-sm text-muted-foreground">Routine maintenance and monthly checks, plus editing time when you need it. Optional plans from $375/quarter.</p>
+                <p className="mt-2 text-sm text-muted-foreground">Routine maintenance and monthly checks, plus editing time when you need it. Optional plans from $225/quarter.</p>
                 <p className="mt-3 text-sm font-medium text-orange">Compare care plans</p>
               </div>
               <ArrowUpRight className="size-5 shrink-0 text-orange" aria-hidden />

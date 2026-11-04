@@ -54,7 +54,7 @@ const steps = [
   {
     title: "Keep moving forward.",
     stage: "Care after launch",
-    body: "Your domain and business accounts stay in your name. Make updates with your agreed editor, use your own hosting, or choose care from $375/quarter for hosting, proactive maintenance, and included editing time. Occasional work is $100/hour with written approval.",
+    body: "Your domain and business accounts stay in your name. Make updates with your agreed editor, use your own hosting, or choose care from $225/quarter for hosting, proactive maintenance, and included editing time. Occasional work is $100/hour with written approval.",
     outcome: "A clear route for updates as your business grows.",
     bring: "New content, changing business needs, and your next priorities.",
   },

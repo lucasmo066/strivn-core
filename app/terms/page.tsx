@@ -3,14 +3,14 @@ import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
-import { BRAND } from "@/lib/constants";
+import { BRAND, CARE_TERMS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
   description: `Terms governing use of the ${BRAND.legalName} website. Project work is covered by a separate agreement.`,
 };
 
-const LAST_UPDATED = "July 22, 2026";
+const LAST_UPDATED = "November 4, 2026";
 
 export default function TermsPage() {
   return (
@@ -58,6 +58,12 @@ export default function TermsPage() {
                 Pricing shown on the Site is indicative and may be updated;
                 a signed proposal controls for any engagement.
               </p>
+            </section>
+
+            <section id="website-care" className="space-y-3 scroll-mt-24" aria-labelledby="website-care-heading">
+              <h2 id="website-care-heading" className="font-display text-lg text-foreground">Website care, hosting & cancellation</h2>
+              <p>The following is our standard care policy for new engagements. Your signed service agreement confirms these terms and controls if it specifies otherwise; existing agreements are not changed by this page.</p>
+              <p>{CARE_TERMS.hosting}</p><p>{CARE_TERMS.exclusions}</p><p>{CARE_TERMS.renewal}</p><p>{CARE_TERMS.cancellation}</p><p>{CARE_TERMS.handoff}</p>
             </section>
 
             <section className="space-y-3">

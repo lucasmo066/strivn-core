@@ -53,6 +53,7 @@ export function RetainerCard({ plan, yearlyBilling, selected, active, delay }: R
             : "Billed quarterly."}
         </p>
       </div>
+      <p className="px-5 pb-3 text-xs text-muted-foreground sm:px-6">Equivalent to ${(yearlyBilling ? plan.yearly / 12 : plan.quarterly / 3).toLocaleString("en-US", { maximumFractionDigits: 2 })}/month. Invoiced {yearlyBilling ? "yearly" : "quarterly"}.</p>
       <ul className={styles.features}>
         {included.map((item) => (
           <li key={item.text}><Check aria-hidden stroke="url(#strivn-orange-gradient)" className="size-4 shrink-0" /><span>{item.text}</span></li>

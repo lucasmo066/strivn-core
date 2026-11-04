@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { StrivnButton } from "@/components/shared/strivn-button";
 import { BlurFade, useRevealOnScroll } from "@/components/ui/blur-fade";
-import { RETAINER_PLANS } from "@/lib/constants";
+import { CARE_TERMS, RETAINER_PLANS } from "@/lib/constants";
 
 import { EditSizesInfo } from "./edit-sizes-info";
 import { RetainerCard } from "./retainer-card";
@@ -21,7 +21,7 @@ export function RetainerPlans() {
       <BlurFade className={styles.sectionHeader} direction="up" inViewAmount={0.6}>
         <h3 id="care-plans-heading" className="font-display text-xl">Your website deserves an ongoing partner.</h3>
         <p className={styles.sectionDescription}>We monitor uptime, perform routine maintenance, and check forms and booking links monthly, even when you have no edits to request. Each plan also includes time for content changes you ask us to make.</p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Essential Care for upkeep and one editing hour per quarter, or Seasonal Care for three total editing hours, a quarterly review, and faster response. An included content editor lets your team make agreed updates yourselves; it is separate from the time we spend editing for you. Larger additions are scoped and priced before work starts.</p>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Choose Essential Care for upkeep and 30 minutes of small edits per quarter, or Priority Care for three total editing hours, a quarterly review, and faster response. An included content editor lets your team make agreed updates yourselves; it is separate from the time we spend editing for you. Larger additions are scoped and priced before work starts.</p>
         <div className={styles.billingRow}>
           <div className={styles.billingToggle} role="group" aria-label="Billing frequency">
             {yearlyBilling ? (
@@ -78,6 +78,12 @@ export function RetainerPlans() {
       <div className={styles.note}>
         <p>Care is optional, billed quarterly or yearly in advance. Editing hours are pooled within each quarter and expire at its end; annual billing keeps the same quarterly allowances. Routine maintenance and scheduled reviews do not use editing hours.</p>
         <p>Response targets mean acknowledgment, not completion. Domains and external subscriptions are separate. Major fixes, new features, and vendor-caused failures are quoted separately. Prefer occasional help? Choose client-managed hosting and approved work at $100/hour, without reserved support priority.</p>
+        <details className="mt-4" id="hosting-and-cancellation">
+          <summary className="cursor-pointer text-sm font-medium">Hosting allowance, renewal & cancellation</summary>
+          <div className="mt-3 space-y-3 text-sm leading-relaxed">
+            <p>{CARE_TERMS.hosting}</p><p>{CARE_TERMS.exclusions}</p><p>{CARE_TERMS.renewal}</p><p>{CARE_TERMS.cancellation}</p><p>{CARE_TERMS.handoff}</p>
+          </div>
+        </details>
         <EditSizesInfo />
       </div>
       <p className="sr-only" role="status">

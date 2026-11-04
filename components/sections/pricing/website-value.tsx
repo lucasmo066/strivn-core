@@ -129,7 +129,7 @@ export function WebsiteValue() {
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-4 top-1/2 size-5 -translate-y-1/2" aria-hidden />
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Care includes hosting within agreed usage limits, monitoring, routine maintenance, and quarterly editing hours. For this monthly estimate, the quarterly price is divided by 3 or the annual price by 12; actual invoices are quarterly or yearly in advance.</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Care includes the stated hosting allowance (Shopify hosting is paid separately), monitoring, routine maintenance, and quarterly editing time. For this monthly estimate, the quarterly price is divided by 3 or the annual price by 12; actual invoices are quarterly or yearly in advance.</p>
             </div>
             <details open={showTiming} onToggle={(event) => setShowTiming(event.currentTarget.open)} className="border-t border-border pt-2">
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-sm font-medium focus-visible:outline-2 focus-visible:outline-orange [&::-webkit-details-marker]:hidden">
@@ -198,7 +198,7 @@ export function WebsiteValue() {
               )}
             </div>
             <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
-              Estimates use your numbers, not industry averages or guaranteed results. The monthly amount is after care, before recovering the build. Timing starts when the assumed leads arrive. Only website build and care costs are included.
+              Estimates use your numbers, not industry averages or guaranteed results. The monthly amount is after care, before recovering the build. Timing starts when the assumed leads arrive. Only website build and care costs are included. Domain, email, Shopify, paid CMS/database plans, other external subscriptions, and any approved hosting overages are excluded from this estimate.
             </p>
             {result && !showTiming && <p className="mt-4 text-xs leading-relaxed text-muted-foreground">Add lead estimates to see how much could remain each month and how long it could take to recover the build.</p>}
             <a href="https://legacy.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs/break-even-point" target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-2 text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-orange">

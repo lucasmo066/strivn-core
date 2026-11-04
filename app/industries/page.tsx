@@ -107,7 +107,7 @@ export default function IndustriesPage() {
                   <div className={styles.industryCare}>
                     <p className={styles.eyebrow}>Med Spa Website · $4,500</p>
                     <h4>Your practice, ready for its next consultation.</h4>
-                    <p>Eight pages customized from our med spa template, including three treatment pages, one booking connection, launch SEO, and analytics. Delivered in 3–4 weeks after content, access, scope, and deposit are ready. Optional care from $375/quarter or $1,350/year.</p>
+                    <p>Eight pages customized from our med spa template, including three treatment pages, one booking connection, launch SEO, and analytics. Delivered in 3–4 weeks after content, access, scope, and deposit are ready. Optional care from $225/quarter or $810/year.</p>
                     <Link scroll={false} href="/start?package=med-spa" className={styles.textLink}>Request the med spa package <ArrowUpRight size={16} aria-hidden="true" /></Link>
                   </div>
                 )}
