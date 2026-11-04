@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, ListChecks, MessageSquare, Route, Video } from "lucide-react";
 
@@ -11,10 +11,11 @@ import { calendlyUrl, DEFAULT_CALENDLY_URL } from "@/lib/booking";
 import { BRAND } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = {
-  title: "Book a Call",
-  description: "Talk through your website, your goals, and the next step with Strivn.",
-};
+export const metadata = pageMetadata(
+  "Book a Call",
+  "Talk through your website, your goals, and the next step with Strivn.",
+  "/book",
+);
 
 export default function BookingPage() {
   const url = calendlyUrl(process.env.CALENDLY_URL || DEFAULT_CALENDLY_URL);

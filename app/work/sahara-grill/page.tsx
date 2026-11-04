@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowLeft, ArrowUpRight, Check, UtensilsCrossed } from "lucide-react";
@@ -16,10 +16,11 @@ import { SAHARA_CAPTURES, SAHARA_SITE_URL, saharaSiteUrl } from "@/lib/sahara";
 
 import "./sahara.css";
 
-export const metadata: Metadata = {
-  title: "Sahara Grill",
-  description: "A closer look at The Sahara Grill’s custom restaurant website, including original menu and website photography, a responsive menu, and menu management with Sanity CMS."
-};
+export const metadata = pageMetadata(
+  "Sahara Grill",
+  "A closer look at The Sahara Grill’s custom restaurant website, including original menu and website photography, a responsive menu, and menu management with Sanity CMS.",
+  "/work/sahara-grill",
+);
 
 const priorities = [
   { number: "01", title: "Let the food lead.", description: "Real photography, clear categories and readable prices make the menu easy to explore." },

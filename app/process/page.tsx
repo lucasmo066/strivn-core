@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 
@@ -10,10 +10,11 @@ import { GridPatternLinearGradient } from "@/components/sections/process/grid-pa
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShineBorder } from "@/registry/magicui/shine-border";
 
-export const metadata: Metadata = {
-  title: "Our Process",
-  description: "From the first conversation to a custom website and optional care after launch. See how scope, onboarding, reviews, and launch work at Strivn.",
-};
+export const metadata = pageMetadata(
+  "Our Process",
+  "From the first conversation to a custom website and optional care after launch. See how scope, onboarding, reviews, and launch work at Strivn.",
+  "/process",
+);
 
 const steps = [
   {

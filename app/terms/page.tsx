@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { BRAND, CARE_TERMS } from "@/lib/constants";
 
-export const metadata: Metadata = {
-  title: "Terms of Use",
-  description: `Terms governing use of the ${BRAND.legalName} website. Project work is covered by a separate agreement.`,
-};
+export const metadata = pageMetadata(
+  "Terms of Use",
+  `Terms governing use of the ${BRAND.legalName} website. Project work is covered by a separate agreement.`,
+  "/terms",
+);
 
 const LAST_UPDATED = "November 4, 2026";
 

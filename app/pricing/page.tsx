@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, Layers, Wallet } from "lucide-react";
 
@@ -17,11 +17,11 @@ import { StripedPattern } from "@/components/ui/striped-pattern";
 import { CARE_TERMS, PRICING_COPY, PRICING_FLOOR, PRICING_PROCESS } from "@/lib/constants";
 import { ShineBorder } from "@/registry/magicui/shine-border";
 
-export const metadata: Metadata = {
-  title: "Pricing",
-  description:
-    "How Strivn prices a website: fixed packages, a 50% deposit, a typical 2–4 week launch, and optional care after launch.",
-};
+export const metadata = pageMetadata(
+  "Pricing",
+  "How Strivn prices a website: fixed packages, a 50% deposit, a typical 2–4 week launch, and optional care after launch.",
+  "/pricing",
+);
 
 export default function PricingPage() {
   return (

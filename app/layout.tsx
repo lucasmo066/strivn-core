@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata, SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/metadata";
 import localFont from "next/font/local";
 import { Suspense } from "react";
 
@@ -48,12 +49,13 @@ const geistPixel = localFont({
 const themeBootScript = `(function(){try{var t=localStorage.getItem("strivn-theme");if(t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}})();`;
 
 export const metadata: Metadata = {
+  ...pageMetadata(SITE_TITLE, SITE_DESCRIPTION, "/"),
+  metadataBase: new URL(SITE_URL),
+  applicationName: "Strivn Agency",
   title: {
-    default: "Home",
-    template: "Strivn Agency - %s",
+    default: SITE_TITLE,
+    template: "%s | Strivn Agency",
   },
-  description:
-    "Strivn builds fast, custom websites for small businesses. Based in Colorado's Front Range. Design, development, SEO, and ongoing support. Launch in weeks, not months.",
   icons: {
     icon: [
       {

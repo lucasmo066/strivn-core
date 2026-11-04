@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 
 import { Container } from "@/components/shared/container";
 import { MonoLabel } from "@/components/shared/mono-label";
 import { BRAND } from "@/lib/constants";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: `How ${BRAND.legalName} collects, uses, and protects information when you visit our website or contact us.`,
-};
+export const metadata = pageMetadata(
+  "Privacy Policy",
+  `How ${BRAND.legalName} collects, uses, and protects information when you visit our website or contact us.`,
+  "/privacy",
+);
 
 const LAST_UPDATED = "July 22, 2026";
 

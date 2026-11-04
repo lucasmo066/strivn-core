@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, Compass, MousePointer2, Search, Sparkles } from "lucide-react";
@@ -15,10 +15,11 @@ import { ShineBorder } from "@/registry/magicui/shine-border";
 
 import styles from "@/components/sections/industries/industries.module.css";
 
-export const metadata: Metadata = {
-  title: "Industries",
-  description: "Custom websites for restaurants, practices, and local businesses. Explore our approach to menus, ordering, bookings, and inquiries, with ongoing website care.",
-};
+export const metadata = pageMetadata(
+  "Industries",
+  "Custom websites for restaurants, practices, and local businesses. Explore our approach to menus, ordering, bookings, and inquiries, with ongoing website care.",
+  "/industries",
+);
 
 const partnership = [
   { title: "Define the win.", body: "We start with the customers you want, the work you want more of, and what your website needs to help make happen.", deliverable: "Your goals → a focused plan" },

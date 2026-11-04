@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Container } from "@/components/shared/container";
@@ -7,10 +7,11 @@ import { PackageRequest } from "@/components/sections/pricing/package-request";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BUILD_PACKAGES, MED_SPA_PACKAGE, RETAINER_PLANS } from "@/lib/constants";
 
-export const metadata: Metadata = {
-  title: "Choose Your Package",
-  description: "Choose a website package and share your project details. Start with a written scope, without booking a sales call first.",
-};
+export const metadata = pageMetadata(
+  "Choose Your Package",
+  "Choose a website package and share your project details. Start with a written scope, without booking a sales call first.",
+  "/start",
+);
 
 export default async function StartPage({ searchParams }: { searchParams: Promise<{ package?: string; care?: string; billing?: string }> }) {
   const params = await searchParams;
