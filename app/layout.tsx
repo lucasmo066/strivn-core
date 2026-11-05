@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata, SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/metadata";
 import localFont from "next/font/local";
 import { Suspense } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -100,6 +101,7 @@ export default function RootLayout({
         {children}
         <SiteFooter />
         <ViewportBlur />
+        <SpeedInsights />
       </body>
     </html>
   );
